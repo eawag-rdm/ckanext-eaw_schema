@@ -1,0 +1,78 @@
+{% import 'macros/form.html' as form %}
+
+{% call form.input(
+    "time-start",
+    id='field-' + field.field_name,
+    label=h.scheming_language_text(field.label),
+    placeholder=h.scheming_language_text(field.form_placeholder),
+    type='date',
+    value=data.get(field.field_name, '').split()[0],
+    error=errors[field.field_name],
+    classes=['control-medium'],
+    attrs=field.form_attrs if 'form_attrs' in field else {},
+    is_required=h.scheming_field_required(field)
+    )
+%}
+    {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+  {% endcall %}
+  {% call form.input(
+    "time-end",
+    id='field-' + field.field_name,
+    label=h.scheming_language_text(field.label),
+    placeholder=h.scheming_language_text(field.form_placeholder),
+    type='date',
+    value=data.get(field.field_name, '').split()[0],
+    error=errors[field.field_name],
+    classes=['control-medium'],
+    attrs=field.form_attrs if 'form_attrs' in field else {},
+    is_required=h.scheming_field_required(field)
+    )
+%}
+    {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+{% endcall %}
+
+
+
+      {# Time range #}
+      {# {% set timestartval = fields_grouped['eaw_fqfield_timestart'] |first %} #}
+      {# {% set timeendval = fields_grouped['eaw_fqfield_timeend'] |first %}  #}
+      {# {%- set title = _('Time(-Range)') %} #}
+
+      {# <div class="time-search {% if c.search_errors.timerange %}error{% endif %}"> #}
+      {# 	<h4 class="h4searchlabel">Time-Start</h4> #}
+      {# 	<div class="search-input"> #}
+      {# 	  <input style="width:24ex;" type="text" id="time-start" #}
+      {# 		 name="eaw_fqfield_timestart" value="{{ timestartval }}"/> #}
+      {# 	</div> #}
+      {# </div> #}
+      {# <div class="time-search {% if c.search_errors.timerange %}error{% endif %}"> #}
+      {# 	<h4 class="h4searchlabel">Time-End</h4> #}
+      {# 	<div class="search-input"> #}
+      {# 	  <input style="width:24ex" type="text" id="time-end" #}
+      {# 		 name="eaw_fqfield_timeend" value="{{ timeendval }}"/> #}
+      {# 	  <button type="submit" value="search" class="outsidebutton">  #}
+      {# 	    <i class="icon-search"></i>    #}
+      {# 	    <span>{{ _('Search') }}</span>    #}
+      {# 	  </button> #}
+      {# 	  <button  type="button" class="outsidebutton second" #}
+      {# 		   data-module="eaw_vocabularies_daterange_info" #}
+      {# 		   data-module-target="#timerangehelp"> #}
+      {# 		   <i class="icon-info-sign"></i> #}
+      {# 	  </button> #}
+      {# 	</div> #}
+      {# </div> #}
+
+      {# {% snippet 'package/snippets/timerangehelp-modal.html' %} #}
+      
+      {# <p style="clear:both;"></p> #}
+      
+      {# <div class="btn-group clear-filter-group"> #}
+      {#   <a class="btn" type="button" href="{{ clear_url }}"> #}
+      {# 	  <i class="icon-ban-circle"></i> #}
+      {# 	  {{ _('Clear') }} #}
+      {# 	</a> #}
+      {# 	<button class="btn fouc" type="submit"> #}
+      {# 	  <i class="icon-search"></i> #}
+      {# 	  {{ _('Filter') }} #}
+      {# 	</button> #}
+      {# </div> #}

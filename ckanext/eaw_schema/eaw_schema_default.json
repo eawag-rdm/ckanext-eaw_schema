@@ -1,0 +1,137 @@
+{
+  "scheming_version": 1,
+  "dataset_type": "dataset",
+  "about": "A reimplementation of the default CKAN dataset schema",
+  "about_url": "http://github.com/ckan/ckanext-scheming",
+  "free_tags_only": true,  
+  "dataset_fields": [
+    {
+      "field_name": "title",
+      "label": "Title",
+      "preset": "title",
+      "form_placeholder": "A descriptive title",
+      "display_property": "dct:title",
+      "required": true
+    },
+    {
+      "field_name": "name",
+      "label": "URL",
+      "preset": "dataset_slug",
+      "display_property": "dcat:landingPage",
+      "required": true
+    },
+    {
+      "field_name": "notes",
+      "label": "Abstract",
+      "form_snippet": "markdown.html",
+      "form_placeholder": "A description of the package.",
+      "display_property": "dct:description",
+      "required": true
+      },
+    {
+      "field_name": "tag_string",
+      "label": "Keywords",
+      "preset": "tag_string_autocomplete", 
+      "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...",
+      "display_property": "dcat:keyword",
+      "required": true
+    },
+    {
+      "field_name": "variables",
+      "label": "Variables",
+      "preset": "multiple_select",
+      "vocabulary": "variables",
+      "select_size": 5,
+      "required": true
+    },
+    {
+      "field_name": "systems",
+      "label": "Systems",
+      "preset": "multiple_select",
+      "vocabulary": "systems",
+      "select_size": 5,
+      "required": true
+    },
+    {
+      "field_name": "owner_org",
+      "label": "Organization",
+      "preset": "dataset_organization"
+    },
+    {
+      "field_name": "status",
+      "label": "Status",
+      "form_attrs": {"class": "shortinput"},
+      "required": true,
+      "display_property": "adms:status",
+      "preset": "select_short",
+      "choices": [
+	{
+	  "value": "incomplete",
+	  "label": "incomplete"
+	},
+	{
+	  "value": "complete",
+	  "label": "complete"
+	},
+	{
+	  "value": "reviewed",
+	  "label": "reviewed"
+	}
+      ]
+    },
+    {
+      "field_name": "maintainer",
+      "label": "Curator",
+      "required": "true",
+      "form_snippet": "text_short.html",
+      "form_placeholder": "Johann Meierbär <joe@eawag.ch>",
+      "display_property": "datacite:datacurator",
+      "help_text": "Person responsible for completeness and quality of data and meta-data.",
+      "help_inline": true
+    },
+    {
+      "field_name": "author",
+      "label": "Author",
+      "preset": "repeating_text_js",
+      "form_placeholder": "joe@eawag.ch",
+      "display_property": "dc:creator",
+      "display_email_name_field": "author",
+      "help_text": "Persons that take scientific credit. Required IFF valid for all resources of the package",
+      "help_inline": true
+    }
+
+  ],
+  "resource_fields": [
+    {
+      "field_name": "url",
+      "label": "URL",
+      "preset": "resource_url_upload"
+    },
+    {
+      "field_name": "name",
+      "label": "Name",
+      "form_placeholder": "eg. January 2011 Gold Prices"
+    },
+    {
+      "field_name": "description",
+      "label": "Description",
+      "form_snippet": "markdown.html",
+      "form_placeholder": "Some useful notes about the data"
+    },
+    {
+      "field_name": "format",
+      "label": "Format",
+      "preset": "resource_format_autocomplete"
+    },
+      {
+	  "field_name": "resource_type",
+	  "preset": "multiple_select",
+	  "label": "Resource Type",
+	  "vocabulary": "resource_type",
+	  "required": true
+      },
+      { "field_name": "rights_holder",
+	"label": "Rights Holder"
+      }
+  ]
+}
