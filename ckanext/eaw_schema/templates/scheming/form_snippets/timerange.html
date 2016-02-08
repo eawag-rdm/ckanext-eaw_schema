@@ -1,78 +1,49 @@
 {% import 'macros/form.html' as form %}
+{% resource 'eaw_vocabularies/eaw_vocabularies_daterange_info.js' %}
 
 {% call form.input(
-    "time-start",
+    "timerange",
     id='field-' + field.field_name,
     label=h.scheming_language_text(field.label),
     placeholder=h.scheming_language_text(field.form_placeholder),
-    type='date',
     value=data.get(field.field_name, '').split()[0],
     error=errors[field.field_name],
     classes=['control-medium'],
     attrs=field.form_attrs if 'form_attrs' in field else {},
     is_required=h.scheming_field_required(field)
     )
-%}
-    {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
-  {% endcall %}
-  {% call form.input(
-    "time-end",
-    id='field-' + field.field_name,
-    label=h.scheming_language_text(field.label),
-    placeholder=h.scheming_language_text(field.form_placeholder),
-    type='date',
-    value=data.get(field.field_name, '').split()[0],
-    error=errors[field.field_name],
-    classes=['control-medium'],
-    attrs=field.form_attrs if 'form_attrs' in field else {},
-    is_required=h.scheming_field_required(field)
-    )
-%}
-    {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+  %}
+  <button  type="button" class="outsidebutton"
+           data-module="eaw_vocabularies_daterange_info"  
+           data-module-target="#timerangehelp">  
+           <i class="icon-info-sign"></i>  
+  </button> 
 {% endcall %}
-
-
-
-      {# Time range #}
-      {# {% set timestartval = fields_grouped['eaw_fqfield_timestart'] |first %} #}
-      {# {% set timeendval = fields_grouped['eaw_fqfield_timeend'] |first %}  #}
-      {# {%- set title = _('Time(-Range)') %} #}
-
-      {# <div class="time-search {% if c.search_errors.timerange %}error{% endif %}"> #}
-      {# 	<h4 class="h4searchlabel">Time-Start</h4> #}
-      {# 	<div class="search-input"> #}
-      {# 	  <input style="width:24ex;" type="text" id="time-start" #}
-      {# 		 name="eaw_fqfield_timestart" value="{{ timestartval }}"/> #}
-      {# 	</div> #}
-      {# </div> #}
-      {# <div class="time-search {% if c.search_errors.timerange %}error{% endif %}"> #}
-      {# 	<h4 class="h4searchlabel">Time-End</h4> #}
-      {# 	<div class="search-input"> #}
-      {# 	  <input style="width:24ex" type="text" id="time-end" #}
-      {# 		 name="eaw_fqfield_timeend" value="{{ timeendval }}"/> #}
-      {# 	  <button type="submit" value="search" class="outsidebutton">  #}
-      {# 	    <i class="icon-search"></i>    #}
-      {# 	    <span>{{ _('Search') }}</span>    #}
-      {# 	  </button> #}
-      {# 	  <button  type="button" class="outsidebutton second" #}
-      {# 		   data-module="eaw_vocabularies_daterange_info" #}
-      {# 		   data-module-target="#timerangehelp"> #}
-      {# 		   <i class="icon-info-sign"></i> #}
-      {# 	  </button> #}
-      {# 	</div> #}
-      {# </div> #}
-
-      {# {% snippet 'package/snippets/timerangehelp-modal.html' %} #}
-      
-      {# <p style="clear:both;"></p> #}
-      
-      {# <div class="btn-group clear-filter-group"> #}
-      {#   <a class="btn" type="button" href="{{ clear_url }}"> #}
-      {# 	  <i class="icon-ban-circle"></i> #}
-      {# 	  {{ _('Clear') }} #}
-      {# 	</a> #}
-      {# 	<button class="btn fouc" type="submit"> #}
-      {# 	  <i class="icon-search"></i> #}
-      {# 	  {{ _('Filter') }} #}
-      {# 	</button> #}
-      {# </div> #}
+   
+<div id="timerangehelp" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Examples</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <span>Points in time and implicit time-ranges:</span>
+      <table style="border-collapse:separate;border-spacing:30px 0px;">
+        <tr><td>2015</td><td>Jan 1, 2015 to Dec 31, 2015</td></tr>
+        <tr><td>2015-03</td><td>March 2015</td></tr>
+        <tr><td>2015-03-11</td><td>March 11, 2015</td></tr>
+        <tr><td>2015-03-11T23</td><td>March 3, 2015, [23:00 .. 24:00)</td></tr>
+        <tr><td>1969-10-29T22:30:04.765</td><td>a particular millisecond</td></tr>
+      </table>
+    </p><p>
+      <span>Use <b>"TO"</b> to express explicit time-ranges:</span>
+      <table style="border-collapse:separate;border-spacing:30px 0px;">
+        <tr><td>2014 <b>TO</b> 2016</td><td>2014, 2015 and 2016</td></tr>
+        <tr><td>1969-06 <b>TO</b> 1969-08</td><td>the summer of 1969</td></tr>
+        <tr><td>1969-07-16T13:32:00 <b>TO</b> 1969-07-24T16:50:35</td><td>concomitant to the<br />flight of Apollo 11</td></tr>
+      </table>
+    </p>
+    <b>Fractional seconds must have 3 decimal places.<br />
+    All times are UTC.</b>
+  </div>
+</div>

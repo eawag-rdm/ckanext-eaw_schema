@@ -57,8 +57,8 @@
       "label": "Timerange",
       "validators": "vali_daterange",
       "output_validators": "output_daterange",
-      "help_text": "Here we describe how to enter valid SOLR date-ranges.",
-      "help_inline": false
+      "form_placeholder": "e.g. 2016-03 TO 2016-05",
+      "form_snippet": "timerange.html"
     },
     {
       "field_name": "owner_org",

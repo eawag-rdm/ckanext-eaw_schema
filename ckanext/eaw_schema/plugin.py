@@ -22,7 +22,8 @@ def vali_daterange(value):
     except ValueError:
         pass
     else:
-        timestamps = [_fix_timestamp(ts) for ts in timestamps]
+        if len(timestamps) == 2:
+            timestamps = [_fix_timestamp(ts) for ts in timestamps]
         value = " TO ".join(timestamps)
         if len(timestamps) == 2 and value[0] != "[" and value[-1] != "]":
             value = "[" + value + "]"
