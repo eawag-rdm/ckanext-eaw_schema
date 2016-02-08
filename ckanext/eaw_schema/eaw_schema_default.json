@@ -53,6 +53,14 @@
       "required": true
     },
     {
+      "field_name": "timerange",
+      "label": "Timerange",
+      "validators": "vali_daterange",
+      "output_validators": "output_daterange",
+      "help_text": "Here we describe how to enter valid SOLR date-ranges.",
+      "help_inline": false
+    },
+    {
       "field_name": "owner_org",
       "label": "Organization",
       "preset": "dataset_organization"
