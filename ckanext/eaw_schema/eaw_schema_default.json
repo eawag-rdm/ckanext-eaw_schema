@@ -53,6 +53,14 @@
       "required": true
     },
     {
+      "field_name": "timerange",
+      "label": "Timerange",
+      "validators": "vali_daterange",
+      "output_validators": "output_daterange",
+      "form_placeholder": "e.g. 2016-03 TO 2016-05",
+      "form_snippet": "timerange.html"
+    },
+    {
       "field_name": "owner_org",
       "label": "Organization",
       "preset": "dataset_organization"
