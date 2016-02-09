@@ -39,7 +39,7 @@
     {
       "field_name": "variables",
       "label": "Variables",
-      "preset": "multiple_select",
+      "preset": "multiple_select_js",
       "vocabulary": "variables",
       "select_size": 5,
       "required": true
@@ -47,7 +47,7 @@
     {
       "field_name": "systems",
       "label": "Systems",
-      "preset": "multiple_select",
+      "preset": "multiple_select_js",
       "vocabulary": "systems",
       "select_size": 5,
       "required": true
@@ -103,8 +103,7 @@
       "preset": "repeating_text_js",
       "form_placeholder": "joe@eawag.ch",
       "display_property": "dc:creator",
-      "display_email_name_field": "author",
-      "help_text": "Persons that take scientific credit. Required IFF valid for all resources of the package",
+      "help_text": "Persons who take scientific credit. Required IFF valid for all resources of the package",
       "help_inline": true
     }
 
@@ -118,7 +117,36 @@
     {
       "field_name": "name",
       "label": "Name",
-      "form_placeholder": "eg. January 2011 Gold Prices"
+      "form_placeholder": "e.g. table_arsenic",
+      "required": true
+    },
+    {
+      "field_name": "author",
+      "label": "Author",
+      "preset": "repeating_text_js",
+      "form_placeholder": "e.g. joe@eawag.ch",
+      "display_property": "dc:creator",
+      "help_text": "Persons who take scientific credit for this resource.",
+      "required": true,
+      "help_inline": true
+    },
+
+
+    {
+      "field_name": "resource_type",
+      "preset": "multiple_select_js",
+      "label": "Resource Type",
+      "vocabulary": "resource_type",
+      "required": true
+    },
+    {
+      "field_name": "rights_holder",
+      "label": "Rights Holder",
+      "form_attrs": {"class": "shortinput"},
+      "form_placeholder": "Eawag",
+      "help_text": "Person or organization holding utilization and usage rights to this resource.",
+      "help_inline": true,
+      "required": true
     },
     {
       "field_name": "description",
@@ -127,19 +155,16 @@
       "form_placeholder": "Some useful notes about the data"
     },
     {
-      "field_name": "format",
-      "label": "Format",
-      "preset": "resource_format_autocomplete"
+      "field_name": "citation",
+      "label": "Citation",
+      "form_snippet": "markdown.html",
+      "form_placeholder": "A text snippet that should be used to cite this resource."
     },
-      {
-	  "field_name": "resource_type",
-	  "preset": "multiple_select",
-	  "label": "Resource Type",
-	  "vocabulary": "resource_type",
-	  "required": true
-      },
-      { "field_name": "rights_holder",
-	"label": "Rights Holder"
-      }
+    {
+      "field_name": "Usage notes",
+      "prepend_text": "<b>Unless otherwise noted, this resource is made vailable under either the<ul><li><a href=\"http://www.gnu.org/licenses/agpl-3.0.en.html\">GNU Affero General Public License 3.0</a> (for software), or the</li><li><a href=\"http://creativecommons.org/licenses/by-nc/4.0/\">Creative Commons Attribution-NonCommercial 4.0 International License</a> (for other material).</li></ul></b>",
+      "form_snippet": "markdown_prepend.html",
+      "form_placeholder": "Describe precisely any usage restrictions or relaxations that deviate from the default licensing."
+    }
   ]
 }
