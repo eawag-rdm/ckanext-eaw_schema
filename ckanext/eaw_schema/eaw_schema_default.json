@@ -124,14 +124,12 @@
       "field_name": "author",
       "label": "Author",
       "preset": "repeating_text_js",
-      "required": true,
+      "required": false,
       "form_placeholder": "e.g. joe@eawag.ch",
       "display_property": "dc:creator",
-      "help_text": "Persons who take scientific credit for this resource.",
+      "help_text": "Persons who take scientific credit for this resource unless given on the package-level.",
       "help_inline": true
     },
-
-
     {
       "field_name": "resource_type",
       "preset": "multiple_select_js",

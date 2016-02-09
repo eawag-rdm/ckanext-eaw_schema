@@ -8,7 +8,7 @@
       "values": {
 	"form_snippet": "repeating_text_js.html",
 	"display_snippet": "repeating_text.html",
-	"validators": "scheming_required repeating_text",
+	"validators": "repeating_text scheming_required",
 	"output_validators": "repeating_text_output"
       }
     },
