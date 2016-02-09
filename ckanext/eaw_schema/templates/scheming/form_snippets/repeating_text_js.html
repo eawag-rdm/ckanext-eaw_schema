@@ -2,11 +2,6 @@
 {% resource 'eaw_schema/lcrnz-repeating.js' %}
 
 <div data-module="lcrnz-repeating">
-  	  {# <button  type="button" class="outsidebutton second" #}
-	  {# 	   data-module="eaw_vocabularies_daterange_info" #}
-	  {# 	   data-module-target="#timerangehelp"> #}
-	  {# 	   <i class="icon-info-sign"></i> #}
-	  {# </button> #}
   {%- set values = data.get(field.field_name, []) + [''] -%}
   {% set attrs={"class": "shortinput"} %}
   {%- snippet 'scheming/form_snippets/help_text_short.html', field=field -%}

@@ -124,10 +124,10 @@
       "field_name": "author",
       "label": "Author",
       "preset": "repeating_text_js",
+      "required": true,
       "form_placeholder": "e.g. joe@eawag.ch",
       "display_property": "dc:creator",
       "help_text": "Persons who take scientific credit for this resource.",
-      "required": true,
       "help_inline": true
     },
 
@@ -137,15 +137,6 @@
       "preset": "multiple_select_js",
       "label": "Resource Type",
       "vocabulary": "resource_type",
-      "required": true
-    },
-    {
-      "field_name": "rights_holder",
-      "label": "Rights Holder",
-      "form_attrs": {"class": "shortinput"},
-      "form_placeholder": "Eawag",
-      "help_text": "Person or organization holding utilization and usage rights to this resource.",
-      "help_inline": true,
       "required": true
     },
     {
