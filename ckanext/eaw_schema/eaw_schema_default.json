@@ -33,8 +33,7 @@
       "label": "Keywords",
       "preset": "eaw_tag_string_autocomplete", 
       "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...",
-      "display_property": "dcat:keyword",
-      "required": true
+      "display_property": "dcat:keyword"
     },
     {
       "field_name": "variables",
@@ -56,7 +55,7 @@
       "field_name": "timerange",
       "label": "Timerange",
       "form_attrs": {"class": "medinput"},
-      "validators": "vali_daterange",
+      "validators": "not_empty vali_daterange",
       "output_validators": "output_daterange",
       "form_placeholder": "e.g. 2016-03 TO 2016-05",
       "form_snippet": "timerange.html"
@@ -92,11 +91,10 @@
       "field_name": "maintainer",
       "label": "Curator",
       "required": "true",
-      "form_snippet": "text_short.html",
+      "form_snippet": "text_medium.html",
       "form_placeholder": "Johann Meierbär <joe@eawag.ch>",
       "display_property": "datacite:datacurator",
-      "help_text": "Person responsible for completeness and quality of data and meta-data.",
-      "help_inline": true
+      "modal_text": "timerangehelp"
     },
     {
       "field_name": "author",
