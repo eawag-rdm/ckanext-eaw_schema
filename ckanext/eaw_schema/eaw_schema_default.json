@@ -31,7 +31,7 @@
     {
       "field_name": "tag_string",
       "label": "Keywords",
-      "preset": "tag_string_autocomplete", 
+      "preset": "eaw_tag_string_autocomplete", 
       "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...",
       "display_property": "dcat:keyword",
       "required": true
@@ -55,6 +55,7 @@
     {
       "field_name": "timerange",
       "label": "Timerange",
+      "form_attrs": {"class": "medinput"},
       "validators": "vali_daterange",
       "output_validators": "output_daterange",
       "form_placeholder": "e.g. 2016-03 TO 2016-05",
