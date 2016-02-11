@@ -1,6 +1,7 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckanext.eaw_vocabularies.validate_solr_daterange import SolrDaterange
+import pylons.config as config
 
 def vali_daterange(value):
     '''
@@ -58,7 +59,6 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, 'templates')
         # toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'eaw_schema')
-
         
     # IValidators
     def get_validators(self):

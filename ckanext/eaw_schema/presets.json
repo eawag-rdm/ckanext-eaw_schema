@@ -4,9 +4,9 @@
   "about_url": "http://github.com/open-data/ckanext-repeating",
   "presets": [
     {
-      "preset_name": "repeating_text_js",
+      "preset_name": "eaw_schema_repeating_text_js",
       "values": {
-	"form_snippet": "repeating_text_js.html",
+	"form_snippet": "eaw_schema_repeating_text_js.html",
 	"display_snippet": "repeating_text.html",
 	"validators": "repeating_text scheming_required",
 	"output_validators": "repeating_text_output"
@@ -34,11 +34,17 @@
       "values": {
 	"validators": "not_empty tag_string_convert",
 	"form_attrs": {
-	  "style": "width:310px;",
           "data-module": "autocomplete",
           "data-module-tags": "",
           "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
         }
+      }
+    },
+    {
+      "preset_name": "eaw_schema_dataset_organization",
+      "values": {
+	"validators": "owner_org_validator unicode",
+	"form_snippet": "eaw_schema_organization.html"
       }
     }
   ]

@@ -1,0 +1,27 @@
+<div id="curator_help" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Examples</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      <span>Points in time and implicit time-ranges:</span>
+      <table style="border-collapse:separate;border-spacing:30px 0px;">
+        <tr><td>2015</td><td>Jan 1, 2015 to Dec 31, 2015</td></tr>
+        <tr><td>2015-03</td><td>March 2015</td></tr>
+        <tr><td>2015-03-11</td><td>March 11, 2015</td></tr>
+        <tr><td>2015-03-11T23</td><td>March 3, 2015, [23:00 .. 24:00)</td></tr>
+        <tr><td>1969-10-29T22:30:04.765</td><td>a particular millisecond</td></tr>
+      </table>
+    </p><p>
+      <span>Use <b>"TO"</b> to express explicit time-ranges:</span>
+      <table style="border-collapse:separate;border-spacing:30px 0px;">
+        <tr><td>2014 <b>TO</b> 2016</td><td>2014, 2015 and 2016</td></tr>
+        <tr><td>1969-06 <b>TO</b> 1969-08</td><td>the summer of 1969</td></tr>
+        <tr><td>1969-07-16T13:32:00 <b>TO</b> 1969-07-24T16:50:35</td><td>concomitant to the<br />flight of Apollo 11</td></tr>
+      </table>
+    </p>
+    <b>Fractional seconds must have 3 decimal places.<br />
+    All times are UTC.</b>
+  </div>
+</div>

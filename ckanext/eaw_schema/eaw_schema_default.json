@@ -54,21 +54,22 @@
     {
       "field_name": "timerange",
       "label": "Timerange",
-      "form_attrs": {"class": "medinput"},
       "validators": "not_empty vali_daterange",
       "output_validators": "output_daterange",
       "form_placeholder": "e.g. 2016-03 TO 2016-05",
-      "form_snippet": "timerange.html"
+      "form_snippet": "text_medium.html",
+      "modal_text": "timerange_help"
     },
     {
       "field_name": "owner_org",
       "label": "Organization",
-      "preset": "dataset_organization"
+      "preset": "eaw_schema_dataset_organization",
+      "modal_text": "access_help"
     },
     {
       "field_name": "status",
       "label": "Status",
-      "form_attrs": {"class": "shortinput"},
+      "form_attrs": {"class": "medinput"},
       "required": true,
       "display_property": "adms:status",
       "preset": "select_short",
@@ -94,16 +95,15 @@
       "form_snippet": "text_medium.html",
       "form_placeholder": "Johann Meierbär <joe@eawag.ch>",
       "display_property": "datacite:datacurator",
-      "modal_text": "timerangehelp"
+      "modal_text": "curator_help"
     },
     {
       "field_name": "author",
       "label": "Author",
-      "preset": "repeating_text_js",
+      "preset": "eaw_schema_repeating_text_js",
       "form_placeholder": "joe@eawag.ch",
       "display_property": "dc:creator",
-      "help_text": "Persons who take scientific credit. Required IFF valid for all resources of the package",
-      "help_inline": true
+      "modal_text": "author_help"
     }
 
   ],
@@ -122,7 +122,7 @@
     {
       "field_name": "author",
       "label": "Author",
-      "preset": "repeating_text_js",
+      "preset": "eaw_schema_repeating_text_js",
       "required": false,
       "form_placeholder": "e.g. joe@eawag.ch",
       "display_property": "dc:creator",

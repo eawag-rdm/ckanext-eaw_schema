@@ -11,49 +11,19 @@
 {% set modal_text=field.modal_text if 'modal_text' in field else none %}
 {% set attrs=field.form_attrs if 'form_attrs' in field else {} %}
 
-{% call form.input_block(
+{%- call form.input_block(
   for='field-' + field.field_name,
   label=h.scheming_language_text(field.label),
   error=errors[field.field_name],
   classes=['control-medium'],
   control_classes=[],
   extra_html="",
-  is_required=h.scheming_field_required(field))
-  %}
-  <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {{ form.attributes(attrs) }} />
-{% if modal_text is not none %}
-  <button  type="button" class="outsidebutton"
-           data-module="eaw_vocabularies_daterange_info"  
-           data-module-target="#{{ modal_text }}">  
-           <i class="icon-info-sign"></i>  
-  </button>
+  is_required=h.scheming_field_required(field)) -%}
+  <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}"
+	 value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}"
+	 {{ form.attributes(attrs) }} class="medinput"/>
+  {% if modal_text is not none %}
+    {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text -%}
   {% endif %}
 {% endcall %}
-   
-<div id="timerangehelp" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Examples</h3>
-  </div>
-  <div class="modal-body">
-    <p>
-      <span>Points in time and implicit time-ranges:</span>
-      <table style="border-collapse:separate;border-spacing:30px 0px;">
-        <tr><td>2015</td><td>Jan 1, 2015 to Dec 31, 2015</td></tr>
-        <tr><td>2015-03</td><td>March 2015</td></tr>
-        <tr><td>2015-03-11</td><td>March 11, 2015</td></tr>
-        <tr><td>2015-03-11T23</td><td>March 3, 2015, [23:00 .. 24:00)</td></tr>
-        <tr><td>1969-10-29T22:30:04.765</td><td>a particular millisecond</td></tr>
-      </table>
-    </p><p>
-      <span>Use <b>"TO"</b> to express explicit time-ranges:</span>
-      <table style="border-collapse:separate;border-spacing:30px 0px;">
-        <tr><td>2014 <b>TO</b> 2016</td><td>2014, 2015 and 2016</td></tr>
-        <tr><td>1969-06 <b>TO</b> 1969-08</td><td>the summer of 1969</td></tr>
-        <tr><td>1969-07-16T13:32:00 <b>TO</b> 1969-07-24T16:50:35</td><td>concomitant to the<br />flight of Apollo 11</td></tr>
-      </table>
-    </p>
-    <b>Fractional seconds must have 3 decimal places.<br />
-    All times are UTC.</b>
-  </div>
-</div>
+{%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
