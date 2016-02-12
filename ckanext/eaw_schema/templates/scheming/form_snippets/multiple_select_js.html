@@ -21,7 +21,7 @@
       name="{{ field.field_name }}" >
     {%- for val, label in choices -%}
       <option id="field-{{ field.field_name }}-{{ val }}"
-          value="{{ val }}"
+          value="{{ val }}" class="fouc"
           {{"selected " if val in data[field.field_name] }} />
         {{ label }}
       </option>

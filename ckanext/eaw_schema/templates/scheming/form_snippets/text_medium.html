@@ -1,8 +1,4 @@
 {% import 'macros/form.html' as form %}
-{% resource 'eaw_vocabularies/eaw_vocabularies_daterange_info.js' %}
-
-
-{# {% macro input_block(for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false) %} #}
 
 {% set type = "text" %}  
 {% set name=field.field_name%}
@@ -10,6 +6,7 @@
 {% set value=data.get(name, '') %}
 {% set modal_text=field.modal_text if 'modal_text' in field else none %}
 {% set attrs=field.form_attrs if 'form_attrs' in field else {} %}
+{% set placeholder=field.form_placeholder if 'form_placeholder' in field else ''%}
 
 {%- call form.input_block(
   for='field-' + field.field_name,

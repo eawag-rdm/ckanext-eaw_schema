@@ -52,7 +52,8 @@ this.ckan.module('lcrnz-repeating', function (jQuery, _) {
     },
 
     /* Wipe the contents of the field provided and increment its `name`, `id`
-     * and `for` attributes. Also remove 'add' checkbox if necessary.
+     * and `for` attributes. Also remove 'add' checkbox if necessary. Also
+     * remove info - button.
      *
      * field - A custom field to wipe.
      *
@@ -70,6 +71,7 @@ this.ckan.module('lcrnz-repeating', function (jQuery, _) {
       label.text(increment).attr('for', increment);
 
       field.find('.checkbox').remove();
+      field.find('button.outsidebutton').remove();
 
       return field;
     },

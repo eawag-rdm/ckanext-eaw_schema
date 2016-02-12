@@ -33,6 +33,7 @@
       "label": "Keywords",
       "preset": "eaw_tag_string_autocomplete", 
       "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...",
+      "required": true,
       "display_property": "dcat:keyword"
     },
     {
@@ -93,15 +94,22 @@
       "label": "Curator",
       "required": "true",
       "form_snippet": "text_medium.html",
-      "form_placeholder": "Johann Meierbär <joe@eawag.ch>",
+      "form_placeholder": "Otto Mayerbär <mayo@eawag.ch>",
       "display_property": "datacite:datacurator",
       "modal_text": "curator_help"
+    },
+    {
+      "field_name": "usage_contact",
+      "label": "Usage Contact",
+      "form_snippet": "text_medium.html",
+      "form_placeholder": "Pat Permission <pep@eawag.ch>",
+      "modal_text": "usage_contact_help"
     },
     {
       "field_name": "author",
       "label": "Author",
       "preset": "eaw_schema_repeating_text_js",
-      "form_placeholder": "joe@eawag.ch",
+      "form_placeholder": "Johann Bach <joe@eawag.ch>",
       "display_property": "dc:creator",
       "modal_text": "author_help"
     }
@@ -123,16 +131,15 @@
       "field_name": "author",
       "label": "Author",
       "preset": "eaw_schema_repeating_text_js",
-      "required": false,
-      "form_placeholder": "e.g. joe@eawag.ch",
+      "form_placeholder": "Johann Bach <joe@eawag.ch>",
       "display_property": "dc:creator",
-      "help_text": "Persons who take scientific credit for this resource unless given on the package-level.",
-      "help_inline": true
+      "modal_text": "res_author_help"
+ 
     },
     {
       "field_name": "resource_type",
-      "preset": "multiple_select_js",
       "label": "Resource Type",
+      "preset": "select",
       "vocabulary": "resource_type",
       "required": true
     },
@@ -147,12 +154,6 @@
       "label": "Citation",
       "form_snippet": "markdown.html",
       "form_placeholder": "A text snippet that should be used to cite this resource."
-    },
-    {
-      "field_name": "Usage notes",
-      "prepend_text": "<b>Unless otherwise noted, this resource is made vailable under either the<ul><li><a href=\"http://www.gnu.org/licenses/agpl-3.0.en.html\">GNU Affero General Public License 3.0</a> (for software), or the</li><li><a href=\"http://creativecommons.org/licenses/by-nc/4.0/\">Creative Commons Attribution-NonCommercial 4.0 International License</a> (for other material).</li></ul></b>",
-      "form_snippet": "markdown_prepend.html",
-      "form_placeholder": "Describe precisely any usage restrictions or relaxations that deviate from the default licensing."
     }
   ]
 }
