@@ -31,9 +31,8 @@
     {
       "field_name": "tag_string",
       "label": "Keywords",
-      "preset": "eaw_tag_string_autocomplete", 
+      "preset": "tag_string_autocomplete", 
       "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...",
-      "required": true,
       "display_property": "dcat:keyword"
     },
     {
