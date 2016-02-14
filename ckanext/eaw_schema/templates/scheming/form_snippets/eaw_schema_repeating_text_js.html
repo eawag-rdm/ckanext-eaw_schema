@@ -3,14 +3,15 @@
 
 {% set modal_text=field.modal_text if 'modal_text' in field else none %} 
 {% set placeholder=h.scheming_language_text(field.form_placeholder) %}
-{% set values = data.get(field.field_name, ['']) %}
+{%- set values = h.repeating_get_values(field.field_name,
+field.get('form_blanks', 1), data) %}
 <div data-module="lcrnz-repeating">
   {% set attrs={"class": "medinput"} %}
-  {% set name=field.field_name %}
   {% set type = "text" %}  
   {%- snippet 'scheming/form_snippets/help_text_short.html', field=field -%}
   {%- for value in values -%}
     {% set id='field-' + field.field_name + '-' ~ loop.index %}
+    {% set name=field.field_name + '-' ~ loop.index %}
     <div class="control-repeating"> 
       {%- call form.input_block(
 	for= 'field-' + field.field_name + '-' ~ loop.index, 
