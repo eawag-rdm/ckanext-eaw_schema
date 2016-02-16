@@ -118,6 +118,18 @@
       "form_snippet": "text_medium.html",
       "form_placeholder": "Pat Permission <pep@eawag.ch>",
       "modal_text": "usage_contact_help"
+    },
+    {
+      "field_name": "open_data",
+      "label": "Open Data",
+      "form_snippet": "eaw_multiple_checkbox.html",
+      "modal_text": "usage_contact_help",
+      "choices": [
+	{
+	  "value": "true",
+	  "label": ""
+	}
+      ]
     }
   ],
   "resource_fields": [
