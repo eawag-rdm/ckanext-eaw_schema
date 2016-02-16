@@ -1,0 +1,30 @@
+{#
+The help-text for the field "spatial" (display: "Spatial Extent")
+in create/update package form.
+#}
+
+<div id="spatial_help" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Spatial Extent</h3>
+  </div>
+  <div class="modal-body">
+    <p>
+      The spatial coverage of the data in the package.<br />
+      Has to be given as GeoJSON - geometry. Possible types are:
+      <ul>
+	<li>"Point",</li>
+	<li>"MultiPoint",</li>
+	<li>"LineString",</li>
+	<li>"MultiLineString",</li>
+	<li>"Polygon",</li>
+	<li>"MultiPolygon"</li>
+      </ul>
+      Examples are given at
+      <a href="http://geojson.org/geojson-spec.html#appendix-a-geometry-examples" target="_blank">geojson.org</a>
+    </p><p>
+      Note that "GeometryCollection", FeatureCollections" and
+      "FeatureObjects" are currently not supported.
+    </p>
+  </div>
+</div>
