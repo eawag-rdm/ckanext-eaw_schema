@@ -69,6 +69,7 @@
       "field_name": "owner_org",
       "label": "Organization",
       "preset": "eaw_schema_dataset_organization",
+      "required": true,
       "modal_text": "access_help"
     },
     {
