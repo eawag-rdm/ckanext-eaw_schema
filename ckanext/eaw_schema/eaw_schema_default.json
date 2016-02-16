@@ -61,6 +61,11 @@
       "modal_text": "timerange_help"
     },
     {
+      "field_name": "spatial",
+      "label": "Spatial Extent",
+      "display_snippet": null
+    },
+    {
       "field_name": "owner_org",
       "label": "Organization",
       "preset": "eaw_schema_dataset_organization",
@@ -102,7 +107,8 @@
       "label": "Usage Contact",
       "form_snippet": "text_medium.html",
       "form_placeholder": "Pat Permission <pep@eawag.ch>",
-      "modal_text": "usage_contact_help"
+      "modal_text": "usage_contact_help",
+      "required": true
     },
     {
       "field_name": "author",
