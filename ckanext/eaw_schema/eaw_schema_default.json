@@ -94,9 +94,16 @@
       ]
     },
     {
+      "field_name": "author",
+      "label": "Author",
+      "preset": "eaw_schema_repeating_text_js",
+      "form_placeholder": "Johann Bach <joe@eawag.ch>",
+      "display_property": "dc:creator",
+      "modal_text": "author_help"
+    },
+    {
       "field_name": "maintainer",
       "label": "Curator",
-      "required": "true",
       "form_snippet": "text_medium.html",
       "form_placeholder": "Otto Mayerbär <mayo@eawag.ch>",
       "display_property": "datacite:datacurator",
@@ -107,18 +114,8 @@
       "label": "Usage Contact",
       "form_snippet": "text_medium.html",
       "form_placeholder": "Pat Permission <pep@eawag.ch>",
-      "modal_text": "usage_contact_help",
-      "required": true
-    },
-    {
-      "field_name": "author",
-      "label": "Author",
-      "preset": "eaw_schema_repeating_text_js",
-      "form_placeholder": "Johann Bach <joe@eawag.ch>",
-      "display_property": "dc:creator",
-      "modal_text": "author_help"
+      "modal_text": "usage_contact_help"
     }
-
   ],
   "resource_fields": [
     {
