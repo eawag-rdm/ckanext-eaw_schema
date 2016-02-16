@@ -63,6 +63,8 @@
     {
       "field_name": "spatial",
       "label": "Spatial Extent",
+      "form_snippet": "text_medium.html",
+      "modal_text": "spatial_help",
       "display_snippet": null
     },
     {
