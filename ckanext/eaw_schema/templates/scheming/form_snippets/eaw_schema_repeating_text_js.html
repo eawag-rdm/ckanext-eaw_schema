@@ -23,7 +23,7 @@ field.get('form_blanks', 1), data) %}
 	<input id="{{ id or name }}" type="{{ type }}" name="{{ name }}"
 	 value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}"
 	       {{ form.attributes(attrs) }} class="medinput"/>
-	 {% if modal_text is not none %}
+	 {% if modal_text is not none  and loop.index == 1 %}
 	   {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text -%}
 	 {% endif %}
        {% endcall %}
