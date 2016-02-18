@@ -161,6 +161,13 @@
  
     },
     {
+      "field_name": "usage_contact",
+      "label": "Usage Contact",
+      "form_snippet": "text_medium.html",
+      "form_placeholder": "Pat Permission <pep@eawag.ch>",
+      "modal_text": "res_usage_contact_help"
+    },
+    {
       "field_name": "resource_type",
       "label": "Resource Type",
       "preset": "select",
