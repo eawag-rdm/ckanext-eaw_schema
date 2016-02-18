@@ -65,6 +65,7 @@
       "label": "Spatial Extent",
       "form_snippet": "text_medium.html",
       "modal_text": "spatial_help",
+      "required": true,
       "display_snippet": null
     },
     {
@@ -121,13 +122,19 @@
     },
     {
       "field_name": "open_data",
-      "label": "Open Data",
+      "label": "Flags",
       "form_snippet": "eaw_multiple_checkbox.html",
-      "modal_text": "usage_contact_help",
+      "display_snippet": "multiple_choice.html",
       "choices": [
 	{
-	  "value": "true",
-	  "label": ""
+	  "value": "open_data",
+	  "label": "Open Data candidate",
+	  "modal_text": "open_data_help"
+	},
+	{
+	  "value": "doi_wanted",
+	  "label": "DOI wanted",
+	  "modal_text": "doi_wanted_help"
 	}
       ]
     }
