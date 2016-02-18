@@ -65,6 +65,7 @@
       "label": "Spatial Extent",
       "form_snippet": "text_medium.html",
       "modal_text": "spatial_help",
+      "form_placeholder": "{\"type\": \"Point\", \"coordinates\": [8.6124600, 47.4031100]}",
       "required": true,
       "display_snippet": null
     },
