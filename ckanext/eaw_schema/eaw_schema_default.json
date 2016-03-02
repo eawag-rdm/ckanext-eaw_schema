@@ -173,7 +173,7 @@
       "label": "Resource Type",
       "preset": "select",
       "vocabulary": "resource_type",
-      "required": true
+      "required": false
     },
     {
       "field_name": "description",
@@ -186,6 +186,13 @@
       "label": "Citation",
       "form_snippet": "markdown.html",
       "form_placeholder": "A text snippet that should be used to cite this resource."
+    },
+    {
+      "field_name": "rights",
+       "label": "Rights",
+       "form_snippet": null,
+       "display_snippet": "text.html",
+       "text": "<b>You are not allowed to redistribute this data in any shape or form or make it available outside Eawag.<br />To use this data, you have to get permission from first Author, \"Usage Contact\", or head of the respective Eawag organizational unit.</b>"
     }
   ]
 }
