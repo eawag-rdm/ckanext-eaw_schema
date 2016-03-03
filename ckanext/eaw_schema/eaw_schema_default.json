@@ -130,12 +130,15 @@
 	{
 	  "value": "open_data",
 	  "label": "Open Data candidate",
-	  "modal_text": "open_data_help"
+	  "modal_text": "open_data_help",
+	  "autocheckif": "doi_wanted dummyid"
+	    
 	},
 	{
 	  "value": "doi_wanted",
 	  "label": "DOI wanted",
-	  "modal_text": "doi_wanted_help"
+	  "modal_text": "doi_wanted_help",
+	  "autocheckif": false
 	}
       ]
     }
@@ -153,46 +156,17 @@
       "required": true
     },
     {
-      "field_name": "author",
-      "label": "Author",
-      "preset": "eaw_schema_repeating_text_js",
-      "form_placeholder": "Johann Bach <joe@eawag.ch>",
-      "display_property": "dc:creator",
-      "modal_text": "res_author_help"
- 
-    },
-    {
-      "field_name": "usage_contact",
-      "label": "Usage Contact",
-      "form_snippet": "text_medium.html",
-      "form_placeholder": "Pat Permission <pep@eawag.ch>",
-      "modal_text": "res_usage_contact_help"
-    },
-    {
       "field_name": "resource_type",
       "label": "Resource Type",
       "preset": "select",
       "vocabulary": "resource_type",
-      "required": false
+      "required": true
     },
     {
       "field_name": "description",
       "label": "Description",
       "form_snippet": "markdown.html",
       "form_placeholder": "Some useful notes about the data"
-    },
-    {
-      "field_name": "citation",
-      "label": "Citation",
-      "form_snippet": "markdown.html",
-      "form_placeholder": "A text snippet that should be used to cite this resource."
-    },
-    {
-      "field_name": "rights",
-       "label": "Rights",
-       "form_snippet": null,
-       "display_snippet": "text.html",
-       "text": "<b>You are not allowed to redistribute this data in any shape or form or make it available outside Eawag.<br />To use this data, you have to get permission from first Author, \"Usage Contact\", or head of the respective Eawag organizational unit.</b>"
     }
   ]
 }
