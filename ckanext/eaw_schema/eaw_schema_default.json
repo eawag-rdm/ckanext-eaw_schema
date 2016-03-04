@@ -131,8 +131,7 @@
 	  "value": "open_data",
 	  "label": "Open Data candidate",
 	  "modal_text": "open_data_help",
-	  "autocheckif": "doi_wanted dummyid"
-	    
+	  "autocheckif": "doi_wanted"
 	},
 	{
 	  "value": "doi_wanted",
