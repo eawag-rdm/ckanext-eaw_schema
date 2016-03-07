@@ -33,7 +33,8 @@
       "label": "Keywords",
       "preset": "tag_string_autocomplete", 
       "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...",
-      "display_property": "dcat:keyword"
+      "display_property": "dcat:keyword",
+      "required": true
     },
     {
       "field_name": "variables",
