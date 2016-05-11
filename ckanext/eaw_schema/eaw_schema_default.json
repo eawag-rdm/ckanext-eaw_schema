@@ -27,7 +27,15 @@
       "form_placeholder": "A description of the package.",
       "display_property": "dct:description",
       "required": true
-      },
+    },
+    {
+      "field_name": "notes-2",
+      "label": "Notes",
+      "form_snippet": "markdown.html",
+      "form_placeholder": "Additional notes for data users or the Eawag data-manager",
+      "display_property": "dct:description",
+      "required": false
+    },
     {
       "field_name": "tag_string",
       "label": "Keywords",
@@ -40,7 +48,101 @@
       "field_name": "variables",
       "label": "Variables",
       "preset": "multiple_select_js",
-      "vocabulary": "variables",
+      "choices": [
+	{
+	  "value": "alkalinity",
+	  "label": "alkalinity"
+	},
+	{
+	  "value": "degradation_rate",
+	  "label": "degradation Rate"
+	},
+	{
+	 "value": "discharge",
+	 "label": "discharge"
+	},
+	{
+	  "value": "electric_conductivity",
+	  "label": "electric conductivity"
+	},
+	{
+	  "value": "concentration",
+	  "label": "concentration"
+	},
+	{
+	  "value": "precipitation",
+	  "label": "precipitation"
+	},
+	{
+	  "value": "pressure",
+	  "label": "pressure"
+	},
+	{
+	  "value": "respiration",
+	  "label": "respiration"
+	},
+	{
+	  "value": "temperature",
+	  "label": "temperature"
+	},
+	{
+	  "value": "turbidity",
+	  "label": "turbidity"
+	},
+	{
+	  "value": "groundwater_level",
+	  "label": "groundwater Level"
+	},
+	{
+	  "value": "none",
+	  "label": "none"
+	}
+      ],
+      "select_size": 5,
+      "required": true
+    },
+    {
+      "field_name": "generic-terms",
+      "label": "Generic Terms",
+      "preset": "multiple_select_js",
+      "choices": [
+	{
+	  "value": "none",
+	  "label": "none"
+	},
+ 	{
+	  "value": "micropollutants",
+	  "label": "micropollutants"
+	},
+ 	{
+	  "value": "nutrients",
+	  "label": "nutrients"
+	},
+ 	{
+	  "value": "heavy metals",
+	  "label": "heavy metals"
+	},
+ 	{
+	  "value": "nano-particles",
+	  "label": "nano-particles"
+	},
+ 	{
+	  "value": "organic matter",
+	  "label": "organic matter"
+	},
+ 	{
+	  "value": "fish",
+	  "label": "fish"
+	},
+ 	{
+	  "value": "algae",
+	  "label": "algae"
+	},
+	{
+	  "value": "invertebrates",
+	  "label": "invertebrates"
+	}
+      ],
       "select_size": 5,
       "required": true
     },
