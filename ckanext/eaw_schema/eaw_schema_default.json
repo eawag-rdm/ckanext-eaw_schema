@@ -290,6 +290,12 @@
       "label": "Description",
       "form_snippet": "markdown.html",
       "form_placeholder": "Some useful notes about the data"
+    },
+    {
+      "field_name": "notes",
+      "label": "Notes",
+      "form_snippet": "markdown.html",
+      "form_placeholder": "General notes to data users or the Eawag data manager"
     }
   ]
 }
