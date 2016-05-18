@@ -141,6 +141,10 @@
 	{
 	  "value": "invertebrates",
 	  "label": "invertebrates"
+	},
+	{
+	  "value": "macrophytes",
+	  "label": "macrophytes"
 	}
       ],
       "select_size": 5,
