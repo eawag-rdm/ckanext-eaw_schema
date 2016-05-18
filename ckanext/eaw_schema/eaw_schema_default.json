@@ -230,7 +230,7 @@
       "field_name": "author",
       "form_snippet": "eaw-wsl-group2json.html",
       "label": "Author Information",
-      "validators": "eaw-wsl-group2json",
+      "validators": "eaw_wsl_group2json",
       "subfields": [
           {
           "field_name": "name",

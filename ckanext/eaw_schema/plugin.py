@@ -2,6 +2,7 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckanext.eaw_vocabularies.validate_solr_daterange import SolrDaterange
 import pylons.config as config
+import json
 
 def vali_daterange(value):
     '''
@@ -47,7 +48,7 @@ def output_daterange(value):
     else:
         value = " TO ".join([_fix_timestamp(ts) for ts in timestamps])
     return(value)
-    
+
 def eaw_wsl_group2json(key, data, errors, context):
     found = {}
     prefix = key[-1] + '-'
@@ -61,6 +62,8 @@ def eaw_wsl_group2json(key, data, errors, context):
         subfield = name.split('-', 1)[1]
         found[subfield] = text
     data[key] = json.dumps(found)
+
+
                   
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -76,5 +79,6 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     # IValidators
     def get_validators(self):
         return {"vali_daterange": vali_daterange,
-                "output_daterange": output_daterange}
+                "output_daterange": output_daterange,
+                "eaw_wsl_group2json": eaw_wsl_group2json}
     
