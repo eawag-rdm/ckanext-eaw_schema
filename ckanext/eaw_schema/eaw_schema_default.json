@@ -3,7 +3,7 @@
   "dataset_type": "dataset",
   "about": "A reimplementation of the default CKAN dataset schema",
   "about_url": "http://github.com/ckan/ckanext-scheming",
-  "free_tags_only": true,  
+  "free_tags_only": true,
   "dataset_fields": [
     {
       "field_name": "title",
@@ -228,12 +228,20 @@
     },
     {
       "field_name": "author",
-      "label": "Author",
-      "preset": "eaw_schema_repeating_text_js",
-      "form_placeholder": "Johann Bach <joe@eawag.ch>",
-      "display_property": "dc:creator",
-      "modal_text": "author_help"
-    },
+      "form_snippet": "eaw-wsl-group2json.html",
+      "label": "Author Information",
+      "validators": "eaw-wsl-group2json",
+      "subfields": [
+          {
+          "field_name": "name",
+          "label": "Name"
+          },
+          {
+          "field_name": "email",
+          "label": "Email"
+          }
+      ]
+     },
     {
       "field_name": "maintainer",
       "label": "Curator",

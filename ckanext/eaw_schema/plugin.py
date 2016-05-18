@@ -47,7 +47,13 @@ def output_daterange(value):
     else:
         value = " TO ".join([_fix_timestamp(ts) for ts in timestamps])
     return(value)
-    
+
+def eaw_wsl_group2json(key, data, errors, context):
+    print(data)
+    print("***********************KEY***************")
+    print(key)
+    # data["author"] = 
+
                   
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -63,5 +69,6 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     # IValidators
     def get_validators(self):
         return {"vali_daterange": vali_daterange,
-                "output_daterange": output_daterange}
+                "output_daterange": output_daterange,
+                "eaw-wsl-group2json": eaw_wsl_group2json}
     
