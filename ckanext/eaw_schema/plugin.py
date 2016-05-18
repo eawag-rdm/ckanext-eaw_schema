@@ -47,13 +47,20 @@ def output_daterange(value):
     else:
         value = " TO ".join([_fix_timestamp(ts) for ts in timestamps])
     return(value)
-
+    
 def eaw_wsl_group2json(key, data, errors, context):
-    print(data)
-    print("***********************KEY***************")
-    print(key)
-    # data["author"] = 
+    found = {}
+    prefix = key[-1] + '-'
+    extras = data.get(key[:-1] + ('__extras',), {})
 
+    for name, text in extras.iteritems():
+        if not name.startswith(prefix):
+            continue
+        if not text:
+            continue
+        subfield = name.split('-', 1)[1]
+        found[subfield] = text
+    data[key] = json.dumps(found)
                   
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -69,6 +76,5 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     # IValidators
     def get_validators(self):
         return {"vali_daterange": vali_daterange,
-                "output_daterange": output_daterange,
-                "eaw-wsl-group2json": eaw_wsl_group2json}
+                "output_daterange": output_daterange}
     
