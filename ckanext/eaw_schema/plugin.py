@@ -2,6 +2,7 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckanext.eaw_vocabularies.validate_solr_daterange import SolrDaterange
 import pylons.config as config
+import json
 
 def vali_daterange(value):
     '''
@@ -47,6 +48,27 @@ def output_daterange(value):
     else:
         value = " TO ".join([_fix_timestamp(ts) for ts in timestamps])
     return(value)
+
+def eaw_schema_multiple_string(value):
+    """
+    Accept zero or more values and convert
+    to a json list for storage:
+    1. a list of strings, eg.:
+       ["choice-a", "choice-b"]
+    2. a single string for single item selection in form submissions:
+       "choice-a"
+    """
+    print("INPUT VALIDATOR: got {}".format(value))
+    value = json.dumps(value.split(","))
+    print("INPUT VALIDATOR: returned {}".format(value))
+    
+    return value
+
+def eaw_schema_multiple_string_output(value):
+    
+    print("Output validator: got {}".format(value))
+    value = json.loads(value)
+    return value
     
                   
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
@@ -63,5 +85,8 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     # IValidators
     def get_validators(self):
         return {"vali_daterange": vali_daterange,
-                "output_daterange": output_daterange}
-    
+                "output_daterange": output_daterange,
+                "eaw_schema_multiple_string": eaw_schema_multiple_string,
+                "eaw_schema_multiple_string_output":
+                    eaw_schema_multiple_string_output
+        }

@@ -2,7 +2,7 @@
   "scheming_version": 1,
   "dataset_type": "dataset",
   "about": "A reimplementation of the default CKAN dataset schema",
-  "about_url": "http://github.com/ckan/ckanext-scheming",
+  "about_url": "http://github.com/ckan/ckanext-schemingAuthor",
   "free_tags_only": true,  
   "dataset_fields": [
     {
@@ -170,6 +170,8 @@
       "label": "Substances",
       "form_snippet": "text_medium.html",
       "form_placeholder": "e.g. 2-Methyl-4-amino-6-methoxy-s-triazine",
+      "validators": "eaw_schema_multiple_string",
+      "output_validators": "scheming_multiple_choice_output",
       "required": false
     },
     {
