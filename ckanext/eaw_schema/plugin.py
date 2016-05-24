@@ -2,6 +2,7 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckanext.eaw_vocabularies.validate_solr_daterange import SolrDaterange
 import pylons.config as config
+from itertools import count
 import json
 
 def vali_daterange(value):
@@ -49,20 +50,39 @@ def output_daterange(value):
         value = " TO ".join([_fix_timestamp(ts) for ts in timestamps])
     return(value)
 
-def eaw_schema_multiple_string(value):
-    """
-    Accept zero or more values and convert
-    to a json list for storage:
-    1. a list of strings, eg.:
-       ["choice-a", "choice-b"]
-    2. a single string for single item selection in form submissions:
-       "choice-a"
-    """
-    print("INPUT VALIDATOR: got {}".format(value))
-    value = json.dumps(value.split(","))
-    print("INPUT VALIDATOR: returned {}".format(value))
+def eaw_schema_multiple_string_convert(key, data, errors, context):
+    '''Takes a list of values that is a "|"-separated string (in data[key])
+    and parses values. These are added to the data dict, enumerated. They
+    are also validated.'''
+
+    if isinstance(data[key], basestring):
+        val = [val.strip() for val in data[key].split('|') if val.strip()]
+    else:
+        val = data[key]
+
+    # current_index = max( [int(k[1]) for k in data.keys() if len(k) == 3 and k[0] == 'tags'] + [-1] )
+
+    print("eaw_schema_multiple_string_convert: keys:\n{}".format(data.keys()))
+    # print("eaw_schema_multiple_string_convert: current tag-index:\n{}".format(current_index))
+
+    print("val = {}".format(val))
+    for num, name in zip(count(0), val):
+        print("SUBSTANCE NR: {}".format(num))
+        print("SUBSTANCE NAME: {}".format(name))
+        data[('substances', num, 'name')] = name
+        
+    print("eaw_schema_multiple_string_convert: keys CHANGED:\n{}".format(data.keys()))
+
     
-    return value
+
+
+    # for num, val in zip(count(current_index+1), tags):
+    #     data[('tags', num, 'name')] = tag
+
+    # for tag in tags:
+    #     tag_length_validator(tag, context)
+    #     tag_name_validator(tag, context)
+
 
 def eaw_schema_multiple_string_output(value):
     
@@ -86,7 +106,6 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     def get_validators(self):
         return {"vali_daterange": vali_daterange,
                 "output_daterange": output_daterange,
-                "eaw_schema_multiple_string": eaw_schema_multiple_string,
-                "eaw_schema_multiple_string_output":
-                    eaw_schema_multiple_string_output
+                "eaw_schema_multiple_string_convert":
+                    eaw_schema_multiple_string_convert
         }

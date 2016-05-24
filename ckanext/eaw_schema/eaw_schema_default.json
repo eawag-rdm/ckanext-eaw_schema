@@ -170,8 +170,7 @@
       "label": "Substances",
       "form_snippet": "text_medium.html",
       "form_placeholder": "e.g. 2-Methyl-4-amino-6-methoxy-s-triazine",
-      "validators": "eaw_schema_multiple_string",
-      "output_validators": "scheming_multiple_choice_output",
+      "validators": "eaw_schema_multiple_string_convert",
       "required": false
     },
     {
