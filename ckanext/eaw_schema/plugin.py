@@ -50,19 +50,35 @@ def output_daterange(value):
         value = " TO ".join([_fix_timestamp(ts) for ts in timestamps])
     return(value)
 
-def eaw_schema_multiple_string_convert(value):
-    print "VALIDATOR: GOT {} ({})".format(value, type(value))
+def eaw_schema_multiple_string_convert(typ):
+    '''
+    Converts a string that represents multiple strings according to
+    certain conventions to a json-list for storage. The convention has to 
+    be given as parameter for this validator in the schema file
+    (e.g. "schema_default.json")
+    Currently implemented: typ = pipe ("|" as separator),
+                           typ = textbox ("\r\n" as separator)
+    '''
+
+    def validator(value):
+        print repr("VALIDATOR: GOT {} ({})".format(value, type(value)))
+
+        sep = {"pipe": "|", "textbox": "\r\n"}[typ]
+        print "SEP: {}".format(sep)
+        
+
+        ## if pipe-separated string, parse into list first
+        if isinstance(value, list):
+            val = value
+        elif isinstance(value, basestring):
+            val = [val.strip() for val in value.split(sep) if val.strip()]
+        else:
+            raise toolkit.Invalid("Only strings or lists allowed")
+        val = json.dumps(val)
+        print "VALIDATOR: RET {} ({})".format(val, type(value))
+        return val
     
-    ## if pipe-separated string, parse into list first
-    if isinstance(value, list):
-        val = value
-    elif isinstance(value, basestring):
-        val = [val.strip() for val in value.split('|') if val.strip()]
-    else:
-        raise toolkit.Invalid("Only strings or lists allowed")
-    val = json.dumps(val)
-    print "VALIDATOR: RET {} ({})".format(val, type(value))
-    return val
+    return validator
     
 def eaw_schema_multiple_string_output(value):
     try:
