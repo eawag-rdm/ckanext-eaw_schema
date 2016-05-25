@@ -50,53 +50,32 @@ def output_daterange(value):
         value = " TO ".join([_fix_timestamp(ts) for ts in timestamps])
     return(value)
 
-def eaw_schema_multiple_string_convert(key, data, errors, context):
-    '''Takes a list of values that is a "|"-separated string (in data[key])
-    and parses values. These are added to the data dict, enumerated. They
-    are also validated.'''
-
-    if isinstance(data[key], basestring):
-        val = [val.strip() for val in data[key].split('|') if val.strip()]
+def eaw_schema_multiple_string_convert(value):
+    print "VALIDATOR: GOT {} ({})".format(value, type(value))
+    
+    ## if pipe-separated string, parse into list first
+    if isinstance(value, list):
+        val = value
+    elif isinstance(value, basestring):
+        val = [val.strip() for val in value.split('|') if val.strip()]
     else:
-        val = data[key]
-
-    # current_index = max( [int(k[1]) for k in data.keys() if len(k) == 3 and k[0] == 'tags'] + [-1] )
-
-    print("eaw_schema_multiple_string_convert: keys:\n{}".format(data.keys()))
-    # print("eaw_schema_multiple_string_convert: current tag-index:\n{}".format(current_index))
-
-    print("val = {}".format(val))
-    for num, name in zip(count(0), val):
-        print("SUBSTANCE NR: {}".format(num))
-        print("SUBSTANCE NAME: {}".format(name))
-        data[('substances', num, 'name')] = name
-        
-    print("eaw_schema_multiple_string_convert: keys CHANGED:\n{}".format(data.keys()))
-
+        raise toolkit.Invalid("Only strings or lists allowed")
+    val = json.dumps(val)
+    print "VALIDATOR: RET {} ({})".format(val, type(value))
+    return val
     
-
-
-    # for num, val in zip(count(current_index+1), tags):
-    #     data[('tags', num, 'name')] = tag
-
-    # for tag in tags:
-    #     tag_length_validator(tag, context)
-    #     tag_name_validator(tag, context)
-
-
 def eaw_schema_multiple_string_output(value):
-    
-    print("Output validator: got {}".format(value))
-    value = json.loads(value)
+    try:
+        value = json.loads(value)
+    except ValueError:
+        raise toolkit.Invalid("String doesn't parse into JSON")
     return value
-    
                   
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IValidators)
 
     # IConfigurer
-
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         # toolkit.add_public_directory(config_, 'public')
@@ -107,5 +86,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
         return {"vali_daterange": vali_daterange,
                 "output_daterange": output_daterange,
                 "eaw_schema_multiple_string_convert":
-                    eaw_schema_multiple_string_convert
+                    eaw_schema_multiple_string_convert,
+                "eaw_schema_multiple_string_output":
+                    eaw_schema_multiple_string_output
         }
+
+ 

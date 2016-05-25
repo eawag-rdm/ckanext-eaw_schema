@@ -168,9 +168,11 @@
     {
       "field_name": "substances",
       "label": "Substances",
-      "form_snippet": "text_medium.html",
+      "form_snippet": "eaw_schema_multiple_string.html",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
       "form_placeholder": "e.g. 2-Methyl-4-amino-6-methoxy-s-triazine",
       "validators": "eaw_schema_multiple_string_convert",
+      "output_validators": "eaw_schema_multiple_string_output",
       "required": false
     },
     {
