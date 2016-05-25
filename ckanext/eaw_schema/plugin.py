@@ -50,6 +50,7 @@ def output_daterange(value):
     return(value)
 
 def eaw_wsl_group2json(key, data, errors, context):
+    print("VALIDATOR data: {}".format(data))
     found = {}
     prefix = key[-1] + '-'
     extras = data.get(key[:-1] + ('__extras',), {})
