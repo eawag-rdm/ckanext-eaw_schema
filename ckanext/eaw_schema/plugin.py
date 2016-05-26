@@ -1,5 +1,6 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from ckan.plugins.interfaces import IPackageController
 from ckanext.eaw_vocabularies.validate_solr_daterange import SolrDaterange
 import pylons.config as config
 from itertools import count
@@ -53,7 +54,7 @@ def output_daterange(value):
 def eaw_schema_multiple_string_convert(typ):
     '''
     Converts a string that represents multiple strings according to
-    certain conventions to a json-list for storage. The convention has to 
+    certain conventions to a list for storage. The convention has to 
     be given as parameter for this validator in the schema file
     (e.g. "schema_default.json")
     Currently implemented: typ = pipe ("|" as separator),
@@ -67,29 +68,31 @@ def eaw_schema_multiple_string_convert(typ):
         print "SEP: {}".format(sep)
         
 
-        ## if pipe-separated string, parse into list first
         if isinstance(value, list):
             val = value
         elif isinstance(value, basestring):
             val = [val.strip() for val in value.split(sep) if val.strip()]
         else:
             raise toolkit.Invalid("Only strings or lists allowed")
-        val = json.dumps(val)
+        # val = json.dumps(val)
         print "VALIDATOR: RET {} ({})".format(val, type(value))
         return val
     
     return validator
     
 def eaw_schema_multiple_string_output(value):
-    try:
-        value = json.loads(value)
-    except ValueError:
-        raise toolkit.Invalid("String doesn't parse into JSON")
+    print repr("OUTPUT_VALIDATOR: GOT {} ({})".format(value, type(value)))
     return value
+    # try:
+    #     value = json.loads(value)
+    # except ValueError:
+    #     raise toolkit.Invalid("String doesn't parse into JSON")
+    # return value
                   
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IValidators)
+    plugins.implements(plugins.IPackageController, inherit=True)
 
     # IConfigurer
     def update_config(self, config_):
@@ -107,4 +110,8 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                     eaw_schema_multiple_string_output
         }
 
+    # IPackageController
+    def before_index(self, searchparams):
+        print "IPACKAGECONTROLLER BEFORE_INDEX:\n{}".format(searchparams)
+        return(searchparams)
  
