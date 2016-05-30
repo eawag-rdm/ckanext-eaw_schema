@@ -1,7 +1,5 @@
 {% import 'macros/form.html' as form %}
 
-
-{# {% set type = "text" %}  #} 
 {% set name=field.field_name %}
 {% set extra_html="" %}
 {% set value=data.get(name, '')|join("\r\n")  %}
@@ -11,56 +9,6 @@
 {% set label=h.scheming_language_text(field.label) %}
 {% set error=errors[field.field_name] %}
 
-{# {{ form.textarea('first-parameter', id={{ id or name }},  name={{ name }}, #}
-{# value={{ name }}, placeholder={{ placeholder }}, #}
-{# label="label", error="error") }} #}
-
 {{ form.textarea(name=name, id=name, label=label, value=value, placeholder=placeholder,
    error=error) }}
 
-
-{# {{ value | empty_and_escape }} #}
-{# {% set type = "text" %}   #}
-{# {% set name=field.field_name%} #}
-{# {% set extra_html="" %} #}
-{# {% set value=data.get(name, '') %} #}
-{# {% set modal_text=field.modal_text if 'modal_text' in field else none %} #}
-{# {% set attrs=field.form_attrs if 'form_attrs' in field else {} %} #}
-{# {% set placeholder=field.form_placeholder if 'form_placeholder' in field else ''%} #}
-
-{# {%- call form.input_block( #}
-{#   for='field-' + field.field_name, #}
-{#   label=h.scheming_language_text(field.label), #}
-{#   error=errors[field.field_name], #}
-{#   classes=['control-medium'], #}
-{#   control_classes=[], #}
-{#   extra_html="", #}
-{#   is_required=h.scheming_field_required(field)) -%} #}
-{#   <textarea id="{{ id or name }}" type="{{ type }}" name="{{ name }}" #}
-{# 	 value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" #}
-{# 	 {{ form.attributes(attrs) }} class="medinput"></textarea> #}
-{#   {% if modal_text is not none %} #}
-{#     {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text -%} #}
-{#   {% endif %} #}
-{# {% endcall %} #}
-{# {% if modal_text is not none %} #}
-{#   {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%} #}
-{# {% endif %} #}
-
-
-{# Creates all the markup required for a plain textarea element. Handles #}
-{# matching labels to inputs, selected item and error messages. #}
-
-{# name        - The name of the form parameter. #}
-{# id          - The id to use on the input and label. Convention is to prefix with 'field-'. #}
-{# label       - The human readable label. #}
-{# value       - The value of the input. #}
-{# placeholder - Some placeholder text. #}
-{# error       - A list of error strings for the field or just true to highlight the field. #}
-{# classes     - An array of classes to apply to the control-group. #}
-{# is_required - Boolean of whether this input is requred for the form to validate #}
-
-{# Examples: #}
-
-{#   {% import 'macros/form.html' as form %} #}
-{#   {{ form.textarea('desc', id='field-description', label=_('Description'), value=data.desc, error=errors.desc) }} #}
