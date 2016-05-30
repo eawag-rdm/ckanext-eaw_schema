@@ -3,7 +3,6 @@
   "dataset_type": "dataset",
   "about": "A reimplementation of the default CKAN dataset schema",
   "about_url": "http://github.com/ckan/ckanext-schemingAuthor",
-  "free_tags_only": true,  
   "dataset_fields": [
     {
       "field_name": "title",
@@ -154,7 +153,16 @@
       "field_name": "systems",
       "label": "Systems",
       "preset": "multiple_select_js",
-      "vocabulary": "systems",
+      "choices": [
+	{"label": "Groundwater", "value": "Groundwater"},
+	{"label": "Lab", "value": "Lab"},
+	{"label": "Lake", "value": "Lake"},
+	{"label": "none", "value": "none"},
+	{"label": "River", "value": "River"},
+	{"label": "Sanitation-System", "value": "Sanitation-System"},
+	{"label": "Sewer", "value": "Sewer"},
+	{"label": "Watershed", "value": "Watershed"},
+	{"label": "WWTP", "value": "WWTP"}],
       "select_size": 5,
       "required": true
     },
@@ -287,20 +295,13 @@
       "required": true
     },
     {
-      "field_name": "resource_type",
-      "label": "Resource Type",
-      "preset": "select",
-      "vocabulary": "resource_type",
-      "required": false
-    },
-    {
-      "field_name": "res_description",
+      "field_name": "description",
       "label": "Description",
       "form_snippet": "markdown.html",
       "form_placeholder": "Some useful notes about the data"
     },
     {
-      "field_name": "res_notes",
+      "field_name": "notes",
       "label": "Notes",
       "form_snippet": "markdown.html",
       "form_placeholder": "General notes to data users or the Eawag data manager"

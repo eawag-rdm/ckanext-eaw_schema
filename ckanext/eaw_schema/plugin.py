@@ -127,7 +127,10 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
             try:
                 valnew = json.loads(val)
             except ValueError:
-                print(
+                print "Can't parse {}".format(val)
+                val1 = json.dumps([val])
+                valnew = json.loads(val1)
+                print "replacing {} with {}".format(val, val1)
             if isinstance(valnew, list):
                 pkg_dict[field] = valnew
             else:
