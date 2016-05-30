@@ -54,7 +54,7 @@ def output_daterange(value):
 def eaw_schema_multiple_string_convert(typ):
     '''
     Converts a string that represents multiple strings according to
-    certain conventions to a list for storage. The convention has to 
+    certain conventions to a json-list for storage. The convention has to 
     be given as parameter for this validator in the schema file
     (e.g. "schema_default.json")
     Currently implemented: typ = pipe ("|" as separator),
@@ -74,7 +74,7 @@ def eaw_schema_multiple_string_convert(typ):
             val = [val.strip() for val in value.split(sep) if val.strip()]
         else:
             raise toolkit.Invalid("Only strings or lists allowed")
-        # val = json.dumps(val)
+        val = json.dumps(val)
         print "VALIDATOR: RET {} ({})".format(val, type(value))
         return val
     
@@ -82,17 +82,24 @@ def eaw_schema_multiple_string_convert(typ):
     
 def eaw_schema_multiple_string_output(value):
     print repr("OUTPUT_VALIDATOR: GOT {} ({})".format(value, type(value)))
+    try:
+        value = json.loads(value)
+    except ValueError:
+        raise toolkit.Invalid("String doesn't parse into JSON")
+    print repr("OUTPUT_VALIDATOR: RET {} ({})".format(value, type(value)))
     return value
-    # try:
-    #     value = json.loads(value)
-    # except ValueError:
-    #     raise toolkit.Invalid("String doesn't parse into JSON")
-    # return value
                   
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IValidators)
     plugins.implements(plugins.IPackageController, inherit=True)
+
+    ## The fields that should be indexed as list
+    ## a cludge until I figure out how to do that DRY.
+    json2list_fields = [
+        'substances',
+        'variables'
+    ]
 
     # IConfigurer
     def update_config(self, config_):
@@ -111,7 +118,21 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
         }
 
     # IPackageController
-    def before_index(self, searchparams):
-        print "IPACKAGECONTROLLER BEFORE_INDEX:\n{}".format(searchparams)
-        return(searchparams)
+    def before_index(self, pkg_dict):
+        for field in self.json2list_fields:
+            val = pkg_dict.get(field)
+            if not val:
+                continue
+            print "IPACKAGECONTROLLER BEFORE_INDEX IN:\n{}".format(val)
+            try:
+                valnew = json.loads(val)
+            except ValueError:
+                print(
+            if isinstance(valnew, list):
+                pkg_dict[field] = valnew
+            else:
+                raise toolkit.Invalid("{} = {} doesn't parse into list"
+                                      .format(field, val))
+            print "IPACKAGECONTROLLER BEFORE_INDEX OUT:\n{}".format(pkg_dict[field])
+        return(pkg_dict)
  

@@ -291,16 +291,16 @@
       "label": "Resource Type",
       "preset": "select",
       "vocabulary": "resource_type",
-      "required": true
+      "required": false
     },
     {
-      "field_name": "description",
+      "field_name": "res_description",
       "label": "Description",
       "form_snippet": "markdown.html",
       "form_placeholder": "Some useful notes about the data"
     },
     {
-      "field_name": "notes",
+      "field_name": "res_notes",
       "label": "Notes",
       "form_snippet": "markdown.html",
       "form_placeholder": "General notes to data users or the Eawag data manager"
