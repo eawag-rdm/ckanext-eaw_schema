@@ -294,6 +294,19 @@
       "form_placeholder": "e.g. table_arsenic",
       "required": true
     },
+    { "field_name": "resource_type",
+      "label": "Resource Type",
+      "preset": "select",
+      "choices": [
+	{"label": "Audiovisual", "value": "Audiovisual"},
+	{"label": "Data_Set", "value": "Data_Set"},
+	{"label": "Image", "value": "Image"},
+	{"label": "Software", "value": "Software"},
+	{"label": "Sound", "value": "Sound"},
+	{"label": "Text", "value": "Text"}
+      ],
+      "required": true
+    },
     {
       "field_name": "description",
       "label": "Description",
