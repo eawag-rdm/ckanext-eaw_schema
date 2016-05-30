@@ -62,12 +62,7 @@ def eaw_schema_multiple_string_convert(typ):
     '''
 
     def validator(value):
-        print repr("VALIDATOR: GOT {} ({})".format(value, type(value)))
-
         sep = {"pipe": "|", "textbox": "\r\n"}[typ]
-        print "SEP: {}".format(sep)
-        
-
         if isinstance(value, list):
             val = value
         elif isinstance(value, basestring):
@@ -75,18 +70,15 @@ def eaw_schema_multiple_string_convert(typ):
         else:
             raise toolkit.Invalid("Only strings or lists allowed")
         val = json.dumps(val)
-        print "VALIDATOR: RET {} ({})".format(val, type(value))
         return val
     
     return validator
     
 def eaw_schema_multiple_string_output(value):
-    print repr("OUTPUT_VALIDATOR: GOT {} ({})".format(value, type(value)))
     try:
         value = json.loads(value)
     except ValueError:
         raise toolkit.Invalid("String doesn't parse into JSON")
-    print repr("OUTPUT_VALIDATOR: RET {} ({})".format(value, type(value)))
     return value
                   
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
@@ -118,24 +110,23 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
         }
 
     # IPackageController
+    # 
     def before_index(self, pkg_dict):
         for field in self.json2list_fields:
             val = pkg_dict.get(field)
             if not val:
                 continue
-            print "IPACKAGECONTROLLER BEFORE_INDEX IN:\n{}".format(val)
             try:
                 valnew = json.loads(val)
-            except ValueError:
-                print "Can't parse {}".format(val)
-                val1 = json.dumps([val])
+            except:
+                log.debug("{} doesn't parse as JSON".format(val))
+                val1 = json.dumps([repr(val)])
+                log.debug("replacing with {}".format(val1))
                 valnew = json.loads(val1)
-                print "replacing {} with {}".format(val, val1)
             if isinstance(valnew, list):
                 pkg_dict[field] = valnew
             else:
                 raise toolkit.Invalid("{} = {} doesn't parse into list"
                                       .format(field, val))
-            print "IPACKAGECONTROLLER BEFORE_INDEX OUT:\n{}".format(pkg_dict[field])
         return(pkg_dict)
  
