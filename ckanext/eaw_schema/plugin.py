@@ -5,6 +5,9 @@ from ckanext.eaw_vocabularies.validate_solr_daterange import SolrDaterange
 import pylons.config as config
 from itertools import count
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 def vali_daterange(value):
     '''
@@ -90,7 +93,8 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     ## a cludge until I figure out how to do that DRY.
     json2list_fields = [
         'substances',
-        'variables'
+        'variables',
+        'systems'
     ]
 
     # IConfigurer
@@ -119,9 +123,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
             try:
                 valnew = json.loads(val)
             except:
-                log.debug("{} doesn't parse as JSON".format(val))
+                logger.debug("{} doesn't parse as JSON".format(val))
                 val1 = json.dumps([repr(val)])
-                log.debug("replacing with {}".format(val1))
+                logger.debug("replacing with {}".format(val1))
                 valnew = json.loads(val1)
             if isinstance(valnew, list):
                 pkg_dict[field] = valnew
