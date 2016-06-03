@@ -244,6 +244,7 @@
       "preset": "eaw_schema_repeating_text_js",
       "form_placeholder": "Johann Bach <joe@eawag.ch>",
       "display_property": "dc:creator",
+      "form_blanks": 3,
       "modal_text": "author_help"
     },
     {
