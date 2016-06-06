@@ -169,22 +169,26 @@
     {
       "field_name": "species",
       "label": "Species",
+      "form_attrs": {"class": "eaw_with_infobutton"},
       "form_snippet": "eaw_schema_multiple_string_textbox.html",
       "display_snippet": "eaw_schema_multiple_string_display.html",
       "form_placeholder": "e.g. Dictyosphaerium Anabaena",
       "validators": "eaw_schema_multiple_string_convert(textbox)",
       "output_validators": "eaw_schema_multiple_string_output",
-      "required": false
+      "required": false,
+      "modal_text": "timerange_help"
     },
     {
       "field_name": "substances",
       "label": "Substances",
+      "form_attrs": {"class": "eaw_with_infobutton"},
       "form_snippet": "eaw_schema_multiple_string_textbox.html",
       "display_snippet": "eaw_schema_multiple_string_display.html",
       "form_placeholder": "e.g. 2-Methyl-4-amino-6-methoxy-s-triazine",
       "validators": "eaw_schema_multiple_string_convert(textbox)",
       "output_validators": "eaw_schema_multiple_string_output",
-      "required": false
+      "required": false,
+      "modal_text": "timerange_help"
     },
     {
       "field_name": "timerange",
