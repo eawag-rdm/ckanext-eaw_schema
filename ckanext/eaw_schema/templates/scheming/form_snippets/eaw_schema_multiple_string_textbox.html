@@ -9,6 +9,12 @@
 {% set label=h.scheming_language_text(field.label) %}
 {% set error=errors[field.field_name] %}
 
-{{ form.textarea(name=name, id=name, label=label, value=value, placeholder=placeholder,
-   error=error) }}
+{% call form.textarea(name=name, id=name, label=label, value=value, placeholder=placeholder, error=error, attrs=attrs) %}
+{% if modal_text is not none %} 
+  {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text -%} 
+{% endif %}
+{% endcall %}
+{% if modal_text is not none %}
+  {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
+{% endif %}
 
