@@ -146,6 +146,10 @@
 	  "label": "invertebrates"
 	},
 	{
+	  "value": "biofilm",
+	  "label": "biofilm"
+	},
+	{
 	  "value": "macrophytes",
 	  "label": "macrophytes"
 	}
