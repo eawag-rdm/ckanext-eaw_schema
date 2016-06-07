@@ -31,6 +31,7 @@
       "field_name": "notes-2",
       "label": "Notes",
       "form_snippet": "markdown.html",
+      "display_snippet": "eaw_schema_markdown.html",
       "form_placeholder": "Additional notes for data users or the Eawag data-manager",
       "display_property": "dct:description",
       "required": false
