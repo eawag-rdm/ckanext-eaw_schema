@@ -93,6 +93,10 @@
 	  "label": "groundwater Level"
 	},
 	{
+	  "value": "pH",
+	  "label": "pH"
+	},
+	{
 	  "value": "none",
 	  "label": "none"
 	}
