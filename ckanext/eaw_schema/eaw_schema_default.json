@@ -102,7 +102,8 @@
     {
       "required": true, 
       "label": "Variables", 
-      "preset": "multiple_select_js", 
+      "preset": "multiple_select_js",
+      "sorted_choices": true,
       "choices": [
         {
           "value": "alkalinity", 
@@ -163,7 +164,8 @@
     {
       "required": true, 
       "label": "Generic Terms", 
-      "preset": "multiple_select_js", 
+      "preset": "multiple_select_js",
+      "sorted_choices": true,
       "choices": [
         {
           "value": "none", 
@@ -216,7 +218,8 @@
     {
       "required": true, 
       "label": "Systems", 
-      "preset": "multiple_select_js", 
+      "preset": "multiple_select_js",
+      "sorted_choices": true,
       "choices": [
         {
           "value": "Groundwater", 
