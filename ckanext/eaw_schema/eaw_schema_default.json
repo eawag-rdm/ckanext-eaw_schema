@@ -14,6 +14,10 @@
       "label": "Name"
     }, 
     {
+      "required": true, 
+      "field_name": "resource_type", 
+      "label": "Resource Type", 
+      "preset": "select", 
       "choices": [
         {
           "value": "Audiovisual", 
@@ -39,22 +43,18 @@
           "value": "Text", 
           "label": "Text"
         }
-      ], 
-      "required": true, 
-      "field_name": "resource_type", 
-      "preset": "select", 
-      "label": "Resource Type"
+      ]
     }, 
     {
       "form_placeholder": "Some useful notes about the data", 
-      "form_snippet": "markdown.html", 
       "field_name": "description", 
+      "form_snippet": "markdown.html", 
       "label": "Description"
     }, 
     {
       "form_placeholder": "General notes to data users or the Eawag data manager", 
-      "form_snippet": "markdown.html", 
       "field_name": "notes", 
+      "form_snippet": "markdown.html", 
       "label": "Notes"
     }
   ], 
@@ -70,9 +70,9 @@
     {
       "required": true, 
       "field_name": "name", 
+      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "preset": "dataset_slug", 
-      "label": "URL"
+      "preset": "dataset_slug"
     }, 
     {
       "required": true, 
@@ -102,6 +102,8 @@
     {
       "sorted_choices": true, 
       "required": true, 
+      "label": "Variables", 
+      "preset": "multiple_select_js", 
       "choices": [
         {
           "value": "alkalinity", 
@@ -156,14 +158,14 @@
           "label": "none"
         }
       ], 
-      "preset": "multiple_select_js", 
-      "label": "Variables", 
       "field_name": "variables", 
       "select_size": 5
     }, 
     {
       "sorted_choices": true, 
       "required": true, 
+      "label": "Generic Terms", 
+      "preset": "multiple_select_js", 
       "choices": [
         {
           "value": "none", 
@@ -212,16 +214,24 @@
         {
           "value": "microplastics", 
           "label": "microplastics"
+        }, 
+        {
+          "value": "cell_line", 
+          "label": "cell line"
+        }, 
+        {
+          "value": "bacteria", 
+          "label": "bacteria"
         }
       ], 
-      "preset": "multiple_select_js", 
-      "label": "Generic Terms", 
       "field_name": "generic-terms", 
       "select_size": 5
     }, 
     {
       "sorted_choices": true, 
       "required": true, 
+      "label": "Systems", 
+      "preset": "multiple_select_js", 
       "choices": [
         {
           "value": "Groundwater", 
@@ -260,8 +270,6 @@
           "label": "WWTP"
         }
       ], 
-      "preset": "multiple_select_js", 
-      "label": "Systems", 
       "field_name": "systems", 
       "select_size": 5
     }, 
@@ -313,9 +321,9 @@
     }, 
     {
       "form_placeholder": "e.g. Greifensee", 
-      "form_snippet": "text_medium.html", 
-      "required": false, 
       "field_name": "geographic-name", 
+      "required": false, 
+      "form_snippet": "text_medium.html", 
       "label": "Geographic Name"
     }, 
     {
@@ -327,8 +335,6 @@
     }, 
     {
       "required": true, 
-      "label": "Status", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "incomplete", 
@@ -343,6 +349,8 @@
           "label": "reviewed"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Status", 
       "field_name": "status", 
       "form_attrs": {
         "class": "medinput"
@@ -374,7 +382,10 @@
       "label": "Usage Contact"
     }, 
     {
+      "field_name": "open_data", 
+      "label": "Flags", 
       "form_snippet": "eaw_multiple_checkbox.html", 
+      "display_snippet": "multiple_choice.html", 
       "choices": [
         {
           "modal_text": "open_data_help", 
@@ -388,10 +399,7 @@
           "value": "doi_wanted", 
           "label": "DOI wanted"
         }
-      ], 
-      "label": "Flags", 
-      "field_name": "open_data", 
-      "display_snippet": "multiple_choice.html"
+      ]
     }
   ], 
   "dataset_type": "dataset", 
