@@ -2,7 +2,10 @@
 
 {% set name=field.field_name %}
 {% set extra_html="" %}
-{% set value=data.get(name, '')|join("\r\n")  %}
+{% set value=data.get(name, '') %}
+{% if value is not string %} 
+  {% set value=value|join("\r\n")  %}  
+{% endif %} 
 {% set modal_text=field.modal_text if 'modal_text' in field else none %}
 {% set attrs=field.form_attrs if 'form_attrs' in field else {} %}
 {% set placeholder=field.form_placeholder if 'form_placeholder' in field else ''%}
