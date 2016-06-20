@@ -285,7 +285,7 @@
       "display_snippet": "eaw_schema_multiple_string_display.html", 
       "modal_text": "timerange_help", 
       "required": false, 
-      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
+      "form_snippet": "eaw_schema_multiple_string_textbox.html",
       "label": "Species", 
       "validators": "eaw_schema_multiple_string_convert(textbox)", 
       "form_placeholder": "e.g. Dictyosphaerium Anabaena", 

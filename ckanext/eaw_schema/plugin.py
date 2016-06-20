@@ -49,8 +49,6 @@ def vali_daterange(values):
             
     values = _to_list_of_strings(values)
     valid_values = []
-    print "***************************************************"
-    print "vali_daterange IN: {} ({})".format(repr(values), type(values))
     for value in values:
         value = value.strip()
         try:
@@ -65,7 +63,6 @@ def vali_daterange(values):
                 value = "[" + value + "]"
         valid_values.append(SolrDaterange.validate(value))
     valid_values = json.dumps(valid_values)
-    print "vali_daterange OUT: {}".format(repr(valid_values))
     return(valid_values)
 
 def output_daterange(values):
@@ -100,9 +97,6 @@ def eaw_schema_multiple_string_convert(typ):
     '''
 
     def validator(value):
-        print "**********************************************************"
-        print "eaw_schema_multiple_string_convert"
-        print"value in: {}".format(repr(value))
         sep = {"pipe": "|", "textbox": "\r\n"}[typ]
         if isinstance(value, list):
             val = value
@@ -111,7 +105,6 @@ def eaw_schema_multiple_string_convert(typ):
         else:
             raise toolkit.Invalid("Only strings or lists allowed")
         val = json.dumps(val)
-        print"value out: {}".format(repr(val))
         return val
     
     return validator
@@ -123,12 +116,6 @@ def eaw_schema_multiple_string_output(value):
     except ValueError:
         raise toolkit.Invalid("String doesn't parse into JSON")
     return value
-
-def dummy(value):
-    print "***************************************************"
-    print "In dummy-validate, value: {}".format(repr(value))
-    print
-    return(value)
                   
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -157,8 +144,7 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 "eaw_schema_multiple_string_convert":
                     eaw_schema_multiple_string_convert,
                 "eaw_schema_multiple_string_output":
-                    eaw_schema_multiple_string_output,
-                "dummy": dummy
+                    eaw_schema_multiple_string_output
         }
 
     # IPackageController
@@ -166,9 +152,6 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     def before_index(self, pkg_dict):
         for field in self.json2list_fields:
             val = pkg_dict.get(field)
-            if field == 'timerange':
-                print "******************************************************"
-                print "before_index: value = {}".format(val)
             if not val:
                 continue
             try:
