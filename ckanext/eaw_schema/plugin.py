@@ -9,9 +9,27 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-def vali_daterange(value):
+def _json2list(value):
+    if isinstance(value, list):
+        val = value
+    elif isinstance(value, basestring):
+        val = [val.strip() for val in value.split(sep) if val.strip()]
+    else:
+        raise toolkit.Invalid("Only strings or lists allowed")
+    val = json.dumps(val)
+
+
+def vali_daterange(values):
     '''
-    Add some slack to proper format of timerange:
+    Initial conversion, 2 possibilities:
+    1) <values> is a json representation of a list of DateRange-strings
+       (output of validator repeating_text),
+    2) <values> is one DateRange-string (output from ordinary text field)
+
+    Both are initially converted to a list of DateRange strings
+    
+    Then add some slack to proper format of timerange before submitting
+    to real validator:
       + insert trailing "Z" for points in time if necessary
       + add brackets if necessary
     '''
@@ -22,21 +40,32 @@ def vali_daterange(value):
         except:
             pass
         return fixed
+    def _to_list_of_strings(valuestring):
+        try:
+            values = json.loads(valuestring)
+        except ValueError:
+            values = [valuestring]
+        return(values)
+            
+    values = _to_list_of_strings(values)
+    valid_values = []
+    for value in values:
+        value = value.strip()
+        try:
+            timestamps = value.split(" TO ")
+        except ValueError:
+            pass
+        else:
+            if len(timestamps) == 2:
+                timestamps = [_fix_timestamp(ts) for ts in timestamps]
+            value = " TO ".join(timestamps)
+            if len(timestamps) == 2 and value[0] != "[" and value[-1] != "]":
+                value = "[" + value + "]"
+        valid_values.append(SolrDaterange.validate(value))
+    valid_values = json.dumps(valid_values)
+    return(valid_values)
 
-    value = value.strip()
-    try:
-        timestamps = value.split(" TO ")
-    except ValueError:
-        pass
-    else:
-        if len(timestamps) == 2:
-            timestamps = [_fix_timestamp(ts) for ts in timestamps]
-        value = " TO ".join(timestamps)
-        if len(timestamps) == 2 and value[0] != "[" and value[-1] != "]":
-            value = "[" + value + "]"
-    return SolrDaterange.validate(value)
-
-def output_daterange(value):
+def output_daterange(values):
     '''
     For display:
       + remove brackets from timerange.
@@ -45,14 +74,17 @@ def output_daterange(value):
     def _fix_timestamp(ts):
         return(ts[0:-1] if len(ts.split(":")) == 3 and ts[-1] == "Z" else ts)
 
-    value = value.strip("[]")
-    try:
-        timestamps = value.split(" TO ")
-    except ValueError:
-            pass
-    else:
-        value = " TO ".join([_fix_timestamp(ts) for ts in timestamps])
-    return(value)
+    values_out = []
+    for value in values:
+        value = value.strip("[]")
+        try:
+            timestamps = value.split(" TO ")
+        except ValueError:
+                pass
+        else:
+            value = " TO ".join([_fix_timestamp(ts) for ts in timestamps])
+        values_out.append(value)
+    return(values_out)
 
 def eaw_schema_multiple_string_convert(typ):
     '''
@@ -76,7 +108,8 @@ def eaw_schema_multiple_string_convert(typ):
         return val
     
     return validator
-    
+
+## Maybe this could be replaced / merged with repeating_text_output.
 def eaw_schema_multiple_string_output(value):
     try:
         value = json.loads(value)
@@ -94,7 +127,8 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     json2list_fields = [
         'substances',
         'variables',
-        'systems'
+        'systems',
+        'timerange',
     ]
 
     # IConfigurer
