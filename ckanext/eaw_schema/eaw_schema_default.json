@@ -156,7 +156,7 @@
           "label": "none"
         }
       ], 
-      "preset": "multiple_select_js", 
+      "preset": "eaw_multiple_select_js", 
       "label": "Variables", 
       "field_name": "variables", 
       "select_size": 5
@@ -222,7 +222,7 @@
           "label": "bacteria"
         }
       ], 
-      "preset": "multiple_select_js", 
+      "preset": "eaw_multiple_select_js", 
       "label": "Generic Terms", 
       "field_name": "generic-terms", 
       "select_size": 5
@@ -276,7 +276,7 @@
           "label": "Batch"
         }
       ], 
-      "preset": "multiple_select_js", 
+      "preset": "eaw_multiple_select_js", 
       "label": "Systems", 
       "field_name": "systems", 
       "select_size": 5
