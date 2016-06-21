@@ -94,7 +94,12 @@
     {
       "required": true, 
       "label": "Keywords", 
-      "preset": "tag_string_autocomplete", 
+      "validators": "scheming_required tag_string_convert",
+      "form_attrs": {
+	  "data-module": "autocomplete",
+          "data-module-tags": "",
+          "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
+      },
       "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...", 
       "field_name": "tag_string", 
       "display_property": "dcat:keyword"

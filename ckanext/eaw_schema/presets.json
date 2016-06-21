@@ -25,7 +25,7 @@
       "values": {
 	"form_snippet": "eaw_multiple_select_js.html",
         "display_snippet": "multiple_choice.html",
-        "validators": "eaw_schema_multiple_choice",
+        "validators": "scheming_required eaw_schema_multiple_choice",
         "output_validators": "scheming_multiple_choice_output"
 	}
       },
