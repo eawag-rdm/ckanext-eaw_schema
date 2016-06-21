@@ -109,6 +109,7 @@ def eaw_schema_multiple_string_convert(typ):
     
     return validator
 
+
 ## Maybe this could be replaced / merged with repeating_text_output.
 def eaw_schema_multiple_string_output(value):
     try:
@@ -116,7 +117,71 @@ def eaw_schema_multiple_string_output(value):
     except ValueError:
         raise toolkit.Invalid("String doesn't parse into JSON")
     return value
-                  
+
+
+@scheming_validator
+def eaw_schema_multiple_choice(field, schema):
+    """
+    Accept zero or more values from a list of choices and convert
+    to a json list for storage:
+
+    1. a list of strings, eg.:
+
+       ["choice-a", "choice-b"]
+
+    2. a single string for single item selection in form submissions:
+
+       "choice-a"
+
+    #######################################################################
+    HvW - 2016-06-21
+    This was copied from ckanext-scheming.validation.
+    Amendement:
+        A value of <empty string> is ignored (no "unexpected choice"-error).
+    We use this to pass (via hidden field, in eaw_multiple_select_js.html)
+    an empty string, even if no field is selected, so that the field is
+    included in the form data and not populated from the database
+    by package.edit().
+    #######################################################################
+    """
+    choice_values = set(c['value'] for c in field['choices'])
+
+    def validator(key, data, errors, context):
+        # if there was an error before calling our validator
+        # don't bother with our validation
+        if errors[key]:
+            return
+
+        value = data[key]
+        if value is not missing:
+            if isinstance(value, basestring):
+                value = [value]
+            elif not isinstance(value, list):
+                errors[key].append(_('expecting list of strings'))
+                return
+        else:
+            value = []
+
+        selected = set()
+        for element in value:
+            if element in choice_values:
+                selected.add(element)
+                continue
+            if element == '':
+                continue
+            errors[key].append(_('unexpected choice "%s"') % element)
+
+        if not errors[key]:
+            data[key] = json.dumps([
+                c['value'] for c in field['choices'] if c['value'] in selected])
+
+            if field.get('required') and not selected:
+                errors[key].append(_('Select at least one'))
+
+    return validator
+
+
+                 
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IValidators)
@@ -144,7 +209,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 "eaw_schema_multiple_string_convert":
                     eaw_schema_multiple_string_convert,
                 "eaw_schema_multiple_string_output":
-                    eaw_schema_multiple_string_output
+                    eaw_schema_multiple_string_output,
+                "eaw_schema_multiple_choice":
+                    eaw_schema_multiple_choice
         }
 
     # IPackageController
