@@ -30,6 +30,6 @@
 
 {# Make sure that field is included in response form data. This has to 
 {# be dealt with that in the validator #}
-  <input type="hidden" name="{{ field.field.name }}" value="" />
+  <input type="hidden" name="{{ field.field_name }}" value="" />
   {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
 {%- endcall -%}
