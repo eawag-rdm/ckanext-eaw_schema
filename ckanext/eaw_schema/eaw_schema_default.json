@@ -92,7 +92,6 @@
       "display_property": "dct:description"
     }, 
     {
-      "required": true, 
       "label": "Keywords", 
       "validators": "ignore_missing tag_string_convert",
       "form_attrs": {
