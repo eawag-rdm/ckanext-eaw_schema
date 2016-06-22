@@ -94,7 +94,7 @@
     {
       "required": true, 
       "label": "Keywords", 
-      "validators": "scheming_required tag_string_convert",
+      "validators": "tag_string_convert",
       "form_attrs": {
 	  "data-module": "autocomplete",
           "data-module-tags": "",
