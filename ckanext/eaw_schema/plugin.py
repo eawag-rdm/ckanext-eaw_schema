@@ -21,6 +21,18 @@ def _json2list(value):
         raise toolkit.Invalid("Only strings or lists allowed")
     val = json.dumps(val)
 
+def _everything2stringlist(value):
+    val_out = []
+    if isinstance(value, list):
+        for v in value:
+            if isinstance(v, basestring):
+                val_out.append(v)
+            else:
+                val_out.append(repr(v))
+        return(val_out)
+    val_out.append(str(value))
+    return val_out
+
 
 def vali_daterange(values):
     '''
@@ -77,6 +89,8 @@ def output_daterange(values):
     def _fix_timestamp(ts):
         return(ts[0:-1] if len(ts.split(":")) == 3 and ts[-1] == "Z" else ts)
 
+    # We try to output everything, even "illegal" values.
+    values = _everything2stringlist(values)
     values_out = []
     for value in values:
         value = value.strip("[]")
@@ -218,7 +232,11 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
         }
 
     # IPackageController
-    # 
+    
+    # Parse a list of DateRange strings out of a JSON-string.
+    # We try to recover from some cases of illegal values to
+    # minimize crashes of the indexer.
+    # Illegal values can occur when the schema has changed. 
     def before_index(self, pkg_dict):
         for field in self.json2list_fields:
             val = pkg_dict.get(field)
@@ -234,7 +252,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
             if isinstance(valnew, list):
                 pkg_dict[field] = valnew
             else:
-                raise toolkit.Invalid("{} = {} doesn't parse into list"
-                                      .format(field, val))
+                valnew_l = _everything2stringlist(valnew)
+                logger.debug("{} is not a list, try replacing with {}"
+                       .format(valnew, valnew_l))
+                pkg_dict[field] = valnew_l
         return(pkg_dict)
  
