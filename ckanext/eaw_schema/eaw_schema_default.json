@@ -6,7 +6,19 @@
       "preset": "resource_url_upload", 
       "field_name": "url", 
       "label": "URL"
-    }, 
+    },
+    {
+      "form_snippet": "eaw_multiple_checkbox.html",
+      "field_name": "publication",
+      "label":"The publication supplemented by this package",
+      "choices": [
+        {
+          "modal_text": "open_data_help", 
+          "value": "publication",
+	  "label": "yes"
+        }
+      ]
+    },
     {
       "form_placeholder": "e.g. table_arsenic", 
       "required": true, 
@@ -52,10 +64,10 @@
       "label": "Description"
     }, 
     {
-      "form_placeholder": "General notes to data users or the Eawag data manager", 
+      "form_placeholder": "How to cite this resource", 
       "form_snippet": "markdown.html", 
-      "field_name": "notes", 
-      "label": "Notes"
+      "field_name": "citation", 
+      "label": "Cite as"
     }
   ], 
   "dataset_fields": [
