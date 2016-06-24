@@ -15,11 +15,6 @@
 {% set boxlabel = 'Yes' %}
 {% set checked = true if data[name] == value else false %}
 
-*******************************************
-data[name] = {{ data['publication'] }}
-******************************************
-{{ data }}
-
 {% call form.input_block(id, label) %}
   {{ form.checkbox(name, id=id, label=boxlabel, checked=checked, value=value, classes=["eaw_schema_checkbox"]) }}
 {% endcall %}
