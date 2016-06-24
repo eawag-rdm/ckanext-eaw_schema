@@ -10,7 +10,7 @@
     {
       "form_snippet": "eaw_schema_checkbox.html",
       "field_name": "publication",
-      "label":"The Publication"
+      "label":"Package supports THIS publication"
     },
     {
       "form_placeholder": "e.g. table_arsenic", 
