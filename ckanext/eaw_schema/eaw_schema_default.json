@@ -8,16 +8,9 @@
       "label": "URL"
     },
     {
-      "form_snippet": "eaw_multiple_checkbox.html",
+      "form_snippet": "eaw_schema_checkbox.html",
       "field_name": "publication",
-      "label":"The publication supplemented by this package",
-      "choices": [
-        {
-          "modal_text": "open_data_help", 
-          "value": "publication",
-	  "label": "yes"
-        }
-      ]
+      "label":"The Publication"
     },
     {
       "form_placeholder": "e.g. table_arsenic", 

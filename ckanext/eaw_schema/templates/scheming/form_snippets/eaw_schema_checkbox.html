@@ -1,0 +1,25 @@
+{% import 'macros/form.html' as form %}
+
+{{ field }}
+
+<style>
+  .eaw_schema_checkbox label.checkbox input {
+     margin-top: -3px;
+  }
+</style>
+
+{% set name = field.field_name %}
+{% set id = 'field-' ~ name %}
+{% set label = field.label %}
+{% set value = 'checked' %}
+{% set boxlabel = 'Yes' %}
+{% set checked = true if data[name] == value else false %}
+
+*******************************************
+data[name] = {{ data['publication'] }}
+******************************************
+{{ data }}
+
+{% call form.input_block(id, label) %}
+  {{ form.checkbox(name, id=id, label=boxlabel, checked=checked, value=value, classes=["eaw_schema_checkbox"]) }}
+{% endcall %}
