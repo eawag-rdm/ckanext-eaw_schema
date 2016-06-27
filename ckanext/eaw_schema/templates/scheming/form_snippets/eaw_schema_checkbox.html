@@ -1,0 +1,40 @@
+{% resource 'eaw_theme/andorswitch.js' %}
+{% resource 'bootstrap-switch/bootstrap-switch.js' %}
+{% resource 'bootstrap-switch/bootstrap-switch.css' %}
+
+{% import 'macros/form.html' as form %}
+
+{% set name = field.field_name %}
+{% set id = 'field-' ~ name %}
+{% set label = field.label %} 
+{% set value = 'yes' %}
+{% set checked = true if data[name] == value else false %}
+{% set attrs = {'data-module': 'andorswitch', 'data-module-type': 'yesno'} %}
+{% set classes = ['eaw_schema_checkbox_outer'] %}
+{% set control_classes = ['eaw_schema_checkbox_inner'] %}
+
+<style>
+  .eaw_schema_checkbox_outer {
+    position:relative;
+  }
+  .eaw_schema_checkbox_inner {
+    position: absolute;
+    bottom: 0px;
+  } 
+  input.eaw_schema_checkbox { 
+    position: absolute; 
+    top: auto; 
+    bottom: 9px; 
+  }  
+</style> 
+
+{% call form.input_block(id, label, classes=classes, control_classes=control_classes) %}  
+<input class="fouc eaw_schema_checkbox" type="checkbox" data-module-type="yesno"
+       id="{{ id }}" name="{{ name }}" data-module="andorswitch" 
+       value="yes" {% if checked %}checked="checked"{% endif %} /> 
+       <label class="eaw_schema_checkbox checkbox fouc"> 
+	 <span>Yes</span> 
+       </label>
+{% endcall %}  
+
+
