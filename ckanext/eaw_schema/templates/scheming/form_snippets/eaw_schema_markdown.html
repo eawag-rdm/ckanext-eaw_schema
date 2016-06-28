@@ -17,11 +17,12 @@ innermost div.  #}
     <span class="editor-info-block">{% trans %}You can use <a href="#markdown" title="Markdown quick reference" data-target="popover" data-content="{{ markdown_tooltip }}" data-html="true">Markdown formatting</a> here{% endtrans %}</span>
     </div>
     {% if field.modal_text is not none %}
-      {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=field.modal_text -%}
+      {% set modal_text = field.modal_text %}
+      {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
     {% endif %}
   {% endcall %}
   {% if field.modal_text is not none %}
-    {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ field.modal_text ~ '.html' -%}
+    {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ field.modal_text ~ '.html' -%}
   {% endif %}
 {% endmacro %}
 

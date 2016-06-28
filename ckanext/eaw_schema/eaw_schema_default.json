@@ -81,7 +81,9 @@
     }, 
     {
       "required": true, 
-      "form_snippet": "markdown.html", 
+      "form_snippet": "eaw_schema_markdown.html",
+      "inner_div_classes":"eaw_with_infobutton",
+      "modal_text": "abstract_help",
       "label": "Abstract", 
       "form_placeholder": "A description of the package.", 
       "field_name": "notes", 
@@ -91,9 +93,9 @@
       "required": false, 
       "form_snippet": "eaw_schema_markdown.html",
       "inner_div_classes":"eaw_with_infobutton",
-      "modal_text": "timerange_help",
+      "modal_text": "notes_help",
       "label": "Notes",
-      "form_placeholder": "Additional notes for data users or the Eawag data-manager", 
+      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
       "field_name": "notes-2", 
       "display_property": "dct:description"
     }, 
