@@ -88,10 +88,11 @@
       "display_property": "dct:description"
     }, 
     {
-      "display_snippet": "eaw_schema_markdown.html", 
       "required": false, 
-      "form_snippet": "markdown.html", 
-      "label": "Notes", 
+      "form_snippet": "eaw_schema_markdown.html",
+      "inner_div_classes":"eaw_with_infobutton",
+      "modal_text": "timerange_help",
+      "label": "Notes",
       "form_placeholder": "Additional notes for data users or the Eawag data-manager", 
       "field_name": "notes-2", 
       "display_property": "dct:description"
