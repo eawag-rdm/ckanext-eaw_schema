@@ -172,8 +172,11 @@
         }
       ], 
       "preset": "eaw_multiple_select_js", 
-      "label": "Variables", 
+      "label": "Variables",
+<<<<<<< HEAD
       "modal_text": "variables_help",
+=======
+>>>>>>> 3ae5b6d... implemented defaults for various fields
       "default_value": "none",
       "field_name": "variables", 
       "select_size": 5
@@ -240,8 +243,11 @@
         }
       ], 
       "preset": "eaw_multiple_select_js", 
-      "label": "Generic Terms", 
+      "label": "Generic Terms",
+<<<<<<< HEAD
       "modal_text": "generic-terms_help",
+=======
+>>>>>>> 3ae5b6d... implemented defaults for various fields
       "field_name": "generic-terms", 
       "select_size": 5
     }, 
@@ -295,8 +301,11 @@
         }
       ], 
       "preset": "eaw_multiple_select_js", 
-      "label": "Systems", 
+      "label": "Systems",
+<<<<<<< HEAD
       "modal_text": "systems_help",
+=======
+>>>>>>> 3ae5b6d... implemented defaults for various fields
       "default_value": "none",
       "field_name": "systems", 
       "select_size": 5
@@ -344,14 +353,14 @@
       "display_snippet": null, 
       "modal_text": "spatial_help", 
       "required": true, 
-      "form_snippet": "text_medium.html", 
+      "form_snippet": "text_medium.html",
       "default_value": "{}",
       "label": "Spatial Extent", 
       "form_placeholder": "{\"type\": \"Point\", \"coordinates\": [8.6124600, 47.4031100]}", 
       "field_name": "spatial"
     }, 
     {
-      "form_placeholder": "e.g. Greifensee", 
+      "form_placeholder": "e.g. Greifensee",
       "modal_text": "geographic-name_help",
       "preset": "eaw_schema_repeating_text_js",
       "validators": "repeating_text",
@@ -394,7 +403,7 @@
     {
       "modal_text": "author_help", 
       "label": "Author", 
-      "preset": "eaw_schema_repeating_text_js", 
+      "preset": "eaw_schema_repeating_text_js",
       "default_value": "context_fullname_email",
       "form_placeholder": "Johann Bach <joe@eawag.ch>", 
       "field_name": "author", 
@@ -413,7 +422,7 @@
     {
       "form_placeholder": "Pat Permission <pep@eawag.ch>", 
       "modal_text": "usage_contact_help", 
-      "field_name": "usage_contact", 
+      "field_name": "usage_contact",
       "default_value": "context_fullname_email",
       "form_snippet": "text_medium.html", 
       "label": "Usage Contact"

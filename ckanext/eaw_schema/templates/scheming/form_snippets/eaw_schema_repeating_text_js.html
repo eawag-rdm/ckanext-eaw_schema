@@ -5,6 +5,11 @@
 {% set placeholder=h.scheming_language_text(field.form_placeholder) %}
 {%- set values = h.repeating_get_values(field.field_name,
 field.get('form_blanks', 1), data) %}
+
+{% if field.default_value %}
+  {% set values = h.eaw_schema_set_default(values, field.default_value) %}
+{% endif %}
+
 <div data-module="lcrnz-repeating">
   {% set attrs={"class": "medinput"} %}
   {% set type = "text" %}  

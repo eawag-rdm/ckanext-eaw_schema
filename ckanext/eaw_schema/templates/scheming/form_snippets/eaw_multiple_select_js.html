@@ -16,6 +16,16 @@
   {%- if field.get('sorted_choices') -%}
     {%- set choices = choices|sort(case_sensitive=false, attribute=1) -%}
   {%- endif -%}
+
+  {# field.field_name not in data means no data available, neither
+  from preceding, error triggering form submission nor from the
+  database #}
+  {% if field.default_value and (field.field_name not in data) %}
+    {% set values = h.eaw_schema_set_default([''], field.default_value) %}
+  {% else %}
+    {% set values = data[field.field_name] %}
+  {% endif %}
+  
   <select multiple data-module="autocomplete"
       size="{{ ([field.get('select_size', 10), field.choices|length]|sort)[0] }}"
       style="display:inline-block;width:334px;"
@@ -24,7 +34,7 @@
     {%- for val, label in choices -%}
       <option id="field-{{ field.field_name }}-{{ val }}"
           value="{{ val }}" class="fouc"
-          {{"selected " if val in data[field.field_name] }} />
+          {{ "selected " if val in values }} />
         {{ label }}
       </option>
     {%- endfor -%}
