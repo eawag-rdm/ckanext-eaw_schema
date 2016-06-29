@@ -198,11 +198,46 @@ def eaw_schema_multiple_choice(field, schema):
     return validator
 
 
-                 
+## Template helper functions
+
+def eaw_schema_set_default(values, default_value):
+    ## Only set default value if current value is empty string or None
+    ## or a list containing only '' or None.
+    if isinstance(values, basestring) or values is None:
+        if values not in ['', None]:
+            return values
+        islist = False
+    elif isinstance(values, list):
+        if not all([x in ['', None] for x in values]):
+            return values
+        islist = True
+    else:
+        return values
+
+    # special default value resulting in "Full Name <email>"
+    if default_value == "context_fullname_email":
+        val = "{} <{}>".format(toolkit.c.userobj.fullname,
+                               toolkit.c.userobj.email)
+
+    ## insert elif clauses for other defaults
+
+    else:
+        val = default_value
+
+    # deal with list/string - duality
+    if islist:
+        values[0] = val
+    else:
+        values = val
+
+    return values
+
+
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IValidators)
     plugins.implements(plugins.IPackageController, inherit=True)
+    plugins.implements(plugins.ITemplateHelpers)
 
     ## The fields that should be indexed as list
     ## a cludge until I figure out how to do that DRY.
@@ -257,4 +292,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                        .format(valnew, valnew_l))
                 pkg_dict[field] = valnew_l
         return(pkg_dict)
+
+    # ITemplateHelpers
+    def get_helpers(self):
+        return {'eaw_schema_set_default': eaw_schema_set_default}
+    
  
