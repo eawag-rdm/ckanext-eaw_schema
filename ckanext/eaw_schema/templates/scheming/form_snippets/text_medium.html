@@ -3,10 +3,14 @@
 {% set type = "text" %}  
 {% set name=field.field_name%}
 {% set extra_html="" %}
-{% set value=data.get(name, '') %}
+{% set value=data.get(name) %}
 {% set modal_text=field.modal_text if 'modal_text' in field else none %}
 {% set attrs=field.form_attrs if 'form_attrs' in field else {} %}
 {% set placeholder=field.form_placeholder if 'form_placeholder' in field else ''%}
+
+{% if field.default_value and (name not in data) %}
+  {% set value = h.eaw_schema_set_default(value, field.default_value) %}
+{% endif %}
 
 {%- call form.input_block(
   for='field-' + field.field_name,
