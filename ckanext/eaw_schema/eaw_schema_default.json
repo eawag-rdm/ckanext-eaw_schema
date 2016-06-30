@@ -355,7 +355,7 @@
       "preset": "eaw_schema_repeating_text_js",
       "validators": "repeating_text",
       "required": false, 
-      "field_name": "geographic-name", 
+      "field_name": "geographic_name", 
       "label": "Geographic Name"
     }, 
     {
