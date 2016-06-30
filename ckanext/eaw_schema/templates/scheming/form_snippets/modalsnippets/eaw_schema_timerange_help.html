@@ -1,13 +1,40 @@
 {#
 Help text for timerange field for package create/update
 #}
+<style>
+  div.modal-help {
+  font-size: large;
+  }
+  
+  .modal-help .modal  {
+  width: 750px;
+  max-width:95%;
+  left:auto;
+  margin-left: -200px;
+  }
+  .modal-help .modal-body {
+  max-height: 600px;
+  }
+</style>
 
+<div class="modal-help">
 <div id="timerange_help" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Examples</h3>
+    <h1>Timerange</h1>
   </div>
   <div class="modal-body">
+    <p>
+      Denote the timerange(s) to which the data in the package
+      relates, i.e. when the state of the system under consideration was
+      examined. Usually that would be the time(s) at which
+      field-measurements were made or samples were taken. The date when
+      you analyzed the samples in the lab is likely irrelevant in this
+      context.
+    </p>
+        <p>
+      <b style="background-color:yellow;">All times are UTC.</b>
+    </p>
     <p>
       <span>Points in time and implicit time-ranges:</span>
       <table style="border-collapse:separate;border-spacing:30px 0px;">
@@ -17,15 +44,32 @@ Help text for timerange field for package create/update
         <tr><td>2015-03-11T23</td><td>March 3, 2015, [23:00 .. 24:00)</td></tr>
         <tr><td>1969-10-29T22:30:04.765</td><td>a particular millisecond</td></tr>
       </table>
-    </p><p>
+    </p>
+    <p>
+      <b style="background-color:yellow;">Fractional seconds must have
+	3 decimal places.</b>
+    </p>
+    <p>
       <span>Use <b>"TO"</b> to express explicit time-ranges:</span>
       <table style="border-collapse:separate;border-spacing:30px 0px;">
         <tr><td>2014 <b>TO</b> 2016</td><td>2014, 2015 and 2016</td></tr>
         <tr><td>1969-06 <b>TO</b> 1969-08</td><td>the summer of 1969</td></tr>
-        <tr><td>1969-07-16T13:32:00 <b>TO</b> 1969-07-24T16:50:35</td><td>concomitant to the<br />flight of Apollo 11</td></tr>
+        <tr><td>1969-07-16T13:32:00 <b>TO</b>
+        1969-07-24T16:50:35</td><td>concomitant to the<br />flight of
+        Apollo 11</td></tr>
       </table>
     </p>
-    <b>Fractional seconds must have 3 decimal places.<br />
-    All times are UTC.</b>
+    <p>
+      <span>Use multiple time-ranges to express disjunct periods:</span>
+      <table style="border-collapse:separate;border-spacing:30px 0px;">
+        <tr><td><b>Timerange 1</b></td><td>2013-06 <b>TO</b> 2013-08</td><td></td></tr>
+        <tr><td><b>Timerange 2</b></td><td>2014-06 <b>TO</b> 2014-08</td><td></td></tr>
+	<tr><td colspan=3>Measurements were taken during sommers 2013 and 2014.</td></tr>
+      </table>
+    </p>
+    <p>
+      Ignore superflous "<b>Timerange &lt;N&gt;</b>" fields. Empty ones will be discarded.
+    </p>
   </div>
+</div>
 </div>

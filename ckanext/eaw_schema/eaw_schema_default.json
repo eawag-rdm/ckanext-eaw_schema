@@ -350,14 +350,17 @@
       "field_name": "spatial"
     }, 
     {
-      "form_placeholder": "e.g. Greifensee", 
-      "form_snippet": "text_medium.html", 
+      "form_placeholder": "e.g. Greifensee",
+      "modal_text": "geographic-name_help",
+      "preset": "eaw_schema_repeating_text_js",
+      "validators": "repeating_text",
       "required": false, 
       "field_name": "geographic-name", 
       "label": "Geographic Name"
     }, 
     {
-      "modal_text": "access_help", 
+      "modal_text_visibility": "visibility_help",
+      "modal_text_organization": "organization_help", 
       "required": true, 
       "field_name": "owner_org", 
       "preset": "eaw_schema_dataset_organization", 

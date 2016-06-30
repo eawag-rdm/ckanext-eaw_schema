@@ -1,24 +1,37 @@
-{#
-The help-text for the field "maintainer" (display: "Curator")
-in create/update package form.
-#}
+<style>
+  div.modal-help {
+  font-size: large;
+  }
+  
+  .modal-help .modal  {
+  width: 750px;
+  max-width:95%;
+  left:auto;
+  margin-left: -200px;
+  }
+  .modal-help .modal-body {
+  max-height: 600px;
+  }
+</style>
 
-<div id="open_data_help" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Open Data</h3>
-  </div>
-  <div class="modal-body">
-    <p>
-      Indicates that you think this package could be made available to
-      the general public at one point in the future.
-    </p><p>
-      <b>Actually, no data will be made available outside Eawag, even
-      if you check this flag, without contacting you again and
-      figuring out the details.</b>
-    </p><p> We currently do not have the ability to publish Open
-      Data. The "Open Data" flag mainly helps us to gauge the interest
-      in such a yet to be established service.
-    </p>
+<div class="modal-help">
+  <div id="open_data_help" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h1>Open Data</h1>
+    </div>
+    <div class="modal-body">
+      <p>
+	Indicates that you think this package could be made available to
+	the general public at one point in the future.
+      </p><p>
+	<b>Actually, no data will be made available outside Eawag, even
+	  if you check this flag, without contacting you again and
+	  figuring out the details.</b>
+      </p><p> We currently do not have the ability to publish Open
+	Data. The "Open Data" flag mainly helps us to gauge the interest
+	in such a yet to be established service.
+      </p>
+    </div>
   </div>
 </div>

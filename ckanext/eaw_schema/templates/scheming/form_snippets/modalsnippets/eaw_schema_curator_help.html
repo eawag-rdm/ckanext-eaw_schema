@@ -1,25 +1,35 @@
-{#
-The help-text for the field "maintainer" (display: "Curator")
-in create/update package form.
-#}
-
-<div id="curator_help" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Curator</h3>
-  </div>
-  <div class="modal-body">
-    <p>
-      The Curator is the person responsible for completeness,
-      quality-control and maintenance of meta-data and resources in
-      the package. The curator has an understanding of the scientific
-      background of the data and serves as the primary contact point
-      for content-related questions and issues.
-    </p><p>
-      <b>Only required if not identical with first author given above.</b>
-    </p><p>
-      Please use this format to identify a curator:<br>
-      Firstname1 [Firstname2] ... Lastname &lt;email@domainname&gt;
-    </p>
+<style>
+  div.modal-help {
+    font-size: large;
+  }
+  .modal-help .modal  {
+    width: 750px;
+    max-width:95%;
+    left:auto;
+    margin-left: -200px;
+  }
+  .modal-help .modal-body {
+      max-height: 600px;
+  }
+</style>
+<div class="modal-help">
+  <div id="curator_help" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h1>Curator</h1>
+    </div>
+    <div class="modal-body">
+      <p>
+	The Curator is the person responsible for completeness,
+	quality-control and maintenance of meta-data and resources in
+	the package. The curator has an understanding of the scientific
+	background of the data and serves as the primary contact point
+	for content-related questions and issues.
+      </p>
+      <p>
+	Please use this format to identify a curator:<br />
+	<code style="font-size:large;">Firstname(s) Lastname &lt;email@domainname&gt;</code>
+      </p>
+    </div>
   </div>
 </div>
