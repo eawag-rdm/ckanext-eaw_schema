@@ -67,7 +67,8 @@
     {
       "required": true, 
       "label": "Title", 
-      "preset": "title", 
+      "preset": "eaw_schema_title",
+      "modal_text": "title_help",
       "form_placeholder": "A descriptive title", 
       "field_name": "title", 
       "display_property": "dct:title"
