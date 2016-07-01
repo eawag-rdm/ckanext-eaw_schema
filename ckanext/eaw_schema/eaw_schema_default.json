@@ -10,6 +10,7 @@
     {
       "form_snippet": "eaw_schema_checkbox.html",
       "field_name": "publication",
+      "modal_text": "publication_help",
       "label":"Package supports THIS publication"
     },
     {
@@ -240,7 +241,8 @@
         }
       ], 
       "preset": "eaw_multiple_select_js", 
-      "label": "Generic Terms", 
+      "label": "Generic Terms",
+      "default_value": "none",
       "modal_text": "generic-terms_help",
       "field_name": "generic-terms", 
       "select_size": 5

@@ -29,12 +29,18 @@
 </style> 
 
 {% call form.input_block(id, label, classes=classes, control_classes=control_classes) %}  
-<input class="fouc eaw_schema_checkbox" type="checkbox" data-module-type="yesno"
-       id="{{ id }}" name="{{ name }}" data-module="andorswitch" 
-       value="yes" {% if checked %}checked="checked"{% endif %} /> 
-       <label class="eaw_schema_checkbox checkbox fouc"> 
-	 <span>Yes</span> 
-       </label>
+  <input class="fouc eaw_schema_checkbox" type="checkbox" data-module-type="yesno"
+	 id="{{ id }}" name="{{ name }}" data-module="andorswitch" 
+	 value="yes" {% if checked %}checked="checked"{% endif %} /> 
+	 <label class="eaw_schema_checkbox checkbox fouc"> 
+	   <span>Yes</span> 
+	 </label>
+	 
+{% if field.modal_text is defined %}
+  {% set modal_text = field.modal_text %}
+  {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
+  {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
+{% endif %}
 {% endcall %}  
-
+       
 
