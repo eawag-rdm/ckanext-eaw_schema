@@ -35,6 +35,16 @@
 	"validators": "owner_org_validator unicode",
 	"form_snippet": "eaw_schema_organization.html"
       }
+      },
+    {
+      "preset_name": "eaw_schema_title",
+      "values": {
+	"validators": "if_empty_same_as(name) unicode",
+        "form_snippet": "eaw_schema_large_text.html",
+        "form_attrs": {
+          "data-module": "slug-preview-target"
+        }
+      }
     }
   ]
 }

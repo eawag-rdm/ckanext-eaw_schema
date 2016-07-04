@@ -61,7 +61,7 @@ def vali_daterange(values):
         except ValueError:
             values = [valuestring]
         return(values)
-            
+
     values = _to_list_of_strings(values)
     valid_values = []
     for value in values:
@@ -78,7 +78,7 @@ def vali_daterange(values):
                 value = "[" + value + "]"
         valid_values.append(SolrDaterange.validate(value))
     valid_values = json.dumps(valid_values)
-    return(valid_values)
+    return valid_values
 
 def output_daterange(values):
     '''
@@ -125,6 +125,23 @@ def eaw_schema_multiple_string_convert(typ):
         return val
     
     return validator
+
+## If value is a string, and the string can be parsed as json,
+## validate only if the encoded value is not empty or None
+## Use for json-encoded "repeating"-fields, **after** "repeating_text".
+def eaw_schema_json_not_empty(key, data, errors, context):
+    if errors[key]:
+        return
+    value = data.get(key)
+    try:
+        val = json.loads(value)
+    except (TypeError, ValueError):
+        logger.warn("Can't parse {} ({}) as json -- this should not happen"
+                    .format(value, type(value)))
+        return
+    if not val and val != 0:
+        errors[key].append(_('Missing value'))
+        raise toolkit.StopOnError
 
 
 ## Maybe this could be replaced / merged with repeating_text_output.
@@ -263,7 +280,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 "eaw_schema_multiple_string_output":
                     eaw_schema_multiple_string_output,
                 "eaw_schema_multiple_choice":
-                    eaw_schema_multiple_choice
+                    eaw_schema_multiple_choice,
+                "eaw_schema_json_not_empty":
+                    eaw_schema_json_not_empty
         }
 
     # IPackageController

@@ -1,21 +1,40 @@
-<div id="usage_contact_help" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Usage Contact</h3>
-  </div>
-  <div class="modal-body">
-    <p>
-      The person who has to be contacted before the data in this package
-      can be used.
-    </p><p><b>
-      Only required if
-      <ol>
-	<li>applicable to all resources in this package, and</li>
-	<li>not identical with first author given above.</li>
-      </ol>
-    </b></p><p>
-      Please use this format to identify the usage contact person:<br>
-      Firstname1 [Firstname2] ... Lastname &lt;email@domainname&gt;
-    </p>
+<style>
+  div.modal-help {
+  font-size: large;
+  }
+  
+  .modal-help .modal  {
+  width: 750px;
+  max-width:95%;
+  left:auto;
+  margin-left: -200px;
+  }
+  .modal-help .modal-body {
+  max-height: 600px;
+  }
+</style>
+
+<div class="modal-help">
+  <div id="usage_contact_help" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h1>Usage Contact</h1>
+    </div>
+    <div class="modal-body">
+      <p>
+	The person who has to be contacted before the data in this package
+	can be used.
+      </p>
+      <p>
+	This is usually the first author of the package. However, if
+	it is foreseeable that this researcher will leave Eawag in the
+	near future (e.g. a PhD student), please enter the respective
+	group leader.
+      </p>
+      <p>
+	Please use this format to identify the usage contact person:<br />
+	<code style="font-size:large;">Firstname1(s) Lastname &lt;email@domainname.tld&gt;</code>
+      </p>
+    </div>
   </div>
 </div>

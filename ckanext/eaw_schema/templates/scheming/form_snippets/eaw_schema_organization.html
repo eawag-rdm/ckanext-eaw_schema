@@ -11,7 +11,8 @@
 {%- set user_is_sysadmin = h.check_access('sysadmin') %}
 {%- set org_required = not h.check_config_permission('create_unowned_dataset')
 or h.scheming_field_required(field) -%}
-{% set modal_text=field.modal_text if 'modal_text' in field else none %}
+{% set modal_text_organization=field.modal_text_organization if 'modal_text_organization' in field else none %}
+{% set modal_text_visibility=field.modal_text_visibility if 'modal_text_visibility' in field else none %}
 
 {% macro _organization() %}
   {% set existing_org = data.owner_org or data.group_id %}
@@ -36,11 +37,17 @@ or h.scheming_field_required(field) -%}
         {% endblock %}
       {% endfor %}
     </select>
+    {% if modal_text_organization is defined %}
+      {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text_organization -%}
+    {% endif %}
     </div>
+    {% if modal_text_organization is defined %}
+      {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text_organization ~ '.html' -%}
+    {% endif %}
   {% endcall %}
 {% endmacro %}
 
-  <div data-module="dataset-visibility">
+<div data-module="dataset-visibility">
   {% call _organization() %}
     {%- snippet 'scheming/form_snippets/help_text.html', field=field %}
   {% endcall %}
@@ -54,11 +61,15 @@ or h.scheming_field_required(field) -%}
           <option value="{{ option[0] }}" {% if option[0] == data.private|trim %}selected="selected"{% endif %}>{{ option[1] }}</option>  
           {% endfor %}  
         </select>
-	{%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text -%}
+	{% if modal_text_visibility is defined %}
+	  {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text_visibility -%}
+	{% endif %}
       </div>  
     </div>
-    {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
+    {% if modal_text_visibility is defined %}
+      {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text_visibility ~ '.html' -%}
+    {% endif %}
   {% endblock %}
-  </div>
+</div>
 
 
