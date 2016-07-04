@@ -331,7 +331,8 @@
       }, 
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
-    {
+      {
+      "required": true,
       "modal_text": "timerange_help",
       "form_snippet": "eaw_schema_repeating_text_js.html",
       "validators": "repeating_text eaw_schema_json_not_empty vali_daterange", 
