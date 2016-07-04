@@ -334,7 +334,7 @@
     {
       "modal_text": "timerange_help",
       "form_snippet": "eaw_schema_repeating_text_js.html",
-      "validators": "repeating_text vali_daterange", 
+      "validators": "repeating_text eaw_schema_json_not_empty vali_daterange", 
       "label": "Timerange", 
       "form_placeholder": "e.g. 2016-03 TO 2016-05", 
       "field_name": "timerange", 
