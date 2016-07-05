@@ -43,30 +43,29 @@ Help text for timerange field for package create/update
         <tr><td>2015-03-11</td><td>March 11, 2015</td></tr>
         <tr><td>2015-03-11T23</td><td>March 3, 2015, [23:00 .. 24:00)</td></tr>
         <tr><td>1969-10-29T22:30:04.765</td><td>a particular millisecond</td></tr>
+	<tr><td>*</td><td>eternity</td></tr>
       </table>
-    </p>
-    <p>
-      <b style="background-color:yellow;">Fractional seconds must have
-	3 decimal places.</b>
     </p>
     <p>
       <span>Use <b>"TO"</b> to express explicit time-ranges:</span>
       <table style="border-collapse:separate;border-spacing:30px 0px;">
         <tr><td>2014 <b>TO</b> 2016</td><td>2014, 2015 and 2016</td></tr>
         <tr><td>1969-06 <b>TO</b> 1969-08</td><td>the summer of 1969</td></tr>
-        <tr><td>1969-07-16T13:32:00 <b>TO</b>
-        1969-07-24T16:50:35</td><td>concomitant to the<br />flight of
-        Apollo 11</td></tr>
+        <tr><td>* &nbsp;<b>TO</b> 1848-09-12</td><td>anytime before the existence of Switzerland</td></tr>
+	<tr><td>1991-06-15 <b>TO</b> &nbsp;*</td><td>anytime after a Mount Pinatubo eruption</td></tr>
       </table>
     </p>
     <p>
       <span>Use multiple time-ranges to express disjunct periods:</span>
       <table style="border-collapse:separate;border-spacing:30px 0px;">
-        <tr><td><b>Timerange 1</b></td><td>2013-06 <b>TO</b> 2013-08</td><td></td></tr>
+        <tr><td><b>Timerange 1</b></td><td>2013-06 <b>TO</b> 2013-08</td><td rowspan=2>Measurements were taken during<br />sommers 2013 and 2014.</td></tr>
         <tr><td><b>Timerange 2</b></td><td>2014-06 <b>TO</b> 2014-08</td><td></td></tr>
-	<tr><td colspan=3>Measurements were taken during sommers 2013 and 2014.</td></tr>
       </table>
     </p>
+    <p style="background-color:yellow;">
+	<span>This is a mandatory field.</span>  <br />
+	<span>Select <i>*</i> if no specific time-range can be associated with the <i>package's</i> data.</span>
+      </p>
     <p>
       Ignore superflous "<b>Timerange &lt;N&gt;</b>" fields. Empty ones will be discarded.
     </p>
