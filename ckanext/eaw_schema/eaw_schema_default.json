@@ -15,7 +15,9 @@
     },
     {
       "form_placeholder": "e.g. table_arsenic", 
-      "required": true, 
+      "required": true,
+      "form_snippet": "eaw_schema_text.html",
+      "modal_text": "res_name",
       "field_name": "name", 
       "label": "Name"
     }, 
@@ -30,9 +32,17 @@
           "label": "Data_Set"
         }, 
         {
-          "value": "Image", 
-          "label": "Image"
-        }, 
+          "value": "Bitmap Image", 
+          "label": "Bitmap Image"
+        },
+	{
+          "value": "Vector Graphics", 
+          "label": "Vector Graphics"
+        },
+	{
+          "value": "Geospatial Info", 
+          "label": "Geospatial Info"
+        },
         {
           "value": "Software", 
           "label": "Software"
@@ -47,19 +57,23 @@
         }
       ], 
       "required": true, 
-      "field_name": "resource_type", 
-      "preset": "select", 
+      "field_name": "resource_type",
+      "modal_text": "resource_type_help",
+      "preset": "select_short", 
       "label": "Resource Type"
     }, 
     {
-      "form_placeholder": "Some useful notes about the data", 
-      "form_snippet": "markdown.html", 
-      "field_name": "description", 
-      "label": "Description"
+      "required": false, 
+      "form_snippet": "eaw_schema_markdown.html",
+      "modal_text": "res_notes_help",
+      "label": "Notes",
+      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
+      "field_name": "description"
     }, 
     {
-      "form_placeholder": "How to cite this resource", 
-      "form_snippet": "markdown.html", 
+      "form_placeholder": "How to cite this resource",
+      "form_snippet": "eaw_schema_markdown.html",
+      "modal_text": "res_citation_help",
       "field_name": "citation", 
       "label": "Cite as"
     }
@@ -84,7 +98,6 @@
     {
       "required": true, 
       "form_snippet": "eaw_schema_markdown.html",
-      "inner_div_classes":"eaw_with_infobutton",
       "modal_text": "abstract_help",
       "label": "Abstract", 
       "form_placeholder": "A description of the package.", 
@@ -94,7 +107,6 @@
     {
       "required": false, 
       "form_snippet": "eaw_schema_markdown.html",
-      "inner_div_classes":"eaw_with_infobutton",
       "modal_text": "notes_help",
       "label": "Notes",
       "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
@@ -334,6 +346,7 @@
       {
       "required": true,
       "modal_text": "timerange_help",
+      "default_value": "*",
       "form_snippet": "eaw_schema_repeating_text_js.html",
       "validators": "repeating_text eaw_schema_json_not_empty vali_daterange", 
       "label": "Timerange", 

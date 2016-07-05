@@ -28,7 +28,6 @@
   
   <select multiple data-module="autocomplete"
       size="{{ ([field.get('select_size', 10), field.choices|length]|sort)[0] }}"
-      style="display:inline-block;width:334px;"
       id="field-{{ field.field_name }}"
       name="{{ field.field_name }}" >
     {%- for val, label in choices -%}
