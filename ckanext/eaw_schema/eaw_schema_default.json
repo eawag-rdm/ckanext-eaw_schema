@@ -17,7 +17,7 @@
       "form_placeholder": "e.g. table_arsenic", 
       "required": true,
       "form_snippet": "eaw_schema_text.html",
-      "modal_text": "res_name",
+      "modal_text": "res_name_help",
       "field_name": "name", 
       "label": "Name"
     }, 
