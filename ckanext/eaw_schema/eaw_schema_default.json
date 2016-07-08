@@ -317,13 +317,13 @@
     }, 
     {
       "display_snippet": "eaw_schema_multiple_string_display.html", 
-      "modal_text": "species_help", 
+      "modal_text": "taxa_help", 
       "required": false, 
       "form_snippet": "eaw_schema_multiple_string_textbox.html",
-      "label": "Species", 
+      "label": "Taxa", 
       "validators": "eaw_schema_multiple_string_convert(textbox)", 
       "form_placeholder": "e.g. Dictyosphaerium Anabaena", 
-      "field_name": "species", 
+      "field_name": "taxa", 
       "form_attrs": {
         "class": "eaw_with_infobutton"
       }, 
