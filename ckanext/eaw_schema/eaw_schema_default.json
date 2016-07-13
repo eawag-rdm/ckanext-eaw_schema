@@ -6,22 +6,26 @@
       "preset": "resource_url_upload", 
       "field_name": "url", 
       "label": "URL"
-    },
-    {
-      "form_snippet": "eaw_schema_checkbox.html",
-      "field_name": "publication",
-      "modal_text": "publication_help",
-      "label":"Package supports THIS publication"
-    },
-    {
-      "form_placeholder": "e.g. table_arsenic", 
-      "required": true,
-      "form_snippet": "eaw_schema_text.html",
-      "modal_text": "res_name_help",
-      "field_name": "name", 
-      "label": "Name"
     }, 
     {
+      "field_name": "publication", 
+      "label": "Package supports THIS publication", 
+      "form_snippet": "eaw_schema_checkbox.html", 
+      "modal_text": "publication_help"
+    }, 
+    {
+      "modal_text": "res_name_help", 
+      "required": true, 
+      "form_snippet": "eaw_schema_text.html", 
+      "label": "Name", 
+      "form_placeholder": "e.g. table_arsenic", 
+      "field_name": "name"
+    }, 
+    {
+      "modal_text": "resource_type_help", 
+      "required": true, 
+      "label": "Resource Type", 
+      "preset": "select_short", 
       "choices": [
         {
           "value": "Audiovisual", 
@@ -34,15 +38,15 @@
         {
           "value": "Bitmap Image", 
           "label": "Bitmap Image"
-        },
-	{
+        }, 
+        {
           "value": "Vector Graphics", 
           "label": "Vector Graphics"
-        },
-	{
+        }, 
+        {
           "value": "Geospatial Info", 
           "label": "Geospatial Info"
-        },
+        }, 
         {
           "value": "Software", 
           "label": "Software"
@@ -56,80 +60,80 @@
           "label": "Text"
         }
       ], 
-      "required": true, 
-      "field_name": "resource_type",
-      "modal_text": "resource_type_help",
-      "preset": "select_short", 
-      "label": "Resource Type"
+      "field_name": "resource_type"
     }, 
     {
+      "modal_text": "res_notes_help", 
       "required": false, 
-      "form_snippet": "eaw_schema_markdown.html",
-      "modal_text": "res_notes_help",
-      "label": "Notes",
+      "form_snippet": "eaw_schema_markdown.html", 
+      "label": "Notes", 
       "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
       "field_name": "description"
     }, 
     {
-      "form_placeholder": "How to cite this resource",
-      "form_snippet": "eaw_schema_markdown.html",
-      "modal_text": "res_citation_help",
+      "form_placeholder": "How to cite this resource", 
+      "modal_text": "res_citation_help", 
       "field_name": "citation", 
+      "form_snippet": "eaw_schema_markdown.html", 
       "label": "Cite as"
     }
   ], 
   "dataset_fields": [
     {
+      "modal_text": "title_help", 
       "required": true, 
       "label": "Title", 
-      "preset": "eaw_schema_title",
-      "modal_text": "title_help",
+      "preset": "eaw_schema_title", 
       "form_placeholder": "A descriptive title", 
       "field_name": "title", 
       "display_property": "dct:title"
     }, 
     {
       "preset": "dataset_slug", 
-      "required": true, 
       "field_name": "name", 
+      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "label": "URL"
+      "required": true
     }, 
     {
+      "modal_text": "abstract_help", 
       "required": true, 
-      "form_snippet": "eaw_schema_markdown.html",
-      "modal_text": "abstract_help",
+      "form_snippet": "eaw_schema_markdown.html", 
       "label": "Abstract", 
       "form_placeholder": "A description of the package.", 
       "field_name": "notes", 
       "display_property": "dct:description"
     }, 
     {
+      "modal_text": "notes_help", 
       "required": false, 
-      "form_snippet": "eaw_schema_markdown.html",
-      "modal_text": "notes_help",
-      "label": "Notes",
+      "form_snippet": "eaw_schema_markdown.html", 
+      "label": "Notes", 
       "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
       "field_name": "notes-2", 
       "display_property": "dct:description"
     }, 
     {
+      "modal_text": "keywords_help", 
+      "form_snippet": "eaw_schema_text.html", 
       "label": "Keywords", 
-      "validators": "ignore_missing tag_string_convert",
-      "form_snippet": "eaw_schema_text.html",
-      "modal_text": "keywords_help",
-      "form_attrs": {
-	  "data-module": "autocomplete",
-          "data-module-tags": "",
-          "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
-      },
+      "validators": "ignore_missing tag_string_convert", 
       "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...", 
       "field_name": "tag_string", 
+      "form_attrs": {
+        "data-module-tags": "", 
+        "data-module": "autocomplete", 
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
+      }, 
       "display_property": "dcat:keyword"
     }, 
     {
+      "default_value": "none", 
       "sorted_choices": true, 
+      "modal_text": "variables_help", 
       "required": true, 
+      "label": "Variables", 
+      "preset": "eaw_multiple_select_js", 
       "choices": [
         {
           "value": "alkalinity", 
@@ -182,18 +186,22 @@
         {
           "value": "none", 
           "label": "none"
+        }, 
+        {
+          "value": "secci_depth", 
+          "label": "Secci depth"
         }
       ], 
-      "preset": "eaw_multiple_select_js", 
-      "label": "Variables", 
-      "modal_text": "variables_help",
-      "default_value": "none",
       "field_name": "variables", 
       "select_size": 5
     }, 
     {
+      "default_value": "none", 
       "sorted_choices": true, 
+      "modal_text": "generic-terms_help", 
       "required": true, 
+      "label": "Generic Terms", 
+      "preset": "eaw_multiple_select_js", 
       "choices": [
         {
           "value": "none", 
@@ -252,16 +260,16 @@
           "label": "bacteria"
         }
       ], 
-      "preset": "eaw_multiple_select_js", 
-      "label": "Generic Terms",
-      "default_value": "none",
-      "modal_text": "generic-terms_help",
       "field_name": "generic-terms", 
       "select_size": 5
     }, 
     {
+      "default_value": "none", 
       "sorted_choices": true, 
+      "modal_text": "systems_help", 
       "required": true, 
+      "label": "Systems", 
+      "preset": "eaw_multiple_select_js", 
       "choices": [
         {
           "value": "Groundwater", 
@@ -308,10 +316,6 @@
           "label": "Batch"
         }
       ], 
-      "preset": "eaw_multiple_select_js", 
-      "label": "Systems", 
-      "modal_text": "systems_help",
-      "default_value": "none",
       "field_name": "systems", 
       "select_size": 5
     }, 
@@ -319,7 +323,7 @@
       "display_snippet": "eaw_schema_multiple_string_display.html", 
       "modal_text": "taxa_help", 
       "required": false, 
-      "form_snippet": "eaw_schema_multiple_string_textbox.html",
+      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
       "label": "Taxa", 
       "validators": "eaw_schema_multiple_string_convert(textbox)", 
       "form_placeholder": "e.g. Dictyosphaerium Anabaena", 
@@ -343,50 +347,48 @@
       }, 
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
-      {
-      "required": true,
-      "modal_text": "timerange_help",
-      "default_value": "*",
-      "form_snippet": "eaw_schema_repeating_text_js.html",
-      "validators": "repeating_text eaw_schema_json_not_empty vali_daterange", 
+    {
+      "default_value": "*", 
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
+      "modal_text": "timerange_help", 
+      "required": true, 
+      "form_snippet": "eaw_schema_repeating_text_js.html", 
       "label": "Timerange", 
+      "validators": "repeating_text eaw_schema_json_not_empty vali_daterange", 
       "form_placeholder": "e.g. 2016-03 TO 2016-05", 
       "field_name": "timerange", 
-      "output_validators": "repeating_text_output output_daterange",
-      "display_snippet": "eaw_schema_multiple_string_display.html",
+      "output_validators": "repeating_text_output output_daterange", 
       "form_blanks": 1
     }, 
     {
+      "default_value": "{}", 
       "display_snippet": null, 
       "modal_text": "spatial_help", 
       "required": true, 
       "form_snippet": "text_medium.html", 
-      "default_value": "{}",
       "label": "Spatial Extent", 
       "form_placeholder": "{\"type\": \"Point\", \"coordinates\": [8.6124600, 47.4031100]}", 
       "field_name": "spatial"
     }, 
     {
-      "form_placeholder": "e.g. Greifensee", 
-      "modal_text": "geographic-name_help",
-      "preset": "eaw_schema_repeating_text_js",
-      "validators": "repeating_text",
+      "modal_text": "geographic-name_help", 
       "required": false, 
-      "field_name": "geographic_name", 
-      "label": "Geographic Name"
+      "label": "Geographic Name", 
+      "preset": "eaw_schema_repeating_text_js", 
+      "validators": "repeating_text", 
+      "form_placeholder": "e.g. Greifensee", 
+      "field_name": "geographic_name"
     }, 
     {
-      "modal_text_visibility": "visibility_help",
+      "required": true, 
+      "modal_text_visibility": "visibility_help", 
+      "label": "Organization", 
       "modal_text_organization": "organization_help", 
-      "required": true, 
-      "field_name": "owner_org", 
       "preset": "eaw_schema_dataset_organization", 
-      "label": "Organization"
+      "field_name": "owner_org"
     }, 
     {
       "required": true, 
-      "label": "Status", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "incomplete", 
@@ -401,6 +403,8 @@
           "label": "reviewed"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Status", 
       "field_name": "status", 
       "form_attrs": {
         "class": "medinput"
@@ -408,34 +412,37 @@
       "display_property": "adms:status"
     }, 
     {
+      "default_value": "context_fullname_email", 
       "modal_text": "author_help", 
       "label": "Author", 
       "preset": "eaw_schema_repeating_text_js", 
-      "default_value": "context_fullname_email",
       "form_placeholder": "Johann Bach <joe@eawag.ch>", 
       "field_name": "author", 
       "display_property": "dc:creator", 
       "form_blanks": 3
     }, 
     {
+      "default_value": "context_fullname_email", 
       "modal_text": "curator_help", 
       "form_snippet": "text_medium.html", 
       "label": "Curator", 
-      "default_value": "context_fullname_email",
       "form_placeholder": "Carla Curator <curca@eawag.ch>", 
       "field_name": "maintainer", 
       "display_property": "datacite:datacurator"
     }, 
     {
-      "form_placeholder": "Pat Permission <pep@eawag.ch>", 
+      "default_value": "context_fullname_email", 
       "modal_text": "usage_contact_help", 
-      "field_name": "usage_contact", 
-      "default_value": "context_fullname_email",
       "form_snippet": "text_medium.html", 
-      "label": "Usage Contact"
+      "label": "Usage Contact", 
+      "form_placeholder": "Pat Permission <pep@eawag.ch>", 
+      "field_name": "usage_contact"
     }, 
     {
+      "field_name": "open_data", 
+      "display_snippet": "multiple_choice.html", 
       "form_snippet": "eaw_multiple_checkbox.html", 
+      "label": "Flags", 
       "choices": [
         {
           "modal_text": "open_data_help", 
@@ -448,11 +455,14 @@
           "autocheckif": false, 
           "value": "doi_wanted", 
           "label": "DOI wanted"
+        },
+	{
+	  "modal_text": "long_term_archive_help", 
+          "autocheckif": false, 
+          "value": "long_term_archive", 
+          "label": "Long Term Archive"
         }
-      ], 
-      "display_snippet": "multiple_choice.html", 
-      "field_name": "open_data", 
-      "label": "Flags"
+      ]
     }
   ], 
   "dataset_type": "dataset", 

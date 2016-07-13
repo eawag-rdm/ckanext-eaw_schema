@@ -28,7 +28,7 @@ ckan.module('eaw_schema_conditional_multicheck', function ($, _) {
       var fixedstring =	this.options.choices
 	    .replace(/\(/g, "[").replace(/\)/g, "]")
 	    .replace(/u(\'.+?\')/g, function (match, p1) {return p1;})
-	    .replace(/\'/g, "\"").replace("False", "false");
+	    .replace(/\'/g, "\"").replace(/False/g, "false");
       return(JSON.parse(fixedstring));
     },
     initialize: function () {      
