@@ -67,15 +67,13 @@ def vali_daterange(values):
     for value in values:
         value = value.strip()
         try:
-            timestamps = value.split(" TO ")
+            timestamps = [x.strip('[]') for x in value.split(" TO ")]
         except ValueError:
             pass
         else:
-            if len(timestamps) == 2:
-                timestamps = [_fix_timestamp(ts) for ts in timestamps]
+            timestamps = [_fix_timestamp(ts) for ts in timestamps]
             value = " TO ".join(timestamps)
-            if len(timestamps) == 2 and value[0] != "[" and value[-1] != "]":
-                value = "[" + value + "]"
+            value = "[" + value + "]" if len(timestamps) == 2 else value 
         valid_values.append(SolrDaterange.validate(value))
     valid_values = json.dumps(valid_values)
     return valid_values
@@ -263,6 +261,7 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
         'variables',
         'systems',
         'timerange',
+        'taxa',
     ]
 
     # IConfigurer
@@ -294,14 +293,14 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     def before_index(self, pkg_dict):
         for field in self.json2list_fields:
             val = pkg_dict.get(field)
-            if not val:
+            if not val or isinstance(val, list):
                 continue
             try:
                 valnew = json.loads(val)
             except:
-                logger.debug("{} doesn't parse as JSON".format(val))
+                logger.debug("{} doesn't parse as JSON".format(repr(val)))
                 val1 = json.dumps([repr(val)])
-                logger.debug("replacing with {}".format(val1))
+                logger.debug("replacing with {}".format(repr(val1)))
                 valnew = json.loads(val1)
             if isinstance(valnew, list):
                 pkg_dict[field] = valnew
