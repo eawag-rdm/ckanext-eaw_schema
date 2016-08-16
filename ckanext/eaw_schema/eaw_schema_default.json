@@ -76,6 +76,12 @@
       "field_name": "citation", 
       "form_snippet": "eaw_schema_markdown.html", 
       "label": "Cite as"
+    },
+    {
+      "field_name": "hash",
+      "label": "Hash Digest",
+      "display_snippet": "select.html",
+      "form_snippet": null
     }
   ], 
   "dataset_fields": [
