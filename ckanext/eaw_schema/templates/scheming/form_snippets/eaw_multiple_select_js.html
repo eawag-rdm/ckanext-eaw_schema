@@ -3,7 +3,7 @@
 {% set modal_text=field.modal_text if 'modal_text' in field else none %}
 
 {%- call form.input_block(
-    "field-{{ field.field_name }}",
+    "field-" ~ field.field_name,
     label=h.scheming_language_text(field.label),
     classes=['control-medium'],
     error=errors[field.field_name],
