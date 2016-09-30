@@ -78,9 +78,10 @@
       "label": "Cite as"
     }, 
     {
-      "field_name": "hash", 
-      "label": "Hash Digest", 
-      "form_snippet": null, 
+      "field_name": "hash",
+      "modal_text": "res_hash_help", 
+      "label": "Hash (SHA-256)",
+      "form_snippet": "eaw_schema_text.html", 
       "display_snippet": "select.html"
     }
   ], 
