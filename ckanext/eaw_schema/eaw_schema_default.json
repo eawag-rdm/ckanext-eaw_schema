@@ -431,7 +431,8 @@
       ], 
       "preset": "select_short", 
       "label": "Status", 
-      "field_name": "status", 
+      "field_name": "status",
+      "modal_text": "status_help", 
       "form_attrs": {
         "class": "medinput"
       }, 
