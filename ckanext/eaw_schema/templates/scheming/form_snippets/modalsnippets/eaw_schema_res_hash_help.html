@@ -2,14 +2,14 @@
   <div id="{{ field.modal_text }}" class="modal hide fade">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h1>Resource Name</h1>
+      <h1>Cryptographic hash</h1>
     </div>
     <div class="modal-body">
       <p>The <a href="https://en.wikipedia.org/wiki/SHA-2">SHA-256 hash digest</a> of the file.</p>
-      <p>If the cryptographic hash of the file is supplied, the
-	file-integrity can be checked after its upload (not yet implemented).</p>
-      <p>Usually, operating systems have a program installed that lets
-      you do that, e.g., on Linux the command
+      <p>If this cryptographic hash of the file is supplied, the
+	file-integrity can be checked after it was uploaded (not yet implemented).</p>
+      <p>Usually, operating systems have a program installed that
+	calculates the SHA-256 hash, e.g., on Linux the command
 	is <code style="font-size:large;">sha256sum</code>.</p>
     </div>
   </div>
