@@ -395,12 +395,16 @@
     {
       "modal_text": "geographic-name_help", 
       "required": false, 
-      "label": "Geographic Name", 
-      "preset": "eaw_schema_repeating_text_js", 
-      "validators": "repeating_text", 
+      "label": "Geographic Name(s)",
+      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
+      "validators": "eaw_schema_multiple_string_convert(textbox)",
+      "output_validators": "eaw_schema_multiple_string_output",
       "form_placeholder": "e.g. Greifensee", 
-      "field_name": "geographic_name"
-    }, 
+      "field_name": "geographic_name",
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      } 
+    },
     {
       "required": true, 
       "modal_text_visibility": "visibility_help", 

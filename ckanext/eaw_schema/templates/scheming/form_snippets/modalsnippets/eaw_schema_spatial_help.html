@@ -2,29 +2,54 @@
 The help-text for the field "spatial" (display: "Spatial Extent")
 in create/update package form.
 #}
+<style>
+  div.modal-help {
+  font-size: large;
+  }
+  
+  .modal-help .modal  {
+  width: 750px;
+  max-width:95%;
+  left:auto;
+  margin-left: -200px;
+  }
+  .modal-help .modal-body {
+  max-height: 600px;
+  }
+</style>
 
-<div id="spatial_help" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Spatial Extent</h3>
-  </div>
-  <div class="modal-body">
-    <p>
-      The spatial coverage of the data in the package.<br />
-      Has to be given as GeoJSON - geometry. Possible types are:
-      <ul>
-	<li>"Point",</li>
-	<li>"MultiPoint",</li>
-	<li>"LineString",</li>
-	<li>"MultiLineString",</li>
-	<li>"Polygon",</li>
-	<li>"MultiPolygon"</li>
-      </ul>
-      Examples are given at
-      <a href="http://geojson.org/geojson-spec.html#appendix-a-geometry-examples" target="_blank">geojson.org</a>
-    </p><p>
-      Note that "GeometryCollection", FeatureCollections" and
-      "FeatureObjects" are currently not supported.
-    </p>
+<div class="modal-help">
+  <div id="spatial_help" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h1>Spatial Extent</h1>
+    </div>
+    <div class="modal-body">
+      <p>Entering the spatial extent of your data is currently not yet
+	supported in a user-friendly manner. In case the field
+	"<b>Geographic Name(s)</b>" does not describe the spatial
+	reference of you data precisely enough (for example beacuse your
+	measurements do not pertain to a whole lake but rather to a
+	specific spot in that lake), please make a note (to yourself and
+	the administrator of this platform) in the <b>Notes</b> field
+	about where that information can be found.</p>
+      <p>In case you want to see your data on the map now you have to
+	enter the spatial coverage of the data in the package as GeoJSON
+	- geometry. Possible types are:
+	<ul>
+	  <li>"Point",</li>
+	  <li>"MultiPoint",</li>
+	  <li>"LineString",</li>
+	  <li>"MultiLineString",</li>
+	  <li>"Polygon",</li>
+	  <li>"MultiPolygon"</li>
+	</ul>
+	Examples are given at
+	<a href="http://geojson.org/geojson-spec.html#appendix-a-geometry-examples" target="_blank">geojson.org</a>
+      </p><p>
+	Note that "GeometryCollection", FeatureCollections" and
+	"FeatureObjects" are currently not supported.
+      </p>
+    </div>
   </div>
 </div>
