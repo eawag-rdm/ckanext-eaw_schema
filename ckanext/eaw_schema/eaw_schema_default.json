@@ -78,9 +78,9 @@
       "label": "Cite as"
     }, 
     {
-      "field_name": "hash",
       "modal_text": "res_hash_help", 
-      "label": "Hash (SHA-256)",
+      "label": "Hash (SHA-256)", 
+      "field_name": "hash", 
       "form_snippet": "eaw_schema_text.html", 
       "display_snippet": "select.html"
     }
@@ -97,10 +97,10 @@
     }, 
     {
       "required": true, 
-      "preset": "dataset_slug", 
       "field_name": "name", 
+      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "label": "URL"
+      "preset": "dataset_slug"
     }, 
     {
       "modal_text": "abstract_help", 
@@ -277,6 +277,10 @@
         {
           "value": "faecal_sludge", 
           "label": "faecal sludge"
+        }, 
+        {
+          "value": "human health behaviour", 
+          "label": "human health behaviour"
         }
       ], 
       "field_name": "generic-terms", 
@@ -337,6 +341,10 @@
         {
           "value": "metropolitan_area", 
           "label": "Metropolitan Area"
+        }, 
+        {
+          "value": "Social system", 
+          "label": "Social system"
         }
       ], 
       "field_name": "systems", 
@@ -394,19 +402,19 @@
       "field_name": "spatial"
     }, 
     {
-      "display_snippet": "eaw_schema_multiple_string_display.html",
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
       "modal_text": "geographic-name_help", 
-      "required": false,
+      "required": false, 
       "form_snippet": "eaw_schema_multiple_string_textbox.html", 
-      "label": "Geographic Name(s)",
-      "validators": "eaw_schema_multiple_string_convert(textbox)",
-      "output_validators": "eaw_schema_multiple_string_output",
+      "label": "Geographic Name(s)", 
+      "validators": "eaw_schema_multiple_string_convert(textbox)", 
       "form_placeholder": "e.g. Greifensee", 
-      "field_name": "geographic_name",
+      "field_name": "geographic_name", 
       "form_attrs": {
         "class": "eaw_with_infobutton"
-      } 
-    },
+      }, 
+      "output_validators": "eaw_schema_multiple_string_output"
+    }, 
     {
       "required": true, 
       "modal_text_visibility": "visibility_help", 
@@ -416,6 +424,7 @@
       "field_name": "owner_org"
     }, 
     {
+      "modal_text": "status_help", 
       "required": true, 
       "choices": [
         {
@@ -433,8 +442,7 @@
       ], 
       "preset": "select_short", 
       "label": "Status", 
-      "field_name": "status",
-      "modal_text": "status_help", 
+      "field_name": "status", 
       "form_attrs": {
         "class": "medinput"
       }, 
@@ -469,9 +477,9 @@
     }, 
     {
       "field_name": "open_data", 
-      "label": "Flags", 
-      "form_snippet": "eaw_multiple_checkbox.html", 
       "display_snippet": "multiple_choice.html", 
+      "form_snippet": "eaw_multiple_checkbox.html", 
+      "label": "Flags", 
       "choices": [
         {
           "modal_text": "open_data_help", 
