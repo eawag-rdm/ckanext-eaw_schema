@@ -262,6 +262,7 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
         'systems',
         'timerange',
         'taxa',
+        'geographic_name',
     ]
 
     # IConfigurer

@@ -394,10 +394,11 @@
       "field_name": "spatial"
     }, 
     {
+      "display_snippet": "eaw_schema_multiple_string_display.html",
       "modal_text": "geographic-name_help", 
-      "required": false, 
-      "label": "Geographic Name(s)",
+      "required": false,
       "form_snippet": "eaw_schema_multiple_string_textbox.html", 
+      "label": "Geographic Name(s)",
       "validators": "eaw_schema_multiple_string_convert(textbox)",
       "output_validators": "eaw_schema_multiple_string_output",
       "form_placeholder": "e.g. Greifensee", 
