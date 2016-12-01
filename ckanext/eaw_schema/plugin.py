@@ -231,7 +231,7 @@ def eaw_schema_set_default(values, default_value):
 
     # special default value resulting in "Full Name <email>"
     if default_value == "context_fullname_email":
-        val = "{} <{}>".format(toolkit.c.userobj.fullname,
+        val = u'{} <{}>'.format(toolkit.c.userobj.fullname,
                                toolkit.c.userobj.email)
 
     ## insert elif clauses for other defaults
