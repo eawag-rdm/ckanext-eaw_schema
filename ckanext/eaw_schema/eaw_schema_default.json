@@ -360,7 +360,7 @@
       "required": false, 
       "form_snippet": "eaw_schema_multiple_string_textbox.html", 
       "label": "Taxa", 
-      "validators": "eaw_schema_multiple_string_convert(textbox)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
       "form_placeholder": "e.g. Dictyosphaerium Anabaena", 
       "field_name": "taxa", 
       "form_attrs": {
@@ -374,7 +374,7 @@
       "required": false, 
       "form_snippet": "eaw_schema_multiple_string_textbox.html", 
       "label": "Substances", 
-      "validators": "eaw_schema_multiple_string_convert(textbox)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
       "form_placeholder": "e.g. 2-Methyl-4-amino-6-methoxy-s-triazine", 
       "field_name": "substances", 
       "form_attrs": {
@@ -411,7 +411,7 @@
       "required": false, 
       "form_snippet": "eaw_schema_multiple_string_textbox.html", 
       "label": "Geographic Name(s)", 
-      "validators": "eaw_schema_multiple_string_convert(textbox)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
       "form_placeholder": "e.g. Greifensee", 
       "field_name": "geographic_name", 
       "form_attrs": {
