@@ -17,25 +17,28 @@
       "label": "Short Name",
       "validators": "ignore_missing unicode",
       "form_snippet": "large_text.html",
-      "form_placeholder": "MYORG"
+      "form_placeholder": "MYORG",
+      "display_snippet": null
     },
     {
       "field_name": "name",
       "label": "URL",
       "validators": "not_empty unicode name_validator group_name_validator",
       "form_snippet": "slug.html",
-      "form_placeholder": "my-organization"
+      "form_placeholder": "my-organization",
+      "display_snippet": null
     },
     {
-      "field_name": "notes",
+      "field_name": "description",
       "label": "Description",
       "form_snippet": "markdown.html",
       "form_placeholder": "A little information about my organization..."
     },
     {
-      "field_name": "url",
+      "field_name": "image_url",
       "label": "Image URL",
-      "form_placeholder": "http://example.com/my-image.jpg"
+      "form_placeholder": "http://example.com/my-image.jpg",
+      "display_snippet": null
     },
     {
       "field_name": "not_used",
