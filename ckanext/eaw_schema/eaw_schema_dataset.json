@@ -24,8 +24,6 @@
     {
       "modal_text": "resource_type_help", 
       "required": true, 
-      "label": "Resource Type", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "Audiovisual", 
@@ -60,6 +58,8 @@
           "label": "Geospatial Data"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Resource Type", 
       "field_name": "resource_type"
     }, 
     {
@@ -79,10 +79,10 @@
     }, 
     {
       "modal_text": "res_hash_help", 
-      "label": "Hash (SHA-256)", 
+      "display_snippet": "select.html", 
       "field_name": "hash", 
       "form_snippet": "eaw_schema_text.html", 
-      "display_snippet": "select.html"
+      "label": "Hash (SHA-256)"
     }
   ], 
   "dataset_fields": [
@@ -96,11 +96,11 @@
       "display_property": "dct:title"
     }, 
     {
+      "required": true, 
       "preset": "dataset_slug", 
       "field_name": "name", 
-      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "required": true
+      "label": "URL"
     }, 
     {
       "modal_text": "abstract_help", 
@@ -205,6 +205,10 @@
         {
           "value": "weight", 
           "label": "weight"
+        }, 
+        {
+          "value": "total_hardness", 
+          "label": "total hardness"
         }
       ], 
       "field_name": "variables", 
@@ -424,8 +428,8 @@
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
     {
-      "required": true, 
       "modal_text_visibility": "visibility_help", 
+      "required": true, 
       "label": "Organization", 
       "modal_text_organization": "organization_help", 
       "preset": "eaw_schema_dataset_organization", 
@@ -434,6 +438,8 @@
     {
       "modal_text": "status_help", 
       "required": true, 
+      "label": "Status", 
+      "preset": "select_short", 
       "choices": [
         {
           "value": "incomplete", 
@@ -448,8 +454,6 @@
           "label": "reviewed"
         }
       ], 
-      "preset": "select_short", 
-      "label": "Status", 
       "field_name": "status", 
       "form_attrs": {
         "class": "medinput"
@@ -484,10 +488,7 @@
       "field_name": "usage_contact"
     }, 
     {
-      "field_name": "open_data", 
-      "label": "Flags", 
       "form_snippet": "eaw_multiple_checkbox.html", 
-      "display_snippet": "multiple_choice.html", 
       "choices": [
         {
           "modal_text": "open_data_help", 
@@ -507,7 +508,10 @@
           "value": "long_term_archive", 
           "label": "Long Term Archive"
         }
-      ]
+      ], 
+      "display_snippet": "multiple_choice.html", 
+      "field_name": "open_data", 
+      "label": "Flags"
     }
   ], 
   "dataset_type": "dataset", 
