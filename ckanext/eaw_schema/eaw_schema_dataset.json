@@ -24,8 +24,6 @@
     {
       "modal_text": "resource_type_help", 
       "required": true, 
-      "label": "Resource Type", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "Audiovisual", 
@@ -60,6 +58,8 @@
           "label": "Geospatial Data"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Resource Type", 
       "field_name": "resource_type"
     }, 
     {
@@ -79,10 +79,10 @@
     }, 
     {
       "modal_text": "res_hash_help", 
-      "label": "Hash (SHA-256)", 
+      "display_snippet": "select.html", 
       "field_name": "hash", 
       "form_snippet": "eaw_schema_text.html", 
-      "display_snippet": "select.html"
+      "label": "Hash (SHA-256)"
     }
   ], 
   "dataset_fields": [
@@ -98,9 +98,9 @@
     {
       "required": true, 
       "field_name": "name", 
+      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "preset": "dataset_slug", 
-      "label": "URL"
+      "preset": "dataset_slug"
     }, 
     {
       "modal_text": "abstract_help", 
@@ -293,6 +293,10 @@
         {
           "value": "drugs", 
           "label": "drugs"
+        }, 
+        {
+          "value": "beetles", 
+          "label": "beetles"
         }
       ], 
       "field_name": "generic-terms", 
@@ -432,8 +436,8 @@
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
     {
-      "required": true, 
       "modal_text_visibility": "visibility_help", 
+      "required": true, 
       "label": "Organization", 
       "modal_text_organization": "organization_help", 
       "preset": "eaw_schema_dataset_organization", 
@@ -442,6 +446,8 @@
     {
       "modal_text": "status_help", 
       "required": true, 
+      "label": "Status", 
+      "preset": "select_short", 
       "choices": [
         {
           "value": "incomplete", 
@@ -456,8 +462,6 @@
           "label": "reviewed"
         }
       ], 
-      "preset": "select_short", 
-      "label": "Status", 
       "field_name": "status", 
       "form_attrs": {
         "class": "medinput"
@@ -492,10 +496,7 @@
       "field_name": "usage_contact"
     }, 
     {
-      "field_name": "open_data", 
-      "display_snippet": "multiple_choice.html", 
       "form_snippet": "eaw_multiple_checkbox.html", 
-      "label": "Flags", 
       "choices": [
         {
           "modal_text": "open_data_help", 
@@ -515,7 +516,10 @@
           "value": "long_term_archive", 
           "label": "Long Term Archive"
         }
-      ]
+      ], 
+      "label": "Flags", 
+      "field_name": "open_data", 
+      "display_snippet": "multiple_choice.html"
     }
   ], 
   "dataset_type": "dataset", 
