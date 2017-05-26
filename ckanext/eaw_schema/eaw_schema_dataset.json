@@ -79,7 +79,7 @@
     }, 
     {
       "modal_text": "res_hash_help", 
-      "display_snippet": "select.html", 
+      "display_snippet": "text.html", 
       "field_name": "hash", 
       "form_snippet": "eaw_schema_text.html", 
       "label": "Hash (SHA-256)"
