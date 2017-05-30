@@ -3,7 +3,7 @@
 
 {% set modal_text=field.modal_text if 'modal_text' in field else none %} 
 {% set placeholder=h.scheming_language_text(field.form_placeholder) %}
-{%- set values = h.repeating_get_values(field.field_name,
+{%- set values = h.eaw_schema_get_values(field.field_name,
 field.get('form_blanks', 1), data) %}
 
 {% if field.default_value %}
