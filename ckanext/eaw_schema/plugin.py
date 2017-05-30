@@ -7,6 +7,7 @@ import pylons.config as config
 from itertools import count
 import json
 import logging
+import re
 
 missing = toolkit.missing
 _ = toolkit._
@@ -247,6 +248,29 @@ def eaw_schema_set_default(values, default_value):
 
     return values
 
+def eaw_schema_get_values(field_name, form_blanks, data):
+    '''
+    Get data from repeating_text-field from either field_name (if the
+    field comes from the database) or construct from several field-N -
+    entries in case data wasn't saved yet, i.e. a validation error occurred.
+    In the first case, show additional <form_blanks> empty fields. In the
+    latter, don't change the form.
+
+    '''
+
+    fields = [re.match(field_name + "-\d+", key) for key in data.keys()]
+    if all(f is None for f in fields):
+        # not coming from form submit -> get value from DB
+        value = data.get(field_name)
+        value = value if isinstance(value, list) else [value]
+        value = value + [''] * max(form_blanks -len(value), 1)
+    else:
+        # using form data
+        fields = sorted([r.string for r in fields if r])
+        value = [data[f] for f in fields if data[f]]
+        value = value + [''] * max(form_blanks - len(value), 0)
+    return value
+
 
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -314,6 +338,7 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
 
     # ITemplateHelpers
     def get_helpers(self):
-        return {'eaw_schema_set_default': eaw_schema_set_default}
+        return {'eaw_schema_set_default': eaw_schema_set_default,
+                'eaw_schema_get_values': eaw_schema_get_values}
     
  
