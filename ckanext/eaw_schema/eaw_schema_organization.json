@@ -40,6 +40,10 @@
       "display_snippet": null
     },
     {
+      "field_name": "datamanager",
+      "label": "Data Agent"
+    },
+    {
       "field_name": "image_url",
       "label": "Image URL",
       "form_placeholder": "http://example.com/my-image.jpg",
