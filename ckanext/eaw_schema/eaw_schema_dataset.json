@@ -96,11 +96,11 @@
       "display_property": "dct:title"
     }, 
     {
-      "required": true, 
+      "preset": "dataset_slug", 
       "field_name": "name", 
       "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "preset": "dataset_slug"
+      "required": true
     }, 
     {
       "modal_text": "abstract_help", 
@@ -183,10 +183,6 @@
           "label": "turbidity"
         }, 
         {
-          "value": "groundwater_level", 
-          "label": "groundwater Level"
-        }, 
-        {
           "value": "pH", 
           "label": "pH"
         }, 
@@ -213,6 +209,10 @@
         {
           "value": "count", 
           "label": "count"
+        }, 
+        {
+          "value": "waterlevel", 
+          "label": "water level"
         }
       ], 
       "field_name": "variables", 
@@ -517,9 +517,9 @@
           "label": "Long Term Archive"
         }
       ], 
-      "label": "Flags", 
+      "display_snippet": "multiple_choice.html", 
       "field_name": "open_data", 
-      "display_snippet": "multiple_choice.html"
+      "label": "Flags"
     }
   ], 
   "dataset_type": "dataset", 
