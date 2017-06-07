@@ -34,7 +34,9 @@
     },
     {
       "field_name": "homepage",
-      "label": "Homepage"
+      "label": "Homepage",
+      "validators": "not_empty url_validator",
+      "required": true
     },
     {
       "field_name": "datamanager",
