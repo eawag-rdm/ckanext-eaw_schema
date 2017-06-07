@@ -4,21 +4,19 @@
   "about_url": "http://github.com/ckan/ckanext-scheming",
   "fields": [
     {
-      "field_name": "longname",
-      "label": "Full Name",
-      "validators": "ignore_missing unicode",
+      "field_name": "title",
+      "label": "Name",
+      "required": true,
+      "validators": "unicode",
       "form_snippet": "large_text.html",
       "form_attrs": {"data-module": "slug-preview-target"},
-      "form_placeholder": "My Organization full name",
-      "display_snippet": null
+      "form_placeholder": "My Organization full name"
     },
     {
-      "field_name": "title",
+      "field_name": "shortname",
       "label": "Short Name",
       "validators": "ignore_missing unicode",
-      "form_snippet": "large_text.html",
-      "form_placeholder": "MYORG",
-      "display_snippet": null
+      "form_placeholder": "MYORG"
     },
     {
       "field_name": "name",
@@ -41,7 +39,7 @@
     },
     {
       "field_name": "datamanager",
-      "label": "Data Agent"
+      "label": "Data Manager"
     },
     {
       "field_name": "image_url",
