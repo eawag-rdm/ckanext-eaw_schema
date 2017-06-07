@@ -1,0 +1,8 @@
+{# Enable Markdown rendering in "Additional Info" #}
+
+{%- set value = c.group_dict['datamanager']-%}
+<div>
+  <img src="http://www.eawag.ch/fileadmin/user_upload/tx_userprofiles/profileImages/{{ value }}.jpg" />
+  {{ h.render_markdown(value) }}
+</div>
+
