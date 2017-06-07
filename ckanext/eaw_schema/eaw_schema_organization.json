@@ -41,6 +41,8 @@
     {
       "field_name": "datamanager",
       "label": "Data Manager",
+      "form_snippet": "eaw_select_users.html",
+      "display_snippet": "eaw_schema_datamanager.html",
       "required": true
     },
     {
