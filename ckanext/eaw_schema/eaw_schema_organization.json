@@ -4,40 +4,47 @@
   "about_url": "http://github.com/ckan/ckanext-scheming",
   "fields": [
     {
-      "field_name": "longname",
-      "label": "Full Name",
-      "validators": "ignore_missing unicode",
+      "field_name": "title",
+      "label": "Name",
+      "required": true,
+      "validators": "scheming_required unicode",
       "form_snippet": "large_text.html",
       "form_attrs": {"data-module": "slug-preview-target"},
-      "form_placeholder": "My Organization full name",
-      "display_snippet": null
+      "form_placeholder": "My Organization full name"
     },
     {
-      "field_name": "title",
+      "field_name": "shortname",
       "label": "Short Name",
       "validators": "ignore_missing unicode",
-      "form_snippet": "large_text.html",
-      "form_placeholder": "MYORG",
-      "display_snippet": null
+      "form_placeholder": "MYORG"
     },
     {
       "field_name": "name",
       "label": "URL",
       "validators": "not_empty unicode name_validator group_name_validator",
       "form_snippet": "slug.html",
-      "form_placeholder": "my-organization",
-      "display_snippet": null
+      "form_placeholder": "my-organization"
     },
     {
       "field_name": "description",
       "label": "Description",
       "form_snippet": "markdown.html",
-      "form_placeholder": "A little information about my organization..."
+      "form_placeholder": "A little information about my organization...",
+      "display_snippet": "eaw_schema_markdown.html"
     },
     {
       "field_name": "homepage",
       "label": "Homepage",
-      "display_snippet": null
+      "validators": "scheming_required url_validator",
+      "required": true
+    },
+    {
+      "field_name": "datamanager",
+      "label": "Data Manager",
+      "form_snippet": "eaw_select_users.html",
+      "display_snippet": "eaw_schema_datamanager.html",
+      "validators": "scheming_required eaw_schema_is_orga_admin",
+      "required": true
     },
     {
       "field_name": "image_url",
