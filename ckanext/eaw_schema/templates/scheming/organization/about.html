@@ -27,7 +27,7 @@
 	  field.field_name not in exclude_fields -%}
 	  <dt>{{ h.scheming_language_text(field.label) }}</dt>
           <dd class="dataset-details"{% if field.display_property %}
-	      property="{{ field.display_property }}"{% endif %}
+	      property="{{ field.display_property }}"{% endif %}>
 	      {%- snippet 'scheming/snippets/display_field.html',
               field=field, data=c.group_dict, schema=schema -%}
           </dd>
