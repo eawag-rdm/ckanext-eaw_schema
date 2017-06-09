@@ -271,6 +271,47 @@ def eaw_schema_get_values(field_name, form_blanks, data):
         value = value + [''] * max(form_blanks - len(value), 0)
     return value
 
+def eaw_schema_geteawuser(username):
+    """Returns info about Eawag user:
+       + link to picture
+       + link to homepage of user
+       + ...
+
+    """
+
+    pic_url_prefix = ("http://www.eawag.ch/fileadmin/user_upload/"
+                      "tx_userprofiles/profileImages/")
+    def geteawhp(fullname):
+        "Returns the Eawag homepage of somebody"
+        hp_url_prefix = ('http://www.eawag.ch/en/aboutus/portrait/'
+                         'organisation/staff/profile/')
+        last, first = fullname.split(',')
+        normname = '-'.join([s.strip().lower() for s in [first, last]])
+        return hp_url_prefix + normname
+
+    try:
+        userdict = toolkit.get_action('user_show')(data_dict={'id': username})
+    except:
+        return None
+    eawuser = {'fullname': userdict['fullname'], 'email': userdict['email'],
+               'no_of_packages': userdict['number_created_packages'],
+               'homepage': geteawhp(userdict['fullname']),
+               'pic_url': '{}{}.jpg'.format(pic_url_prefix, username)}
+    return eawuser
+
+def eaw_schema_is_orga_admin(key, data, errors, context):
+    """Validate whether the selected user is admin of the organization.
+    Used for setting Datamanager of organizations.
+
+    """
+    if errors[key]:
+        return
+    orgaid =  data[('name',)]
+    orga = toolkit.get_action('organization_show')(data_dict={'id': orgaid})
+    admusers = [u['name'] for u in orga['users'] if u['capacity'] == 'admin']
+    if data[key] not in admusers:
+        errors[key].append(_('Datamanger must be admin of {}'.format(orgaid)))
+
 
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -306,7 +347,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 "eaw_schema_multiple_choice":
                     eaw_schema_multiple_choice,
                 "eaw_schema_json_not_empty":
-                    eaw_schema_json_not_empty
+                    eaw_schema_json_not_empty,
+                "eaw_schema_is_orga_admin":
+                    eaw_schema_is_orga_admin
         }
 
     # IPackageController
@@ -339,6 +382,7 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     # ITemplateHelpers
     def get_helpers(self):
         return {'eaw_schema_set_default': eaw_schema_set_default,
-                'eaw_schema_get_values': eaw_schema_get_values}
+                'eaw_schema_get_values': eaw_schema_get_values,
+                'eaw_schema_geteawuser': eaw_schema_geteawuser}
     
  
