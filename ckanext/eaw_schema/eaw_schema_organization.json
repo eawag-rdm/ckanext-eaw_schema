@@ -7,7 +7,7 @@
       "field_name": "title",
       "label": "Name",
       "required": true,
-      "validators": "unicode",
+      "validators": "scheming_required unicode",
       "form_snippet": "large_text.html",
       "form_attrs": {"data-module": "slug-preview-target"},
       "form_placeholder": "My Organization full name"
@@ -35,7 +35,7 @@
     {
       "field_name": "homepage",
       "label": "Homepage",
-      "validators": "not_empty url_validator",
+      "validators": "scheming_required url_validator",
       "required": true
     },
     {
@@ -43,6 +43,7 @@
       "label": "Data Manager",
       "form_snippet": "eaw_select_users.html",
       "display_snippet": "eaw_schema_datamanager.html",
+      "validators": "scheming_required eaw_schema_is_orga_admin",
       "required": true
     },
     {
