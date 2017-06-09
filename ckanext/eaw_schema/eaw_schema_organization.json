@@ -30,6 +30,8 @@
       "label": "Description",
       "form_snippet": "markdown.html",
       "form_placeholder": "A little information about my organization...",
+      "validators": "scheming_required",
+      "required": true,
       "display_snippet": "eaw_schema_markdown.html"
     },
     {
