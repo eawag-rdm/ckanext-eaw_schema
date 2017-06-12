@@ -285,7 +285,18 @@ def eaw_schema_geteawuser(username):
         "Returns the Eawag homepage of somebody"
         hp_url_prefix = ('http://www.eawag.ch/en/aboutus/portrait/'
                          'organisation/staff/profile/')
-        last, first = fullname.split(',')
+        # If we can't derive the Eawag personal page, go to search page.
+        hp_url_fallback_template = ('http://www.eawag.ch/en/suche/'
+                                    '?q=__NAME__&tx_solr[filter][0]'
+                                    '=filtertype%3A3')
+        try:
+            last, first = fullname.split(',')
+        except ValueError:
+             logger.warn('User Fullname "{}" does not '
+                         'have standard format ("lastname, firstname")'
+                         .format(fullname))
+             return hp_url_fallback_template.replace('__NAME__', fullname)
+            
         normname = '-'.join([s.strip().lower() for s in [first, last]])
         return hp_url_prefix + normname
 
