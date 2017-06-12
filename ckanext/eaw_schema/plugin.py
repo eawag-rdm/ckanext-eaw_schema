@@ -304,9 +304,9 @@ def eaw_schema_geteawuser(username):
         userdict = toolkit.get_action('user_show')(data_dict={'id': username})
     except:
         return None
-    eawuser = {'fullname': userdict['fullname'], 'email': userdict['email'],
-               'no_of_packages': userdict['number_created_packages'],
-               'homepage': geteawhp(userdict['fullname']),
+    eawuser = {'fullname': userdict.get('fullname'), 'email': userdict.get('email'),
+               'no_of_packages': userdict.get('number_created_packages'),
+               'homepage': geteawhp(userdict.get('fullname')),
                'pic_url': '{}{}.jpg'.format(pic_url_prefix, username)}
     return eawuser
 
