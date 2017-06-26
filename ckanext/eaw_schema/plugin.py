@@ -318,10 +318,18 @@ def eaw_schema_is_orga_admin(key, data, errors, context):
     if errors[key]:
         return
     orgaid =  data[('name',)]
-    orga = toolkit.get_action('organization_show')(data_dict={'id': orgaid})
-    admusers = [u['name'] for u in orga['users'] if u['capacity'] == 'admin']
-    if data[key] not in admusers:
-        errors[key].append(_('Datamanger must be admin of {}'.format(orgaid)))
+    try:
+        orga = toolkit.get_action('organization_show')(data_dict={'id': orgaid})
+    except toolkit.ObjectNotFound:
+        # New organization: Just check user exists
+        allusers = toolkit.get_action('user_list')(data_dict={})
+        allusers = [u.get('name','') for u in allusers]
+        if data[key] not in allusers:
+            errors[key].append(_('Username {} does not exist'.format(data[key])))
+    else:
+        admusers = [u['name'] for u in orga['users'] if u['capacity'] == 'admin']
+        if data[key] not in admusers:
+            errors[key].append(_('Datamanger must be admin of {}'.format(orgaid)))
 
 
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
