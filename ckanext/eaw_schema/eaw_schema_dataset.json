@@ -87,6 +87,21 @@
   ], 
   "dataset_fields": [
     {
+      "field_name": "ispublication",
+      "label": "Publication package?",
+      "modal_text": "timerange_help",
+      "form_snippet": "eaw_publication_package.html"
+    },
+    {
+      "field_name": "publicationlink",
+      "label": "DORA-Id or DOI",
+      "form_placeholder": "eawag:14248",
+      "modal_text":  "timerange_help",
+      "form_snippet": "eaw_schema_text.html",
+      "form_attrs": {
+	"class": "eaw_with_infobutton"}
+    },
+    {
       "modal_text": "title_help", 
       "required": true, 
       "label": "Title", 

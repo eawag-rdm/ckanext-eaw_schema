@@ -1,0 +1,103 @@
+{% import 'macros/form.html' as form %}
+{% set modal_text = field.modal_text if "modal_text" in field else none %}
+{% resource 'eaw_schema/eaw_schema_publication.js' %}
+
+<style>
+  .publicationcheck label.control-label {
+    font-size: 17.5px;
+  text-align: left;
+  padding-left:10px;
+  padding-top:5px;
+  padding-bottom:5px;
+  }
+  input#ispublication {
+  width:30px;
+  height: 30px;
+  }
+  .publicationcheck label::after { 
+  content: ""; 
+  }
+  div.publicationcheck_wrap {
+  background: #C4EBEA;
+  border-radius: 10px;
+  }
+  
+  .publicationcheck button.outsidebutton {
+  position:relative;
+  margin-top: 13px;
+  }
+</style>
+
+<div class="publicationcheck_wrap">
+{% call form.input_block(
+    field.field_name,
+    label=field.label,
+    error=errors[field.field_name],
+  classes=['control-medium', 'publicationcheck']
+
+  )
+  %}
+  <div class="eaw_with_infobutton">
+  <input type="checkbox" data-module="eaw_schema_publication" id="{{ field.field_name }}" name="{{field.field_name }}"/>
+  {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+  </div>
+  {% if modal_text is not none %}
+    {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
+  {% endif %}
+
+{% endcall %}
+{% if modal_text is not none %}
+  {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
+{% endif %}
+</div>
+
+
+{# (for, label="", error="", classes=[], control_classes=[], extra_html="", is_required=false) %} #}
+{# id='field-' + field.field_name, #}
+{#     placeholder=h.scheming_language_text(field.form_placeholder), #}
+{#     value=data[field.field_name], #}
+{#  is_required=h.scheming_field_required(field), #}
+{#   type = "checkbox" #}
+    {# attrs=field.form_attrs if 'form_attrs' in field else {"class": "eaw_with_infobutton"}, #}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {# <style>    #}
+  {#   .ispublication {    #}
+  {#     height: 30px;    #}
+  {#     width: 30px;  #}
+  {#   position:relative;  #}
+  {#   display: block;  #}
+  {#   vertical-align: center;  #}
+  {#   }  #}
+  {#   div.publication_info { #}
+  {#     border: 2px dashed green; #}
+  {#   } #}
+  {#   div.mainquestion { #}
+  {#     font-size: 17.5px; #}
+  {#   padding: 10px; #}
+  {#   float:left; #}
+  {#   font-weight: bold; #}
+  {#   } #}
+  {#   div.publicationcheckbox { #}
+  {#   display:block; #}
+  {#   float:left; #}
+  {#   text-align: center; #}
+  {#   } #}
+  {#   label.ispublication::after { #}
+  {#   content: ""; #}
+  {#   } #}
+  {#   div.publication_info input.medinput { #}
+  {#   margin-left: 5px; #}
+
+ 
