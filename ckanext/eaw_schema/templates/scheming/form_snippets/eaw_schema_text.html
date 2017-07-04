@@ -1,12 +1,7 @@
 {% import 'macros/form.html' as form %}
 
 {%- set modal_text = field.modal_text if "modal_text" in field else none -%}
-
-{%- if field.field_name == "publicationlink" -%}
-  {%- set classes = ['control-medium', 'hidden'] -%}
-{%- else -%}
-  {%- set classes = ['control-medium'] -%}
-{%- endif -%}
+{%- set classes = field.classes -%}
 
 {%- call form.input(
     field.field_name,
@@ -16,7 +11,7 @@
     value=data[field.field_name],
     error=errors[field.field_name],
     classes=classes,
-    attrs=field.form_attrs if 'form_attrs' in field else {"class": "eaw_with_infobutton"},
+    attrs=field.form_attrs if 'form_attrs' in field,
     is_required=h.scheming_field_required(field)
     )
 -%}

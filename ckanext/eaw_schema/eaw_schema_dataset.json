@@ -98,6 +98,7 @@
       "form_placeholder": "eawag:14248",
       "modal_text":  "timerange_help",
       "form_snippet": "eaw_schema_text.html",
+      "classes": ["publication_element"],
       "form_attrs": {
 	"class": "eaw_with_infobutton"}
     },
@@ -526,7 +527,7 @@
           "label": "DOI wanted"
         }, 
         {
-          "modal_text": "long_term_archive_help", 
+          "modal_text": "long_term_archive_help",
           "autocheckif": false, 
           "value": "long_term_archive", 
           "label": "Long Term Archive"
@@ -534,7 +535,14 @@
       ], 
       "display_snippet": "multiple_choice.html", 
       "field_name": "open_data", 
-      "label": "Flags"
+      "label": "Flags",
+      "validators": "ignore_missing"
+    },
+    {
+      "field_name": "__before",
+      "display_snippet": null,
+      "form_snippet": null,
+      "validators": "eaw_schema_publication_package"
     }
   ], 
   "dataset_type": "dataset", 

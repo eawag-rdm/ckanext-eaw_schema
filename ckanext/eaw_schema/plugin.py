@@ -331,6 +331,14 @@ def eaw_schema_is_orga_admin(key, data, errors, context):
         if data[key] not in admusers:
             errors[key].append(_('Datamanger must be admin of {}'.format(orgaid)))
 
+def eaw_schema_publication_package(key, flattened_data, errors, context):
+    pass
+    print('\n\n --------------------in validator eaw_schema_publication_package ----------------')
+    print('key: {}'.format(key))
+    print('flattened_data: {}'.format(flattened_data))
+    # print('\n\n ISPUBLICATION: {}'.format(flattened_data.get(('ispublication',), 'NOT-SET')))
+    # print('\n\n PUBLICATIONLINK: {}'.format(flattened_data.get(('publikationlink',), 'NOT-SET')))
+    print('\n\n --------------------endvalidator eaw_schema_publication_package ----------------')
 
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -352,7 +360,7 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     # IConfigurer
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
-        # toolkit.add_public_directory(config_, 'public')
+        toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'eaw_schema')
         
     # IValidators
@@ -368,7 +376,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 "eaw_schema_json_not_empty":
                     eaw_schema_json_not_empty,
                 "eaw_schema_is_orga_admin":
-                    eaw_schema_is_orga_admin
+                    eaw_schema_is_orga_admin,
+                "eaw_schema_publication_package":
+                eaw_schema_publication_package
         }
 
     # IPackageController
