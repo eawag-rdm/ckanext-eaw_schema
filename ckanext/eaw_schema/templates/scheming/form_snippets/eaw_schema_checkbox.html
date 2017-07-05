@@ -10,37 +10,28 @@
 {% set value = 'yes' %}
 {% set checked = true if data[name] == value else false %}
 {% set attrs = {'data-module': 'andorswitch', 'data-module-type': 'yesno'} %}
-{% set classes = ['eaw_schema_checkbox_outer'] %}
+{% set attrs = attrs.update(field.form_attrs) %}
+{% set classes = ['eaw_schema_checkbox_outer']+field.classes %}
 {% set control_classes = ['eaw_schema_checkbox_inner'] %}
 
-<style>
-  .eaw_schema_checkbox_outer {
-    position:relative;
-  }
-  .eaw_schema_checkbox_inner {
-    position: absolute;
-    bottom: 0px;
-  } 
-  input.eaw_schema_checkbox { 
-    position: absolute; 
-    top: auto; 
-    bottom: 9px; 
-  }  
-</style> 
 
-{% call form.input_block(id, label, classes=classes, control_classes=control_classes) %}  
+
+{% call form.input_block(id, label, classes=classes, control_classes=control_classes) %}
+  <div class="eaw_with_infobutton">
   <input class="fouc eaw_schema_checkbox" type="checkbox" data-module-type="yesno"
 	 id="{{ id }}" name="{{ name }}" data-module="andorswitch" 
 	 value="yes" {% if checked %}checked="checked"{% endif %} /> 
 	 <label class="eaw_schema_checkbox checkbox fouc"> 
-	   <span>Yes</span> 
+	   <span>{{ field.checkboxlabel }}</span> 
 	 </label>
-	 
-{% if field.modal_text is defined %}
-  {% set modal_text = field.modal_text %}
-  {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
-  {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
-{% endif %}
+  </div>
+  {% if field.modal_text is defined %}
+    {% set modal_text = field.modal_text %}
+    {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
+    {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
+  {% endif %}
 {% endcall %}  
        
 
+      {# "form_attrs": { #}
+      {# 	"class": "eaw_with_infobutton"} #}

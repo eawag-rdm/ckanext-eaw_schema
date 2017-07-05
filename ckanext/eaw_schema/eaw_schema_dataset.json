@@ -88,10 +88,10 @@
   "dataset_fields": [
     {
       "field_name": "ispublication",
-      "label": "Publication package?",
+      "label": "Publication-Data?",
       "modal_text": "timerange_help",
-      "classes": ["publication_element"],
-      "form_snippet": "eaw_publication_package.html"
+      "classes": ["publication_element publicationcheck"],
+      "form_snippet": "eaw_schema_checkbox.html"
     },
     {
       "field_name": "publicationlink",
@@ -99,9 +99,16 @@
       "form_placeholder": "eawag:14248",
       "modal_text":  "timerange_help",
       "form_snippet": "eaw_schema_text.html",
-      "classes": ["publication_element"],
-      "form_attrs": {
-	"class": "eaw_with_infobutton"}
+      "classes": ["publication_element publicationlink"]
+
+    },
+    {
+      "field_name": "publicationmanuscript",
+      "label": " ",
+      "checkboxlabel": "I have an unpublished manuscript.",
+      "modal_text":  "timerange_help",
+      "form_snippet": "eaw_schema_checkbox.html",
+      "classes": ["publication_element publicationmanuscript"]
     },
     {
       "modal_text": "title_help", 

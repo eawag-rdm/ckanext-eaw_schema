@@ -24,7 +24,7 @@ in a <div class="eaw_with_infobutton"> #}
     value=data[field.field_name],
     error=errors[field.field_name],
     classes=field.classes,
-    attrs=field.form_attrs if 'form_attrs' in field,
+    attrs=field.form_attrs if 'form_attrs' in field else {},
     is_required=h.scheming_field_required(field)
     )
    -%}

@@ -1,21 +1,3 @@
-div.control-group.publication_element {
-  background: #C4EBEA;
-  padding-bottom: 20px;
-  /* margin-bottom: 0px; */
-  
-}
-div.control-group.publication_element.publicationcheck {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-}
-
-@media (max-width: 480px) {
-  .publicationcheck_wrap  .publication_element > label.control-label {
-    padding-left: 0px;
-    display: inline;
-  }
-}
-
 
 @media (max-width:768px) {
   input.eaw_with_infobutton {
@@ -56,3 +38,82 @@ textarea.eaw_with_infobutton {
     width: 90%;
   }
 }
+
+div.control-group.publication_element {
+  background: rgb(196, 235, 234);
+  padding-bottom: 20px;
+  
+}
+div.control-group.publication_element.publicationcheck {
+  margin-bottom: 10px;
+  border-radius: 10px 10px 10px 10px;
+}
+
+@media (max-width: 480px) {
+  .publicationcheck_wrap  .publication_element > label.control-label {
+    padding-left: 0px;
+    display: inline;
+  }
+}
+
+div.control-group.publication_element.publicationlink {
+  padding-top: 10px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+div.control-group.publication_element.publicationmanuscript {
+  padding-top: 0px;
+  margin-top: -20px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.publicationmanuscript label.control-label:after,
+.publicationcheck label.control-label:after {
+  content:"";
+}
+
+input.eaw_schema_checkbox[type=checkbox] {
+  top: 0px;
+}
+
+label.eaw_schema_checkbox {
+  display: inline;
+  position: relative;
+  vertical-align: middle;
+}
+
+.publicationcheck label.control-label {
+  font-size: 17.5px;
+  text-align: left;
+  padding-left:10px;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+input#field-ispublication,
+input#field-publicationmanuscript{
+  transform: scale(2);
+  width: 30px;
+}
+  
+.publicationcheck button.outsidebutton {
+  margin-top: 13px;
+}
+
+
+
+
+/* <style> */
+/*   .eaw_schema_checkbox_outer { */
+/*     position:relative; */
+/*   } */
+/*   .eaw_schema_checkbox_inner { */
+/*     position: absolute; */
+/*     bottom: 0px; */
+/*   }  */
+/*   input.eaw_schema_checkbox {  */
+/*     position: absolute;  */
+/*     top: auto;  */
+/*     bottom: 9px;  */
+/*   }   */
+/* </style>  */

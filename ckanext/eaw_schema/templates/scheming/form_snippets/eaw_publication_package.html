@@ -5,30 +5,7 @@
 {% set value = data[field.field_name] %}
 {% set classes = field.classes %}
 
-<style>
-  .publicationcheck label.control-label {
-    font-size: 17.5px;
-  text-align: left;
-  padding-left:10px;
-  padding-top:5px;
-  padding-bottom:5px;
-  }
-  input#ispublication {
-  width:30px;
-  height: 30px;
-  }
-  .publicationcheck label::after { 
-  content: ""; 
-  }
-  div.publicationcheck_wrap {
-  border-radius: 10px;
-  }
-  
-  .publicationcheck button.outsidebutton {
-  position:relative;
-  margin-top: 13px;
-  }
-</style>
+
 
 <div class="publicationcheck_wrap">
 {% call form.input_block(
