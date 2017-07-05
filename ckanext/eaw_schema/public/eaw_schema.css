@@ -1,3 +1,58 @@
 div.control-group.publication_element {
   background: #C4EBEA;
+  padding-bottom: 20px;
+  /* margin-bottom: 0px; */
+  
+}
+div.control-group.publication_element.publicationcheck {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+@media (max-width: 480px) {
+  .publicationcheck_wrap  .publication_element > label.control-label {
+    padding-left: 0px;
+    display: inline;
+  }
+}
+
+
+@media (max-width:768px) {
+  input.eaw_with_infobutton {
+    width: 97%;
+  }
+}
+
+@media (min-width: 768px) and  (max-width: 979px) {
+  input.eaw_with_infobutton {
+    width: 322px;
+  }
+}
+
+@media (min-width: 980px) {
+  input.eaw_with_infobutton {
+    width: 87.5%;
+  }
+}
+
+div.eaw_with_infobutton {
+  width: 90%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width:480px) {
+  div.eaw_with_infobutton {
+    max-width: 400px;
+  }
+}
+
+textarea.eaw_with_infobutton {
+  width: 90%;
+}
+
+@media (max-width: 979px) {
+  .control-medium > .controls > select {
+    width: 90%;
+  }
 }

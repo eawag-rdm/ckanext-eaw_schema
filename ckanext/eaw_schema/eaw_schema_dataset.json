@@ -90,6 +90,7 @@
       "field_name": "ispublication",
       "label": "Publication package?",
       "modal_text": "timerange_help",
+      "classes": ["publication_element"],
       "form_snippet": "eaw_publication_package.html"
     },
     {
@@ -146,7 +147,9 @@
       "form_attrs": {
         "data-module-tags": "", 
         "data-module": "autocomplete", 
-        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
+	"data-module-source": "/api/2/util/tag/autocomplete?incomplete=?",
+	"style": "width:97%;"
+	  
       }, 
       "display_property": "dcat:keyword"
     }, 
@@ -156,7 +159,10 @@
       "modal_text": "variables_help", 
       "required": true, 
       "label": "Variables", 
-      "preset": "eaw_multiple_select_js", 
+      "preset": "eaw_multiple_select_js",
+      "form_attrs": {
+	"style": "width:90%;"
+      },
       "choices": [
         {
           "value": "alkalinity", 
@@ -240,7 +246,10 @@
       "modal_text": "generic-terms_help", 
       "required": true, 
       "label": "Generic Terms", 
-      "preset": "eaw_multiple_select_js", 
+      "preset": "eaw_multiple_select_js",
+      "form_attrs": {
+	"style": "width:90%;"
+      },
       "choices": [
         {
           "value": "none", 
@@ -324,7 +333,10 @@
       "modal_text": "systems_help", 
       "required": true, 
       "label": "Systems", 
-      "preset": "eaw_multiple_select_js", 
+      "preset": "eaw_multiple_select_js",
+      "form_attrs": {
+	  "style": "width:90%;"
+      },
       "choices": [
         {
           "value": "Groundwater", 
