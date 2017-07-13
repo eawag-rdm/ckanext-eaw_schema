@@ -1,5 +1,5 @@
 
-@media (max-width:768px) {
+@media (max-width:767px) {
   input.eaw_with_infobutton {
     width: 97%;
   }
@@ -23,6 +23,29 @@ div.eaw_with_infobutton {
   vertical-align: middle;
 }
 
+@media (min-width: 980px) {
+  div.publicationcheck div.eaw_with_infobutton {
+    width: 56.5%;
+  }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+  div.publicationcheck div.eaw_with_infobutton {
+    width: 42.0%;
+  }
+}
+@media (min-width: 713px) and (max-width: 767px) {
+  div.publicationcheck div.eaw_with_infobutton {
+    width: 65.2%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 712px){
+  div.publicationcheck div.eaw_with_infobutton {
+    width: 52.4%;
+  }
+}
+
+
 @media (max-width:480px) {
   div.eaw_with_infobutton {
     max-width: 400px;
@@ -31,6 +54,15 @@ div.eaw_with_infobutton {
 
 textarea.eaw_with_infobutton {
   width: 90%;
+}
+
+.publicationlink div.eaw_with_infobutton {
+  margin-top: 13px;
+}
+ 
+.publicationlink button.outsidebutton {
+  display: inline-block;
+  margin-top: 13px;
 }
 
 @media (max-width: 979px) {
@@ -58,16 +90,11 @@ div.control-group.publication_element.publicationcheck {
 
 div.control-group.publication_element.publicationlink {
   padding-top: 10px;
-  border-radius: 10px 10px 0px 0px;
-}
-
-div.control-group.publication_element.publicationmanuscript {
-  padding-top: 0px;
-  margin-top: -20px;
+  margin-top: -10px;
   border-radius: 0px 0px 10px 10px;
 }
 
-.publicationmanuscript label.control-label:after,
+
 .publicationcheck label.control-label:after {
   content:"";
 }
@@ -83,6 +110,7 @@ label.eaw_schema_checkbox {
 }
 
 .publicationcheck label.control-label {
+  width: 300px;
   font-size: 17.5px;
   text-align: left;
   padding-left:10px;
@@ -90,10 +118,17 @@ label.eaw_schema_checkbox {
   padding-bottom:5px;
 }
 
-input#field-ispublication,
-input#field-publicationmanuscript{
+.publicationlink label.control-label {
+  width: 115px;
+}
+
+input#field-ispublication {
   transform: scale(2);
   width: 30px;
+}
+
+input#field-publicationlink {
+  width: 97%;
 }
   
 .publicationcheck button.outsidebutton {

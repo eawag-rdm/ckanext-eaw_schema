@@ -3,6 +3,8 @@
 {# This is a copy of form.input, except that the <input> is enclosed
 in a <div class="eaw_with_infobutton"> #}
 
+{% resource 'eaw_schema/checkpublication.js' %}
+
 {% macro eaw_input(name, id='', label='', value='', placeholder='',
   type='text', error="", classes=[], attrs={}, is_required=false) %}
   {%- set extra_html = caller() if caller -%}
