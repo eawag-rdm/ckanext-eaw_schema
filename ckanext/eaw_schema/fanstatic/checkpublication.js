@@ -25,32 +25,40 @@ ckan.module('eaw_schema_checkpublication', function ($) {
     pubdata: {},
 
     prefill: function() {
+      console.log('pubdata');
+      console.log(this.pubdata);
       var metadata = {title: '', authors: [], doi: '',
 		      year: '', abstract: '', keywords: [] };
-      var mods = $(this.pubdata[0]).find('mods');
-      console.log('pubdata: ');
-      console.log(this.pubdata[0]);
-      metadata['title'] = 'Data for: '
-	+ mods.children('titleinfo').children('title').text();
-      metadata.title = metadata.title.replace(/<\/?[^>]+(?:>|$)/g, "");
-      var namelist = mods.find('name');
-      $.each(namelist, function(idx, obj) {
-	  metadata['authors'][idx] = {
-	    given: $(obj).children('namepart[type="given"]').text()
-	  };
-	  metadata['authors'][idx]['family'] =
-	    $(obj).children('namepart[type="family"]').text();
-      });
-      var subject = mods.find('subject').children('topic');
-      $.each(subject, (idx, obj) => {
-	if ($(obj).text() !== '') {
-	  metadata['keywords'].push($(obj).text());
-	}
-      });
-      metadata['doi'] = mods.find('identifier[type="doi"]').text();
-      metadata['year'] = mods.find('originInfo dateIssued').text();
-      metadata['abstract'] = mods.find('abstract').text();
-      metadata.abstract = metadata.abstract.replace(/<\/?[^>]+(?:>|$)/g, "");
+      if (this.pubdata[0]['source'] === 'xref') {
+	metadata = this.pubdata[0];
+	metadata.title = 'Data for: ' + metadata.title;
+	metadata.authors = metadata.aunames;
+	metadata.abstract = '';
+	metadata.keywords = [];
+      } else {
+	var mods = $(this.pubdata[0]).find('mods');
+	metadata['title'] = 'Data for: '
+	  + mods.children('titleinfo').children('title').text();
+	metadata.title = metadata.title.replace(/<\/?[^>]+(?:>|$)/g, "");
+	var namelist = mods.find('name');
+	$.each(namelist, function(idx, obj) {
+	    metadata['authors'][idx] = {
+	      given: $(obj).children('namepart[type="given"]').text()
+	    };
+	    metadata['authors'][idx]['family'] =
+	      $(obj).children('namepart[type="family"]').text();
+	});
+	var subject = mods.find('subject').children('topic');
+	$.each(subject, (idx, obj) => {
+	  if ($(obj).text() !== '') {
+	    metadata['keywords'].push($(obj).text());
+	  }
+	});
+	metadata['doi'] = mods.find('identifier[type="doi"]').text();
+	metadata['year'] = mods.find('originInfo dateIssued').text();
+	metadata['abstract'] = mods.find('abstract').text();
+	metadata.abstract = metadata.abstract.replace(/<\/?[^>]+(?:>|$)/g, "");
+      }
       $('#field-title').val(metadata.title);
       this.sandbox.publish('slug-target-changed', metadata.title);
       $('#field-notes').val(metadata.abstract);
@@ -149,11 +157,8 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 
     get_crossref_info: function(doi) {
       let link = 'https://data.crossref.org/'+doi;
-      let params = [
-	{url: link, dataType: 'json'},
-	{url: link, headers: {Accept: 'text/bibliography; style=apa'}}
-      ];
-      return(Promise.all([$.ajax(params[0]), $.ajax(params[1])]));
+      let params = {url: link, dataType: 'json'};
+      return($.ajax(params));
     },
 
     get_dora_info: function(doralinks) {
@@ -204,7 +209,28 @@ ckan.module('eaw_schema_checkpublication', function ($) {
     <a id="pubmodal_button_right" href="#" class="btn pull-right" data-dismiss="modal"></a>
   </div>
 </div>`,
-    //  
+
+    xref_extract: function(data) {
+      let metadata = {};
+      metadata.aunames = data.author.map(el => {
+	return(el.family + ', ' + el.given);});
+      metadata.authors = metadata.aunames.join(', ');
+      metadata.title = data.title;
+      metadata.year = data.created['date-parts'][0][0];
+      metadata.journal = '<i>' + data['container-title'] + '</i>';
+      metadata.page = data.page;
+      metadata.volume = data.volume;
+      metadata.issue = data.issue;
+      metadata.doi = `https://doi.org/${data.DOI}`;
+      let citation = `${metadata.authors} (${metadata.year}). `
+	    + `${metadata.title}. ${metadata.journal}, `
+	    + `${metadata.volume}(${metadata.issue}), ${metadata.page}. `
+	    + `${metadata.doi}`;
+      metadata.source = 'xref';
+      this.pubdata = [metadata, {'citation': citation}];
+      return(citation);
+    },
+    
     main: function () {
       // identify id-type
       // if dora, get dora-record
@@ -213,9 +239,6 @@ ckan.module('eaw_schema_checkpublication', function ($) {
       // return: attributes, citationtext, error
       var value = this.el.val();
       var doralinks;
-      var dorarecord;
-      var doracitation;
-      var xref;
       console.log('in main');
       console.log('value:', value);
       idtyp = this.identpub.call(this, value);
@@ -252,17 +275,20 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	    data => {
 	      if (data === null) {
 		console.log('Not in DORA');
-		xref = this.get_crossref_info(idtyp.doi)
+		this.get_crossref_info(idtyp.doi)
 		  .then(
 		    data => {
-		      let rec = {record: data[0], citation: data[1]};
-		      console.log('Xref record:');
-		      console.log(rec);
+		      this.pubdata = [data];
+		      this.pubmodal(
+			{type: 'success',
+			 source: 'xref',
+			 citation: this.xref_extract(data)});
 		    },
 		    data => {
-		      console.log('request to https://data.crossref.org/'
-				  +idtyp.doi+' failed.');
-		      return(null);
+		      this.pubmodal(
+			{type: 'error',
+			 status: data.responseText,
+			 url: 'https://data.crossref.org/' + idtyp.doi});
 		    });
 	      } else {
 		console.log('DORA-ID: '+data);
