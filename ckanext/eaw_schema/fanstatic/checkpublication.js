@@ -25,8 +25,8 @@ ckan.module('eaw_schema_checkpublication', function ($) {
     pubdata: {},
 
     prefill: function() {
-      console.log('pubdata');
-      console.log(this.pubdata);
+      console.log('pubdata:');
+      if (! this.pubdata) {return;}
       var metadata = {title: '', authors: [], doi: '',
 		      year: '', abstract: '', keywords: [] };
       if (this.pubdata[0]['source'] === 'xref') {
@@ -46,7 +46,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	      given: $(obj).children('namepart[type="given"]').text()
 	    };
 	    metadata['authors'][idx]['family'] =
-	      $(obj).children('namepart[type="family"]').text();
+	    $(obj).children('namepart[type="family"]').text();
 	});
 	var subject = mods.find('subject').children('topic');
 	$.each(subject, (idx, obj) => {
@@ -285,6 +285,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 			 citation: this.xref_extract(data)});
 		    },
 		    data => {
+		      this.pubdata = false;
 		      this.pubmodal(
 			{type: 'error',
 			 status: data.responseText,
@@ -298,7 +299,11 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	      console.log('FAIL');
 	    });
       } else {
-	console.log('unrecognized identifier');
+	this.pubdata = false;
+	  this.pubmodal(
+	    {type: 'error',
+	     status: 'not recoginzed as identifyer.',
+	     url: '"'+value+'"'});
       }
     }
   };
