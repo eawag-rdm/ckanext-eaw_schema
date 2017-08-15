@@ -15,6 +15,11 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 					 width: '80px'});
 	element.after(checkbutton);
 	checkbutton.click(module.main.bind(module));
+	element.keypress(function(e) {
+	  if (e.which === 13) {
+	    module.main.call(module);
+	  }
+	});
       } )(this.el);
       this.el.after($(this.modal_html));
       $('#pubmodal_button_right').click(this.prefill.bind(this));
@@ -25,7 +30,6 @@ ckan.module('eaw_schema_checkpublication', function ($) {
     pubdata: {},
 
     prefill: function() {
-      console.log('pubdata:');
       if (! this.pubdata) {return;}
       var metadata = {title: '', authors: [], doi: '',
 		      year: '', abstract: '', keywords: [] };
@@ -99,9 +103,6 @@ ckan.module('eaw_schema_checkpublication', function ($) {
       var regdora = /.*(eawag:\d+$|.*eawag%3A\d+$)/;
       var regdoi = /.*(10.\d{4,9}\/.+$)/;
       var ids = {};
-      console.log('in identpub');
-      console.log('this', this);
-      console.log('value:', value);
       var res = value.match(regdora);
       if (res) {
 	ids['dora_id'] = this.normalize_doraid(res[1]);
@@ -149,7 +150,6 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	    return(id);
 	  },
 	  data => {
-	    console.log('request to '+link+' failed');
 	    return(null);
 	  });
       return(doraid);
@@ -239,10 +239,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
       // return: attributes, citationtext, error
       var value = this.el.val();
       var doralinks;
-      console.log('in main');
-      console.log('value:', value);
       idtyp = this.identpub.call(this, value);
-      console.log('idtyp', idtyp);
       if (idtyp.dora_id !== null) {
 	// get the dora record and citation
 	doralinks = this.mkdoralinks(idtyp.dora_id);
@@ -274,7 +271,6 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	  .then(
 	    data => {
 	      if (data === null) {
-		console.log('Not in DORA');
 		this.get_crossref_info(idtyp.doi)
 		  .then(
 		    data => {
@@ -292,11 +288,9 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 			 url: 'https://data.crossref.org/' + idtyp.doi});
 		    });
 	      } else {
-		console.log('DORA-ID: '+data);
 	      }
 	    },
 	    data => {
-	      console.log('FAIL');
 	    });
       } else {
 	this.pubdata = false;
