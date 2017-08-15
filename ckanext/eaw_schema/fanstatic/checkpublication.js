@@ -67,32 +67,29 @@ ckan.module('eaw_schema_checkpublication', function ($) {
       this.sandbox.publish('slug-target-changed', metadata.title);
       $('#field-notes').val(metadata.abstract);
       $('input#field-tag_string').val(metadata.keywords).trigger('change');
-      // collect all author fieldsiterate over all author fields
-      let authorfields = $('input[id^=field-author-]');
-      authorfields.each(function(idx) {
-	let val = metadata.authors.length > idx
-	      ? metadata.authors[idx]['family']
-		+ ', ' + metadata.authors[idx]['given']
-	      : '';
-	this.value = val;
-      });
-      // add new authors if necessary
-      let iter = metadata.authors.slice(authorfields.length).entries();
+      // collect all author fields and iterate over all author fields
+      var authorfields = $('input[id^=field-author-]');
       let appendto = authorfields.last().parents('div.control-repeating').parent();
-      for (let au of iter) {
-	let aunum = au[0] + 1;
+      for (au of metadata.authors.entries()) {
 	let val = au[1]['family'] + ', ' + au[1]['given'];
-	let el = `
-        <div class="control-repeating">
-          <div class="control-group control-medium">
-	    <label class="control-label" for="field-author-${aunum}">Author ${aunum}</label>
-            <div class="controls ">
-              <input id="field-author-${aunum}" type="text" name="author-${aunum}" value="${val}" placeholder="" class="medinput">
-	    </div>
-          </div>
-        </div>`;
-	appendto.append(el);
+	if (authorfields.length === 0) {
+	  let aunum = au[0] + 1;
+	  let el = `
+          <div class="control-repeating">
+            <div class="control-group control-medium">
+	      <label class="control-label" for="field-author-${aunum}">Author ${aunum}</label>
+              <div class="controls ">
+                <input id="field-author-${aunum}" type="text" name="author-${aunum}" value="${val}" placeholder="" class="medinput">
+	      </div>
+            </div>
+          </div>`;
+	  appendto.append(el);
+	} else {
+	  authorfields.first().val(val);
+	  authorfields = authorfields.slice(1);
+	}
       }
+      authorfields.parent().parent().parent().remove();
     },
     
     normalize_doraid: function(id) {
