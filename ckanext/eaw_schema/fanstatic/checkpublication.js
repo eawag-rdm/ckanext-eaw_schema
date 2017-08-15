@@ -30,7 +30,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
     pubdata: {},
 
     prefill: function() {
-      if (! this.pubdata) {return;}
+      if ($.isEmptyObject(this.pubdata)) {return;}
       var metadata = {title: '', authors: [], doi: '',
 		      year: '', abstract: '', keywords: [] };
       if (this.pubdata[0]['source'] === 'xref') {
@@ -244,36 +244,46 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	// get the dora record and citation
 	doralinks = this.mkdoralinks(idtyp.dora_id);
 	this.get_dora_info(doralinks)
-	  .then(data => {  //We got OAI-record and citation
-	    //check if record was found via OAI-PMH
-	    let error = $(data[0]).find('error');
-	    if (error.length > 0) {
-	      this.pubmodal(
-		{type: 'error',
-		 status: error.text(),
-		 url: doralinks.oai});
-	    } else {     // both record found
-	      this.pubdata = data;
-	      this.pubmodal(
-		{type: 'success',
-		 citation: data[1].citation});
-	    }},
-	    data => {    // failed request
+	  .then(
+	    data => {
+	    //OAI-record and citation request both did not fail.
+	    //check if OAI-PMH record contains error
+	      let error = $(data[0]).find('error');
+	      if (error.length > 0) {
+		this.pubdata = {};
+		this.pubmodal(
+		  {type: 'error',
+		  status: error.text(),
+		  url: doralinks.oai});
+	      } else {
+	      // if no OAI - error we believe citation went also well.
+		this.pubdata = data;
+		this.pubmodal(
+		  {type: 'success',
+		  citation: data[1].citation});
+	      }
+	    },
+	    // Either OAI- or citation request failed
+	    data => {
+	      this.pubdata = {};
 	      this.pubmodal(
 		{type: 'error',
 		 status: data.statusText + '(' + data.status + ')',
 		 url: doralinks.oai});
-	    });
-
+	    }
+	  );
       } else if (idtyp.doi != null) {
+	// A DOI was enterd as identifyer
 	// check whether that is in DORA
 	this.get_dora_id_from_doi.call(this, idtyp.doi)
 	  .then(
 	    data => {
 	      if (data === null) {
+	      // The DOI is not in DORA
 		this.get_crossref_info(idtyp.doi)
 		  .then(
 		    data => {
+		    // Crossref request returns successful
 		      this.pubdata = [data];
 		      this.pubmodal(
 			{type: 'success',
@@ -281,121 +291,34 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 			 citation: this.xref_extract(data)});
 		    },
 		    data => {
-		      this.pubdata = false;
+		    // Crossref request failed
+		      this.pubdata = {};
 		      this.pubmodal(
 			{type: 'error',
 			 status: data.responseText,
 			 url: 'https://data.crossref.org/' + idtyp.doi});
-		    });
+		    }
+		  );
 	      } else {
+	      // The DOI was found in DORA
+		this.el.val(data);
+		this.main();
 	      }
 	    },
 	    data => {
-	    });
+	    // Calling get_dora_id_from_doi failed
+	      console.log('Calling get_dora_id_from_doi failed');
+	      console.log('data:\n' + data);
+	    }
+	  );  // end of then
       } else {
-	this.pubdata = false;
+      // Input is no identifyer
+	this.pubdata = {};
 	  this.pubmodal(
 	    {type: 'error',
 	     status: 'not recoginzed as identifyer.',
 	     url: '"'+value+'"'});
       }
-    }
-  };
-});
-    
-
-      
- //      function report_result(metadata) {
-// 	print_test(JSON.stringify(metadata));
-//       }
-      
-//       function print_test(res) {
-// 	$( 'div#test ').append(res);
-//       }
-      
-//       function makelinks(dora_id_nr) {
-// 	doraread.dora_oai_id = 'eawag:' + dora_id_nr;
-// 	doraread.doralink = ('https://www.dora.lib4ri.ch/eawag/islandora/object/'
-// 			     + doraread.dora_oai_id);
-// 	doraread.dora_oailink = ('https://www.dora.lib4ri.ch/eawag/oai2?' +
-// 				 'verb=GetRecord&metadataPrefix=mods&identifier=' +
-// 				 doraread.dora_oai_id);
-// 	doraread.dora_citationlink = ('https://www.dora.lib4ri.ch/eawag/islandora/object/' +
-// 				      doraread.dora_oai_id + '/islandora_scholar_citation/' +
-// 				      '?citation_style=APA');
-//       }
-
-//       function getcitation(metadata, citationlink) {
-// 	$.ajax(citationlink, {
-// 	  dataType: 'json',
-// 	  success: function(data, code, jqXHR) {
-// 	    metadata['citation'] = $(data['citation']).children( 'div.csl-entry' ).text();
-// 	    metadata['citation'] = 'Data for: ' + metadata['citation'];
-// 	    metadata['citation'] = metadata['citation'].replace(doraread.re_removedoi, '');
-// 	  },
-// 	  beforeSend: function() {
-// 	    $( '#checkbutton' ).append('<img src="loading-spinner.gif" id="spinner" />');
-// 	  },
-// 	  complete: function() {
-// 	    $( '#spinner' ).remove();
-// 	    report_result(metadata);
-// 	  }
-// 	});
-//       }
-      
-//       function getmetadata (metadata, oailink) {
-// 	$.ajax(oailink, {
-// 	  dataType: 'xml',
-// 	  success: function(data, code, jqXHR) {
-// 	    metadata = modsextract($( data ));
-// 	    if (metadata['error']) {
-// 	    report_result(metadata);
-// 	    } else {
-// 	      getcitation(metadata, doraread.dora_citationlink);
-// 	    }
-// 	  },
-// 	  beforeSend: function() {
-// 	    $( '#checkbutton' ).append('<img src="loading-spinner.gif" id="spinner" />');
-// 	  },
-// 	  complete: function() {
-// 	    $( '#spinner' ).remove();
-// 	  }
-// 	});
-//       }
- 
-//       function modsextract(d) {
-// 	var metadata = {title: '', authors: [], doi: '', year: ''
-// 			, abstract: '', citation: '', error: ''};
-// 	var mods;
-// 	var namelist;
-// 	var error;
-// 	error = d.find( 'error' );
-// 	if (error.length > 0) {
-// 	  return({error: error.attr('code')});
-// 	}
-// 	mods = d.find( 'mods' );
-// 	metadata['title'] = mods.children('titleinfo').children('title').text();
-// 	namelist = mods.find( 'name' );
-// 	$.each(namelist, function(idx, obj) {
-// 	  metadata['authors'][idx] = {
-// 	    given:$(obj).children( 'namepart[type="given"]' ).text()
-// 	  };
-// 	  metadata['authors'][idx]['family'] =
-// 	    $(obj).children( 'namepart[type="family"]' ).text();
-// 	});
-// 	metadata['doi'] = mods.find( 'identifier[type="doi"]' ).text();
-// 	metadata['year'] = mods.find( 'originInfo dateIssued' ).text();
-// 	metadata['abstract'] = mods.find( 'abstract' ).text();
-// 	return(metadata);
-//       }
-
-
-//     }
-//   };
-// });
-
-      
-  
-
-
-
+    } // end of main()
+  };  // end of module
+});   // end of module definition
