@@ -36,8 +36,6 @@ ckan.module('eaw_schema_checkpublication', function ($) {
       if (this.pubdata[0]['source'] === 'xref') {
 	metadata = this.pubdata[0];
 	metadata.title = 'Data for: ' + metadata.title;
-	metadata.authors = metadata.aunames;
-	metadata.abstract = '';
 	metadata.keywords = [];
       } else {
 	var mods = $(this.pubdata[0]).find('mods');
@@ -209,17 +207,19 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 
     xref_extract: function(data) {
       let metadata = {};
+      metadata.authors = data.author;
       metadata.aunames = data.author.map(el => {
 	return(el.family + ', ' + el.given);});
-      metadata.authors = metadata.aunames.join(', ');
+      metadata.citauthors = metadata.aunames.join(', ');
       metadata.title = data.title;
+      metadata.abstract = data.abstract || '';
       metadata.year = data.created['date-parts'][0][0];
       metadata.journal = '<i>' + data['container-title'] + '</i>';
       metadata.page = data.page;
       metadata.volume = data.volume;
       metadata.issue = data.issue;
       metadata.doi = `https://doi.org/${data.DOI}`;
-      let citation = `${metadata.authors} (${metadata.year}). `
+      let citation = `${metadata.citauthors} (${metadata.year}). `
 	    + `${metadata.title}. ${metadata.journal}, `
 	    + `${metadata.volume}(${metadata.issue}), ${metadata.page}. `
 	    + `${metadata.doi}`;
@@ -280,7 +280,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 		this.get_crossref_info(idtyp.doi)
 		  .then(
 		    data => {
-		    // Crossref request returns successful
+		      // Crossref request returns successful
 		      this.pubdata = [data];
 		      this.pubmodal(
 			{type: 'success',
