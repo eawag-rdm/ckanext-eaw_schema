@@ -89,7 +89,7 @@
     {
       "field_name": "ispublication",
       "label": "Publication data package?",
-      "modal_text": "timerange_help",
+      "modal_text": "ispublication_help",
       "classes": ["publication_element publicationcheck"],
       "form_snippet": "eaw_schema_checkbox.html",
       "form_attrs": {"data-module": "eaw_schema_publication"}
@@ -97,8 +97,8 @@
     {
       "field_name": "publicationlink",
       "label": "DORA-Id or DOI, if available",
-      "form_placeholder": "eawag:14248",
-      "modal_text":  "timerange_help",
+      "form_placeholder": "http://doi.org/10.1016/j.envsoft.2017.03.002",
+      "modal_text":  "publicationlink_help",
       "form_snippet": "eaw_schema_text.html",
       "classes": ["publication_element publicationlink"],
       "form_attrs": {"data-module": "eaw_schema_checkpublication"}
@@ -118,6 +118,20 @@
       "label": "URL", 
       "display_property": "dcat:landingPage", 
       "required": true
+    },
+    {
+      "default_value": "context_fullname_email", 
+      "modal_text": "author_help",
+      "required": true,
+      "label": "Author",
+      "form_snippet": "eaw_schema_repeating_text_js.html",
+      "display_snippet": "eaw_repeating_text.html",
+      "validators": "repeating_text eaw_schema_json_not_empty",
+      "output_validators": "repeating_text_output",
+      "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
+      "field_name": "author", 
+      "display_property": "dc:creator", 
+      "form_blanks": 3
     }, 
     {
       "modal_text": "abstract_help", 
@@ -127,16 +141,7 @@
       "form_placeholder": "A description of the package.", 
       "field_name": "notes", 
       "display_property": "dct:description"
-    }, 
-    {
-      "modal_text": "notes_help", 
-      "required": false, 
-      "form_snippet": "eaw_schema_markdown.html", 
-      "label": "Notes", 
-      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
-      "field_name": "notes-2", 
-      "display_property": "dct:description"
-    }, 
+    },
     {
       "modal_text": "keywords_help", 
       "form_snippet": "eaw_schema_text.html", 
@@ -152,6 +157,15 @@
 	  
       }, 
       "display_property": "dcat:keyword"
+    }, 
+    {
+      "modal_text": "notes_help", 
+      "required": false, 
+      "form_snippet": "eaw_schema_markdown.html", 
+      "label": "Notes", 
+      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
+      "field_name": "notes-2", 
+      "display_property": "dct:description"
     }, 
     {
       "default_value": "none", 
@@ -495,16 +509,6 @@
         "class": "medinput"
       }, 
       "display_property": "adms:status"
-    }, 
-    {
-      "default_value": "context_fullname_email", 
-      "modal_text": "author_help", 
-      "label": "Author", 
-      "preset": "eaw_schema_repeating_text_js", 
-      "form_placeholder": "Johann Bach <joe@eawag.ch>", 
-      "field_name": "author", 
-      "display_property": "dc:creator", 
-      "form_blanks": 3
     }, 
     {
       "default_value": "context_fullname_email", 
