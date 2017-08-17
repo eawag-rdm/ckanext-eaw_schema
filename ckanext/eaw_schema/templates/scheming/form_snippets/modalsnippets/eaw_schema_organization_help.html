@@ -1,27 +1,24 @@
-<style>
-  div.modal-help {
-    font-size: large;
-  }
-  .modal-help .modal  {
-    width: 750px;
-    max-width:95%;
-    left:auto;
-    margin-left: -200px;
-  }
-  .modal-help .modal-body {
-      max-height: 600px;
-  }
-</style>
 <div class="modal-help">
-  <div id="organization_help" class="modal hide fade">
+  <div id="{{ field.modal_text_organization }}" class="modal hide fade">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h1>Organization</h1>
+      <button type="button" class="close"
+	      data-dismiss="modal">&times</button>
+      <p><i class="icon-lightbulb
+      icon-large"></i>&nbsp;&nbsp<b>Organization</b></p>
     </div>
     <div class="modal-body">
-      <p>
-	Select your <i>Organization</i>, i.e. research group or department.
-      </p>
+      <div>
+	<p>
+	  Select your <i>Organization</i>, i.e. the <b>research
+	    group</b> to which this package belongs.
+	</p>
+	<div class="alert alert-block">
+	  <i class="icon-exclamation-sign
+		    icon-large"></i>&nbsp;&nbsp;Please select your
+	  <b>Department</b> only if the appropriate research group is
+	  not in the system.
+	</div>
+      </div>
     </div>
   </div>
 </div>

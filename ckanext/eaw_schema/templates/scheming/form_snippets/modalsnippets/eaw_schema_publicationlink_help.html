@@ -1,44 +1,42 @@
-{#
-Help text for publicationlink input field for package create/update
-#}
-<style>
-  li.spaced:not(:last-child) {
-    margin-bottom: 10px;
-  }
-</style>
 <div class="modal-help">
-<div id="publicationlink_help" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h1>Publication identifier</h1>
+  <div id="{{ field.modal_text }}" class="modal hide fade"> 
+    <div class="modal-header">
+      <button type="button" class="close"
+	      data-dismiss="modal">&times</button>
+      <p><i class="icon-lightbulb icon-large"></i>&nbsp;&nbsp<b>Publication identifier</b></p>
+    </div>
+    <div class="modal-body">
+      <div>
+	<p>
+	  A permanent identifier for the publication this data package
+	  is associated with. Accepted identifiers
+	  are <a href="https://www.doi.org/demos.html"
+	  target="_blank">DOIs<i class="icon-external-link"></i></a>
+	  or DORA-IDs, both also in the form of full URLs, for
+	  example:
+	  <ul>
+	    <li class="spaced"><tt><b>10.1016/j.envsoft.2017.03.002</b></tt></li>
+	    <li class="spaced"><tt><b>https://dx.doi.org/10.1016/j.envsoft.2017.03.002</b></tt></li>
+	    <li class="spaced"><tt><b>eawag:14235</b></tt></li>
+	    <li class="spaced"><tt><b>https://www.dora.lib4ri.ch/eawag/islandora/object/eawag:14235</b></tt></li>
+	  </ul>
+	</p>
+	<p>
+	  If you click <button type="button" id="pubcheckbutton"
+			       class="btn btn-primary btn-small">Check</button> or
+	  press [Enter], the system will search for this publication and
+	  report its findings:
+	<p>
+	  <img style="display:block;margin:auto;width:450px;"
+	       src="/checkpublication_success.png" alt="screenshot found
+							publication" />
+	</p>
+	<div class="alert alert-info">
+	If you click <a class="btn btn-success btn-mini">OK</a>,
+	suitable information from this record will be pre-filled into
+	the data submission form.
+	</div>
+      </div>
+    </div>
   </div>
-  <div class="modal-body">
-    <p>
-      A permanent identifier for the publication this data package is
-      associated with. Accepted identifiers
-      are <a href="https://www.doi.org/demos.html">DOIs</a> or
-      DORA-Ids, both also in the form of full URLs:
-      <ul>
-	<li class="spaced"><tt><b>10.1016/j.envsoft.2017.03.002</b></tt></li>
-	<li class="spaced"><tt><b>https://dx.doi.org/10.1016/j.envsoft.2017.03.002</b></tt></li>
-	<li class="spaced"><tt><b>eawag:14235</b></tt></li>
-	<li class="spaced"><tt><b>https://www.dora.lib4ri.ch/eawag/islandora/object/eawag:14235</b></tt></li>
-      </ul>
-    </p><br />
-    <p>
-      If you click <button type="button" id="pubcheckbutton"
-      class="btn btn-primary" style="width:80px;">Check</button> or
-      press [Enter], the system will search for this publication and
-      report its findings:
-      <p>
-      <img style="display:block;margin:auto;width:450px;"
-      src="/checkpublication_success.png" alt="screenshot found
-      publication" />
-      </p>
-      If you click <a class="btn btn-success">OK</a>, suitable
-      information from this record will be pre-filled into the data
-      submission form.
-    </p>
-  </div>
-</div>
 </div>

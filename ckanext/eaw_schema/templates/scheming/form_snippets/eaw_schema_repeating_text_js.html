@@ -38,4 +38,4 @@ field.get('form_blanks', 1), data) %}
   {%- endfor -%}
 </div>
 
-{% snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' %}
+{%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html', field=field -%}

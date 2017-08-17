@@ -1,32 +1,29 @@
-<style>
-  div.modal-help {
-    font-size: large;
-  }
-  .modal-help .modal  {
-    width: 750px;
-    max-width:95%;
-    left:auto;
-    margin-left: -200px;
-  }
-  .modal-help .modal-body {
-      max-height: 600px;
-  }
-</style>
 <div class="modal-help">
-  <div id="visibility_help" class="modal hide fade">
+  <div id="{{ field.modal_text_visibility }}" class="modal hide fade">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h1>Visibility</h1>
+      <button type="button" class="close"
+	      data-dismiss="modal">&times</button>
+      <p><i class="icon-lightbulb
+      icon-large"></i>&nbsp;&nbsp<b>Visibility</b></p>
     </div>
     <div class="modal-body">
-      <p>
-	<b>Eawag</b>: This package is visible to all Eawag researchers.
-      </p>
-      <p>
-	<b>Organization</b>: This package can only be seen by
-	members of the <i>Organization</i> (research group or department)
-	selected above.
-    </p>
+      <dl class="spaced">
+	<dt>Eawag</dt>
+	<dd>This package is visible to all Eawag researchers.</dd>
+	<dt>Organization</dt>
+	<dd>This package can only be seen by members of
+	  the <i>Organization</i> (research group or department)
+	  selected above.</dd>
+      </dl>
+      	<div class="alert alert-block">
+	  <i class="icon-exclamation-sign
+	  icon-large"></i>&nbsp;&nbsp;In general, all packages are
+	  supposed to be visible for all of
+	  Eawag. Setting <tt><b>Visibility</b></tt> to "Organization" is
+	  only meant to be a temporary measure, for example if the
+	  package is not yet finished.
+	</div>
     </div>
   </div>
 </div>
+

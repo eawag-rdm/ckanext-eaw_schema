@@ -1,9 +1,9 @@
 <div class="modal-help">
   <div id="{{ field.modal_text }}" class="modal hide fade">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal"
-      aria-hidden="true">×</button>
-      <h1>Title &amp; URL</h1>
+      <button type="button" class="close"
+	      data-dismiss="modal">&times</button>
+      <p><i class="icon-lightbulb icon-large"></i>&nbsp;&nbsp<b>Title &amp; URL</b></p>
     </div>
     <div class="modal-body">
       <p>A well chosen title for this <i>data package</i>.</p>
@@ -20,7 +20,10 @@
 	message that complains about a too long URL: You might just
 	want to truncate it.
       </p>
-      <span style="background-color:yellow;"><b>This is a mandatory field.</b></span>
+      	<div class="alert alert-block">
+	  <i class="icon-exclamation-sign
+	  icon-large"></i>&nbsp;&nbsp<b>This is a mandatory field.</b>
+	</div>
     </div>
   </div>
 </div>
