@@ -1,36 +1,38 @@
 <style>
-  .modal-header {
-    background-color: rgb(223, 240, 216);
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-     border-radius: 5px;
+  .modal-help div.modal-body {
+  background-color: #EBEBEB;
+  border-radius: 5px;
   }
-  .modal-body {
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    background-color: rgb(235, 235, 235);
+  .modal-help div.modal-header {
+  margin-bottom:0px;
+  border-bottom: 1px solid #A9A9A9;
+  padding: 20px;
+  }
+  .modal-help .modal-header button.close {
+   font-size: 30px;
   }
 
 </style>
+
 <div class="modal-help">
-<div id="{{ field.modal_text }}" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
-    <h1>Keywords</h1>
-  </div>
-  <div class="modal-body">
-    <div>
-    <p>Just like the keywords of a scientific publication.</p>
-    <p>In case you are creating a <i> publication data package</i>, i.e., a
-      package the supplies data for a specific publication, you should
-      copy &amp; paste the publication's keywords here.</p>
+  <div id="{{ field.modal_text }}" class="modal hide fade">
+    <div class="modal-header ">
+      <button type="button" class="close"
+      data-dismiss="modal">&times</button>
+      <p><i class="icon-lightbulb icon-large"></i>&nbsp;&nbsp <b>Keywords</b></p>
     </div>
-    <div class="alert alert-info" style="margin-top:30px;">
-      <b>Note:</b>Typing a comma (,) after a keyword will finish the
-      keyword and start a new one. This currrently does not work for copying
+    <div class="modal-body">
+      <div>
+	<p>Just like the keywords of a scientific publication.</p>
+	<p>In case you are creating a <i> publication data package</i>, i.e., a
+	  package the supplies data for a specific publication, you should
+	  copy &amp; paste the publication's keywords here.</p>
+      </div>
+      <div class="alert alert-info" style="margin-top:30px;">
+	<b>Note:</b>Typing a comma (,) after a keyword will finish the
+	keyword and start a new one. This currrently does not work for copying
 	&amp; pasting a comma-separated list of keywords <i>in toto</i>, sorry.
+      </div>
     </div>
   </div>
-</div>
 </div>
