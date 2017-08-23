@@ -42,7 +42,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	metadata['title'] = 'Data for: '
 	  + mods.children('titleinfo').children('title').text();
 	metadata.title = metadata.title.replace(/<\/?[^>]+(?:>|$)/g, "");
-	var namelist = mods.find('name');
+	var namelist = mods.children('name[type="personal"]');
 	$.each(namelist, function(idx, obj) {
 	    metadata['authors'][idx] = {
 	      given: $(obj).children('namepart[type="given"]').text()
