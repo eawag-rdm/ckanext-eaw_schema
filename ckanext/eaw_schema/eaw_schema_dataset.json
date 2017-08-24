@@ -92,7 +92,10 @@
       "modal_text": "ispublication_help",
       "classes": ["publication_element publicationcheck"],
       "form_snippet": "eaw_schema_checkbox.html",
-      "form_attrs": {"data-module": "eaw_schema_publication"}
+      "form_attrs": {"data-module": "eaw_schema_subdivs",
+		     "data-module-divname_outer": "publicationcheck",
+		     "data-module-divnames_inner": "publicationlink",
+		     "data-module-names_clearfields": "publicationlink"}
     },
     {
       "field_name": "publicationlink",
@@ -110,7 +113,17 @@
       "classes": ["open_data_element open_data_check"],
       "form_snippet": "eaw_schema_checkbox.html",
       "modal_text": "open_data_help",
-      "form_attrs": {"data-module": "eaw_schema_open_data"}
+      "form_attrs": {"data-module": "eaw_schema_subdivs",
+		     "data-module-divname_outer": "open_data_check",
+		     "data-module-divnames_inner": "open_data_embargo",
+		     "data-module-names_clearfields": "embargo"}
+    },
+    {
+      "field_name": "embargo",
+      "label": "Embargo",
+      "modal_text": "open_data_help",
+      "classes": ["open_data_element open_data_embargo"],
+      "form_snippet": "eaw_schema_date.html"
     },
     {
       "modal_text": "title_help", 
