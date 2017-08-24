@@ -1,5 +1,7 @@
-{% resource 'eaw_schema/eaw_schema_open_data.js' %}
-{% resource 'eaw_schema/eaw_schema_publication.js' %}
+{%- if field.form_attrs is defined
+  and field.form_attrs['data-module'] == "eaw_schema_subdivs" %}
+  {%- resource 'eaw_schema/eaw_schema_subdivs.js' -%}
+{%- endif -%}
 {% resource 'bootstrap-switch/bootstrap-switch.js' %}
 {% resource 'bootstrap-switch/bootstrap-switch.css' %}
 
