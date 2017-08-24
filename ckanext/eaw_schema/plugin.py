@@ -8,6 +8,7 @@ from itertools import count
 import json
 import logging
 import re
+import datetime
 
 missing = toolkit.missing
 _ = toolkit._
@@ -214,6 +215,38 @@ def eaw_schema_multiple_choice(field, schema):
     return validator
 
 
+def eaw_schema_is_orga_admin(key, data, errors, context):
+    """Validate whether the selected user is admin of the organization.
+    Used for setting Datamanager of organizations.
+
+    """
+    if errors[key]:
+        return
+    orgaid =  data[('name',)]
+    try:
+        orga = toolkit.get_action('organization_show')(data_dict={'id': orgaid})
+    except toolkit.ObjectNotFound:
+        # New organization: Just check user exists
+        allusers = toolkit.get_action('user_list')(data_dict={})
+        allusers = [u.get('name','') for u in allusers]
+        if data[key] not in allusers:
+            errors[key].append(_('Username {} does not exist'.format(data[key])))
+    else:
+        admusers = [u['name'] for u in orga['users'] if u['capacity'] == 'admin']
+        if data[key] not in admusers:
+            errors[key].append(_('Datamanger must be admin of {}'.format(orgaid)))
+
+def eaw_schema_publication_package(key, flattened_data, errors, context):
+    pass
+    print('\n\n --------------------in validator eaw_schema_publication_package ----------------')
+    print('key: {}'.format(key))
+    print('flattened_data: {}'.format(flattened_data))
+    # print('\n\n ISPUBLICATION: {}'.format(flattened_data.get(('ispublication',), 'NOT-SET')))
+    # print('\n\n PUBLICATIONLINK: {}'.format(flattened_data.get(('publikationlink',), 'NOT-SET')))
+    print('\n\n --------------------endvalidator eaw_schema_publication_package ----------------')
+
+
+
 ## Template helper functions
 
 def eaw_schema_set_default(values, default_value):
@@ -310,35 +343,18 @@ def eaw_schema_geteawuser(username):
                'pic_url': '{}{}.jpg'.format(pic_url_prefix, username)}
     return eawuser
 
-def eaw_schema_is_orga_admin(key, data, errors, context):
-    """Validate whether the selected user is admin of the organization.
-    Used for setting Datamanager of organizations.
+def eaw_schema_embargo_interval(interval):
+    """Returns current date and max-date 
+    according to <interval> in format YYYY-MM-DD.
+
+    :param interval: days as type int.
 
     """
-    if errors[key]:
-        return
-    orgaid =  data[('name',)]
-    try:
-        orga = toolkit.get_action('organization_show')(data_dict={'id': orgaid})
-    except toolkit.ObjectNotFound:
-        # New organization: Just check user exists
-        allusers = toolkit.get_action('user_list')(data_dict={})
-        allusers = [u.get('name','') for u in allusers]
-        if data[key] not in allusers:
-            errors[key].append(_('Username {} does not exist'.format(data[key])))
-    else:
-        admusers = [u['name'] for u in orga['users'] if u['capacity'] == 'admin']
-        if data[key] not in admusers:
-            errors[key].append(_('Datamanger must be admin of {}'.format(orgaid)))
+    now = datetime.date.today()
+    maxdate = now + datetime.timedelta(days=interval)
+    return {'now': now.isoformat(),
+            'maxdate': maxdate.isoformat()}
 
-def eaw_schema_publication_package(key, flattened_data, errors, context):
-    pass
-    print('\n\n --------------------in validator eaw_schema_publication_package ----------------')
-    print('key: {}'.format(key))
-    print('flattened_data: {}'.format(flattened_data))
-    # print('\n\n ISPUBLICATION: {}'.format(flattened_data.get(('ispublication',), 'NOT-SET')))
-    # print('\n\n PUBLICATIONLINK: {}'.format(flattened_data.get(('publikationlink',), 'NOT-SET')))
-    print('\n\n --------------------endvalidator eaw_schema_publication_package ----------------')
 
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -412,6 +428,7 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     def get_helpers(self):
         return {'eaw_schema_set_default': eaw_schema_set_default,
                 'eaw_schema_get_values': eaw_schema_get_values,
-                'eaw_schema_geteawuser': eaw_schema_geteawuser}
+                'eaw_schema_geteawuser': eaw_schema_geteawuser,
+                'eaw_schema_embargo_interval': eaw_schema_embargo_interval}
     
  

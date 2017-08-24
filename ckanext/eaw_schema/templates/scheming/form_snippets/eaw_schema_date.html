@@ -1,0 +1,80 @@
+{%- resource 'eaw_schema/eaw_schema_datepicker.js' -%}
+{%- resource 'eaw_schema/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js' -%}
+{%- resource 'eaw_schema/vendor/bootstrap-datepicker/css/bootstrap-datepicker.css' -%}
+
+{% set id = 'field-' ~ name %}
+{% set interval = h.eaw_schema_embargo_interval(730) %} 
+{% set today = interval['now'] %}
+{% set maxdate = interval['maxdate'] %}
+
+<div class="control-group">
+  <label class="control-label" for="{{ id }}">Embargo</label>
+  <div class="controls">
+    <div class="input-prepend date" id="testID" >
+      <span class="add-on" ><i class="icon-calendar"></i></span>
+      <input id="test" type="text" value="{{ today }}"
+      data-module="datepicker" data-module-maxdate="{{ maxdate }}"
+      data-module-today="{{ today }}"/>
+    </div>
+  </div>
+</div>
+
+{# <div class="input-append date" data-module="datepicker" > #}
+
+{# <span class="add-on">.00</span> #}
+{# </div> #}
+
+{# {%- if field.form_attrs is defined #}
+{#   and field.form_attrs['data-module'] == "eaw_schema_subdivs" %} #}
+{#   {%- resource 'eaw_schema/eaw_schema_subdivs.js' -%} #}
+{# {%- endif -%} #}
+{# {% import 'macros/form.html' as form %} #}
+
+
+{# {% macro eaw_input_block(for, label="", error="", classes=[], #}
+{# control_classes=[], extra_html="", is_required=false, control_group_attrs={}) %} #}
+{#   <div class="control-group{{ " error" if error }}{{ " " ~ classes | join(' ') }}" {{ form.attributes(control_group_attrs) }}> #}
+{#     <label class="control-label" for="{{ for }}">{% if is_required %}<span title="{{ _("This field is required") }}" class="control-required">*</span> {% endif %}{{ label or _('Custom') }}</label> #}
+{#     <div class="controls{{ " " ~ control_classes | join(' ') }}"> #}
+{#       {{ caller() }} #}
+{#       {% if error and error is iterable %}<span class="error-block">{{ error|join(', ') }}</span>{% endif %} #}
+{#       {{ extra_html }} #}
+{#     </div> #}
+{#   </div> #}
+{# {% endmacro %} #}
+
+
+{# {% set id = 'field-' ~ name %} #}
+{# {% set label = h.scheming_language_text(field.label) %} #}
+{# {% set placeholder = h.scheming_language_text(field.form_placeholder) %} #}
+{# {% set type = 'text' %} #}
+{# {% set classes = ['control-medium'] + (field.classes or []) %} #}
+{# {% set attrs = field.form_attrs or {} %} #}
+{# {% set control_group_attrs = {'data-provide': 'date-picker'} %} #}
+
+{# {% call eaw_input_block(id, label=label, classes=classes, #}
+{# control_classes=control_classes, control_group_attrs=control_group_attrs) %} #}
+{#   <div class="eaw_with_infobutton input-group date" data-provide="datepicker"> #}
+{#     <input type="text" data-provide="datepicker" id="{{ id }}" name="{{ id }}"> #}
+{#   </div> #}
+{# {% endcall %} #}
+
+{# {% call form.input( #}
+{#     name, #}
+{#     id=id, #}
+{#     label=label, #}
+{#     placeholder=placeholder, #}
+{#     type=type, #}
+{#     value=data.get(name, '').split()[0], #}
+{#     error=errors[field.field_name], #}
+{#     classes=classes, #}
+{#     attrs=attrs, #}
+{#     is_required=h.scheming_field_required(field) #}
+{#     ) #}
+{#   %} #}
+{#   {% if field.modal_text is defined %} #}
+{#     {% set modal_text = field.modal_text %} #}
+{#     {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%} #}
+{#     {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%} #}
+{#   {% endif %} #}
+{# {% endcall %} #}
