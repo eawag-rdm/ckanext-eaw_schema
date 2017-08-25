@@ -1,28 +1,42 @@
-<div class="modal-help">
-  <div id="open_data_help" class="modal hide fade">
-    <div class="modal-header">
-      <button type="button" class="close"
-	      data-dismiss="modal">&times</button>
-      <p><i class="icon-lightbulb icon-large"></i>&nbsp;&nbsp<b>Open Data</b></p>
+<div class="modal-help"> 
+  <div id="open_data_help" class="modal hide fade"> 
+    <div class="modal-header"> 
+      <button type="button" class="close" 
+    	      data-dismiss="modal">&times</button> 
+      <p><i class="icon-lightbulb icon-large"></i>&nbsp;&nbsp<b>Open Data</b></p> 
+    </div> 
+    <div class="modal-body">  
+      <p>Indicates that this data package should be published  
+      	available for anyone (also outside Eawag). <b>This should be the norm</b>. 
+      </p>  
+      {# <p>This should be the norm, unless the package contains material   #}
+      {# 	that you are legally not allowed to publish, such as personal   #}
+      {# 	data protected by   #}
+      {# 	the <a href="https://www.admin.ch/opc/de/classified-compilation/19920153/index.html">   #}
+      {# 	Federal Act on Data <span style="white-space:nowrap;">Protection  #}
+      {# 	<i class="icon-external-link"></i></span></a> or data that you #}
+      {# 	obtained under a non-disclosure agreement. Get in touch with #}
+      {# 	harald.vonwaldow@eawag.ch for advice about how to publish #}
+      {# 	problematic data packages like that anyway. #}
+      {# </p>   #}
+      <p>If this is set to "YES", we will
+	<ul>
+	  <li>review the package (quality, completeness, legal aspects),</li>
+	  <li>assign a Digital Object Identifier (DOI),</li>
+	  <li>publish it and</li>
+	  <li>email you the DOI-URL that points to the package.</li>
+	</ul>
+      </p>  
+      <div class="alert alert-block">  
+      	We currently do not have the ability to publish Open Data. We  
+      	expect that we will have the infrastructure in place by Jan 2018.  
+      </div>  
+      <div class="alert alert-block alert-info"> If you need this
+      	package to be accessible from outside Eawag <b>now</b>, for
+      	example if that is a requirement for review of the associated
+      	paper, please send an email to harald.vonwaldow@eawag.ch. We
+      	will then push that data to a suitable external repository.
+      </div>
     </div>
-    <div class="modal-body">
-      <p>
-	Indicates that this data package should be published available
-	for anyone (also outside Eawag). This should be the norm,
-	unless the package contains material that you are legally not
-	allowed to publish, such as personal data protected by the
-	<a href="https://www.admin.ch/opc/de/classified-compilation/19920153/index.html">Federal
-	  Act on Data Protection</a> or data that you obtained under a
-	  non-disclosure agreement.
-      </p>
-      <p>
-	<b>Actually, no data will be made available outside Eawag, even
-	  if you check this flag, without contacting you again and
-	  figuring out the details.</b>
-      </p><p> We currently do not have the ability to publish Open
-	Data. The "Open Data" flag mainly helps us to gauge the interest
-	in such a yet to be established service.
-      </p>
-    </div>
-  </div>
-</div>
+  </div> 
+</div> 

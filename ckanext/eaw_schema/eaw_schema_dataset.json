@@ -121,9 +121,10 @@
     {
       "field_name": "embargo",
       "label": "Embargo",
-      "modal_text": "open_data_help",
+      "modal_text": "embargo_help",
       "classes": ["open_data_element", "open_data_embargo"],
-      "form_snippet": "eaw_schema_date.html"
+      "form_snippet": "eaw_schema_date.html",
+      "validators": "eaw_schema_embargodate"
     },
     {
       "modal_text": "title_help", 

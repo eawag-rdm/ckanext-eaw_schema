@@ -245,6 +245,20 @@ def eaw_schema_publication_package(key, flattened_data, errors, context):
     # print('\n\n PUBLICATIONLINK: {}'.format(flattened_data.get(('publikationlink',), 'NOT-SET')))
     print('\n\n --------------------endvalidator eaw_schema_publication_package ----------------')
 
+def eaw_schema_embargodate(value):
+    print('------------------------ eaw_schema_embargodate')
+    print(value)
+    print('------------------------')
+    dat = datetime.datetime.strptime(value, '%Y-%m-%d')
+    interval = eaw_schema_embargo_interval(730)
+    now = datetime.datetime.strptime(interval['now'], '%Y-%m-%d')
+    maxdate = datetime.datetime.strptime(interval['maxdate'], '%Y-%m-%d')
+    if dat < now:
+        raise toolkit.Invalid('Time-travel not yet implemented.')
+    if dat > maxdate:
+        raise toolkit.Invalid('Please choose an embargo date within '
+                              'the next 2 years.')
+    return value
 
 
 ## Template helper functions
@@ -394,7 +408,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 "eaw_schema_is_orga_admin":
                     eaw_schema_is_orga_admin,
                 "eaw_schema_publication_package":
-                eaw_schema_publication_package
+                eaw_schema_publication_package,
+                "eaw_schema_embargodate":
+                eaw_schema_embargodate
         }
 
     # IPackageController
