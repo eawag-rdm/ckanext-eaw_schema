@@ -90,7 +90,7 @@
       "field_name": "ispublication",
       "label": "Publication data package?",
       "modal_text": "ispublication_help",
-      "classes": ["publication_element publicationcheck"],
+      "classes": ["publication_element", "publicationcheck"],
       "form_snippet": "eaw_schema_checkbox.html",
       "form_attrs": {"data-module": "eaw_schema_subdivs",
 		     "data-module-divname_outer": "publicationcheck",
@@ -103,14 +103,14 @@
       "form_placeholder": "http://doi.org/10.1016/j.envsoft.2017.03.002",
       "modal_text":  "publicationlink_help",
       "form_snippet": "eaw_schema_text.html",
-      "classes": ["publication_element publicationlink"],
+      "classes": ["publication_element", "publicationlink"],
       "form_attrs": {"data-module": "eaw_schema_checkpublication"}
     },
     {
       "field_name": "open_data",
       "default_value": "yes",
       "label": "Open Data?",
-      "classes": ["open_data_element open_data_check"],
+      "classes": ["open_data_element", "open_data_check"],
       "form_snippet": "eaw_schema_checkbox.html",
       "modal_text": "open_data_help",
       "form_attrs": {"data-module": "eaw_schema_subdivs",
@@ -122,7 +122,7 @@
       "field_name": "embargo",
       "label": "Embargo",
       "modal_text": "open_data_help",
-      "classes": ["open_data_element open_data_embargo"],
+      "classes": ["open_data_element", "open_data_embargo"],
       "form_snippet": "eaw_schema_date.html"
     },
     {

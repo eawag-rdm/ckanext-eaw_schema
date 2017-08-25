@@ -94,12 +94,12 @@ div.control-group.open_data_element.open_data_check {
   }
 }
 
-div.control-group.publication_element.publicationlink {
+div.control-group.publication_element.publicationlink,
+div.control-group.open_data_element.open_data_embargo {
   padding-top: 10px;
   margin-top: -10px;
   border-radius: 0px 0px 10px 10px;
 }
-
 
 .publicationcheck label.control-label:after,
 .open_data_check label.control-label:after {

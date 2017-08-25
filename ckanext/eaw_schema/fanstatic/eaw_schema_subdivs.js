@@ -26,7 +26,12 @@ ckan.module('eaw_schema_subdivs', function ($) {
       var $el = this.el;
       $el.bootstrapSwitch(select2_options);
       if (innerselect !== undefined) {
-	$el.bootstrapSwitch('state') ? innerselect.show() : innerselect.hide();
+	if ($el.bootstrapSwitch('state')) {
+	  innerselect.show();
+	  outerdiv.css('border-radius', '10px 10px 0px 0px');
+	} else {
+	  innerselect.hide();
+	}
 	$el.on('switchChange.bootstrapSwitch', function(event, state) {
 	  if (state) {
 	    innerselect.show(100);
