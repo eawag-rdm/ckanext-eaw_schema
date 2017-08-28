@@ -4,7 +4,9 @@
 
 {% import 'macros/form.html' as form %}
 
-{% set id = 'field-' ~ field.field_name %}
+{% set name = field.field_name %}
+{% set id = 'field-' ~ name %}
+{% set value=data.get(name) or '' %}
 {% set label=h.scheming_language_text(field.label) %}
 {% set error=errors[field.field_name] %}
 {% set modal_text=field.modal_text if 'modal_text' in field else none %}
@@ -22,8 +24,8 @@
   is_required=h.scheming_field_required(field)) -%}
   <div class="input-prepend date">
     <span class="add-on" ><i class="icon-calendar"></i></span>
-    <input id="{{ id }}" id="{{ id }}"type="text"
-	   value="" {{ form.attributes(attrs) }}
+    <input id="{{ id }}" name="{{ name }}"type="text"
+	   value="{{ value }}" {{ form.attributes(attrs) }}
 	   data-module="datepicker" data-module-maxdate="{{ maxdate }}"
 	   data-module-today="{{ today }}"/>
   </div>

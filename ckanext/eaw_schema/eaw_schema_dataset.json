@@ -90,6 +90,7 @@
       "field_name": "ispublication",
       "label": "Publication data package?",
       "modal_text": "ispublication_help",
+      "default_value": false,
       "classes": ["publication_element", "publicationcheck"],
       "form_snippet": "eaw_schema_checkbox.html",
       "form_attrs": {"data-module": "eaw_schema_subdivs",
@@ -104,11 +105,12 @@
       "modal_text":  "publicationlink_help",
       "form_snippet": "eaw_schema_text.html",
       "classes": ["publication_element", "publicationlink"],
-      "form_attrs": {"data-module": "eaw_schema_checkpublication"}
+      "form_attrs": {"data-module": "eaw_schema_checkpublication"},
+      "validators": "eaw_schema_publicationlink"
     },
     {
       "field_name": "open_data",
-      "default_value": "yes",
+      "default_value": true,
       "label": "Open Data?",
       "classes": ["open_data_element", "open_data_check"],
       "form_snippet": "eaw_schema_checkbox.html",
@@ -124,7 +126,8 @@
       "modal_text": "embargo_help",
       "classes": ["open_data_element", "open_data_embargo"],
       "form_snippet": "eaw_schema_date.html",
-      "validators": "eaw_schema_embargodate"
+      "display_snippet": "text.html",
+      "validators": "scheming_required isodate eaw_schema_embargodate convert_to_json_if_date"
     },
     {
       "modal_text": "title_help", 
@@ -551,15 +554,8 @@
         "class": "eaw_with_infobutton"
       }, 
       "output_validators": "eaw_schema_multiple_string_output"
-    }, 
-
-    {
-      "field_name": "__before",
-      "display_snippet": null,
-      "form_snippet": null,
-      "validators": "eaw_schema_publication_package"
     }
-  ], 
+  ],
   "dataset_type": "dataset", 
-  "about_url": "http://github.com/ckan/ckanext-schemingAuthor"
+  "about_url": "http://github.com/ckan/ckanext-scheming"
 }

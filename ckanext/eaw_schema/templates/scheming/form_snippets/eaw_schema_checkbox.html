@@ -11,7 +11,7 @@
 {% set name = field.field_name %}
 {% set id = 'field-' ~ name %}
 {% set label = field.label %} 
-{% set value = 'yes' %}
+{% set value = 'true' %}
 {# hacky check whether this form was already partially filled (=> ignore default) #}
 {% if data['owner_org'] %} 
   {% set checked = true if data[name] == value else false %}
@@ -25,7 +25,7 @@
 {% call form.input_block(id, label, classes=classes, control_classes=control_classes) %}
 <div class="eaw_with_infobutton"> 
   <input class="eaw_schema_checkbox" type="checkbox"
-	 id="{{ id }}" name="{{ name }}" value="yes"
+	 id="{{ id }}" name="{{ name }}" value="{{ value}}"
 	 {% if checked %}checked="checked"{% endif %}
 	 {{ form.attributes(attrs) }}/> 
 	 <label class="eaw_schema_checkbox checkbox"> 

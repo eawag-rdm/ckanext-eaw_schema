@@ -236,30 +236,38 @@ def eaw_schema_is_orga_admin(key, data, errors, context):
         if data[key] not in admusers:
             errors[key].append(_('Datamanger must be admin of {}'.format(orgaid)))
 
-def eaw_schema_publication_package(key, flattened_data, errors, context):
-    pass
-    print('\n\n --------------------in validator eaw_schema_publication_package ----------------')
-    print('key: {}'.format(key))
-    print('flattened_data: {}'.format(flattened_data))
-    # print('\n\n ISPUBLICATION: {}'.format(flattened_data.get(('ispublication',), 'NOT-SET')))
-    # print('\n\n PUBLICATIONLINK: {}'.format(flattened_data.get(('publikationlink',), 'NOT-SET')))
-    print('\n\n --------------------endvalidator eaw_schema_publication_package ----------------')
+def eaw_schema_embargodate(key, data, errors, context):
+    # if there was an error before calling our validator
+    # don't bother with our validation
+    if errors[key]:
+        return
+    value = data.get(key,'')
+    if value:
+        interval = eaw_schema_embargo_interval(730)
+        now = datetime.datetime.strptime(interval['now'], '%Y-%m-%d')
+        maxdate = datetime.datetime.strptime(interval['maxdate'], '%Y-%m-%d')
+        if value < now:
+            errors[key].append('Time-travel not yet implemented.')
+        if value > maxdate:
+            errors[key].append('Please choose an embargo date within '
+                               'the next 2 years.')
 
-def eaw_schema_embargodate(value):
-    print('------------------------ eaw_schema_embargodate')
-    print(value)
-    print('------------------------')
-    dat = datetime.datetime.strptime(value, '%Y-%m-%d')
-    interval = eaw_schema_embargo_interval(730)
-    now = datetime.datetime.strptime(interval['now'], '%Y-%m-%d')
-    maxdate = datetime.datetime.strptime(interval['maxdate'], '%Y-%m-%d')
-    if dat < now:
-        raise toolkit.Invalid('Time-travel not yet implemented.')
-    if dat > maxdate:
-        raise toolkit.Invalid('Please choose an embargo date within '
-                              'the next 2 years.')
-    return value
-
+def eaw_schema_publicationlink(value):
+    if not value:
+        return ''
+    doramatch = re.match('.*(eawag:\d+$|eawag%3A\d+$)', value)
+    if doramatch:
+        url =  (u'https://www.dora.lib4ri.ch/eawag/islandora/object/{}'
+                .format(doramatch.group(1)))
+    else:
+        doimatch = re.match('.*(10.\d{4,9}\/.+$)', value)
+        if not doimatch:
+            raise toolkit.Invalid(u'{} is not a valid publication identifier'
+                                  .format(value))
+        else:
+            url = u'https://doi.org/{}'.format(doimatch.group(1))
+    return(url)
+            
 
 ## Template helper functions
 
@@ -407,10 +415,10 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                     eaw_schema_json_not_empty,
                 "eaw_schema_is_orga_admin":
                     eaw_schema_is_orga_admin,
-                "eaw_schema_publication_package":
-                eaw_schema_publication_package,
                 "eaw_schema_embargodate":
-                eaw_schema_embargodate
+                    eaw_schema_embargodate,
+                "eaw_schema_publicationlink":
+                    eaw_schema_publicationlink
         }
 
     # IPackageController

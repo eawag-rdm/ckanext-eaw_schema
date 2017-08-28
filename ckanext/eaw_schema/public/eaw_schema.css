@@ -28,6 +28,11 @@ div.eaw_with_infobutton {
   div.open_data_check div.eaw_with_infobutton {
     width: 56.5%;
   }
+  .open_data_embargo span.error-block {
+    width: 43.3%;
+  }
+}
+
 }
 @media (min-width: 768px) and (max-width: 979px) {
   div.publicationcheck div.eaw_with_infobutton,
@@ -174,3 +179,29 @@ dl.spaced > dd:not(:last-child) {
   content: " / ";
   color: #505050;
 }
+
+.icon-file-text {
+  color: #0087CD;
+  position:relative;
+  top: 4px;
+}
+
+.metadatadiv {
+  margin: 10px;
+}
+
+.icon-external-link:before,
+.icon-external-link:before {
+  text-decoration: none;
+}
+
+.publicationlink span.error-block {
+  width: 87%;
+}
+
+@media (max-width: 979px) {
+  .open_data_embargo span.error-block {
+    width: 62%;
+  }
+}
+
