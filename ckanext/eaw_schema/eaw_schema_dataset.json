@@ -25,38 +25,66 @@
       "modal_text": "resource_type_help", 
       "required": true, 
       "choices": [
-        {
-          "value": "Audiovisual", 
-          "label": "Audiovisual"
-        }, 
-        {
-          "value": "Data_Set", 
-          "label": "Data_Set"
-        }, 
-        {
-          "value": "Bitmap Image", 
-          "label": "Bitmap Image"
-        }, 
-        {
-          "value": "Vector Graphics", 
-          "label": "Vector Graphics"
-        }, 
-        {
-          "value": "Software", 
-          "label": "Software"
-        }, 
-        {
-          "value": "Sound", 
-          "label": "Sound"
-        }, 
-        {
-          "value": "Text", 
-          "label": "Text"
-        }, 
-        {
-          "value": "geospatial_data", 
-          "label": "Geospatial Data"
-        }
+	{
+	  "value": "Dataset",
+	  "label": "Dataset"
+	},
+	{
+	  "value": "Collection",
+	  "label": "Collection"
+	},
+	{
+	  "value": "Text",
+	  "label": "Text"
+	},
+	{
+	  "value": "Image",
+	  "label": "Image"
+	},
+	{
+	  "value": "Audiovisual",
+	  "label": "Audiovisual"
+	},
+	{
+	  "value": "Software",
+	  "label": "Software"
+	},
+	{
+	  "value": "Sound",
+	  "label": "Sound"
+	},
+	{
+	  "value": "GeospatialData",
+	  "label": "Geospatial Data"
+	},
+	{
+	  "value": "Model",
+	  "label": "Model"
+	},
+	{
+	  "value": "Event",
+	  "label": "Event"
+	},
+	{
+	  "value": "InteractiveResource",
+	  "label": "Interactive Resource"
+	},
+	{
+	  "value": "PhysicalObject",
+	  "label": "Physical Object"
+	},
+	{
+	  "value": "Service",
+	  "label": "Service"
+	},
+	{
+	  "value": "Workflow",
+	  "label": "Workflow"
+	},
+	{
+	  "value": "Other",
+	  "label": "Other"
+	}	   
       ], 
       "preset": "select_short", 
       "label": "Resource Type", 
