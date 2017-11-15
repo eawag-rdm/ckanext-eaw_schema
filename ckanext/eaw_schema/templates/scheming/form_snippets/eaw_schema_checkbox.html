@@ -1,4 +1,7 @@
-{% resource 'eaw_schema/eaw_schema_publication.js' %}
+{%- if field.form_attrs is defined
+  and field.form_attrs['data-module'] == "eaw_schema_subdivs" %}
+  {%- resource 'eaw_schema/eaw_schema_subdivs.js' -%}
+{%- endif -%}
 {% resource 'bootstrap-switch/bootstrap-switch.js' %}
 {% resource 'bootstrap-switch/bootstrap-switch.css' %}
 
@@ -8,25 +11,30 @@
 {% set name = field.field_name %}
 {% set id = 'field-' ~ name %}
 {% set label = field.label %} 
-{% set value = 'yes' %}
-{% set checked = true if data[name] == value else false %}
+{% set value = 'true' %}
+{# hacky check whether this form was already partially filled (=> ignore default) #}
+{% if data['owner_org'] %} 
+  {% set checked = true if data[name] == value else false %}
+{% else %}
+  {% set checked = field.default_value %}
+{% endif%}
 {% set attrs = field.form_attrs or {} %}
 {% set classes = ['eaw_schema_checkbox_outer'] + (field.classes or []) %}
 {% set control_classes = ['eaw_schema_checkbox_inner'] %}
 
 {% call form.input_block(id, label, classes=classes, control_classes=control_classes) %}
-  <div class="eaw_with_infobutton">
+<div class="eaw_with_infobutton"> 
   <input class="eaw_schema_checkbox" type="checkbox"
-	 id="{{ id }}" name="{{ name }}" value="yes"
+	 id="{{ id }}" name="{{ name }}" value="{{ value}}"
 	 {% if checked %}checked="checked"{% endif %}
 	 {{ form.attributes(attrs) }}/> 
 	 <label class="eaw_schema_checkbox checkbox"> 
 	   <span>{{ field.checkboxlabel }}</span> 
 	 </label>
-  </div>
+  </div> 
   {% if field.modal_text is defined %}
     {% set modal_text = field.modal_text %}
     {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
     {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
   {% endif %}
-{% endcall %}  
+{% endcall %}

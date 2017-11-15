@@ -1,34 +1,17 @@
-{#
-The help-text for the field "spatial" (display: "Spatial Extent")
-in create/update package form.
-#}
-<style>
-  div.modal-help {
-  font-size: large;
-  }
-  
-  .modal-help .modal  {
-  width: 750px;
-  max-width:95%;
-  left:auto;
-  margin-left: -200px;
-  }
-  .modal-help .modal-body {
-  max-height: 600px;
-  }
-</style>
-
 <div class="modal-help">
-  <div id="status_help" class="modal hide fade">
+  <div id="{{ field.modal_text }}" class="modal hide fade">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h1>Status</h1>
+      <button type="button" class="close"
+	      data-dismiss="modal">&times</button>
+      <p><i class="icon-lightbulb icon-large"></i>&nbsp;&nbsp<b>Status</b></p>
     </div>
     <div class="modal-body">
       <p>The status of the package</p>
-      <dl>
+      <dl class="spaced">
 	<dt>incomplete</dt>
-	<dd>Either the package metadata or the actual data (the <i>ressources</i>) or both will be amended in the future.</dd>
+	<dd>Either the package metadata or the actual data
+	(the <i>ressources</i>) or both will be amended in the
+	future.</dd>
 	<dt>complete</dt>
 	<dd>The package is finished and no changes are expected anymore.</dd>
 	<dt>reviewed</dt>

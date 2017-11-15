@@ -24,23 +24,31 @@ div.eaw_with_infobutton {
 }
 
 @media (min-width: 980px) {
-  div.publicationcheck div.eaw_with_infobutton {
+  div.publicationcheck div.eaw_with_infobutton,
+  div.open_data_check div.eaw_with_infobutton {
     width: 56.5%;
   }
+  .open_data_embargo span.error-block {
+    width: 43.3%;
+  }
+}
 }
 @media (min-width: 768px) and (max-width: 979px) {
-  div.publicationcheck div.eaw_with_infobutton {
+  div.publicationcheck div.eaw_with_infobutton,
+  div.open_data_check div.eaw_with_infobutton {
     width: 42.0%;
   }
 }
 @media (min-width: 713px) and (max-width: 767px) {
-  div.publicationcheck div.eaw_with_infobutton {
+  div.publicationcheck div.eaw_with_infobutton,
+  div.open_data_check div.eaw_with_infobutton {
     width: 65.2%;
   }
 }
 
 @media (min-width: 480px) and (max-width: 712px){
-  div.publicationcheck div.eaw_with_infobutton {
+  div.publicationcheck div.eaw_with_infobutton,
+  div.open_data_check div.eaw_with_infobutton {
     width: 52.4%;
   }
 }
@@ -71,12 +79,14 @@ textarea.eaw_with_infobutton {
   }
 }
 
-div.control-group.publication_element {
+div.control-group.publication_element,
+div.control-group.open_data_element {
   background: rgb(196, 235, 234);
   padding-bottom: 20px;
   
 }
-div.control-group.publication_element.publicationcheck {
+div.control-group.publication_element.publicationcheck,
+div.control-group.open_data_element.open_data_check {
   margin-bottom: 10px;
   border-radius: 10px 10px 10px 10px;
 }
@@ -88,14 +98,16 @@ div.control-group.publication_element.publicationcheck {
   }
 }
 
-div.control-group.publication_element.publicationlink {
+div.control-group.publication_element.publicationlink,
+div.control-group.open_data_element.open_data_embargo {
   padding-top: 10px;
   margin-top: -10px;
   border-radius: 0px 0px 10px 10px;
 }
 
 
-.publicationcheck label.control-label:after {
+.publicationcheck label.control-label:after,
+.open_data_check label.control-label:after {
   content:"";
 }
 
@@ -109,7 +121,8 @@ label.eaw_schema_checkbox {
   vertical-align: middle;
 }
 
-.publicationcheck label.control-label {
+.publicationcheck label.control-label,
+.open_data_check label.control-label {
   width: 300px;
   font-size: 17.5px;
   text-align: left;
@@ -122,7 +135,8 @@ label.eaw_schema_checkbox {
   width: 115px;
 }
 
-input#field-ispublication {
+input#field-ispublication,
+input#field-open_data {
   transform: scale(2);
   width: 30px;
 }
@@ -131,7 +145,8 @@ input#field-publicationlink {
   width: 97%;
 }
   
-.publicationcheck button.outsidebutton {
+.publicationcheck button.outsidebutton,
+.open_data_check button.outsidebutton {
   margin-top: 13px;
 }
 
@@ -153,6 +168,7 @@ ol.spaced li:not(:last-child),
 dl.spaced > dd:not(:last-child) {
   margin-bottom: 10px;
 }
+
 @media (max-width: 767px) {
   .toolbar .breadcrumb a {
     color: #505050;
@@ -163,3 +179,29 @@ dl.spaced > dd:not(:last-child) {
   content: " / ";
   color: #505050;
 }
+
+.icon-file-text {
+  color: #0087CD;
+  position:relative;
+  top: 4px;
+}
+
+.metadatadiv {
+  margin: 10px;
+}
+
+.icon-external-link:before,
+.icon-external-link:before {
+  text-decoration: none;
+}
+
+.publicationlink span.error-block {
+  width: 87%;
+}
+
+@media (max-width: 979px) {
+  .open_data_embargo span.error-block {
+    width: 62%;
+  }
+}
+

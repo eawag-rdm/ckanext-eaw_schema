@@ -28,5 +28,5 @@
   {% endif %}
 {% endcall %}
 {% if modal_text is not none %}
-  {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
+  {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html', field=field -%}
 {% endif %}

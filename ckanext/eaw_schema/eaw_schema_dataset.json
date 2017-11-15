@@ -117,19 +117,45 @@
     {
       "field_name": "ispublication",
       "label": "Publication data package?",
-      "modal_text": "timerange_help",
-      "classes": ["publication_element publicationcheck"],
+      "modal_text": "ispublication_help",
+      "default_value": false,
+      "classes": ["publication_element", "publicationcheck"],
       "form_snippet": "eaw_schema_checkbox.html",
-      "form_attrs": {"data-module": "eaw_schema_publication"}
+      "form_attrs": {"data-module": "eaw_schema_subdivs",
+		     "data-module-divname_outer": "publicationcheck",
+		     "data-module-divnames_inner": "publicationlink",
+		     "data-module-names_clearfields": "publicationlink"}
     },
     {
       "field_name": "publicationlink",
       "label": "DORA-Id or DOI, if available",
-      "form_placeholder": "eawag:14248",
-      "modal_text":  "timerange_help",
+      "form_placeholder": "http://doi.org/10.1016/j.envsoft.2017.03.002",
+      "modal_text":  "publicationlink_help",
       "form_snippet": "eaw_schema_text.html",
-      "classes": ["publication_element publicationlink"],
-      "form_attrs": {"data-module": "eaw_schema_checkpublication"}
+      "classes": ["publication_element", "publicationlink"],
+      "form_attrs": {"data-module": "eaw_schema_checkpublication"},
+      "validators": "eaw_schema_publicationlink"
+    },
+    {
+      "field_name": "open_data",
+      "default_value": true,
+      "label": "Open Data?",
+      "classes": ["open_data_element", "open_data_check"],
+      "form_snippet": "eaw_schema_checkbox.html",
+      "modal_text": "open_data_help",
+      "form_attrs": {"data-module": "eaw_schema_subdivs",
+		     "data-module-divname_outer": "open_data_check",
+		     "data-module-divnames_inner": "open_data_embargo",
+		     "data-module-names_clearfields": "embargo"}
+    },
+    {
+      "field_name": "embargo",
+      "label": "Embargo",
+      "modal_text": "embargo_help",
+      "classes": ["open_data_element", "open_data_embargo"],
+      "form_snippet": "eaw_schema_date.html",
+      "display_snippet": "text.html",
+      "validators": "scheming_required isodate eaw_schema_embargodate convert_to_json_if_date"
     },
     {
       "modal_text": "title_help", 
@@ -146,6 +172,20 @@
       "label": "URL", 
       "display_property": "dcat:landingPage", 
       "required": true
+    },
+    {
+      "default_value": "context_fullname_email", 
+      "modal_text": "author_help",
+      "required": true,
+      "label": "Author",
+      "form_snippet": "eaw_schema_repeating_text_js.html",
+      "display_snippet": "eaw_repeating_text.html",
+      "validators": "repeating_text eaw_schema_json_not_empty",
+      "output_validators": "repeating_text_output",
+      "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
+      "field_name": "author", 
+      "display_property": "dc:creator", 
+      "form_blanks": 3
     }, 
     {
       "modal_text": "abstract_help", 
@@ -155,16 +195,7 @@
       "form_placeholder": "A description of the package.", 
       "field_name": "notes", 
       "display_property": "dct:description"
-    }, 
-    {
-      "modal_text": "notes_help", 
-      "required": false, 
-      "form_snippet": "eaw_schema_markdown.html", 
-      "label": "Notes", 
-      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
-      "field_name": "notes-2", 
-      "display_property": "dct:description"
-    }, 
+    },
     {
       "modal_text": "keywords_help", 
       "form_snippet": "eaw_schema_text.html", 
@@ -180,6 +211,67 @@
 	  
       }, 
       "display_property": "dcat:keyword"
+    },
+    {
+      "modal_text_visibility": "visibility_help", 
+      "required": true, 
+      "label": "Organization", 
+      "modal_text_organization": "organization_help", 
+      "preset": "eaw_schema_dataset_organization", 
+      "field_name": "owner_org"
+    }, 
+    {
+      "modal_text": "status_help", 
+      "required": true, 
+      "label": "Status", 
+      "preset": "select_short",
+      "choices": [
+        {
+          "value": "incomplete", 
+          "label": "incomplete"
+        }, 
+        {
+          "value": "complete", 
+          "label": "complete"
+        }, 
+        {
+          "value": "reviewed", 
+          "label": "reviewed"
+        }
+      ], 
+      "field_name": "status", 
+      "form_attrs": {
+        "class": "medinput"
+      }, 
+      "display_property": "adms:status"
+    }, 
+    {
+      "default_value": "context_fullname_email",
+      "required": true,
+      "modal_text": "curator_help", 
+      "form_snippet": "text_medium.html", 
+      "label": "Curator", 
+      "form_placeholder": "Carla Curator <curca@eawag.ch>",
+      "validators": "scheming_required",
+      "field_name": "maintainer", 
+      "display_property": "datacite:datacurator"
+    }, 
+    {
+      "default_value": "context_fullname_email", 
+      "modal_text": "usage_contact_help", 
+      "form_snippet": "text_medium.html", 
+      "label": "Usage Contact", 
+      "form_placeholder": "Pat Permission <pep@eawag.ch>", 
+      "field_name": "usage_contact"
+    },
+    {
+      "modal_text": "notes_help", 
+      "required": false, 
+      "form_snippet": "eaw_schema_markdown.html", 
+      "label": "Notes", 
+      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
+      "field_name": "notes-2", 
+      "display_property": "dct:description"
     }, 
     {
       "default_value": "none", 
@@ -490,101 +582,8 @@
         "class": "eaw_with_infobutton"
       }, 
       "output_validators": "eaw_schema_multiple_string_output"
-    }, 
-    {
-      "modal_text_visibility": "visibility_help", 
-      "required": true, 
-      "label": "Organization", 
-      "modal_text_organization": "organization_help", 
-      "preset": "eaw_schema_dataset_organization", 
-      "field_name": "owner_org"
-    }, 
-    {
-      "modal_text": "status_help", 
-      "required": true, 
-      "label": "Status", 
-      "preset": "select_short", 
-      "choices": [
-        {
-          "value": "incomplete", 
-          "label": "incomplete"
-        }, 
-        {
-          "value": "complete", 
-          "label": "complete"
-        }, 
-        {
-          "value": "reviewed", 
-          "label": "reviewed"
-        }
-      ], 
-      "field_name": "status", 
-      "form_attrs": {
-        "class": "medinput"
-      }, 
-      "display_property": "adms:status"
-    }, 
-    {
-      "default_value": "context_fullname_email", 
-      "modal_text": "author_help", 
-      "label": "Author", 
-      "preset": "eaw_schema_repeating_text_js", 
-      "form_placeholder": "Johann Bach <joe@eawag.ch>", 
-      "field_name": "author", 
-      "display_property": "dc:creator", 
-      "form_blanks": 3
-    }, 
-    {
-      "default_value": "context_fullname_email", 
-      "modal_text": "curator_help", 
-      "form_snippet": "text_medium.html", 
-      "label": "Curator", 
-      "form_placeholder": "Carla Curator <curca@eawag.ch>", 
-      "field_name": "maintainer", 
-      "display_property": "datacite:datacurator"
-    }, 
-    {
-      "default_value": "context_fullname_email", 
-      "modal_text": "usage_contact_help", 
-      "form_snippet": "text_medium.html", 
-      "label": "Usage Contact", 
-      "form_placeholder": "Pat Permission <pep@eawag.ch>", 
-      "field_name": "usage_contact"
-    }, 
-    {
-      "form_snippet": "eaw_multiple_checkbox.html", 
-      "choices": [
-        {
-          "modal_text": "open_data_help", 
-          "autocheckif": "doi_wanted", 
-          "value": "open_data", 
-          "label": "Open Data candidate"
-        }, 
-        {
-          "modal_text": "doi_wanted_help", 
-          "autocheckif": false, 
-          "value": "doi_wanted", 
-          "label": "DOI wanted"
-        }, 
-        {
-          "modal_text": "long_term_archive_help",
-          "autocheckif": false, 
-          "value": "long_term_archive", 
-          "label": "Long Term Archive"
-        }
-      ], 
-      "display_snippet": "multiple_choice.html", 
-      "field_name": "open_data", 
-      "label": "Flags",
-      "validators": "ignore_missing"
-    },
-    {
-      "field_name": "__before",
-      "display_snippet": null,
-      "form_snippet": null,
-      "validators": "eaw_schema_publication_package"
     }
-  ], 
+  ],
   "dataset_type": "dataset", 
-  "about_url": "http://github.com/ckan/ckanext-schemingAuthor"
+  "about_url": "http://github.com/ckan/ckanext-scheming"
 }
