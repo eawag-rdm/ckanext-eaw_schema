@@ -7,7 +7,7 @@
 {%- for c in field.choices -%}
   {%- do options.append({
     'value': c.value,
-    'text': h.scheming_language_text(c.label) }) -%}
+    'text': c.label }) -%}
 {%- endfor -%}
 {%- if field.get('sorted_choices') -%}
   {%- set options = options|sort(case_sensitive=false, attribute='text') -%}
