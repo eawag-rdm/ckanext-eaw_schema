@@ -237,6 +237,10 @@ def eaw_schema_is_orga_admin(key, data, errors, context):
             errors[key].append(_('Datamanger must be admin of {}'.format(orgaid)))
 
 def eaw_schema_embargodate(key, data, errors, context):
+    """Validate embargo is in range [tody, 2 years ahead].
+    Add time to be compatible with SOLR ISO_INSTANT
+    (https://docs.oracle.com/javase/8/docs/api/java/time/
+    format/DateTimeFormatter.html#ISO_INSTANT)"""
     # if there was an error before calling our validator
     # don't bother with our validation
     if errors[key]:
@@ -248,9 +252,20 @@ def eaw_schema_embargodate(key, data, errors, context):
         maxdate = datetime.datetime.strptime(interval['maxdate'], '%Y-%m-%d')
         if value < now:
             errors[key].append('Time-travel not yet implemented.')
+            return
         if value > maxdate:
             errors[key].append('Please choose an embargo date within '
                                'the next 2 years.')
+            return
+        data[key] = value.isoformat() + 'Z'
+
+def eaw_schema_striptime(value):
+    '''
+    Strips time (and tz) from ISO date-time string.
+
+    '''
+    return value.split('T')[0]
+    
 
 def eaw_schema_publicationlink(value):
     if not value:
@@ -418,7 +433,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 "eaw_schema_embargodate":
                     eaw_schema_embargodate,
                 "eaw_schema_publicationlink":
-                    eaw_schema_publicationlink
+                    eaw_schema_publicationlink,
+                "eaw_schema_striptime":
+                    eaw_schema_striptime
         }
 
     # IPackageController

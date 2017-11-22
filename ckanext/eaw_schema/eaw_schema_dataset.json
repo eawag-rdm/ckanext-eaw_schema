@@ -155,7 +155,8 @@
       "classes": ["open_data_element", "open_data_embargo"],
       "form_snippet": "eaw_schema_date.html",
       "display_snippet": "text.html",
-      "validators": "scheming_required isodate eaw_schema_embargodate convert_to_json_if_date"
+      "validators": "scheming_required isodate eaw_schema_embargodate",
+      "output_validators": "eaw_schema_striptime"
     },
     {
       "modal_text": "title_help", 
