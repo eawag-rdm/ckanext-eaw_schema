@@ -180,7 +180,7 @@ dl.spaced > dd:not(:last-child) {
   color: #505050;
 }
 
-.icon-file-text {
+.fa-file-text-o {
   color: #0087CD;
   position:relative;
   top: 4px;
@@ -190,8 +190,7 @@ dl.spaced > dd:not(:last-child) {
   margin: 10px;
 }
 
-.icon-external-link:before,
-.icon-external-link:before {
+.fa-external-link-square:before {
   text-decoration: none;
 }
 
