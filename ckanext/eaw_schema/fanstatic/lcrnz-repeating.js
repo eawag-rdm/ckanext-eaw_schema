@@ -20,7 +20,7 @@ this.ckan.module('lcrnz-repeating', function (jQuery, _) {
 
         // Create 'plus field' checkbox and add to first input container.
         var firstFieldContainer = this.el.find(this.options.fieldSelector + ':first .controls');
-        var checkbox = $('<label class="checkbox btn btn-success icon-plus"><input type="checkbox" id="add-field" /></label>');
+        var checkbox = $('<label class="checkbox btn btn-success fa fa-plus"><input type="checkbox" id="add-field" /></label>');
         checkbox.on('change', ':checkbox', this._onChange);
 	checkbox.children(':checkbox').hide();
         $(firstFieldContainer).append(checkbox);
