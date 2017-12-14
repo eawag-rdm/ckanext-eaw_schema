@@ -24,70 +24,70 @@
     {
       "modal_text": "resource_type_help", 
       "required": true, 
-      "choices": [
-	{
-	  "value": "Dataset",
-	  "label": "Dataset"
-	},
-	{
-	  "value": "Collection",
-	  "label": "Collection"
-	},
-	{
-	  "value": "Text",
-	  "label": "Text"
-	},
-	{
-	  "value": "Image",
-	  "label": "Image"
-	},
-	{
-	  "value": "Audiovisual",
-	  "label": "Audiovisual"
-	},
-	{
-	  "value": "Software",
-	  "label": "Software"
-	},
-	{
-	  "value": "Sound",
-	  "label": "Sound"
-	},
-	{
-	  "value": "GeospatialData",
-	  "label": "Geospatial Data"
-	},
-	{
-	  "value": "Model",
-	  "label": "Model"
-	},
-	{
-	  "value": "Event",
-	  "label": "Event"
-	},
-	{
-	  "value": "InteractiveResource",
-	  "label": "Interactive Resource"
-	},
-	{
-	  "value": "PhysicalObject",
-	  "label": "Physical Object"
-	},
-	{
-	  "value": "Service",
-	  "label": "Service"
-	},
-	{
-	  "value": "Workflow",
-	  "label": "Workflow"
-	},
-	{
-	  "value": "Other",
-	  "label": "Other"
-	}	   
-      ], 
-      "preset": "select_short", 
       "label": "Resource Type", 
+      "preset": "select_short", 
+      "choices": [
+        {
+          "value": "Dataset", 
+          "label": "Dataset"
+        }, 
+        {
+          "value": "Collection", 
+          "label": "Collection"
+        }, 
+        {
+          "value": "Text", 
+          "label": "Text"
+        }, 
+        {
+          "value": "Image", 
+          "label": "Image"
+        }, 
+        {
+          "value": "Audiovisual", 
+          "label": "Audiovisual"
+        }, 
+        {
+          "value": "Software", 
+          "label": "Software"
+        }, 
+        {
+          "value": "Sound", 
+          "label": "Sound"
+        }, 
+        {
+          "value": "GeospatialData", 
+          "label": "Geospatial Data"
+        }, 
+        {
+          "value": "Model", 
+          "label": "Model"
+        }, 
+        {
+          "value": "Event", 
+          "label": "Event"
+        }, 
+        {
+          "value": "InteractiveResource", 
+          "label": "Interactive Resource"
+        }, 
+        {
+          "value": "PhysicalObject", 
+          "label": "Physical Object"
+        }, 
+        {
+          "value": "Service", 
+          "label": "Service"
+        }, 
+        {
+          "value": "Workflow", 
+          "label": "Workflow"
+        }, 
+        {
+          "value": "Other", 
+          "label": "Other"
+        }
+      ], 
       "field_name": "resource_type"
     }, 
     {
@@ -107,57 +107,75 @@
     }, 
     {
       "modal_text": "res_hash_help", 
-      "display_snippet": "text.html", 
+      "label": "Hash (SHA-256)", 
       "field_name": "hash", 
       "form_snippet": "eaw_schema_text.html", 
-      "label": "Hash (SHA-256)"
+      "display_snippet": "text.html"
     }
   ], 
   "dataset_fields": [
     {
-      "field_name": "ispublication",
-      "label": "Publication data package?",
-      "modal_text": "ispublication_help",
-      "default_value": false,
-      "classes": ["publication_element", "publicationcheck"],
-      "form_snippet": "eaw_schema_checkbox.html",
-      "form_attrs": {"data-module": "eaw_schema_subdivs",
-		     "data-module-divname_outer": "publicationcheck",
-		     "data-module-divnames_inner": "publicationlink",
-		     "data-module-names_clearfields": "publicationlink"}
-    },
+      "default_value": false, 
+      "modal_text": "ispublication_help", 
+      "form_snippet": "eaw_schema_checkbox.html", 
+      "label": "Publication data package?", 
+      "classes": [
+        "publication_element", 
+        "publicationcheck"
+      ], 
+      "field_name": "ispublication", 
+      "form_attrs": {
+        "data-module": "eaw_schema_subdivs", 
+        "data-module-divname_outer": "publicationcheck", 
+        "data-module-divnames_inner": "publicationlink", 
+        "data-module-names_clearfields": "publicationlink"
+      }
+    }, 
     {
-      "field_name": "publicationlink",
-      "label": "DORA-Id or DOI, if available",
-      "form_placeholder": "http://doi.org/10.1016/j.envsoft.2017.03.002",
-      "modal_text":  "publicationlink_help",
-      "form_snippet": "eaw_schema_text.html",
-      "classes": ["publication_element", "publicationlink"],
-      "form_attrs": {"data-module": "eaw_schema_checkpublication"},
-      "validators": "eaw_schema_publicationlink"
-    },
+      "modal_text": "publicationlink_help", 
+      "form_snippet": "eaw_schema_text.html", 
+      "label": "DORA-Id or DOI, if available", 
+      "classes": [
+        "publication_element", 
+        "publicationlink"
+      ], 
+      "validators": "eaw_schema_publicationlink", 
+      "form_placeholder": "http://doi.org/10.1016/j.envsoft.2017.03.002", 
+      "field_name": "publicationlink", 
+      "form_attrs": {
+        "data-module": "eaw_schema_checkpublication"
+      }
+    }, 
     {
-      "field_name": "open_data",
-      "default_value": true,
-      "label": "Open Data?",
-      "classes": ["open_data_element", "open_data_check"],
-      "form_snippet": "eaw_schema_checkbox.html",
-      "modal_text": "open_data_help",
-      "form_attrs": {"data-module": "eaw_schema_subdivs",
-		     "data-module-divname_outer": "open_data_check",
-		     "data-module-divnames_inner": "open_data_embargo",
-		     "data-module-names_clearfields": "embargo"}
-    },
+      "default_value": true, 
+      "modal_text": "open_data_help", 
+      "form_snippet": "eaw_schema_checkbox.html", 
+      "label": "Open Data?", 
+      "classes": [
+        "open_data_element", 
+        "open_data_check"
+      ], 
+      "field_name": "open_data", 
+      "form_attrs": {
+        "data-module": "eaw_schema_subdivs", 
+        "data-module-divname_outer": "open_data_check", 
+        "data-module-divnames_inner": "open_data_embargo", 
+        "data-module-names_clearfields": "embargo"
+      }
+    }, 
     {
-      "field_name": "embargo",
-      "label": "Embargo",
-      "modal_text": "embargo_help",
-      "classes": ["open_data_element", "open_data_embargo"],
-      "form_snippet": "eaw_schema_date.html",
-      "display_snippet": "text.html",
-      "validators": "scheming_required isodate eaw_schema_embargodate",
+      "display_snippet": "text.html", 
+      "modal_text": "embargo_help", 
+      "form_snippet": "eaw_schema_date.html", 
+      "label": "Embargo", 
+      "classes": [
+        "open_data_element", 
+        "open_data_embargo"
+      ], 
+      "validators": "scheming_required isodate eaw_schema_embargodate", 
+      "field_name": "embargo", 
       "output_validators": "eaw_schema_striptime"
-    },
+    }, 
     {
       "modal_text": "title_help", 
       "required": true, 
@@ -168,24 +186,24 @@
       "display_property": "dct:title"
     }, 
     {
+      "required": true, 
       "preset": "dataset_slug", 
       "field_name": "name", 
-      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "required": true
-    },
+      "label": "URL"
+    }, 
     {
       "default_value": "context_fullname_email", 
-      "modal_text": "author_help",
-      "required": true,
-      "label": "Author",
-      "form_snippet": "eaw_schema_repeating_text_js.html",
-      "display_snippet": "eaw_repeating_text.html",
-      "validators": "repeating_text eaw_schema_json_not_empty",
-      "output_validators": "repeating_text_output",
+      "display_snippet": "eaw_repeating_text.html", 
+      "modal_text": "author_help", 
+      "required": true, 
+      "form_snippet": "eaw_schema_repeating_text_js.html", 
+      "label": "Author", 
+      "display_property": "dc:creator", 
+      "validators": "repeating_text eaw_schema_json_not_empty", 
       "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
       "field_name": "author", 
-      "display_property": "dc:creator", 
+      "output_validators": "repeating_text_output", 
       "form_blanks": 3
     }, 
     {
@@ -196,7 +214,7 @@
       "form_placeholder": "A description of the package.", 
       "field_name": "notes", 
       "display_property": "dct:description"
-    },
+    }, 
     {
       "modal_text": "keywords_help", 
       "form_snippet": "eaw_schema_text.html", 
@@ -207,15 +225,14 @@
       "form_attrs": {
         "data-module-tags": "", 
         "data-module": "autocomplete", 
-	"data-module-source": "/api/2/util/tag/autocomplete?incomplete=?",
-	"style": "width:97%;"
-	  
+        "style": "width:97%;", 
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
       }, 
       "display_property": "dcat:keyword"
-    },
+    }, 
     {
-      "modal_text_visibility": "visibility_help", 
       "required": true, 
+      "modal_text_visibility": "visibility_help", 
       "label": "Organization", 
       "modal_text_organization": "organization_help", 
       "preset": "eaw_schema_dataset_organization", 
@@ -224,8 +241,6 @@
     {
       "modal_text": "status_help", 
       "required": true, 
-      "label": "Status", 
-      "preset": "select_short",
       "choices": [
         {
           "value": "incomplete", 
@@ -240,6 +255,8 @@
           "label": "reviewed"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Status", 
       "field_name": "status", 
       "form_attrs": {
         "class": "medinput"
@@ -247,13 +264,13 @@
       "display_property": "adms:status"
     }, 
     {
-      "default_value": "context_fullname_email",
-      "required": true,
+      "default_value": "context_fullname_email", 
       "modal_text": "curator_help", 
+      "required": true, 
       "form_snippet": "text_medium.html", 
       "label": "Curator", 
-      "form_placeholder": "Carla Curator <curca@eawag.ch>",
-      "validators": "scheming_required",
+      "validators": "scheming_required", 
+      "form_placeholder": "Carla Curator <curca@eawag.ch>", 
       "field_name": "maintainer", 
       "display_property": "datacite:datacurator"
     }, 
@@ -264,7 +281,7 @@
       "label": "Usage Contact", 
       "form_placeholder": "Pat Permission <pep@eawag.ch>", 
       "field_name": "usage_contact"
-    },
+    }, 
     {
       "modal_text": "notes_help", 
       "required": false, 
@@ -280,10 +297,7 @@
       "modal_text": "variables_help", 
       "required": true, 
       "label": "Variables", 
-      "preset": "eaw_multiple_select_js",
-      "form_attrs": {
-	"style": "width:90%;"
-      },
+      "preset": "eaw_multiple_select_js", 
       "choices": [
         {
           "value": "alkalinity", 
@@ -356,9 +370,16 @@
         {
           "value": "waterlevel", 
           "label": "water level"
+        }, 
+        {
+          "value": "velocity", 
+          "label": "velocity"
         }
       ], 
       "field_name": "variables", 
+      "form_attrs": {
+        "style": "width:90%;"
+      }, 
       "select_size": 5
     }, 
     {
@@ -367,10 +388,7 @@
       "modal_text": "generic-terms_help", 
       "required": true, 
       "label": "Generic Terms", 
-      "preset": "eaw_multiple_select_js",
-      "form_attrs": {
-	"style": "width:90%;"
-      },
+      "preset": "eaw_multiple_select_js", 
       "choices": [
         {
           "value": "none", 
@@ -446,6 +464,9 @@
         }
       ], 
       "field_name": "generic-terms", 
+      "form_attrs": {
+        "style": "width:90%;"
+      }, 
       "select_size": 5
     }, 
     {
@@ -454,10 +475,7 @@
       "modal_text": "systems_help", 
       "required": true, 
       "label": "Systems", 
-      "preset": "eaw_multiple_select_js",
-      "form_attrs": {
-	  "style": "width:90%;"
-      },
+      "preset": "eaw_multiple_select_js", 
       "choices": [
         {
           "value": "Groundwater", 
@@ -517,6 +535,9 @@
         }
       ], 
       "field_name": "systems", 
+      "form_attrs": {
+        "style": "width:90%;"
+      }, 
       "select_size": 5
     }, 
     {
@@ -584,7 +605,7 @@
       }, 
       "output_validators": "eaw_schema_multiple_string_output"
     }
-  ],
+  ], 
   "dataset_type": "dataset", 
   "about_url": "http://github.com/ckan/ckanext-scheming"
 }
