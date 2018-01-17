@@ -1,611 +1,619 @@
 {
-  "about": "A reimplementation of the default CKAN dataset schema", 
-  "scheming_version": 1, 
-  "resource_fields": [
-    {
-      "preset": "resource_url_upload", 
-      "field_name": "url", 
-      "label": "URL"
-    }, 
-    {
-      "modal_text": "publication_help", 
-      "field_name": "publication", 
-      "form_snippet": "eaw_schema_checkbox.html", 
-      "label": "Package supports THIS publication"
-    }, 
-    {
-      "modal_text": "res_name_help", 
-      "required": true, 
-      "form_snippet": "eaw_schema_text.html", 
-      "label": "Name", 
-      "form_placeholder": "e.g. table_arsenic", 
-      "field_name": "name"
-    }, 
-    {
-      "modal_text": "resource_type_help", 
-      "required": true, 
-      "label": "Resource Type", 
-      "preset": "select_short", 
-      "choices": [
-        {
-          "value": "Dataset", 
-          "label": "Dataset"
-        }, 
-        {
-          "value": "Collection", 
-          "label": "Collection"
-        }, 
-        {
-          "value": "Text", 
-          "label": "Text"
-        }, 
-        {
-          "value": "Image", 
-          "label": "Image"
-        }, 
-        {
-          "value": "Audiovisual", 
-          "label": "Audiovisual"
-        }, 
-        {
-          "value": "Software", 
-          "label": "Software"
-        }, 
-        {
-          "value": "Sound", 
-          "label": "Sound"
-        }, 
-        {
-          "value": "GeospatialData", 
-          "label": "Geospatial Data"
-        }, 
-        {
-          "value": "Model", 
-          "label": "Model"
-        }, 
-        {
-          "value": "Event", 
-          "label": "Event"
-        }, 
-        {
-          "value": "InteractiveResource", 
-          "label": "Interactive Resource"
-        }, 
-        {
-          "value": "PhysicalObject", 
-          "label": "Physical Object"
-        }, 
-        {
-          "value": "Service", 
-          "label": "Service"
-        }, 
-        {
-          "value": "Workflow", 
-          "label": "Workflow"
-        }, 
-        {
-          "value": "Other", 
-          "label": "Other"
-        }
-      ], 
-      "field_name": "resource_type"
-    }, 
-    {
-      "modal_text": "res_notes_help", 
-      "required": false, 
-      "form_snippet": "eaw_schema_markdown.html", 
-      "label": "Notes", 
-      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
-      "field_name": "description"
-    }, 
-    {
-      "form_placeholder": "How to cite this resource", 
-      "modal_text": "res_citation_help", 
-      "field_name": "citation", 
-      "form_snippet": "eaw_schema_markdown.html", 
-      "label": "Cite as"
-    }, 
-    {
-      "modal_text": "res_hash_help", 
-      "label": "Hash (SHA-256)", 
-      "field_name": "hash", 
-      "form_snippet": "eaw_schema_text.html", 
-      "display_snippet": "text.html"
-    }
-  ], 
+  "scheming_version": 1,
+  "about": "A reimplementation of the default CKAN dataset schema",
+  "about_url": "http://github.com/ckan/ckanext-scheming",
   "dataset_fields": [
     {
-      "default_value": false, 
-      "modal_text": "ispublication_help", 
-      "form_snippet": "eaw_schema_checkbox.html", 
-      "label": "Publication data package?", 
-      "classes": [
-        "publication_element", 
-        "publicationcheck"
-      ], 
-      "field_name": "ispublication", 
+      "default_value": false,
+      "field_name": "ispublication",
+      "form_snippet": "eaw_schema_checkbox.html",
       "form_attrs": {
-        "data-module": "eaw_schema_subdivs", 
-        "data-module-divname_outer": "publicationcheck", 
-        "data-module-divnames_inner": "publicationlink", 
+        "data-module": "eaw_schema_subdivs",
+        "data-module-divnames_inner": "publicationlink",
+        "data-module-divname_outer": "publicationcheck",
         "data-module-names_clearfields": "publicationlink"
-      }
-    }, 
-    {
-      "modal_text": "publicationlink_help", 
-      "form_snippet": "eaw_schema_text.html", 
-      "label": "DORA-Id or DOI, if available", 
+      },
       "classes": [
-        "publication_element", 
-        "publicationlink"
-      ], 
-      "validators": "eaw_schema_publicationlink", 
-      "form_placeholder": "http://doi.org/10.1016/j.envsoft.2017.03.002", 
-      "field_name": "publicationlink", 
+        "publication_element",
+        "publicationcheck"
+      ],
+      "label": "Publication data package?",
+      "modal_text": "ispublication_help"
+    },
+    {
+      "form_placeholder": "http://doi.org/10.1016/j.envsoft.2017.03.002",
+      "field_name": "publicationlink",
+      "form_snippet": "eaw_schema_text.html",
       "form_attrs": {
         "data-module": "eaw_schema_checkpublication"
-      }
-    }, 
-    {
-      "default_value": true, 
-      "modal_text": "open_data_help", 
-      "form_snippet": "eaw_schema_checkbox.html", 
-      "label": "Open Data?", 
+      },
       "classes": [
-        "open_data_element", 
-        "open_data_check"
-      ], 
-      "field_name": "open_data", 
+        "publication_element",
+        "publicationlink"
+      ],
+      "validators": "eaw_schema_publicationlink",
+      "label": "DORA-Id or DOI, if available",
+      "modal_text": "publicationlink_help"
+    },
+    {
+      "default_value": true,
+      "field_name": "open_data",
+      "form_snippet": "eaw_schema_checkbox.html",
       "form_attrs": {
-        "data-module": "eaw_schema_subdivs", 
-        "data-module-divname_outer": "open_data_check", 
-        "data-module-divnames_inner": "open_data_embargo", 
+        "data-module": "eaw_schema_subdivs",
+        "data-module-divnames_inner": "open_data_embargo",
+        "data-module-divname_outer": "open_data_check",
         "data-module-names_clearfields": "embargo"
-      }
-    }, 
-    {
-      "display_snippet": "text.html", 
-      "modal_text": "embargo_help", 
-      "form_snippet": "eaw_schema_date.html", 
-      "label": "Embargo", 
+      },
       "classes": [
-        "open_data_element", 
+        "open_data_element",
+        "open_data_check"
+      ],
+      "label": "Open Data?",
+      "modal_text": "open_data_help"
+    },
+    {
+      "display_snippet": "text.html",
+      "output_validators": "eaw_schema_striptime",
+      "form_snippet": "eaw_schema_date.html",
+      "classes": [
+        "open_data_element",
         "open_data_embargo"
-      ], 
-      "validators": "scheming_required isodate eaw_schema_embargodate", 
-      "field_name": "embargo", 
-      "output_validators": "eaw_schema_striptime"
-    }, 
+      ],
+      "validators": "scheming_required isodate eaw_schema_embargodate",
+      "label": "Embargo",
+      "modal_text": "embargo_help",
+      "field_name": "embargo"
+    },
     {
-      "modal_text": "title_help", 
-      "required": true, 
-      "label": "Title", 
-      "preset": "eaw_schema_title", 
-      "form_placeholder": "A descriptive title", 
-      "field_name": "title", 
-      "display_property": "dct:title"
-    }, 
+      "display_property": "dct:title",
+      "form_placeholder": "A descriptive title",
+      "field_name": "title",
+      "required": true,
+      "preset": "eaw_schema_title",
+      "label": "Title",
+      "modal_text": "title_help"
+    },
     {
-      "required": true, 
-      "preset": "dataset_slug", 
-      "field_name": "name", 
-      "display_property": "dcat:landingPage", 
-      "label": "URL"
-    }, 
+      "display_property": "dcat:landingPage",
+      "preset": "dataset_slug",
+      "label": "URL",
+      "field_name": "name",
+      "required": true
+    },
     {
-      "default_value": "context_fullname_email", 
-      "display_snippet": "eaw_repeating_text.html", 
-      "modal_text": "author_help", 
-      "required": true, 
-      "form_snippet": "eaw_schema_repeating_text_js.html", 
-      "label": "Author", 
-      "display_property": "dc:creator", 
-      "validators": "repeating_text eaw_schema_json_not_empty", 
-      "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
-      "field_name": "author", 
-      "output_validators": "repeating_text_output", 
-      "form_blanks": 3
-    }, 
+      "form_placeholder": "Bach, Johann <joe@eawag.ch>",
+      "form_blanks": 3,
+      "default_value": "context_fullname_email",
+      "output_validators": "repeating_text_output",
+      "required": true,
+      "label": "Author",
+      "display_snippet": "eaw_repeating_text.html",
+      "display_property": "dc:creator",
+      "field_name": "author",
+      "form_snippet": "eaw_schema_repeating_text_js.html",
+      "validators": "repeating_text eaw_schema_json_not_empty",
+      "modal_text": "author_help"
+    },
     {
-      "modal_text": "abstract_help", 
-      "required": true, 
-      "form_snippet": "eaw_schema_markdown.html", 
-      "label": "Abstract", 
-      "form_placeholder": "A description of the package.", 
-      "field_name": "notes", 
-      "display_property": "dct:description"
-    }, 
+      "display_property": "dct:description",
+      "form_placeholder": "A description of the package.",
+      "field_name": "notes",
+      "form_snippet": "eaw_schema_markdown.html",
+      "required": true,
+      "label": "Abstract",
+      "modal_text": "abstract_help"
+    },
     {
-      "modal_text": "keywords_help", 
-      "form_snippet": "eaw_schema_text.html", 
-      "label": "Keywords", 
-      "validators": "ignore_missing tag_string_convert", 
-      "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...", 
-      "field_name": "tag_string", 
+      "display_property": "dcat:keyword",
+      "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...",
+      "field_name": "tag_string",
+      "form_snippet": "eaw_schema_text.html",
       "form_attrs": {
-        "data-module-tags": "", 
-        "data-module": "autocomplete", 
-        "style": "width:97%;", 
-        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
-      }, 
-      "display_property": "dcat:keyword"
-    }, 
+        "data-module-tags": "",
+        "style": "width:97%;",
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?",
+        "data-module": "autocomplete"
+      },
+      "validators": "ignore_missing tag_string_convert",
+      "label": "Keywords",
+      "modal_text": "keywords_help"
+    },
     {
-      "required": true, 
-      "modal_text_visibility": "visibility_help", 
-      "label": "Organization", 
-      "modal_text_organization": "organization_help", 
-      "preset": "eaw_schema_dataset_organization", 
-      "field_name": "owner_org"
-    }, 
+      "field_name": "owner_org",
+      "required": true,
+      "modal_text_visibility": "visibility_help",
+      "modal_text_organization": "organization_help",
+      "preset": "eaw_schema_dataset_organization",
+      "label": "Organization"
+    },
     {
-      "modal_text": "status_help", 
-      "required": true, 
+      "display_property": "adms:status",
       "choices": [
         {
-          "value": "incomplete", 
-          "label": "incomplete"
-        }, 
+          "label": "incomplete",
+          "value": "incomplete"
+        },
         {
-          "value": "complete", 
-          "label": "complete"
-        }, 
+          "label": "complete",
+          "value": "complete"
+        },
         {
-          "value": "reviewed", 
-          "label": "reviewed"
+          "label": "reviewed",
+          "value": "reviewed"
         }
-      ], 
-      "preset": "select_short", 
-      "label": "Status", 
-      "field_name": "status", 
+      ],
+      "field_name": "status",
+      "required": true,
       "form_attrs": {
         "class": "medinput"
-      }, 
-      "display_property": "adms:status"
-    }, 
+      },
+      "preset": "select_short",
+      "label": "Status",
+      "modal_text": "status_help"
+    },
     {
-      "default_value": "context_fullname_email", 
-      "modal_text": "curator_help", 
-      "required": true, 
-      "form_snippet": "text_medium.html", 
-      "label": "Curator", 
-      "validators": "scheming_required", 
-      "form_placeholder": "Carla Curator <curca@eawag.ch>", 
-      "field_name": "maintainer", 
-      "display_property": "datacite:datacurator"
-    }, 
+      "display_property": "datacite:datacurator",
+      "form_placeholder": "Carla Curator <curca@eawag.ch>",
+      "validators": "scheming_required",
+      "field_name": "maintainer",
+      "form_snippet": "text_medium.html",
+      "required": true,
+      "label": "Curator",
+      "modal_text": "curator_help",
+      "default_value": "context_fullname_email"
+    },
     {
-      "default_value": "context_fullname_email", 
-      "modal_text": "usage_contact_help", 
-      "form_snippet": "text_medium.html", 
-      "label": "Usage Contact", 
-      "form_placeholder": "Pat Permission <pep@eawag.ch>", 
-      "field_name": "usage_contact"
-    }, 
+      "form_placeholder": "Pat Permission <pep@eawag.ch>",
+      "default_value": "context_fullname_email",
+      "field_name": "usage_contact",
+      "form_snippet": "text_medium.html",
+      "label": "Usage Contact",
+      "modal_text": "usage_contact_help"
+    },
     {
-      "modal_text": "notes_help", 
-      "required": false, 
-      "form_snippet": "eaw_schema_markdown.html", 
-      "label": "Notes", 
-      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
-      "field_name": "notes-2", 
-      "display_property": "dct:description"
-    }, 
+      "display_property": "dct:description",
+      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.",
+      "field_name": "notes-2",
+      "form_snippet": "eaw_schema_markdown.html",
+      "required": false,
+      "label": "Notes",
+      "modal_text": "notes_help"
+    },
     {
-      "default_value": "none", 
-      "sorted_choices": true, 
-      "modal_text": "variables_help", 
-      "required": true, 
-      "label": "Variables", 
-      "preset": "eaw_multiple_select_js", 
+      "default_value": "none",
+      "sorted_choices": true,
+      "preset": "eaw_multiple_select_js",
+      "field_name": "variables",
       "choices": [
         {
-          "value": "alkalinity", 
-          "label": "alkalinity"
-        }, 
+          "label": "alkalinity",
+          "value": "alkalinity"
+        },
         {
-          "value": "degradation_rate", 
-          "label": "degradation Rate"
-        }, 
+          "label": "degradation Rate",
+          "value": "degradation_rate"
+        },
         {
-          "value": "discharge", 
-          "label": "discharge"
-        }, 
+          "label": "discharge",
+          "value": "discharge"
+        },
         {
-          "value": "electric_conductivity", 
-          "label": "electric conductivity"
-        }, 
+          "label": "electric conductivity",
+          "value": "electric_conductivity"
+        },
         {
-          "value": "concentration", 
-          "label": "concentration"
-        }, 
+          "label": "concentration",
+          "value": "concentration"
+        },
         {
-          "value": "precipitation", 
-          "label": "precipitation"
-        }, 
+          "label": "precipitation",
+          "value": "precipitation"
+        },
         {
-          "value": "pressure", 
-          "label": "pressure"
-        }, 
+          "label": "pressure",
+          "value": "pressure"
+        },
         {
-          "value": "respiration", 
-          "label": "respiration"
-        }, 
+          "label": "respiration",
+          "value": "respiration"
+        },
         {
-          "value": "temperature", 
-          "label": "temperature"
-        }, 
+          "label": "temperature",
+          "value": "temperature"
+        },
         {
-          "value": "turbidity", 
-          "label": "turbidity"
-        }, 
+          "label": "turbidity",
+          "value": "turbidity"
+        },
         {
-          "value": "pH", 
-          "label": "pH"
-        }, 
+          "label": "pH",
+          "value": "pH"
+        },
         {
-          "value": "none", 
-          "label": "none"
-        }, 
+          "label": "none",
+          "value": "none"
+        },
         {
-          "value": "secci_depth", 
-          "label": "Secci depth"
-        }, 
+          "label": "Secci depth",
+          "value": "secci_depth"
+        },
         {
-          "value": "length", 
-          "label": "length"
-        }, 
+          "label": "length",
+          "value": "length"
+        },
         {
-          "value": "weight", 
-          "label": "weight"
-        }, 
+          "label": "weight",
+          "value": "weight"
+        },
         {
-          "value": "total_hardness", 
-          "label": "total hardness"
-        }, 
+          "label": "total hardness",
+          "value": "total_hardness"
+        },
         {
-          "value": "count", 
-          "label": "count"
-        }, 
+          "label": "count",
+          "value": "count"
+        },
         {
-          "value": "waterlevel", 
-          "label": "water level"
-        }, 
+          "label": "water level",
+          "value": "waterlevel"
+        },
         {
-          "value": "velocity", 
-          "label": "velocity"
+          "label": "velocity",
+          "value": "velocity"
         }
-      ], 
-      "field_name": "variables", 
+      ],
       "form_attrs": {
         "style": "width:90%;"
-      }, 
+      },
+      "required": true,
+      "label": "Variables",
+      "modal_text": "variables_help",
       "select_size": 5
-    }, 
+    },
     {
-      "default_value": "none", 
-      "sorted_choices": true, 
-      "modal_text": "generic-terms_help", 
-      "required": true, 
-      "label": "Generic Terms", 
-      "preset": "eaw_multiple_select_js", 
+      "default_value": "none",
+      "sorted_choices": true,
+      "preset": "eaw_multiple_select_js",
+      "field_name": "generic-terms",
       "choices": [
         {
-          "value": "none", 
-          "label": "none"
-        }, 
+          "label": "none",
+          "value": "none"
+        },
         {
-          "value": "micropollutants", 
-          "label": "micropollutants"
-        }, 
+          "label": "micropollutants",
+          "value": "micropollutants"
+        },
         {
-          "value": "nutrients", 
-          "label": "nutrients"
-        }, 
+          "label": "nutrients",
+          "value": "nutrients"
+        },
         {
-          "value": "heavy metals", 
-          "label": "heavy metals"
-        }, 
+          "label": "heavy metals",
+          "value": "heavy metals"
+        },
         {
-          "value": "nano-particles", 
-          "label": "nano-particles"
-        }, 
+          "label": "nano-particles",
+          "value": "nano-particles"
+        },
         {
-          "value": "organic matter", 
-          "label": "organic matter"
-        }, 
+          "label": "organic matter",
+          "value": "organic matter"
+        },
         {
-          "value": "fish", 
-          "label": "fish"
-        }, 
+          "label": "fish",
+          "value": "fish"
+        },
         {
-          "value": "algae", 
-          "label": "algae"
-        }, 
+          "label": "algae",
+          "value": "algae"
+        },
         {
-          "value": "invertebrates", 
-          "label": "invertebrates"
-        }, 
+          "label": "invertebrates",
+          "value": "invertebrates"
+        },
         {
-          "value": "biofilm", 
-          "label": "biofilm"
-        }, 
+          "label": "biofilm",
+          "value": "biofilm"
+        },
         {
-          "value": "macrophytes", 
-          "label": "macrophytes"
-        }, 
+          "label": "macrophytes",
+          "value": "macrophytes"
+        },
         {
-          "value": "microplastics", 
-          "label": "microplastics"
-        }, 
+          "label": "microplastics",
+          "value": "microplastics"
+        },
         {
-          "value": "cell_line", 
-          "label": "cell line"
-        }, 
+          "label": "cell line",
+          "value": "cell_line"
+        },
         {
-          "value": "bacteria", 
-          "label": "bacteria"
-        }, 
+          "label": "bacteria",
+          "value": "bacteria"
+        },
         {
-          "value": "faecal_sludge", 
-          "label": "faecal sludge"
-        }, 
+          "label": "faecal sludge",
+          "value": "faecal_sludge"
+        },
         {
-          "value": "human health behaviour", 
-          "label": "human health behaviour"
-        }, 
+          "label": "human health behaviour",
+          "value": "human health behaviour"
+        },
         {
-          "value": "drugs", 
-          "label": "drugs"
-        }, 
+          "label": "drugs",
+          "value": "drugs"
+        },
         {
-          "value": "beetles", 
-          "label": "beetles"
+          "label": "beetles",
+          "value": "beetles"
+        },
+        {
+          "label": "pesticides",
+          "value": "pesticides"
         }
-      ], 
-      "field_name": "generic-terms", 
+      ],
       "form_attrs": {
         "style": "width:90%;"
-      }, 
+      },
+      "required": true,
+      "label": "Generic Terms",
+      "modal_text": "generic-terms_help",
       "select_size": 5
-    }, 
+    },
     {
-      "default_value": "none", 
-      "sorted_choices": true, 
-      "modal_text": "systems_help", 
-      "required": true, 
-      "label": "Systems", 
-      "preset": "eaw_multiple_select_js", 
+      "default_value": "none",
+      "sorted_choices": true,
+      "preset": "eaw_multiple_select_js",
+      "field_name": "systems",
       "choices": [
         {
-          "value": "Groundwater", 
-          "label": "Groundwater"
-        }, 
+          "label": "Groundwater",
+          "value": "Groundwater"
+        },
         {
-          "value": "Lab", 
-          "label": "Lab"
-        }, 
+          "label": "Lab",
+          "value": "Lab"
+        },
         {
-          "value": "Lake", 
-          "label": "Lake"
-        }, 
+          "label": "Lake",
+          "value": "Lake"
+        },
         {
-          "value": "none", 
-          "label": "none"
-        }, 
+          "label": "none",
+          "value": "none"
+        },
         {
-          "value": "River", 
-          "label": "River"
-        }, 
+          "label": "River",
+          "value": "River"
+        },
         {
-          "value": "Sanitation-System", 
-          "label": "Sanitation-System"
-        }, 
+          "label": "Sanitation-System",
+          "value": "Sanitation-System"
+        },
         {
-          "value": "Sewer", 
-          "label": "Sewer"
-        }, 
+          "label": "Sewer",
+          "value": "Sewer"
+        },
         {
-          "value": "Watershed", 
-          "label": "Watershed"
-        }, 
+          "label": "Watershed",
+          "value": "Watershed"
+        },
         {
-          "value": "WWTP", 
-          "label": "WWTP"
-        }, 
+          "label": "WWTP",
+          "value": "WWTP"
+        },
         {
-          "value": "flow-through", 
-          "label": "Flow-Through"
-        }, 
+          "label": "Flow-Through",
+          "value": "flow-through"
+        },
         {
-          "value": "batch", 
-          "label": "Batch"
-        }, 
+          "label": "Batch",
+          "value": "batch"
+        },
         {
-          "value": "metropolitan_area", 
-          "label": "Metropolitan Area"
-        }, 
+          "label": "Metropolitan Area",
+          "value": "metropolitan_area"
+        },
         {
-          "value": "Social system", 
-          "label": "Social system"
-        }, 
+          "label": "Social system",
+          "value": "Social system"
+        },
         {
-          "value": "Urban Drainage System", 
-          "label": "Urban Drainage System"
+          "label": "Urban Drainage System",
+          "value": "Urban Drainage System"
+        },
+        {
+          "label": "Stream",
+          "value": "Stream"
         }
-      ], 
-      "field_name": "systems", 
+      ],
       "form_attrs": {
         "style": "width:90%;"
-      }, 
+      },
+      "required": true,
+      "label": "Systems",
+      "modal_text": "systems_help",
       "select_size": 5
-    }, 
+    },
     {
-      "display_snippet": "eaw_schema_multiple_string_display.html", 
-      "modal_text": "taxa_help", 
-      "required": false, 
-      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
-      "label": "Taxa", 
-      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
-      "form_placeholder": "e.g. Dictyosphaerium Anabaena", 
-      "field_name": "taxa", 
+      "form_placeholder": "e.g. Dictyosphaerium Anabaena",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
+      "output_validators": "eaw_schema_multiple_string_output",
+      "form_snippet": "eaw_schema_multiple_string_textbox.html",
       "form_attrs": {
         "class": "eaw_with_infobutton"
-      }, 
-      "output_validators": "eaw_schema_multiple_string_output"
-    }, 
+      },
+      "required": false,
+      "label": "Taxa",
+      "modal_text": "taxa_help",
+      "field_name": "taxa"
+    },
     {
-      "display_snippet": "eaw_schema_multiple_string_display.html", 
-      "modal_text": "substances_help", 
-      "required": false, 
-      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
-      "label": "Substances", 
-      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
-      "form_placeholder": "e.g. 2-Methyl-4-amino-6-methoxy-s-triazine", 
-      "field_name": "substances", 
+      "form_placeholder": "e.g. 2-Methyl-4-amino-6-methoxy-s-triazine",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
+      "output_validators": "eaw_schema_multiple_string_output",
+      "form_snippet": "eaw_schema_multiple_string_textbox.html",
       "form_attrs": {
         "class": "eaw_with_infobutton"
-      }, 
-      "output_validators": "eaw_schema_multiple_string_output"
-    }, 
+      },
+      "required": false,
+      "label": "Substances",
+      "modal_text": "substances_help",
+      "field_name": "substances"
+    },
     {
-      "default_value": "*", 
-      "display_snippet": "eaw_schema_multiple_string_display.html", 
-      "modal_text": "timerange_help", 
-      "required": true, 
-      "form_snippet": "eaw_schema_repeating_text_js.html", 
-      "label": "Timerange", 
-      "validators": "repeating_text eaw_schema_json_not_empty vali_daterange", 
-      "form_placeholder": "e.g. 2016-03 TO 2016-05", 
-      "field_name": "timerange", 
-      "output_validators": "repeating_text_output output_daterange", 
-      "form_blanks": 1
-    }, 
+      "form_placeholder": "e.g. 2016-03 TO 2016-05",
+      "form_blanks": 1,
+      "validators": "repeating_text eaw_schema_json_not_empty vali_daterange",
+      "output_validators": "repeating_text_output output_daterange",
+      "form_snippet": "eaw_schema_repeating_text_js.html",
+      "modal_text": "timerange_help",
+      "required": true,
+      "label": "Timerange",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
+      "default_value": "*",
+      "field_name": "timerange"
+    },
     {
-      "default_value": "{}", 
-      "display_snippet": null, 
-      "modal_text": "spatial_help", 
-      "required": true, 
-      "form_snippet": "text_medium.html", 
-      "label": "Spatial Extent", 
-      "form_placeholder": "{\"type\": \"Point\", \"coordinates\": [8.6124600, 47.4031100]}", 
-      "field_name": "spatial"
-    }, 
+      "form_placeholder": "{\"type\": \"Point\", \"coordinates\": [8.6124600, 47.4031100]}",
+      "display_snippet": null,
+      "default_value": "{}",
+      "field_name": "spatial",
+      "form_snippet": "text_medium.html",
+      "required": true,
+      "label": "Spatial Extent",
+      "modal_text": "spatial_help"
+    },
     {
-      "display_snippet": "eaw_schema_multiple_string_display.html", 
-      "modal_text": "geographic-name_help", 
-      "required": false, 
-      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
-      "label": "Geographic Name(s)", 
-      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
-      "form_placeholder": "e.g. Greifensee", 
-      "field_name": "geographic_name", 
+      "form_placeholder": "e.g. Greifensee",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
+      "output_validators": "eaw_schema_multiple_string_output",
+      "form_snippet": "eaw_schema_multiple_string_textbox.html",
       "form_attrs": {
         "class": "eaw_with_infobutton"
-      }, 
-      "output_validators": "eaw_schema_multiple_string_output"
+      },
+      "required": false,
+      "label": "Geographic Name(s)",
+      "modal_text": "geographic-name_help",
+      "field_name": "geographic_name"
     }
-  ], 
-  "dataset_type": "dataset", 
-  "about_url": "http://github.com/ckan/ckanext-scheming"
+  ],
+  "resource_fields": [
+    {
+      "preset": "resource_url_upload",
+      "label": "URL",
+      "field_name": "url"
+    },
+    {
+      "label": "Package supports THIS publication",
+      "field_name": "publication",
+      "modal_text": "publication_help",
+      "form_snippet": "eaw_schema_checkbox.html"
+    },
+    {
+      "form_placeholder": "e.g. table_arsenic",
+      "field_name": "name",
+      "required": true,
+      "form_snippet": "eaw_schema_text.html",
+      "label": "Name",
+      "modal_text": "res_name_help"
+    },
+    {
+      "field_name": "resource_type",
+      "required": true,
+      "label": "Resource Type",
+      "preset": "select_short",
+      "choices": [
+        {
+          "label": "Dataset",
+          "value": "Dataset"
+        },
+        {
+          "label": "Collection",
+          "value": "Collection"
+        },
+        {
+          "label": "Text",
+          "value": "Text"
+        },
+        {
+          "label": "Image",
+          "value": "Image"
+        },
+        {
+          "label": "Audiovisual",
+          "value": "Audiovisual"
+        },
+        {
+          "label": "Software",
+          "value": "Software"
+        },
+        {
+          "label": "Sound",
+          "value": "Sound"
+        },
+        {
+          "label": "Geospatial Data",
+          "value": "GeospatialData"
+        },
+        {
+          "label": "Model",
+          "value": "Model"
+        },
+        {
+          "label": "Event",
+          "value": "Event"
+        },
+        {
+          "label": "Interactive Resource",
+          "value": "InteractiveResource"
+        },
+        {
+          "label": "Physical Object",
+          "value": "PhysicalObject"
+        },
+        {
+          "label": "Service",
+          "value": "Service"
+        },
+        {
+          "label": "Workflow",
+          "value": "Workflow"
+        },
+        {
+          "label": "Other",
+          "value": "Other"
+        }
+      ],
+      "modal_text": "resource_type_help"
+    },
+    {
+      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.",
+      "field_name": "description",
+      "required": false,
+      "form_snippet": "eaw_schema_markdown.html",
+      "label": "Notes",
+      "modal_text": "res_notes_help"
+    },
+    {
+      "form_placeholder": "How to cite this resource",
+      "label": "Cite as",
+      "field_name": "citation",
+      "modal_text": "res_citation_help",
+      "form_snippet": "eaw_schema_markdown.html"
+    },
+    {
+      "display_snippet": "text.html",
+      "label": "Hash (SHA-256)",
+      "field_name": "hash",
+      "modal_text": "res_hash_help",
+      "form_snippet": "eaw_schema_text.html"
+    }
+  ],
+  "dataset_type": "dataset"
 }
