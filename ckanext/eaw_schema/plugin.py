@@ -1,5 +1,6 @@
 import ckan.plugins as plugins
 import ckantoolkit as toolkit
+from ckan.logic import side_effect_free
 from ckan.plugins.interfaces import IPackageController
 from ckanext.eaw_vocabularies.validate_solr_daterange import SolrDaterange
 from ckanext.scheming.validation import scheming_validator
@@ -392,12 +393,30 @@ def eaw_schema_embargo_interval(interval):
     return {'now': now.isoformat(),
             'maxdate': maxdate.isoformat()}
 
+# Action functions
+
+@side_effect_free
+def eaw_schema_datamanger_show(context, data_dict):
+    o = data_dict.get('organization')
+    orga = toolkit.get_action('organization_list')(
+        data_dict={
+            'organizations': [o],
+            'all_fields': True,
+            'include_users': True,
+            'include_extras': True}
+    )[0]
+    dm = orga.get('datamanager')
+    dmrec = eaw_schema_geteawuser(dm)
+    return dmrec
+    
+
 
 class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IValidators)
     plugins.implements(plugins.IPackageController, inherit=True)
     plugins.implements(plugins.ITemplateHelpers)
+    plugins.implements(plugins.IActions)
 
     ## The fields that should be indexed as list
     ## a cludge until I figure out how to do that DRY.
@@ -471,5 +490,10 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_get_values': eaw_schema_get_values,
                 'eaw_schema_geteawuser': eaw_schema_geteawuser,
                 'eaw_schema_embargo_interval': eaw_schema_embargo_interval}
+    
+    # IActions
+    def get_actions(self):
+        return {'eaw_schema_datamanger_show': eaw_schema_datamanger_show}
+
     
  
