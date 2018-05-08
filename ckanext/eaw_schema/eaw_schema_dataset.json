@@ -631,20 +631,12 @@
               "label": "Public"
             },
             {
-              "value": "registered",
-              "label": "Registered Users"
-            },
-            {
-              "value": "any_organization",
-              "label": "Any Organization Members (Trusted Users)"
-            },
-            {
               "value": "same_organization",
-              "label": "Same Organization Members"
+              "label": "Same organization members"
             },
             {
               "value": "only_allowed_users",
-              "label": "Allowed Users Only"
+              "label": "Allowed users only"
             }
 	  ]
 	},
