@@ -2,6 +2,7 @@
   "scheming_version": 1,
   "about": "A reimplementation of the default CKAN dataset schema",
   "about_url": "http://github.com/ckan/ckanext-scheming",
+  "dataset_type": "dataset",
   "dataset_fields": [
     {
       "default_value": false,
@@ -113,7 +114,7 @@
         "data-module-tags": "",
         "style": "width:97%;",
         "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?",
-        "data-module": "autocomplete"
+        "data-module": "eaw_autocomplete"
       },
       "validators": "ignore_missing tag_string_convert",
       "label": "Keywords",
@@ -615,39 +616,36 @@
       "form_snippet": "eaw_schema_text.html"
     },
     {
-      "field_name": "restricted",
-      "label": "Access Restriction",
-      "preset": "composite",
-      "subfields": [
+      "field_name": "restricted_level",
+      "label": "Restriction",
+      "preset": "select",
+      "required": true,
+      "choices": [
 	{
-	  "field_name": "level",
-	  "label": "Level",
-	  "preset": "select",
-	  "form_include_blank_choice": false,
-	  "required": true,
-	  "choices": [
-            {
-              "value": "public",
-              "label": "Public"
-            },
-            {
-              "value": "same_organization",
-              "label": "Same organization members"
-            },
-            {
-              "value": "only_allowed_users",
-              "label": "Allowed users only"
-            }
-	  ]
+	  "value": "public",
+	  "label": "Public"
 	},
 	{
-	  "field_name": "allowed_users",
-          "label": "Allowed Users",
-          "preset": "tag_string_autocomplete",
-          "data-module-source":"/api/2/util/user/autocomplete?q=?"
-        }
+	  "value": "same_organization",
+	  "label": "Same organization members"
+	},
+	{
+	  "value": "only_allowed_users",
+	  "label": "Allowed users only"
+	}
       ]
+    },
+    {
+      "field_name": "allowed_users",
+      "label": "Allowed Users",
+      "classes": ["control-full"],
+      "form_snippet": "eaw_schema_text.html",
+      "form_attrs": {
+	"data-module": "eaw_autocomplete",
+	"data-module-tokensep": "[',',';']",
+	"data-module-tags": true,
+	"data-module-source": "/api/2/util/user/autocomplete?q=?"
+      }
     }
-  ],
-  "dataset_type": "dataset"
+  ]
 }
