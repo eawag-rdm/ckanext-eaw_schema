@@ -640,6 +640,7 @@
       "label": "Allowed Users",
       "classes": ["control-full"],
       "form_snippet": "eaw_schema_text.html",
+      "validators": "eaw_users_exist tag_string_convert",
       "form_attrs": {
 	"data-module": "eaw_autocomplete",
 	"data-module-tokensep": "[',',';']",
