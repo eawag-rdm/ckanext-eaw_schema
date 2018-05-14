@@ -112,10 +112,13 @@ def eaw_schema_multiple_string_convert(typ):
     (e.g. "schema_default.json")
     Currently implemented: typ = pipe ("|" as separator),
                            typ = textbox ("\r\n" as separator)
+                           typ = comma ("," as separator)
     '''
 
     def validator(value):
-        sep = {"pipe": "|", "textbox": "\r\n"}[typ]
+        logger.debug("\n\n  In eaw_schema_multiple_string_convert TYP={}\n\n".format(typ))
+        
+        sep = {'pipe': '|', 'textbox': '\r\n', 'comma': ','}[typ]
         if isinstance(value, list):
             val = value
         elif isinstance(value, basestring):
@@ -152,6 +155,13 @@ def eaw_schema_multiple_string_output(value):
     except ValueError:
         raise toolkit.Invalid("String doesn't parse into JSON")
     return value
+
+def eaw_schema_list_to_commasepstring_output(value):
+    l = eaw_schema_multiple_string_output(value)
+    if isinstance(l, list):
+        return ','.join(l)
+    else:
+        raise toolkit.Invalid("String doesn't parse into JSON-list")
 
 
 @scheming_validator
@@ -283,7 +293,24 @@ def eaw_schema_publicationlink(value):
         else:
             url = u'https://doi.org/{}'.format(doimatch.group(1))
     return(url)
-            
+
+
+def eaw_users_exist(userstring):
+    '''checks whether a list of users (as comma separated string)
+    contains only existing usernames.
+    
+    '''
+    if isinstance(userstring, basestring):
+        users = [user.strip() for user in userstring.split(',') if user.strip()]
+    else:
+        raise(toolkit.Invalid("{} not a string.".format(repr(userstring))))
+    for u in users:
+        try:
+            toolkit.get_action('user_show')(data_dict={'id': u})
+        except toolkit.ObjectNotFound:
+            raise(toolkit.Invalid("User \"{}\" does not exist.".format(u)))
+    return userstring
+
 
 ## Template helper functions
 
@@ -454,7 +481,11 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 "eaw_schema_publicationlink":
                     eaw_schema_publicationlink,
                 "eaw_schema_striptime":
-                    eaw_schema_striptime
+                    eaw_schema_striptime,
+                'eaw_schema_list_to_commasepstring_output':
+                    eaw_schema_list_to_commasepstring_output,
+                'eaw_users_exist':
+                    eaw_users_exist
         }
 
     # IPackageController

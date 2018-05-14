@@ -640,10 +640,13 @@
       "label": "Allowed Users",
       "classes": ["control-full"],
       "form_snippet": "eaw_schema_text.html",
-      "validators": "eaw_users_exist tag_string_convert",
+      "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)",
+      "output_validators": "eaw_schema_list_to_commasepstring_output",
       "form_attrs": {
 	"data-module": "eaw_autocomplete",
 	"data-module-tokensep": "[',',';']",
+	"data-module-label": "fullname",
+	"data-module-key": "name",
 	"data-module-tags": true,
 	"data-module-source": "/api/2/util/user/autocomplete?q=?"
       }
