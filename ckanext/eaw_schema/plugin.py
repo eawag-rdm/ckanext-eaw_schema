@@ -116,9 +116,12 @@ def eaw_schema_multiple_string_convert(typ):
     '''
 
     def validator(value):
-        logger.debug("\n\n  In eaw_schema_multiple_string_convert TYP={}\n\n".format(typ))
-        
         sep = {'pipe': '|', 'textbox': '\r\n', 'comma': ','}[typ]
+        try:
+            if isinstance(json.loads(value), list):
+                return value
+        except:
+            pass
         if isinstance(value, list):
             val = value
         elif isinstance(value, basestring):
@@ -157,9 +160,17 @@ def eaw_schema_multiple_string_output(value):
     return value
 
 def eaw_schema_list_to_commasepstring_output(value):
+    print("\n\n eaw_schema_list_to_commasepstring_output  \n\n")
+    print('\n\n value: {}\n'.format(repr(value)))
+
+    
     l = eaw_schema_multiple_string_output(value)
+    print('\n\n l: {}\n'.format(repr(l)))
+
     if isinstance(l, list):
-        return ','.join(l)
+        ret = ','.join(l)
+        print('\n\n returning ret: {}\n'.format(ret))
+        return ret
     else:
         raise toolkit.Invalid("String doesn't parse into JSON-list")
 
@@ -502,16 +513,12 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
             try:
                 valnew = json.loads(val)
             except:
-                logger.debug("{} doesn't parse as JSON".format(repr(val)))
                 val1 = json.dumps([repr(val)])
-                logger.debug("replacing with {}".format(repr(val1)))
                 valnew = json.loads(val1)
             if isinstance(valnew, list):
                 pkg_dict[field] = valnew
             else:
                 valnew_l = _everything2stringlist(valnew)
-                logger.debug("{} is not a list, try replacing with {}"
-                       .format(valnew, valnew_l))
                 pkg_dict[field] = valnew_l
         return(pkg_dict)
 
