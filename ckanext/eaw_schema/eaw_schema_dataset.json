@@ -114,7 +114,8 @@
         "data-module-tags": "",
         "style": "width:97%;",
         "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?",
-        "data-module": "eaw_autocomplete"
+        "data-module": "eaw_autocomplete",
+	"data-module-tokensep": ",;"
       },
       "validators": "ignore_missing tag_string_convert",
       "label": "Keywords",
@@ -644,7 +645,7 @@
       "output_validators": "eaw_schema_list_to_commasepstring_output",
       "form_attrs": {
 	"data-module": "eaw_autocomplete",
-	"data-module-tokensep": "[',',';']",
+	"data-module-tokensep": "[,;",
 	"data-module-label": "fullname",
 	"data-module-key": "name",
 	"data-module-tags": true,
