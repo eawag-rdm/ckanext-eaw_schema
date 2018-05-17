@@ -160,16 +160,9 @@ def eaw_schema_multiple_string_output(value):
     return value
 
 def eaw_schema_list_to_commasepstring_output(value):
-    print("\n\n eaw_schema_list_to_commasepstring_output  \n\n")
-    print('\n\n value: {}\n'.format(repr(value)))
-
-    
     l = eaw_schema_multiple_string_output(value)
-    print('\n\n l: {}\n'.format(repr(l)))
-
     if isinstance(l, list):
         ret = ','.join(l)
-        print('\n\n returning ret: {}\n'.format(ret))
         return ret
     else:
         raise toolkit.Invalid("String doesn't parse into JSON-list")
