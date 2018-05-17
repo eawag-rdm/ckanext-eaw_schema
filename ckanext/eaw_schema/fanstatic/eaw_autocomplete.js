@@ -54,7 +54,7 @@ this.ckan.module('eaw_autocomplete', function (jQuery) {
         formatInputTooShort: this.formatInputTooShort,
         dropdownCssClass: this.options.dropdownClass,
         containerCssClass: this.options.containerClass,
-        tokenSeparators: this.options.tokensep.spli('')
+        tokenSeparators: this.options.tokensep.split('')
       };
 
       // Different keys are required depending on whether the select is
