@@ -180,12 +180,14 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	maintext = '<p><b>Found publication:</b></p>'
 	  + '<div>' + modalinfo.citation + '</div><p></p>'
 	  + '<div class="alert-info">'
-	  + 'If that is not the right one, just click "Wrong" and continue.</div>';
+	  + 'If that is not the right one, just click "Discard" and continue.'
+          + '<br />Clicking "OK, Fill in metadata!" will overwrite any ' 
+	  + 'preexisting entries.</div>';
 	$('#pubmodal_header').addClass('alert-success');
 	$('#pubmodal_title').html('success');
 	$('#pubmodal_main').html(maintext);
-	$('#pubmodal_button_left').html('Wrong').addClass('btn-warning').show();
-	$('#pubmodal_button_right').html('OK').addClass('btn-success').show();
+	$('#pubmodal_button_left').html('Discard').addClass('btn-warning').show();
+	$('#pubmodal_button_right').html('OK, Fill in metadata!').addClass('btn-success').show();
 	
       }
       $('#pubmodal').modal('show');
