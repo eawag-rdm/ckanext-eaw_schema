@@ -125,7 +125,8 @@ ckan.module('eaw_schema_checkpublication', function ($) {
     get_dora_id_from_doi: function(doi) {
       var module = this;
       var popelre = /<a\s+href="\/eawag\/islandora\/object\/(eawag(?:%3A|:)\d+)">Detailed\s+Record<\/a>/;
-      var doradoi = doi.replace('/', '~slsh~');
+      var slashreplace = /\//g;
+      var doradoi = doi.replace(slashreplace, '%5C~slsh~');
       var link = 'https://www.dora.lib4ri.ch/eawag/islandora/search/'
 		   + 'mods_identifier_doi_mt%3A%28' + doradoi + '%29';
       var doraid = $.ajax({
