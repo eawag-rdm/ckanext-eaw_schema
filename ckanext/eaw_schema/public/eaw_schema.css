@@ -207,3 +207,7 @@ dl.spaced > dd:not(:last-child) {
 p#md_tooltip_lead {
   word-break: normal;
 }
+
+i.fa-exclamation-triangle {
+  color: #FF6840;
+}
