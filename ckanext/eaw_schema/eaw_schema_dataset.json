@@ -109,6 +109,7 @@
       "display_property": "dcat:keyword",
       "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...",
       "field_name": "tag_string",
+      "required": true,
       "form_snippet": "eaw_schema_text.html",
       "form_attrs": {
         "data-module-tags": "",
@@ -117,7 +118,7 @@
         "data-module": "eaw_autocomplete",
 	"data-module-tokensep": ",;"
       },
-      "validators": "ignore_missing tag_string_convert",
+      "validators": "scheming_required tag_string_convert",
       "label": "Keywords",
       "modal_text": "keywords_help"
     },
