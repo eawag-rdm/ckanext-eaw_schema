@@ -315,6 +315,17 @@ def eaw_users_exist(userstring):
             raise(toolkit.Invalid("User \"{}\" does not exist.".format(u)))
     return userstring
 
+def test_before(key, flattened_data, errors, context):
+    # Check
+    review_level = flattened_data.get(('review_level',))
+    reviewed_by = flattened_data.get(('reviewed_by',))
+    if review_level != 'none' and not reviewed_by:
+        raise toolkit.ValidationError({'reviewed_by': [_('Missing value')]})
+    elif review_level == 'none' and reviewed_by:
+        raise toolkit.ValidationError(
+            {'reviewed_by': [_('Not empty implies Review Level not "none".')]})
+
+        
 
 ## Template helper functions
 
@@ -489,7 +500,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_list_to_commasepstring_output':
                     eaw_schema_list_to_commasepstring_output,
                 'eaw_users_exist':
-                    eaw_users_exist
+                    eaw_users_exist,
+                'test_before':
+                    test_before
         }
 
     # IPackageController

@@ -168,6 +168,9 @@ ol.spaced li:not(:last-child),
 dl.spaced > dd:not(:last-child) {
   margin-bottom: 10px;
 }
+dl.spaced > dt {
+  line-height: 2em;
+}
 
 @media (max-width: 767px) {
   .toolbar .breadcrumb a {
