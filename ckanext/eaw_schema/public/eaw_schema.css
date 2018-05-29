@@ -213,3 +213,43 @@ p#md_tooltip_lead {
 i.fa-exclamation-triangle {
   color: #FF6840;
 }
+
+/* A horizontal line with text in the middle
+   Used to separate sections.
+*/
+
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 50px 0 20px 0;
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+    color: #005978;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 2px;
+    background: #FF9955;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
+}

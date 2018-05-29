@@ -11,6 +11,12 @@
       "display_snippet": null
     },
     {
+      "field_name": "separator_domain_metadata",
+      "form_snippet": "eaw_form_separator.html",
+      "display_snippet": null,
+      "label": "package type"
+    },
+    {
       "default_value": false,
       "field_name": "ispublication",
       "form_snippet": "eaw_schema_checkbox.html",
@@ -73,6 +79,12 @@
       "field_name": "embargo"
     },
     {
+      "field_name": "separator_domain_metadata",
+      "form_snippet": "eaw_form_separator.html",
+      "display_snippet": null,
+      "label": "bibliographic metadata"
+    },
+    {
       "display_property": "dct:title",
       "form_placeholder": "A descriptive title",
       "field_name": "title",
@@ -129,123 +141,10 @@
       "modal_text": "keywords_help"
     },
     {
-      "field_name": "owner_org",
-      "required": true,
-      "modal_text_visibility": "visibility_help",
-      "modal_text_organization": "organization_help",
-      "preset": "eaw_schema_dataset_organization",
-      "label": "Organization"
-    },
-    {
-      "display_property": "adms:status",
-      "choices": [
-        {
-          "label": "incomplete",
-          "value": "incomplete"
-        },
-        {
-          "label": "complete",
-          "value": "complete"
-        }
-      ],
-      "field_name": "status",
-      "required": true,
-      "form_attrs": {
-        "class": "medinput"
-      },
-      "preset": "select_short",
-      "label": "Status",
-      "modal_text": "status_help"
-    },
-    {
-      "field_name": "review_level",
-      "preset": "select_short",
-      "validators": "scheming_required",
-      "required": true,
-      "default_value": "none",
-      "choices": [
-	{
-	  "value": "none",
-	  "label": "none"
-	},
-	{
-	  "value": "general",
-	  "label": "general"
-	},
-	{
-	  "value": "domain",
-	  "label": "domain specific"
-	}
-      ],
-      "label": "Review Level",
-      "form_attrs": {
-	"style": "width:270px;"
-      },
-      "modal_text": "review_level_help"
-    },
-    {
-      "field_name": "reviewed_by",
-      "label": "Reviewed By",
-      "classes": ["control-full"],
-	"form_snippet": "eaw_schema_text.html",
-      "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)",
-      "output_validators": "eaw_schema_list_to_commasepstring_output",
-      "form_placeholder": "Start typing name or email of ERIC user ...",
-      "display_snippet": "eaw_fullname_email.html",
-      "form_attrs": {
-	"style": "width:270px;",
-	"data-module": "eaw_autocomplete",
-	"data-module-tokensep": "[,;",
-	"data-module-label": "fullname",
-	"data-module-key": "name",
-	"data-module-tags": true,
-	"data-module-source": "/api/2/util/user/autocomplete?q=?"
-      }
-    },
-    {
-      "display_property": "datacite:datacurator",
-      "default_value": "context_username",
-      "field_name": "maintainer",
-      "label": "Curator",
-      "modal_text": "curator_help",
-      "required": true,
-      "form_snippet": "eaw_schema_text.html",
-      "display_snippet": "eaw_fullname_email.html",
-      "validators": "scheming_required eaw_users_exist",
-      "form_attrs": {
-	"style": "width:97%;",
-	"data-module": "eaw_autocomplete",
-	"data-module-label": "fullname",
-	"data-module-key": "name",
-	"data-module-source": "/api/2/util/user/autocomplete?q=?"
-      }
-    },
-    {
-      "display_property": "datacite:datacurator",
-      "default_value": "context_username",
-      "field_name": "usage_contact",
-      "label": "Usage Contact",
-      "modal_text": "usage_contact_help",
-      "required": true,
-      "form_snippet": "eaw_schema_text.html",
-      "display_snippet": "eaw_fullname_email.html",
-      "validators": "scheming_required eaw_users_exist",
-      "form_attrs": {
-	"style": "width:97%;",
-	"data-module": "eaw_autocomplete",
-	"data-module-label": "fullname",
-	"data-module-key": "name",
-	"data-module-source": "/api/2/util/user/autocomplete?q=?"
-      }
-    },
-    {
-      "display_property": "dct:description",
-      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.",
-      "field_name": "notes-2",
-      "form_snippet": "eaw_schema_markdown.html",
-      "required": false,
-      "label": "Notes",
-      "modal_text": "notes_help"
+      "field_name": "separator_domain_metadata",
+      "form_snippet": "eaw_form_separator.html",
+      "display_snippet": null,
+      "label": "domain specific metadata"
     },
     {
       "default_value": "none",
@@ -568,6 +467,131 @@
       "label": "Geographic Name(s)",
       "modal_text": "geographic-name_help",
       "field_name": "geographic_name"
+    },
+    {
+      "field_name": "separator_domain_metadata",
+      "form_snippet": "eaw_form_separator.html",
+      "display_snippet": null,
+      "label": "package status & usage"
+    },
+    {
+      "field_name": "owner_org",
+      "required": true,
+      "modal_text_visibility": "visibility_help",
+      "modal_text_organization": "organization_help",
+      "preset": "eaw_schema_dataset_organization",
+      "label": "Organization"
+    },
+    {
+      "display_property": "adms:status",
+      "choices": [
+        {
+          "label": "incomplete",
+          "value": "incomplete"
+        },
+        {
+          "label": "complete",
+          "value": "complete"
+        }
+      ],
+      "field_name": "status",
+      "required": true,
+      "form_attrs": {
+        "class": "medinput"
+      },
+      "preset": "select_short",
+      "label": "Status",
+      "modal_text": "status_help"
+    },
+    {
+      "field_name": "review_level",
+      "preset": "select_short",
+      "validators": "scheming_required",
+      "required": true,
+      "default_value": "none",
+      "choices": [
+	{
+	  "value": "none",
+	  "label": "none"
+	},
+	{
+	  "value": "general",
+	  "label": "general"
+	},
+	{
+	  "value": "domain",
+	  "label": "domain specific"
+	}
+      ],
+      "label": "Review Level",
+      "form_attrs": {
+	"style": "width:270px;"
+      },
+      "modal_text": "review_level_help"
+    },
+    {
+      "field_name": "reviewed_by",
+      "label": "Reviewed By",
+      "classes": ["control-full"],
+	"form_snippet": "eaw_schema_text.html",
+      "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)",
+      "output_validators": "eaw_schema_list_to_commasepstring_output",
+      "form_placeholder": "Start typing name or email of ERIC user ...",
+      "display_snippet": "eaw_fullname_email.html",
+      "form_attrs": {
+	"style": "width:270px;",
+	"data-module": "eaw_autocomplete",
+	"data-module-tokensep": "[,;",
+	"data-module-label": "fullname",
+	"data-module-key": "name",
+	"data-module-tags": true,
+	"data-module-source": "/api/2/util/user/autocomplete?q=?"
+      }
+    },
+    {
+      "display_property": "datacite:datacurator",
+      "default_value": "context_username",
+      "field_name": "maintainer",
+      "label": "Curator",
+      "modal_text": "curator_help",
+      "required": true,
+      "form_snippet": "eaw_schema_text.html",
+      "display_snippet": "eaw_fullname_email.html",
+      "validators": "scheming_required eaw_users_exist",
+      "form_attrs": {
+	"style": "width:97%;",
+	"data-module": "eaw_autocomplete",
+	"data-module-label": "fullname",
+	"data-module-key": "name",
+	"data-module-source": "/api/2/util/user/autocomplete?q=?"
+      }
+    },
+    {
+      "display_property": "datacite:datacurator",
+      "default_value": "context_username",
+      "field_name": "usage_contact",
+      "label": "Usage Contact",
+      "modal_text": "usage_contact_help",
+      "required": true,
+      "form_snippet": "eaw_schema_text.html",
+      "display_snippet": "eaw_fullname_email.html",
+      "validators": "scheming_required eaw_users_exist",
+      "form_attrs": {
+	"style": "width:97%;",
+	"data-module": "eaw_autocomplete",
+	"data-module-label": "fullname",
+	"data-module-key": "name",
+	"data-module-source": "/api/2/util/user/autocomplete?q=?"
+      }
+    },
+    {
+      "display_property": "dct:description",
+      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.",
+      "field_name": "notes-2",
+      "form_snippet": "eaw_schema_markdown.html",
+      "required": false,
+      "label": "Notes",
+      "modal_text": "notes_help"
     }
   ],
   "resource_fields": [
