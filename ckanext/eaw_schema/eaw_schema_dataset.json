@@ -191,6 +191,7 @@
       "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)",
       "output_validators": "eaw_schema_list_to_commasepstring_output",
       "form_placeholder": "Start typing name or email of ERIC user ...",
+      "display_snippet": "eaw_fullname_email.html",
       "form_attrs": {
 	"style": "width:270px;",
 	"data-module": "eaw_autocomplete",
@@ -203,22 +204,39 @@
     },
     {
       "display_property": "datacite:datacurator",
-      "form_placeholder": "Carla Curator <curca@eawag.ch>",
-      "validators": "scheming_required",
+      "default_value": "context_username",
       "field_name": "maintainer",
-      "form_snippet": "text_medium.html",
-      "required": true,
       "label": "Curator",
       "modal_text": "curator_help",
-      "default_value": "context_fullname_email"
+      "required": true,
+      "form_snippet": "eaw_schema_text.html",
+      "display_snippet": "eaw_fullname_email.html",
+      "validators": "scheming_required eaw_users_exist",
+      "form_attrs": {
+	"style": "width:97%;",
+	"data-module": "eaw_autocomplete",
+	"data-module-label": "fullname",
+	"data-module-key": "name",
+	"data-module-source": "/api/2/util/user/autocomplete?q=?"
+      }
     },
     {
-      "form_placeholder": "Pat Permission <pep@eawag.ch>",
-      "default_value": "context_fullname_email",
+      "display_property": "datacite:datacurator",
+      "default_value": "context_username",
       "field_name": "usage_contact",
-      "form_snippet": "text_medium.html",
       "label": "Usage Contact",
-      "modal_text": "usage_contact_help"
+      "modal_text": "usage_contact_help",
+      "required": true,
+      "form_snippet": "eaw_schema_text.html",
+      "display_snippet": "eaw_fullname_email.html",
+      "validators": "scheming_required eaw_users_exist",
+      "form_attrs": {
+	"style": "width:97%;",
+	"data-module": "eaw_autocomplete",
+	"data-module-label": "fullname",
+	"data-module-key": "name",
+	"data-module-source": "/api/2/util/user/autocomplete?q=?"
+      }
     },
     {
       "display_property": "dct:description",
