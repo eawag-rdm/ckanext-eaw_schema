@@ -238,6 +238,20 @@
       "select_size": 5
     },
     {
+      "form_placeholder": "e.g. 2-Methyl-4-amino-6-methoxy-s-triazine",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
+      "output_validators": "eaw_schema_multiple_string_output",
+      "form_snippet": "eaw_schema_multiple_string_textbox.html",
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      },
+      "required": false,
+      "label": "Substances",
+      "modal_text": "substances_help",
+      "field_name": "substances"
+    },
+    {
       "default_value": "none",
       "sorted_choices": true,
       "preset": "eaw_multiple_select_js",
@@ -416,20 +430,6 @@
       "label": "Taxa",
       "modal_text": "taxa_help",
       "field_name": "taxa"
-    },
-    {
-      "form_placeholder": "e.g. 2-Methyl-4-amino-6-methoxy-s-triazine",
-      "display_snippet": "eaw_schema_multiple_string_display.html",
-      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
-      "output_validators": "eaw_schema_multiple_string_output",
-      "form_snippet": "eaw_schema_multiple_string_textbox.html",
-      "form_attrs": {
-        "class": "eaw_with_infobutton"
-      },
-      "required": false,
-      "label": "Substances",
-      "modal_text": "substances_help",
-      "field_name": "substances"
     },
     {
       "form_placeholder": "e.g. 2016-03 TO 2016-05",
