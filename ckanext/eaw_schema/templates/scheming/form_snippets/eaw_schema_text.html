@@ -25,13 +25,14 @@
 {% endmacro %}
 
 {% set modal_text=field.modal_text if 'modal_text' in field else none %}
- 
+{% set value=data[field.field_name] or '' %} 
+{% set default_value=field.default_value %}
 {%- call eaw_input(
   field.field_name,
   id='field-' + field.field_name,
   label=h.scheming_language_text(field.label),
   placeholder=h.scheming_language_text(field.form_placeholder),
-  value=data[field.field_name],
+  value=h.eaw_schema_set_default(value, default_value),
   error=errors[field.field_name],
   classes=field.classes,
   attrs=field.form_attrs if 'form_attrs' in field else {},
@@ -43,4 +44,3 @@
 {% if modal_text is not none %}
   {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html', field=field -%}
 {% endif %}
-       
