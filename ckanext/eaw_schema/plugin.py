@@ -315,6 +315,7 @@ def eaw_users_exist(userstring):
             raise(toolkit.Invalid("User \"{}\" does not exist.".format(u)))
     return userstring
 
+
 def test_before(key, flattened_data, errors, context):
     # Check
     review_level = flattened_data.get(('review_level',))
@@ -329,9 +330,10 @@ def test_before(key, flattened_data, errors, context):
 
 ## Template helper functions
 
-def eaw_schema_set_default(values, default_value):
+def eaw_schema_set_default(values, default_value, field=''):
     ## Only set default value if current value is empty string or None
     ## or a list containing only '' or None.
+    
     if isinstance(values, basestring) or values is None:
         if values not in ['', None]:
             return values
@@ -348,8 +350,10 @@ def eaw_schema_set_default(values, default_value):
         val = u'{} <{}>'.format(toolkit.c.userobj.fullname,
                                toolkit.c.userobj.email)
 
-    ## insert elif clauses for other defaults
+    elif default_value == "context_username":
+        val = toolkit.c.userobj.name
 
+    ## insert elif clauses for other defaults
     else:
         val = default_value
 
@@ -358,7 +362,7 @@ def eaw_schema_set_default(values, default_value):
         values[0] = val
     else:
         values = val
-
+        
     return values
 
 def eaw_schema_get_values(field_name, form_blanks, data):
@@ -434,6 +438,26 @@ def eaw_schema_embargo_interval(interval):
     maxdate = now + datetime.timedelta(days=interval)
     return {'now': now.isoformat(),
             'maxdate': maxdate.isoformat()}
+
+def eaw_username_fullname_email(s_users):
+    '''Returns list ["Displayname1 <email1>", "Displayname1 <email1>", ..]
+       from string of comma-separated usernames "user1,user2,user3,..."
+
+    '''
+
+    def mkfull(username):
+        try:
+            userdict = toolkit.get_action('user_show')(
+                context={'keep_email': True}, data_dict={'id': username})
+        except toolkit.ObjectNotFound:
+            userdict = {'display_name': username, 'email': 'unknown'}
+        return '{} <{}>'.format(
+            userdict.get('display_name', 'unknown'),
+            userdict.get('email', 'unknown'))
+
+    l_users = [mkfull(u) for u in s_users.split(',')]
+    return l_users
+
 
 # Action functions
 
@@ -533,7 +557,8 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
         return {'eaw_schema_set_default': eaw_schema_set_default,
                 'eaw_schema_get_values': eaw_schema_get_values,
                 'eaw_schema_geteawuser': eaw_schema_geteawuser,
-                'eaw_schema_embargo_interval': eaw_schema_embargo_interval}
+                'eaw_schema_embargo_interval': eaw_schema_embargo_interval,
+                'eaw_username_fullname_email': eaw_username_fullname_email}
     
     # IActions
     def get_actions(self):
