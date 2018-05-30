@@ -1,15 +1,22 @@
 <div class="modal-help">
   <div id="{{ field.modal_text }}" class="modal hide fade">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h1>Taxa</h1>
+      <button type="button" class="close" data-dismiss="modal"
+	      aria-hidden="true">&times;</button>
+      <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp <b>Taxa</b></p>
     </div>
     <div class="modal-body">
-      <p>List the taxonomic name(s) that is(are) the subject of
-      this <i>package</i>, e.g. the species, genera, families.</p>
-      <p>Taxa should be denoted by the accepted scientific name
-	(see <a href="http://www.ncbi.nlm.nih.gov/taxonomy">The NCBI
-	  Taxonomy Database</a>.)</p>
+      <p>List the taxonomic names that are the subject of
+      this <i>package</i>, e.g. the species, genera, and/or
+      families.</p>
+      <p>Taxa should be denoted by the accepted scientific name.</p>
+      <div class="alert alert-info">
+	<i class="fa fa-info-circle"></i>&nbsp;
+	<a href="http://www.ncbi.nlm.nih.gov/taxonomy" target="_blank">
+	  <i class="fa fa-external-link-square"></i>The NCBI Taxonomy
+	  Database
+	</a> is useful in this context.
+      </div>
       <p>You can write (or copy &amp; paste) a list of taxa into the
 	text field, which expects <b>one item per line</b>.</p>
     </div>

@@ -157,7 +157,7 @@
           "value": "alkalinity"
         },
         {
-          "label": "degradation Rate",
+          "label": "degradation rate",
           "value": "degradation_rate"
         },
         {
@@ -238,7 +238,7 @@
       "select_size": 5
     },
     {
-      "form_placeholder": "e.g. 2-Methyl-4-amino-6-methoxy-s-triazine",
+      "form_placeholder": "CV 399 (NXFQWRWXEYTOTK-UHFFFAOYSA-N)\nAzimsulfuron (MAHPNPYYQAIOJN-UHFFFAOYSA-N)",
       "display_snippet": "eaw_schema_multiple_string_display.html",
       "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
       "output_validators": "eaw_schema_multiple_string_output",
@@ -247,178 +247,12 @@
         "class": "eaw_with_infobutton"
       },
       "required": false,
-      "label": "Substances",
+      "label": "Substances\n(scientific names)",
       "modal_text": "substances_help",
       "field_name": "substances"
     },
     {
-      "default_value": "none",
-      "sorted_choices": true,
-      "preset": "eaw_multiple_select_js",
-      "field_name": "generic-terms",
-      "choices": [
-        {
-          "label": "none",
-          "value": "none"
-        },
-        {
-          "label": "micropollutants",
-          "value": "micropollutants"
-        },
-        {
-          "label": "nutrients",
-          "value": "nutrients"
-        },
-        {
-          "label": "heavy metals",
-          "value": "heavy metals"
-        },
-        {
-          "label": "nano-particles",
-          "value": "nano-particles"
-        },
-        {
-          "label": "organic matter",
-          "value": "organic matter"
-        },
-        {
-          "label": "fish",
-          "value": "fish"
-        },
-        {
-          "label": "algae",
-          "value": "algae"
-        },
-        {
-          "label": "invertebrates",
-          "value": "invertebrates"
-        },
-        {
-          "label": "biofilm",
-          "value": "biofilm"
-        },
-        {
-          "label": "macrophytes",
-          "value": "macrophytes"
-        },
-        {
-          "label": "microplastics",
-          "value": "microplastics"
-        },
-        {
-          "label": "cell line",
-          "value": "cell_line"
-        },
-        {
-          "label": "bacteria",
-          "value": "bacteria"
-        },
-        {
-          "label": "faecal sludge",
-          "value": "faecal_sludge"
-        },
-        {
-          "label": "human health behaviour",
-          "value": "human health behaviour"
-        },
-        {
-          "label": "drugs",
-          "value": "drugs"
-        },
-        {
-          "label": "beetles",
-          "value": "beetles"
-        },
-        {
-          "label": "pesticides",
-          "value": "pesticides"
-        }
-      ],
-      "form_attrs": {
-        "style": "width:90%;"
-      },
-      "required": true,
-      "label": "Generic Terms",
-      "modal_text": "generic-terms_help",
-      "select_size": 5
-    },
-    {
-      "default_value": "none",
-      "sorted_choices": true,
-      "preset": "eaw_multiple_select_js",
-      "field_name": "systems",
-      "choices": [
-        {
-          "label": "Groundwater",
-          "value": "Groundwater"
-        },
-        {
-          "label": "Lab",
-          "value": "Lab"
-        },
-        {
-          "label": "Lake",
-          "value": "Lake"
-        },
-        {
-          "label": "none",
-          "value": "none"
-        },
-        {
-          "label": "River",
-          "value": "River"
-        },
-        {
-          "label": "Sanitation-System",
-          "value": "Sanitation-System"
-        },
-        {
-          "label": "Sewer",
-          "value": "Sewer"
-        },
-        {
-          "label": "Watershed",
-          "value": "Watershed"
-        },
-        {
-          "label": "WWTP",
-          "value": "WWTP"
-        },
-        {
-          "label": "Flow-Through",
-          "value": "flow-through"
-        },
-        {
-          "label": "Batch",
-          "value": "batch"
-        },
-        {
-          "label": "Metropolitan Area",
-          "value": "metropolitan_area"
-        },
-        {
-          "label": "Social system",
-          "value": "Social system"
-        },
-        {
-          "label": "Urban Drainage System",
-          "value": "Urban Drainage System"
-        },
-        {
-          "label": "Stream",
-          "value": "Stream"
-        }
-      ],
-      "form_attrs": {
-        "style": "width:90%;"
-      },
-      "required": true,
-      "label": "Systems",
-      "modal_text": "systems_help",
-      "select_size": 5
-    },
-    {
-      "form_placeholder": "e.g. Dictyosphaerium Anabaena",
+	"form_placeholder": "herbicide\nmetabolites\nnutrients\norganic matter\nmicroplastics",
       "display_snippet": "eaw_schema_multiple_string_display.html",
       "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
       "output_validators": "eaw_schema_multiple_string_output",
@@ -427,12 +261,54 @@
         "class": "eaw_with_infobutton"
       },
       "required": false,
-      "label": "Taxa",
+      "label": "Substances (generic terms)",
+      "modal_text": "substances_generic_help",
+      "field_name": "substances_generic"
+    },
+    {
+      "form_placeholder": "Dictyosphaerium libertatis\nNodularia moravica\nPhodopus sungorus\nSolanum tuberosum",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
+      "output_validators": "eaw_schema_multiple_string_output",
+      "form_snippet": "eaw_schema_multiple_string_textbox.html",
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      },
+      "required": false,
+      "label": "Taxa (scientific names)",
       "modal_text": "taxa_help",
       "field_name": "taxa"
     },
     {
-      "form_placeholder": "e.g. 2016-03 TO 2016-05",
+      "form_placeholder": "fish\nalgae\ninvertebrates\nbeetles",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
+      "output_validators": "eaw_schema_multiple_string_output",
+      "form_snippet": "eaw_schema_multiple_string_textbox.html",
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      },
+      "required": false,
+      "label": "Organisms (generic terms)",
+      "modal_text": "taxa_generic_help",
+      "field_name": "taxa_generic"
+    },
+    {
+      "form_placeholder": "river\nlake\nsewage system\nmetropolitan area\nlab",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
+      "output_validators": "eaw_schema_multiple_string_output",
+      "form_snippet": "eaw_schema_multiple_string_textbox.html",
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      },
+      "required": false,
+      "label": "Systems",
+      "modal_text": "systems_help",
+      "field_name": "systems"
+    },
+    {
+      "form_placeholder": "2016-03 TO 2016-05",
       "form_blanks": 1,
       "validators": "repeating_text eaw_schema_json_not_empty vali_daterange",
       "output_validators": "repeating_text_output output_daterange",
@@ -455,7 +331,7 @@
       "modal_text": "spatial_help"
     },
     {
-      "form_placeholder": "e.g. Greifensee",
+      "form_placeholder": "Greifensee\nRiver Rhine\nKampala, Uganda\n",
       "display_snippet": "eaw_schema_multiple_string_display.html",
       "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
       "output_validators": "eaw_schema_multiple_string_output",

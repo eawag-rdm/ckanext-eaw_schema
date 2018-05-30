@@ -1,76 +1,55 @@
-{#
-Help text for timerange field for package create/update
-#}
-<style>
-  div.modal-help {
-  font-size: large;
-  }
-  
-  .modal-help .modal  {
-  width: 750px;
-  max-width:95%;
-  left:auto;
-  margin-left: -200px;
-  }
-  .modal-help .modal-body {
-  max-height: 600px;
-  }
-</style>
-
 <div class="modal-help">
-<div id="timerange_help" class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h1>Timerange</h1>
-  </div>
-  <div class="modal-body">
+  <div id="{{ field.modal_text }}" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal"
+	      aria-hidden="true">&times</button>
+      <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp
+	<b>Timerange</b></p>
+    </div>
+    <div class="modal-body">
     <p>
       Denote the timerange(s) to which the data in the package
       relates, i.e. when the state of the system under consideration was
       examined. Usually that would be the time(s) at which
-      field-measurements were made or samples were taken. The date when
-      you analyzed the samples in the lab is likely irrelevant in this
-      context.
-    </p>
-    <p>
-      <b style="background-color:yellow;">All times are UTC.</b><br />
-      <b style="background-color:yellow;">Pad single digit days or months with a leading zero, e.g. "7" &#10137; "07".</b>
-      
-    </p>
-    <p>
-      <span>Points in time and implicit time-ranges:</span>
-      <table style="border-collapse:separate;border-spacing:30px 0px;">
+      field-measurements were made or samples were taken.</p>
+    <div class="alert alert-info">
+      <p><i class="fa fa-info-circle"></i> Enter " <b>*</b> " if no
+      specific time-range can be associated with
+	the <i>package's</i> data.</p></div>
+    <div class="alert">
+      <p><i class="fa fa-exclamation-triangle"></i> <b>All times are UTC.</b></p>
+      <p><i class="fa fa-exclamation-triangle"></i>
+	<b> Pad single digit days or months with a leading zero, e.g. "7" &#10137; "07".</b>
+    </div>
+    <h3>Points in time and implicit time-ranges:</h3>
+    <p><table style="border-collapse:separate;border-spacing:30px 0px;">
+	<tr><th>field-value</th><th>meaning</th></tr>
         <tr><td>2015</td><td>Jan 1, 2015 to Dec 31, 2015</td></tr>
         <tr><td>2015-03</td><td>March 2015</td></tr>
         <tr><td>2015-03-11</td><td>March 11, 2015</td></tr>
         <tr><td>2015-03-11T23</td><td>March 3, 2015, [23:00 .. 24:00)</td></tr>
-        <tr><td>1969-10-29T22:30:04.765</td><td>a particular millisecond</td></tr>
 	<tr><td>*</td><td>eternity</td></tr>
-      </table>
-    </p>
-    <p>
-      <span>Use <b>"TO"</b> to express explicit time-ranges:</span>
-      <table style="border-collapse:separate;border-spacing:30px 0px;">
+    </table></p>
+    <h3>Use <b>"TO"</b> to express explicit time-ranges:</h3>
+    <p><table style="border-collapse:separate;border-spacing:30px 0px;">
+	<tr><th>field-value</th><th>meaning</th></tr>
         <tr><td>2014 <b>TO</b> 2016</td><td>2014, 2015 and 2016</td></tr>
         <tr><td>1969-06 <b>TO</b> 1969-08</td><td>the summer of 1969</td></tr>
-        <tr><td>* &nbsp;<b>TO</b> 1848-09-12</td><td>anytime before the existence of Switzerland</td></tr>
+        <tr><td>* &nbsp;<b>TO</b> 1848-09-12</td>
+	  <td>anytime before the existence of Switzerland</td></tr>
 	<tr><td>1991-06-15 <b>TO</b> &nbsp;*</td><td>anytime after a Mount Pinatubo eruption</td></tr>
-      </table>
-    </p>
-    <p>
-      <span>Use multiple time-ranges to express disjunct periods:</span>
-      <table style="border-collapse:separate;border-spacing:30px 0px;">
-        <tr><td><b>Timerange 1</b></td><td>2013-06 <b>TO</b> 2013-08</td><td rowspan=2>Measurements were taken during<br />sommers 2013 and 2014.</td></tr>
+      </table></p>
+      <h3>Use multiple time-ranges to express disjunct periods:</h3>
+      <p><table style="border-collapse:separate;border-spacing:30px 0px;">
+	<tr><th>field</th><th>field-value</th><th>meaning</th></tr>
+        <tr><td><b>Timerange 1</b></td><td>2013-06 <b>TO</b> 2013-08</td>
+	  <td rowspan=2>Measurements were taken during<br />summers 2013 and 2014.</td></tr>
         <tr><td><b>Timerange 2</b></td><td>2014-06 <b>TO</b> 2014-08</td><td></td></tr>
-      </table>
-    </p>
-    <p style="background-color:yellow;">
-	<span>This is a mandatory field.</span>  <br />
-	<span>Enter <i>" * "</i> if no specific time-range can be associated with the <i>package's</i> data.</span>
+	</table>
       </p>
-    <p>
-      Ignore superflous "<b>Timerange &lt;N&gt;</b>" fields. Empty ones will be discarded.
-    </p>
+      <div class="alert alert-info">
+	<i class="fa fa-info-circle"></i> Ignore superflous
+	"<b>Timerange &lt;N&gt;</b>" fields. Empty ones will be discarded.</div>
+    </div>
   </div>
-</div>
 </div>
