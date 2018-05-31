@@ -477,18 +477,16 @@
       "field_name": "url"
     },
     {
-      "label": "Package supports THIS publication",
-      "field_name": "publication",
-      "modal_text": "publication_help",
-      "form_snippet": "eaw_schema_checkbox.html"
-    },
-    {
-      "form_placeholder": "e.g. table_arsenic",
+      "form_placeholder": "filename.csv",
       "field_name": "name",
       "required": true,
       "form_snippet": "eaw_schema_text.html",
       "label": "Name",
-      "modal_text": "res_name_help"
+      "modal_text": "res_name_help",
+      "form_attrs": {
+	"data-module": "eaw_copyname",
+	"data-module-sourcefieldid": "field-image-url"
+      }
     },
     {
       "field_name": "resource_type",
@@ -558,28 +556,6 @@
         }
       ],
       "modal_text": "resource_type_help"
-    },
-    {
-      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.",
-      "field_name": "description",
-      "required": false,
-      "form_snippet": "eaw_schema_markdown.html",
-      "label": "Notes",
-      "modal_text": "res_notes_help"
-    },
-    {
-      "form_placeholder": "How to cite this resource",
-      "label": "Cite as",
-      "field_name": "citation",
-      "modal_text": "res_citation_help",
-      "form_snippet": "eaw_schema_markdown.html"
-    },
-    {
-      "display_snippet": "text.html",
-      "label": "Hash (SHA-256)",
-      "field_name": "hash",
-      "modal_text": "res_hash_help",
-      "form_snippet": "eaw_schema_text.html"
     },
     {
       "field_name": "restricted_level",
