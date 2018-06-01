@@ -484,8 +484,8 @@
       "label": "Name",
       "modal_text": "res_name_help",
       "form_attrs": {
-	"data-module": "eaw_copyname",
-	"data-module-sourcefieldid": "field-image-url"
+	"data-module": "eaw_copy_res_name",
+	"style": "width:97%;"
       }
     },
     {
