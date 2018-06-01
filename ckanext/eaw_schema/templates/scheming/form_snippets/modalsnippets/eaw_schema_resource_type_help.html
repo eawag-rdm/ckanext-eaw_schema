@@ -1,8 +1,9 @@
 <div class="modal-help">
-  <div id="resource_type_help" class="modal hide fade">
+  <div id="{{ field.modal_text }}" class="modal hide fade">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h1>Resource Type</h1>
+      <button type="button" class="close" data-dismiss="modal"
+	      aria-hidden="true">&times;</button>
+      <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp <b>Resource Type</b></p>
     </div>
     <div class="modal-body">
       <p>
@@ -11,14 +12,21 @@
       <p>
 	This is a controlled vocabulary and you can only select pre-defined terms.
       </p>
-      <p>
-	It is possible that a new <i>Resource Type</i> should be added
-	for a resource you are depositing. In this case, please note that
-	in the <i>Notes</i>-field.
-      </p>
-      <p>
-	As a rule of thumb, the <i>Resource Type</i> describes a class of file-formats.
-      </p>
+      <div class="alert alert-info" style="margin-top:30px;">
+	<p><i class="fa fa-info-circle"></i> A zip-archive containing
+	  files of different resource types is technically
+	  a <i>Collection</i>. However, if the main content can be
+	  characterized with one <i>Resource Type</i>, choose that
+	  one.</p>
+	<p>E.g., assign <b>Resource Type = "Dataset"</b> to a zip-archive
+	  that contains a csv-file with numerical content and a README.txt
+	  and an ancillary photo of the measurement site.
+	</p>
+      </div>
+      <div class="alert alert-block">
+	<i class="fa fa-exclamation-triangle"></i><b> This is a
+	  mandatory field.</b>
+      </div>
     </div>
   </div>
 </div>

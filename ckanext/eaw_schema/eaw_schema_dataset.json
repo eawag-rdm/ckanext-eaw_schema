@@ -560,8 +560,9 @@
     {
       "field_name": "restricted_level",
       "label": "Restriction",
-      "preset": "select",
+      "preset": "select_short",
       "required": true,
+      "modal_text": "restricted_level_help",
       "choices": [
 	{
 	  "value": "public",
@@ -580,6 +581,7 @@
     {
       "field_name": "allowed_users",
       "label": "Allowed Users",
+      "form_placeholder": "Start typing name or email of ERIC user ...",
       "classes": ["control-full"],
       "form_snippet": "eaw_schema_text.html",
       "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)",
