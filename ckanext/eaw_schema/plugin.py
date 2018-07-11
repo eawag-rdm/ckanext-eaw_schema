@@ -315,7 +315,11 @@ def eaw_users_exist(userstring):
             raise(toolkit.Invalid("User \"{}\" does not exist.".format(u)))
     return userstring
 
-
+def eaw_schema_cp_filename2name(key, flattened_data, errors, context):
+    namekey = ('resources', key[1], 'name')
+    if flattened_data.get(namekey) is None:
+        flattened_data[namekey] = flattened_data[key]
+    
 def test_before(key, flattened_data, errors, context):
     # Check
     review_level = flattened_data.get(('review_level',))
@@ -526,7 +530,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_users_exist':
                     eaw_users_exist,
                 'test_before':
-                    test_before
+                    test_before,
+                'eaw_schema_cp_filename2name':
+                    eaw_schema_cp_filename2name
         }
 
     # IPackageController
