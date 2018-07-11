@@ -1,0 +1,83 @@
+{
+  "scheming_version": 1,
+  "about": "A reimplementation of the default CKAN dataset schema",
+  "about_url": "http://github.com/ckan/ckanext-scheming",
+  "dataset_type": "simple",
+  "dataset_fields": [
+    {
+      "display_property": "dct:title",
+      "form_placeholder": "A descriptive title",
+      "field_name": "title",
+      "required": true,
+      "preset": "eaw_schema_title",
+      "label": "Title",
+      "modal_text": "title_help"
+    },
+    {
+      "display_property": "dcat:landingPage",
+      "preset": "dataset_slug",
+      "label": "URL",
+      "field_name": "name",
+      "required": true
+    },
+    {
+      "form_placeholder": "Bach, Johann <joe@eawag.ch>",
+      "default_value": "context_fullname_email",
+      "output_validators": "repeating_text_output",
+      "required": true,
+      "label": "Author",
+      "display_snippet": "eaw_repeating_text.html",
+      "display_property": "dc:creator",
+      "field_name": "author",
+      "form_snippet": "eaw_schema_repeating_text_js.html",
+      "validators": "repeating_text eaw_schema_json_not_empty",
+      "modal_text": "author_help"
+    },
+    {
+      "display_property": "dct:description",
+      "form_placeholder": "A description of the package.",
+      "field_name": "notes",
+      "form_snippet": "eaw_schema_markdown.html",
+      "required": false,
+      "label": "Abstract",
+      "modal_text": "abstract_help"
+    },
+    {
+      "display_property": "dcat:keyword",
+      "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...",
+      "field_name": "tags_string",
+      "required": false,
+      "form_snippet": "eaw_schema_text.html",
+      "form_attrs": {
+        "data-module-tags": "",
+        "style": "width:97%;",
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?",
+        "data-module": "eaw_autocomplete",
+	"data-module-tokensep": ",;"
+      },
+      "validators": "scheming_required tag_string_convert",
+      "label": "Keywords",
+      "modal_text": "keywords_help"
+    },
+    {
+      "field_name": "owner_org",
+      "required": true,
+      "modal_text_visibility": "visibility_help",
+      "modal_text_organization": "organization_help",
+      "preset": "eaw_schema_dataset_organization",
+      "label": "Organization"
+    }
+   ],
+  "resource_fields": [
+    {
+      "preset": "resource_url_upload",
+      "label": "URL",
+      "field_name": "url",
+      "validators": "eaw_schema_cp_filename2name"
+    },
+    {
+      "field_name": "name",
+      "form_snippet": null
+    }
+  ]
+}
