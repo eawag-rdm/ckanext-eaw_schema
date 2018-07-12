@@ -319,6 +319,17 @@ def eaw_schema_cp_filename2name(key, flattened_data, errors, context):
     namekey = ('resources', key[1], 'name')
     if flattened_data.get(namekey) is None:
         flattened_data[namekey] = flattened_data[key]
+
+def eaw_schema_check_package_type(pkgtype):
+    '''Called from organization schema. Returns "dataset"
+    if the submitted default package type is not implemented.
+
+    '''
+    route_new = '{}_new'.format(pkgtype)
+    if route_new in toolkit.config['routes.named_routes'].keys():
+        return pkgtype
+    else:
+        return('dataset')
     
 def test_before(key, flattened_data, errors, context):
     # Check
@@ -532,7 +543,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'test_before':
                     test_before,
                 'eaw_schema_cp_filename2name':
-                    eaw_schema_cp_filename2name
+                    eaw_schema_cp_filename2name,
+                'eaw_schema_check_package_type':
+                    eaw_schema_check_package_type
         }
 
     # IPackageController

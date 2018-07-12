@@ -65,6 +65,24 @@
       "display_snippet": null,
       "form_snippet": "org_hierarchy.html",
       "validators": "ignore_missing"
+    },
+    {
+      "field_name": "default_package_type",
+      "label": "Default\nPackage Type",
+      "display_snippet": null,
+      "preset": "select",
+      "required": true,
+      "choices": [
+	{
+	  "value": "dataset",
+	  "label": "Data"
+	},
+	{
+	  "value": "simple",
+	  "label": "Simple"
+	}
+      ],
+      "validators": "scheming_required eaw_schema_check_package_type"
     }
    ]
 }
