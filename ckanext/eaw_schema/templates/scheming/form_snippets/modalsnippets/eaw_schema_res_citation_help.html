@@ -1,8 +1,10 @@
 <div class="modal-help">
   <div id="{{ field.modal_text }}" class="modal hide fade">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h1>Resource Citation</h1>
+      <button type="button" class="close" data-dismiss="modal"
+	      aria-hidden="true">&times;</button>
+      <p><i class="fa fa-lightbulb-o
+      fa-lg"></i>&nbsp;&nbsp <b>Resource Citation</b></p>
     </div>
     <div class="modal-body">
       <p>
@@ -10,10 +12,11 @@
 	citation, please provide text that can be copied &amp; pasted
 	for that purpose.
       </p>
-      <p>
-	Note that there is an auto-generated citation-snippet for the
-	whole <i>data package</i> (not yet implemented).
-      </p>
+      <div class="alert alert-info" style="margin-top:30px;">
+	<p><i class="fa fa-info-circle"></i> If the citation of this
+	resource is covered by the citation of the whole package, you
+	can leave this field empty.</p>
+      </div>
     </div>
   </div>
 </div>

@@ -558,6 +558,13 @@
       "modal_text": "resource_type_help"
     },
     {
+      "form_placeholder": "How to cite this resource",
+      "label": "Cite as",
+      "field_name": "citation",
+      "modal_text": "res_citation_help",
+      "form_snippet": "eaw_schema_markdown.html"
+    },
+    {
       "field_name": "restricted_level",
       "label": "Restriction",
       "preset": "select_short",
