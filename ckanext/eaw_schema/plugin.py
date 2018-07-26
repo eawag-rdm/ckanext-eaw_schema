@@ -411,14 +411,14 @@ def eaw_schema_geteawuser(username):
 
     """
 
-    pic_url_prefix = ("http://www.eawag.ch/fileadmin/user_upload/"
+    pic_url_prefix = ("https://www.eawag.ch/fileadmin/user_upload/"
                       "tx_userprofiles/profileImages/")
     def geteawhp(fullname):
         "Returns the Eawag homepage of somebody"
-        hp_url_prefix = ('http://www.eawag.ch/en/aboutus/portrait/'
+        hp_url_prefix = ('https://www.eawag.ch/en/aboutus/portrait/'
                          'organisation/staff/profile/')
         # If we can't derive the Eawag personal page, go to search page.
-        hp_url_fallback_template = ('http://www.eawag.ch/en/suche/'
+        hp_url_fallback_template = ('https://www.eawag.ch/en/suche/'
                                     '?q=__NAME__&tx_solr[filter][0]'
                                     '=filtertype%3A3')
         try:
