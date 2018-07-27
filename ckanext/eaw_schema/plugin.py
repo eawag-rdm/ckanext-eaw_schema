@@ -415,10 +415,10 @@ def eaw_schema_geteawuser(username):
                       "tx_userprofiles/profileImages/")
     def geteawhp(fullname):
         "Returns the Eawag homepage of somebody"
-        hp_url_prefix = ('https://www.eawag.ch/en/aboutus/portrait/'
+        hp_url_prefix = (u'https://www.eawag.ch/en/aboutus/portrait/'
                          'organisation/staff/profile/')
         # If we can't derive the Eawag personal page, go to search page.
-        hp_url_fallback_template = ('https://www.eawag.ch/en/suche/'
+        hp_url_fallback_template = (u'https://www.eawag.ch/en/suche/'
                                     '?q=__NAME__&tx_solr[filter][0]'
                                     '=filtertype%3A3')
         try:
@@ -426,7 +426,7 @@ def eaw_schema_geteawuser(username):
         except (ValueError, AttributeError):
             if not isinstance(fullname, basestring):
                 fullname = ''
-            logger.warn('User Fullname "{}" does not '
+            logger.warn(u'User Fullname "{}" does not '
                         'have standard format ("lastname, firstname")'
                         .format(fullname))
             return hp_url_fallback_template.replace('__NAME__', fullname)
