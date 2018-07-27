@@ -423,11 +423,13 @@ def eaw_schema_geteawuser(username):
                                     '=filtertype%3A3')
         try:
             last, first = fullname.split(',')
-        except ValueError:
-             logger.warn('User Fullname "{}" does not '
-                         'have standard format ("lastname, firstname")'
-                         .format(fullname))
-             return hp_url_fallback_template.replace('__NAME__', fullname)
+        except (ValueError, AttributeError):
+            if not isinstance(fullname, basestring):
+                fullname = ''
+            logger.warn('User Fullname "{}" does not '
+                        'have standard format ("lastname, firstname")'
+                        .format(fullname))
+            return hp_url_fallback_template.replace('__NAME__', fullname)
             
         normname = '-'.join([s.strip().lower() for s in [first, last]])
         return hp_url_prefix + normname
