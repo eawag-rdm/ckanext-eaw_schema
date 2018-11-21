@@ -1,606 +1,614 @@
 {
-  "scheming_version": 1,
-  "about": "A reimplementation of the default CKAN dataset schema",
-  "about_url": "http://github.com/ckan/ckanext-scheming",
-  "dataset_type": "dataset",
-  "dataset_fields": [
-    {
-      "field_name": "__before",
-      "validators": "test_before",
-      "form_snippet": null,
-      "display_snippet": null
-    },
-    {
-      "field_name": "separator_domain_metadata",
-      "form_snippet": "eaw_form_separator.html",
-      "display_snippet": null,
-      "label": "package type"
-    },
-    {
-      "default_value": false,
-      "field_name": "ispublication",
-      "form_snippet": "eaw_schema_checkbox.html",
-      "form_attrs": {
-        "data-module": "eaw_schema_subdivs",
-        "data-module-divnames_inner": "publicationlink",
-        "data-module-divname_outer": "publicationcheck",
-        "data-module-names_clearfields": "publicationlink"
-      },
-      "classes": [
-        "publication_element",
-        "publicationcheck"
-      ],
-      "label": "Publication data package?",
-      "modal_text": "ispublication_help"
-    },
-    {
-      "form_placeholder": "http://doi.org/10.1016/j.envsoft.2017.03.002",
-      "field_name": "publicationlink",
-      "form_snippet": "eaw_schema_text.html",
-      "form_attrs": {
-        "data-module": "eaw_schema_checkpublication"
-      },
-      "classes": [
-        "publication_element",
-        "publicationlink"
-      ],
-      "validators": "eaw_schema_publicationlink",
-      "label": "DORA-Id or DOI, if available",
-      "modal_text": "publicationlink_help"
-    },
-    {
-      "default_value": true,
-      "field_name": "open_data",
-      "form_snippet": "eaw_schema_checkbox.html",
-      "form_attrs": {
-        "data-module": "eaw_schema_subdivs",
-        "data-module-divnames_inner": "open_data_embargo",
-        "data-module-divname_outer": "open_data_check",
-        "data-module-names_clearfields": "embargo"
-      },
-      "classes": [
-        "open_data_element",
-        "open_data_check"
-      ],
-      "label": "Open Data?",
-      "modal_text": "open_data_help"
-    },
-    {
-      "display_snippet": "text.html",
-      "output_validators": "eaw_schema_striptime",
-      "form_snippet": "eaw_schema_date.html",
-      "classes": [
-        "open_data_element",
-        "open_data_embargo"
-      ],
-      "validators": "scheming_required isodate eaw_schema_embargodate",
-      "label": "Embargo",
-      "modal_text": "embargo_help",
-      "field_name": "embargo"
-    },
-    {
-      "field_name": "separator_domain_metadata",
-      "form_snippet": "eaw_form_separator.html",
-      "display_snippet": null,
-      "label": "bibliographic metadata"
-    },
-    {
-      "display_property": "dct:title",
-      "form_placeholder": "A descriptive title",
-      "field_name": "title",
-      "required": true,
-      "preset": "eaw_schema_title",
-      "label": "Title",
-      "modal_text": "title_help"
-    },
-    {
-      "display_property": "dcat:landingPage",
-      "preset": "dataset_slug",
-      "label": "URL",
-      "field_name": "name",
-      "required": true
-    },
-    {
-      "form_placeholder": "Bach, Johann <joe@eawag.ch>",
-      "form_blanks": 3,
-      "default_value": "context_fullname_email",
-      "output_validators": "repeating_text_output",
-      "required": true,
-      "label": "Author",
-      "display_snippet": "eaw_repeating_text.html",
-      "display_property": "dc:creator",
-      "field_name": "author",
-      "form_snippet": "eaw_schema_repeating_text_js.html",
-      "validators": "repeating_text eaw_schema_json_not_empty",
-      "modal_text": "author_help"
-    },
-    {
-      "display_property": "dct:description",
-      "form_placeholder": "A description of the package.",
-      "field_name": "notes",
-      "form_snippet": "eaw_schema_markdown.html",
-      "required": true,
-      "label": "Abstract",
-      "modal_text": "abstract_help"
-    },
-    {
-      "display_property": "dcat:keyword",
-      "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...",
-      "field_name": "tags_string",
-      "required": true,
-      "form_snippet": "eaw_schema_text.html",
-      "form_attrs": {
-        "data-module-tags": "",
-        "style": "width:97%;",
-        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?",
-        "data-module": "eaw_autocomplete",
-	"data-module-tokensep": ",;"
-      },
-      "validators": "scheming_required tag_string_convert",
-      "label": "Keywords",
-      "modal_text": "keywords_help"
-    },
-    {
-      "field_name": "separator_domain_metadata",
-      "form_snippet": "eaw_form_separator.html",
-      "display_snippet": null,
-      "label": "domain specific metadata"
-    },
-    {
-      "default_value": "none",
-      "sorted_choices": true,
-      "preset": "eaw_multiple_select_js",
-      "field_name": "variables",
-      "choices": [
-        {
-          "label": "alkalinity",
-          "value": "alkalinity"
-        },
-        {
-          "label": "degradation rate",
-          "value": "degradation_rate"
-        },
-        {
-          "label": "discharge",
-          "value": "discharge"
-        },
-        {
-          "label": "electric conductivity",
-          "value": "electric_conductivity"
-        },
-        {
-          "label": "concentration",
-          "value": "concentration"
-        },
-        {
-          "label": "precipitation",
-          "value": "precipitation"
-        },
-        {
-          "label": "pressure",
-          "value": "pressure"
-        },
-        {
-          "label": "respiration",
-          "value": "respiration"
-        },
-        {
-          "label": "temperature",
-          "value": "temperature"
-        },
-        {
-          "label": "turbidity",
-          "value": "turbidity"
-        },
-        {
-          "label": "pH",
-          "value": "pH"
-        },
-        {
-          "label": "none",
-          "value": "none"
-        },
-        {
-          "label": "Secci depth",
-          "value": "secci_depth"
-        },
-        {
-          "label": "length",
-          "value": "length"
-        },
-        {
-          "label": "weight",
-          "value": "weight"
-        },
-        {
-          "label": "total hardness",
-          "value": "total_hardness"
-        },
-        {
-          "label": "count",
-          "value": "count"
-        },
-        {
-          "label": "water level",
-          "value": "waterlevel"
-        },
-        {
-          "label": "velocity",
-          "value": "velocity"
-        }
-      ],
-      "form_attrs": {
-        "style": "width:90%;"
-      },
-      "required": true,
-      "label": "Variables",
-      "modal_text": "variables_help",
-      "select_size": 5
-    },
-    {
-      "form_placeholder": "CV 399 (NXFQWRWXEYTOTK-UHFFFAOYSA-N)\nAzimsulfuron (MAHPNPYYQAIOJN-UHFFFAOYSA-N)",
-      "display_snippet": "eaw_schema_multiple_string_display.html",
-      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
-      "output_validators": "eaw_schema_multiple_string_output",
-      "form_snippet": "eaw_schema_multiple_string_textbox.html",
-      "form_attrs": {
-        "class": "eaw_with_infobutton"
-      },
-      "required": false,
-      "label": "Substances\n(scientific names)",
-      "modal_text": "substances_help",
-      "field_name": "substances"
-    },
-    {
-	"form_placeholder": "herbicide\nmetabolites\nnutrients\norganic matter\nmicroplastics",
-      "display_snippet": "eaw_schema_multiple_string_display.html",
-      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
-      "output_validators": "eaw_schema_multiple_string_output",
-      "form_snippet": "eaw_schema_multiple_string_textbox.html",
-      "form_attrs": {
-        "class": "eaw_with_infobutton"
-      },
-      "required": false,
-      "label": "Substances (generic terms)",
-      "modal_text": "substances_generic_help",
-      "field_name": "substances_generic"
-    },
-    {
-      "form_placeholder": "Dictyosphaerium libertatis\nNodularia moravica\nPhodopus sungorus\nSolanum tuberosum",
-      "display_snippet": "eaw_schema_multiple_string_display.html",
-      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
-      "output_validators": "eaw_schema_multiple_string_output",
-      "form_snippet": "eaw_schema_multiple_string_textbox.html",
-      "form_attrs": {
-        "class": "eaw_with_infobutton"
-      },
-      "required": false,
-      "label": "Taxa (scientific names)",
-      "modal_text": "taxa_help",
-      "field_name": "taxa"
-    },
-    {
-      "form_placeholder": "fish\nalgae\ninvertebrates\nbeetles",
-      "display_snippet": "eaw_schema_multiple_string_display.html",
-      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
-      "output_validators": "eaw_schema_multiple_string_output",
-      "form_snippet": "eaw_schema_multiple_string_textbox.html",
-      "form_attrs": {
-        "class": "eaw_with_infobutton"
-      },
-      "required": false,
-      "label": "Organisms (generic terms)",
-      "modal_text": "taxa_generic_help",
-      "field_name": "taxa_generic"
-    },
-    {
-      "form_placeholder": "river\nlake\nsewage system\nmetropolitan area\nlab",
-      "display_snippet": "eaw_schema_multiple_string_display.html",
-      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
-      "output_validators": "eaw_schema_multiple_string_output",
-      "form_snippet": "eaw_schema_multiple_string_textbox.html",
-      "form_attrs": {
-        "class": "eaw_with_infobutton"
-      },
-      "required": false,
-      "label": "Systems",
-      "modal_text": "systems_help",
-      "field_name": "systems"
-    },
-    {
-      "form_placeholder": "2016-03 TO 2016-05",
-      "form_blanks": 1,
-      "validators": "repeating_text eaw_schema_json_not_empty vali_daterange",
-      "output_validators": "repeating_text_output output_daterange",
-      "form_snippet": "eaw_schema_repeating_text_js.html",
-      "modal_text": "timerange_help",
-      "required": true,
-      "label": "Timerange",
-      "display_snippet": "eaw_schema_multiple_string_display.html",
-      "default_value": "*",
-      "field_name": "timerange"
-    },
-    {
-      "form_placeholder": "{\"type\": \"Point\", \"coordinates\": [8.6124600, 47.4031100]}",
-      "display_snippet": null,
-      "default_value": "{}",
-      "field_name": "spatial",
-      "form_snippet": "text_medium.html",
-      "required": true,
-      "label": "Spatial Extent",
-      "modal_text": "spatial_help"
-    },
-    {
-      "form_placeholder": "Greifensee\nRiver Rhine\nKampala, Uganda\n",
-      "display_snippet": "eaw_schema_multiple_string_display.html",
-      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)",
-      "output_validators": "eaw_schema_multiple_string_output",
-      "form_snippet": "eaw_schema_multiple_string_textbox.html",
-      "form_attrs": {
-        "class": "eaw_with_infobutton"
-      },
-      "required": false,
-      "label": "Geographic Name(s)",
-      "modal_text": "geographic-name_help",
-      "field_name": "geographic_name"
-    },
-    {
-      "field_name": "separator_domain_metadata",
-      "form_snippet": "eaw_form_separator.html",
-      "display_snippet": null,
-      "label": "package status & usage"
-    },
-    {
-      "field_name": "owner_org",
-      "required": true,
-      "modal_text_visibility": "visibility_help",
-      "modal_text_organization": "organization_help",
-      "preset": "eaw_schema_dataset_organization",
-      "label": "Organization"
-    },
-    {
-      "display_property": "adms:status",
-      "choices": [
-        {
-          "label": "incomplete",
-          "value": "incomplete"
-        },
-        {
-          "label": "complete",
-          "value": "complete"
-        }
-      ],
-      "field_name": "status",
-      "required": true,
-      "form_attrs": {
-        "class": "medinput"
-      },
-      "preset": "select_short",
-      "label": "Status",
-      "modal_text": "status_help"
-    },
-    {
-      "field_name": "review_level",
-      "preset": "select_short",
-      "validators": "scheming_required",
-      "required": true,
-      "default_value": "none",
-      "choices": [
-	{
-	  "value": "none",
-	  "label": "none"
-	},
-	{
-	  "value": "general",
-	  "label": "general"
-	},
-	{
-	  "value": "domain",
-	  "label": "domain specific"
-	}
-      ],
-      "label": "Review Level",
-      "form_attrs": {
-	"style": "width:270px;"
-      },
-      "modal_text": "review_level_help"
-    },
-    {
-      "field_name": "reviewed_by",
-      "label": "Reviewed By",
-      "classes": ["control-full"],
-	"form_snippet": "eaw_schema_text.html",
-      "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)",
-      "output_validators": "eaw_schema_list_to_commasepstring_output",
-      "form_placeholder": "Start typing name or email of ERIC user ...",
-      "display_snippet": "eaw_fullname_email.html",
-      "form_attrs": {
-	"style": "width:270px;",
-	"data-module": "eaw_autocomplete",
-	"data-module-tokensep": "[,;",
-	"data-module-label": "fullname",
-	"data-module-key": "name",
-	"data-module-tags": true,
-	"data-module-source": "/api/2/util/user/autocomplete?q=?"
-      }
-    },
-    {
-      "display_property": "datacite:datacurator",
-      "default_value": "context_username",
-      "field_name": "maintainer",
-      "label": "Curator",
-      "modal_text": "curator_help",
-      "required": true,
-      "form_snippet": "eaw_schema_text.html",
-      "display_snippet": "eaw_fullname_email.html",
-      "validators": "scheming_required eaw_users_exist",
-      "form_attrs": {
-	"style": "width:97%;",
-	"data-module": "eaw_autocomplete",
-	"data-module-label": "fullname",
-	"data-module-key": "name",
-	"data-module-source": "/api/2/util/user/autocomplete?q=?"
-      }
-    },
-    {
-      "display_property": "datacite:datacurator",
-      "default_value": "context_username",
-      "field_name": "usage_contact",
-      "label": "Usage Contact",
-      "modal_text": "usage_contact_help",
-      "required": true,
-      "form_snippet": "eaw_schema_text.html",
-      "display_snippet": "eaw_fullname_email.html",
-      "validators": "scheming_required eaw_users_exist",
-      "form_attrs": {
-	"style": "width:97%;",
-	"data-module": "eaw_autocomplete",
-	"data-module-label": "fullname",
-	"data-module-key": "name",
-	"data-module-source": "/api/2/util/user/autocomplete?q=?"
-      }
-    },
-    {
-      "display_property": "dct:description",
-      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.",
-      "field_name": "notes-2",
-      "form_snippet": "eaw_schema_markdown.html",
-      "required": false,
-      "label": "Notes",
-      "modal_text": "notes_help"
-    }
-  ],
+  "about": "A reimplementation of the default CKAN dataset schema", 
+  "scheming_version": 1, 
   "resource_fields": [
     {
-      "preset": "resource_url_upload",
-      "label": "URL",
-      "field_name": "url"
-    },
+      "preset": "resource_url_upload", 
+      "field_name": "url", 
+      "label": "URL"
+    }, 
     {
-      "form_placeholder": "filename.csv",
-      "field_name": "name",
-      "required": true,
-      "form_snippet": "eaw_schema_text.html",
-      "label": "Name",
-      "modal_text": "res_name_help",
+      "modal_text": "res_name_help", 
+      "required": true, 
+      "form_snippet": "eaw_schema_text.html", 
+      "label": "Name", 
+      "form_placeholder": "filename.csv", 
+      "field_name": "name", 
       "form_attrs": {
-	"data-module": "eaw_copy_res_name",
-	"style": "width:97%;"
+        "data-module": "eaw_copy_res_name", 
+        "style": "width:97%;"
       }
-    },
+    }, 
     {
-      "field_name": "resource_type",
-      "required": true,
-      "label": "Resource Type",
-      "preset": "select_short",
+      "modal_text": "resource_type_help", 
+      "required": true, 
       "choices": [
         {
-          "label": "Dataset",
-          "value": "Dataset"
-        },
+          "value": "Dataset", 
+          "label": "Dataset"
+        }, 
         {
-          "label": "Collection",
-          "value": "Collection"
-        },
+          "value": "Collection", 
+          "label": "Collection"
+        }, 
         {
-          "label": "Text",
-          "value": "Text"
-        },
+          "value": "Text", 
+          "label": "Text"
+        }, 
         {
-          "label": "Image",
-          "value": "Image"
-        },
+          "value": "Image", 
+          "label": "Image"
+        }, 
         {
-          "label": "Audiovisual",
-          "value": "Audiovisual"
-        },
+          "value": "Audiovisual", 
+          "label": "Audiovisual"
+        }, 
         {
-          "label": "Software",
-          "value": "Software"
-        },
+          "value": "Software", 
+          "label": "Software"
+        }, 
         {
-          "label": "Sound",
-          "value": "Sound"
-        },
+          "value": "Sound", 
+          "label": "Sound"
+        }, 
         {
-          "label": "Geospatial Data",
-          "value": "GeospatialData"
-        },
+          "value": "GeospatialData", 
+          "label": "Geospatial Data"
+        }, 
         {
-          "label": "Model",
-          "value": "Model"
-        },
+          "value": "Model", 
+          "label": "Model"
+        }, 
         {
-          "label": "Event",
-          "value": "Event"
-        },
+          "value": "Event", 
+          "label": "Event"
+        }, 
         {
-          "label": "Interactive Resource",
-          "value": "InteractiveResource"
-        },
+          "value": "InteractiveResource", 
+          "label": "Interactive Resource"
+        }, 
         {
-          "label": "Physical Object",
-          "value": "PhysicalObject"
-        },
+          "value": "PhysicalObject", 
+          "label": "Physical Object"
+        }, 
         {
-          "label": "Service",
-          "value": "Service"
-        },
+          "value": "Service", 
+          "label": "Service"
+        }, 
         {
-          "label": "Workflow",
-          "value": "Workflow"
-        },
+          "value": "Workflow", 
+          "label": "Workflow"
+        }, 
         {
-          "label": "Other",
-          "value": "Other"
+          "value": "Other", 
+          "label": "Other"
         }
-      ],
-      "modal_text": "resource_type_help"
-    },
+      ], 
+      "preset": "select_short", 
+      "label": "Resource Type", 
+      "field_name": "resource_type"
+    }, 
     {
-      "form_placeholder": "How to cite this resource",
-      "label": "Cite as",
-      "field_name": "citation",
-      "modal_text": "res_citation_help",
-      "form_snippet": "eaw_schema_markdown.html"
-    },
+      "form_placeholder": "How to cite this resource", 
+      "modal_text": "res_citation_help", 
+      "field_name": "citation", 
+      "form_snippet": "eaw_schema_markdown.html", 
+      "label": "Cite as"
+    }, 
     {
-      "field_name": "restricted_level",
-      "label": "Restriction",
-      "preset": "select_short",
-      "required": true,
-      "modal_text": "restricted_level_help",
+      "modal_text": "restricted_level_help", 
+      "required": true, 
       "choices": [
-	{
-	  "value": "public",
-	  "label": "Public"
-	},
-	{
-	  "value": "same_organization",
-	  "label": "Same organization members"
-	},
-	{
-	  "value": "only_allowed_users",
-	  "label": "Allowed users only"
-	}
-      ]
-    },
+        {
+          "value": "public", 
+          "label": "Public"
+        }, 
+        {
+          "value": "same_organization", 
+          "label": "Same organization members"
+        }, 
+        {
+          "value": "only_allowed_users", 
+          "label": "Allowed users only"
+        }
+      ], 
+      "preset": "select_short", 
+      "label": "Restriction", 
+      "field_name": "restricted_level"
+    }, 
     {
-      "field_name": "allowed_users",
-      "label": "Allowed Users",
-      "form_placeholder": "Start typing name or email of ERIC user ...",
-      "classes": ["control-full"],
-      "form_snippet": "eaw_schema_text.html",
-      "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)",
-      "output_validators": "eaw_schema_list_to_commasepstring_output",
+      "form_snippet": "eaw_schema_text.html", 
+      "label": "Allowed Users", 
+      "classes": [
+        "control-full"
+      ], 
+      "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)", 
+      "form_placeholder": "Start typing name or email of ERIC user ...", 
+      "field_name": "allowed_users", 
       "form_attrs": {
-	"data-module": "eaw_autocomplete",
-	"data-module-tokensep": "[,;",
-	"data-module-label": "fullname",
-	"data-module-key": "name",
-	"data-module-tags": true,
-	"data-module-source": "/api/2/util/user/autocomplete?q=?"
-      }
+        "data-module-label": "fullname", 
+        "data-module": "eaw_autocomplete", 
+        "data-module-source": "/api/2/util/user/autocomplete?q=?", 
+        "data-module-tags": true, 
+        "data-module-key": "name", 
+        "data-module-tokensep": "[,;"
+      }, 
+      "output_validators": "eaw_schema_list_to_commasepstring_output"
     }
-  ]
+  ], 
+  "dataset_fields": [
+    {
+      "form_snippet": null, 
+      "display_snippet": null, 
+      "field_name": "__before", 
+      "validators": "test_before"
+    }, 
+    {
+      "form_snippet": "eaw_form_separator.html", 
+      "label": "package type", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
+    }, 
+    {
+      "default_value": false, 
+      "modal_text": "ispublication_help", 
+      "form_snippet": "eaw_schema_checkbox.html", 
+      "label": "Publication data package?", 
+      "classes": [
+        "publication_element", 
+        "publicationcheck"
+      ], 
+      "field_name": "ispublication", 
+      "form_attrs": {
+        "data-module": "eaw_schema_subdivs", 
+        "data-module-divname_outer": "publicationcheck", 
+        "data-module-divnames_inner": "publicationlink", 
+        "data-module-names_clearfields": "publicationlink"
+      }
+    }, 
+    {
+      "modal_text": "publicationlink_help", 
+      "form_snippet": "eaw_schema_text.html", 
+      "label": "DORA-Id or DOI, if available", 
+      "classes": [
+        "publication_element", 
+        "publicationlink"
+      ], 
+      "validators": "eaw_schema_publicationlink", 
+      "form_placeholder": "http://doi.org/10.1016/j.envsoft.2017.03.002", 
+      "field_name": "publicationlink", 
+      "form_attrs": {
+        "data-module": "eaw_schema_checkpublication"
+      }
+    }, 
+    {
+      "default_value": true, 
+      "modal_text": "open_data_help", 
+      "form_snippet": "eaw_schema_checkbox.html", 
+      "label": "Open Data?", 
+      "classes": [
+        "open_data_element", 
+        "open_data_check"
+      ], 
+      "field_name": "open_data", 
+      "form_attrs": {
+        "data-module": "eaw_schema_subdivs", 
+        "data-module-divname_outer": "open_data_check", 
+        "data-module-divnames_inner": "open_data_embargo", 
+        "data-module-names_clearfields": "embargo"
+      }
+    }, 
+    {
+      "display_snippet": "text.html", 
+      "modal_text": "embargo_help", 
+      "form_snippet": "eaw_schema_date.html", 
+      "label": "Embargo", 
+      "classes": [
+        "open_data_element", 
+        "open_data_embargo"
+      ], 
+      "validators": "scheming_required isodate eaw_schema_embargodate", 
+      "field_name": "embargo", 
+      "output_validators": "eaw_schema_striptime"
+    }, 
+    {
+      "form_snippet": "eaw_form_separator.html", 
+      "label": "bibliographic metadata", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
+    }, 
+    {
+      "modal_text": "title_help", 
+      "required": true, 
+      "label": "Title", 
+      "preset": "eaw_schema_title", 
+      "form_placeholder": "A descriptive title", 
+      "field_name": "title", 
+      "display_property": "dct:title"
+    }, 
+    {
+      "required": true, 
+      "preset": "dataset_slug", 
+      "field_name": "name", 
+      "display_property": "dcat:landingPage", 
+      "label": "URL"
+    }, 
+    {
+      "default_value": "context_fullname_email", 
+      "display_snippet": "eaw_repeating_text.html", 
+      "modal_text": "author_help", 
+      "required": true, 
+      "form_snippet": "eaw_schema_repeating_text_js.html", 
+      "label": "Author", 
+      "display_property": "dc:creator", 
+      "validators": "repeating_text eaw_schema_json_not_empty", 
+      "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
+      "field_name": "author", 
+      "output_validators": "repeating_text_output", 
+      "form_blanks": 3
+    }, 
+    {
+      "modal_text": "abstract_help", 
+      "required": true, 
+      "form_snippet": "eaw_schema_markdown.html", 
+      "label": "Abstract", 
+      "form_placeholder": "A description of the package.", 
+      "field_name": "notes", 
+      "display_property": "dct:description"
+    }, 
+    {
+      "modal_text": "keywords_help", 
+      "required": true, 
+      "form_snippet": "eaw_schema_text.html", 
+      "label": "Keywords", 
+      "validators": "scheming_required tag_string_convert", 
+      "form_placeholder": "eg. discharge, soil, taxonomy, LC-MS ...", 
+      "field_name": "tags_string", 
+      "form_attrs": {
+        "data-module-tags": "", 
+        "style": "width:97%;", 
+        "data-module-tokensep": ",;", 
+        "data-module": "eaw_autocomplete", 
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
+      }, 
+      "display_property": "dcat:keyword"
+    }, 
+    {
+      "form_snippet": "eaw_form_separator.html", 
+      "label": "domain specific metadata", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
+    }, 
+    {
+      "default_value": "none", 
+      "sorted_choices": true, 
+      "modal_text": "variables_help", 
+      "required": true, 
+      "choices": [
+        {
+          "value": "alkalinity", 
+          "label": "alkalinity"
+        }, 
+        {
+          "value": "degradation_rate", 
+          "label": "degradation rate"
+        }, 
+        {
+          "value": "discharge", 
+          "label": "discharge"
+        }, 
+        {
+          "value": "electric_conductivity", 
+          "label": "electric conductivity"
+        }, 
+        {
+          "value": "concentration", 
+          "label": "concentration"
+        }, 
+        {
+          "value": "precipitation", 
+          "label": "precipitation"
+        }, 
+        {
+          "value": "pressure", 
+          "label": "pressure"
+        }, 
+        {
+          "value": "respiration", 
+          "label": "respiration"
+        }, 
+        {
+          "value": "temperature", 
+          "label": "temperature"
+        }, 
+        {
+          "value": "turbidity", 
+          "label": "turbidity"
+        }, 
+        {
+          "value": "pH", 
+          "label": "pH"
+        }, 
+        {
+          "value": "none", 
+          "label": "none"
+        }, 
+        {
+          "value": "secci_depth", 
+          "label": "Secci depth"
+        }, 
+        {
+          "value": "length", 
+          "label": "length"
+        }, 
+        {
+          "value": "weight", 
+          "label": "weight"
+        }, 
+        {
+          "value": "total_hardness", 
+          "label": "total hardness"
+        }, 
+        {
+          "value": "count", 
+          "label": "count"
+        }, 
+        {
+          "value": "waterlevel", 
+          "label": "water level"
+        }, 
+        {
+          "value": "velocity", 
+          "label": "velocity"
+        }, 
+        {
+          "value": "PAR", 
+          "label": "PAR"
+        }
+      ], 
+      "preset": "eaw_multiple_select_js", 
+      "label": "Variables", 
+      "field_name": "variables", 
+      "form_attrs": {
+        "style": "width:90%;"
+      }, 
+      "select_size": 5
+    }, 
+    {
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
+      "modal_text": "substances_help", 
+      "required": false, 
+      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
+      "label": "Substances\n(scientific names)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
+      "form_placeholder": "CV 399 (NXFQWRWXEYTOTK-UHFFFAOYSA-N)\nAzimsulfuron (MAHPNPYYQAIOJN-UHFFFAOYSA-N)", 
+      "field_name": "substances", 
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      }, 
+      "output_validators": "eaw_schema_multiple_string_output"
+    }, 
+    {
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
+      "modal_text": "substances_generic_help", 
+      "required": false, 
+      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
+      "label": "Substances (generic terms)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
+      "form_placeholder": "herbicide\nmetabolites\nnutrients\norganic matter\nmicroplastics", 
+      "field_name": "substances_generic", 
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      }, 
+      "output_validators": "eaw_schema_multiple_string_output"
+    }, 
+    {
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
+      "modal_text": "taxa_help", 
+      "required": false, 
+      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
+      "label": "Taxa (scientific names)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
+      "form_placeholder": "Dictyosphaerium libertatis\nNodularia moravica\nPhodopus sungorus\nSolanum tuberosum", 
+      "field_name": "taxa", 
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      }, 
+      "output_validators": "eaw_schema_multiple_string_output"
+    }, 
+    {
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
+      "modal_text": "taxa_generic_help", 
+      "required": false, 
+      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
+      "label": "Organisms (generic terms)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
+      "form_placeholder": "fish\nalgae\ninvertebrates\nbeetles", 
+      "field_name": "taxa_generic", 
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      }, 
+      "output_validators": "eaw_schema_multiple_string_output"
+    }, 
+    {
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
+      "modal_text": "systems_help", 
+      "required": false, 
+      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
+      "label": "Systems", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
+      "form_placeholder": "river\nlake\nsewage system\nmetropolitan area\nlab", 
+      "field_name": "systems", 
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      }, 
+      "output_validators": "eaw_schema_multiple_string_output"
+    }, 
+    {
+      "default_value": "*", 
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
+      "modal_text": "timerange_help", 
+      "required": true, 
+      "form_snippet": "eaw_schema_repeating_text_js.html", 
+      "label": "Timerange", 
+      "validators": "repeating_text eaw_schema_json_not_empty vali_daterange", 
+      "form_placeholder": "2016-03 TO 2016-05", 
+      "field_name": "timerange", 
+      "output_validators": "repeating_text_output output_daterange", 
+      "form_blanks": 1
+    }, 
+    {
+      "default_value": "{}", 
+      "display_snippet": null, 
+      "modal_text": "spatial_help", 
+      "required": true, 
+      "form_snippet": "text_medium.html", 
+      "label": "Spatial Extent", 
+      "form_placeholder": "{\"type\": \"Point\", \"coordinates\": [8.6124600, 47.4031100]}", 
+      "field_name": "spatial"
+    }, 
+    {
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
+      "modal_text": "geographic-name_help", 
+      "required": false, 
+      "form_snippet": "eaw_schema_multiple_string_textbox.html", 
+      "label": "Geographic Name(s)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
+      "form_placeholder": "Greifensee\nRiver Rhine\nKampala, Uganda\n", 
+      "field_name": "geographic_name", 
+      "form_attrs": {
+        "class": "eaw_with_infobutton"
+      }, 
+      "output_validators": "eaw_schema_multiple_string_output"
+    }, 
+    {
+      "form_snippet": "eaw_form_separator.html", 
+      "label": "package status & usage", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
+    }, 
+    {
+      "required": true, 
+      "modal_text_visibility": "visibility_help", 
+      "label": "Organization", 
+      "modal_text_organization": "organization_help", 
+      "preset": "eaw_schema_dataset_organization", 
+      "field_name": "owner_org"
+    }, 
+    {
+      "modal_text": "status_help", 
+      "required": true, 
+      "choices": [
+        {
+          "value": "incomplete", 
+          "label": "incomplete"
+        }, 
+        {
+          "value": "complete", 
+          "label": "complete"
+        }
+      ], 
+      "preset": "select_short", 
+      "label": "Status", 
+      "field_name": "status", 
+      "form_attrs": {
+        "class": "medinput"
+      }, 
+      "display_property": "adms:status"
+    }, 
+    {
+      "default_value": "none", 
+      "modal_text": "review_level_help", 
+      "required": true, 
+      "choices": [
+        {
+          "value": "none", 
+          "label": "none"
+        }, 
+        {
+          "value": "general", 
+          "label": "general"
+        }, 
+        {
+          "value": "domain", 
+          "label": "domain specific"
+        }
+      ], 
+      "preset": "select_short", 
+      "validators": "scheming_required", 
+      "label": "Review Level", 
+      "field_name": "review_level", 
+      "form_attrs": {
+        "style": "width:270px;"
+      }
+    }, 
+    {
+      "display_snippet": "eaw_fullname_email.html", 
+      "form_snippet": "eaw_schema_text.html", 
+      "label": "Reviewed By", 
+      "classes": [
+        "control-full"
+      ], 
+      "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)", 
+      "form_placeholder": "Start typing name or email of ERIC user ...", 
+      "field_name": "reviewed_by", 
+      "form_attrs": {
+        "style": "width:270px;", 
+        "data-module-label": "fullname", 
+        "data-module": "eaw_autocomplete", 
+        "data-module-source": "/api/2/util/user/autocomplete?q=?", 
+        "data-module-tags": true, 
+        "data-module-key": "name", 
+        "data-module-tokensep": "[,;"
+      }, 
+      "output_validators": "eaw_schema_list_to_commasepstring_output"
+    }, 
+    {
+      "default_value": "context_username", 
+      "display_snippet": "eaw_fullname_email.html", 
+      "modal_text": "curator_help", 
+      "required": true, 
+      "form_snippet": "eaw_schema_text.html", 
+      "label": "Curator", 
+      "validators": "scheming_required eaw_users_exist", 
+      "field_name": "maintainer", 
+      "form_attrs": {
+        "data-module-label": "fullname", 
+        "style": "width:97%;", 
+        "data-module-key": "name", 
+        "data-module": "eaw_autocomplete", 
+        "data-module-source": "/api/2/util/user/autocomplete?q=?"
+      }, 
+      "display_property": "datacite:datacurator"
+    }, 
+    {
+      "default_value": "context_username", 
+      "display_snippet": "eaw_fullname_email.html", 
+      "modal_text": "usage_contact_help", 
+      "required": true, 
+      "form_snippet": "eaw_schema_text.html", 
+      "label": "Usage Contact", 
+      "validators": "scheming_required eaw_users_exist", 
+      "field_name": "usage_contact", 
+      "form_attrs": {
+        "data-module-label": "fullname", 
+        "style": "width:97%;", 
+        "data-module-key": "name", 
+        "data-module": "eaw_autocomplete", 
+        "data-module-source": "/api/2/util/user/autocomplete?q=?"
+      }, 
+      "display_property": "datacite:datacurator"
+    }, 
+    {
+      "modal_text": "notes_help", 
+      "required": false, 
+      "form_snippet": "eaw_schema_markdown.html", 
+      "label": "Notes", 
+      "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
+      "field_name": "notes-2", 
+      "display_property": "dct:description"
+    }
+  ], 
+  "dataset_type": "dataset", 
+  "about_url": "http://github.com/ckan/ckanext-scheming"
 }
