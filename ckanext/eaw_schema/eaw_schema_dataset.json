@@ -227,8 +227,8 @@
       "display_property": "dct:title"
     }, 
     {
-      "preset": "dataset_slug", 
       "required": true, 
+      "preset": "dataset_slug", 
       "field_name": "name", 
       "display_property": "dcat:landingPage", 
       "label": "URL"
@@ -375,7 +375,7 @@
         }, 
         {
           "value": "mortality", 
-          "label": "mortalit"
+          "label": "mortality"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
