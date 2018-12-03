@@ -24,8 +24,6 @@
     {
       "modal_text": "resource_type_help", 
       "required": true, 
-      "label": "Resource Type", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "Dataset", 
@@ -88,6 +86,8 @@
           "label": "Other"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Resource Type", 
       "field_name": "resource_type"
     }, 
     {
@@ -107,10 +107,10 @@
     }, 
     {
       "modal_text": "res_hash_help", 
-      "label": "Hash (SHA-256)", 
+      "display_snippet": "text.html", 
       "field_name": "hash", 
       "form_snippet": "eaw_schema_text.html", 
-      "display_snippet": "text.html"
+      "label": "Hash (SHA-256)"
     }
   ], 
   "dataset_fields": [
@@ -124,11 +124,11 @@
       "display_property": "dct:title"
     }, 
     {
+      "preset": "dataset_slug", 
       "required": true, 
       "field_name": "name", 
-      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "preset": "dataset_slug"
+      "label": "URL"
     }, 
     {
       "modal_text": "abstract_help", 
@@ -249,6 +249,10 @@
         {
           "value": "volumetric_flow_rate", 
           "label": "volumetric flow rate"
+        }, 
+        {
+          "value": "mortality", 
+          "label": "mortality"
         }
       ], 
       "field_name": "variables", 
@@ -480,8 +484,8 @@
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
     {
-      "modal_text_visibility": "visibility_help", 
       "required": true, 
+      "modal_text_visibility": "visibility_help", 
       "label": "Organization", 
       "modal_text_organization": "organization_help", 
       "preset": "eaw_schema_dataset_organization", 
@@ -490,8 +494,6 @@
     {
       "modal_text": "status_help", 
       "required": true, 
-      "label": "Status", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "incomplete", 
@@ -506,6 +508,8 @@
           "label": "reviewed"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Status", 
       "field_name": "status", 
       "form_attrs": {
         "class": "medinput"
@@ -540,7 +544,10 @@
       "field_name": "usage_contact"
     }, 
     {
+      "form_snippet": "eaw_multiple_checkbox.html", 
+      "label": "Flags", 
       "field_name": "open_data", 
+      "display_snippet": "multiple_choice.html", 
       "choices": [
         {
           "modal_text": "open_data_help", 
@@ -560,10 +567,7 @@
           "value": "long_term_archive", 
           "label": "Long Term Archive"
         }
-      ], 
-      "label": "Flags", 
-      "form_snippet": "eaw_multiple_checkbox.html", 
-      "display_snippet": "multiple_choice.html"
+      ]
     }
   ], 
   "dataset_type": "dataset", 
