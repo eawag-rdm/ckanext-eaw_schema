@@ -468,7 +468,7 @@ def eaw_username_fullname_email(s_users):
                 context={'keep_email': True}, data_dict={'id': username})
         except toolkit.ObjectNotFound:
             userdict = {'display_name': username, 'email': 'unknown'}
-        return '{} <{}>'.format(
+        return u'{} <{}>'.format(
             userdict.get('display_name', 'unknown'),
             userdict.get('email', 'unknown'))
 
