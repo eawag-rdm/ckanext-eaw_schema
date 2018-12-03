@@ -227,10 +227,10 @@
       "display_property": "dct:title"
     }, 
     {
+      "preset": "dataset_slug", 
       "required": true, 
       "field_name": "name", 
       "display_property": "dcat:landingPage", 
-      "preset": "dataset_slug", 
       "label": "URL"
     }, 
     {
@@ -368,6 +368,14 @@
         {
           "value": "volumetric_flow_rate", 
           "label": "volumetric flow rate"
+        }, 
+        {
+          "value": "growth_rate", 
+          "label": "growth rate"
+        }, 
+        {
+          "value": "mortality", 
+          "label": "mortalit"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
