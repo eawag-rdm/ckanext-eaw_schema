@@ -435,7 +435,7 @@ def eaw_schema_geteawuser(username):
         return hp_url_prefix + normname
 
     try:
-        userdict = toolkit.get_action('user_show')(data_dict={'id': username})
+        userdict = toolkit.get_action('user_show')(context={'keep_email': True}, data_dict={'id': username})
     except:
         return None
     eawuser = {'fullname': userdict.get('fullname'), 'email': userdict.get('email'),
