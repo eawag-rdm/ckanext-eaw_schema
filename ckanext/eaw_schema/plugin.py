@@ -15,6 +15,8 @@ missing = toolkit.missing
 _ = toolkit._
 logger = logging.getLogger(__name__)
 
+hashtypes = ['md5', 'sha256']
+
 def _json2list(value):
     if isinstance(value, list):
         val = value
@@ -330,7 +332,13 @@ def eaw_schema_check_package_type(pkgtype):
         return pkgtype
     else:
         return('dataset')
-    
+
+def eaw_schema_check_hashtype(hashtype):
+    if not hashtype in hashtypes:
+        raise toolkit.ValidationError({
+            'hashtype': [_('Hashtype must be one of {}'.format(hashtypes))]})
+    return hashtype
+
 def test_before(key, flattened_data, errors, context):
     # Check
     review_level = flattened_data.get(('review_level',))
@@ -341,7 +349,17 @@ def test_before(key, flattened_data, errors, context):
         raise toolkit.ValidationError(
             {'reviewed_by': [_('Not empty implies Review Level not "none".')]})
 
-        
+def test_before_resources(key, flattened_data, errors, context):
+    # Checck fields "hash" and "hashtype" are consistent
+    if flattened_data.get((key[0], key[1], 'hash')):
+        if not flattened_data.get((key[0], key[1], 'hashtype')):
+            raise toolkit.ValidationError({
+                'hash': [_('The type of the hash algorithm must be provided')]})
+    else:
+        if flattened_data.get((key[0], key[1], 'hashtype')):
+            raise toolkit.ValidationError({
+                'hashtype': [_('Hashtype requires Hash to be set')]})
+    return
 
 ## Template helper functions
 
@@ -544,10 +562,14 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                     eaw_users_exist,
                 'test_before':
                     test_before,
+                'test_before_resources':
+                    test_before_resources,
                 'eaw_schema_cp_filename2name':
                     eaw_schema_cp_filename2name,
                 'eaw_schema_check_package_type':
-                    eaw_schema_check_package_type
+                    eaw_schema_check_package_type,
+                'eaw_schema_check_hashtype':
+                    eaw_schema_check_hashtype
         }
 
     # IPackageController

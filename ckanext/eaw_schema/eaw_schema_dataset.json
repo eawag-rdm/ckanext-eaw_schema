@@ -134,6 +134,26 @@
         "data-module-tokensep": "[,;"
       }, 
       "output_validators": "eaw_schema_list_to_commasepstring_output"
+    },
+    {
+      "field_name": "hash",
+      "label": "Hash",
+      "form_snippet": null,
+      "display_snippet": "text.html",
+      "validators": "ignore_missing"
+    },
+    {
+      "field_name": "hashtype",
+      "label": "Hashtype",
+      "form_snippet": null,
+      "display_snippet": "text.html",
+      "validators": "ignore_missing eaw_schema_check_hashtype"
+    },
+    {
+      "field_name": "__before",
+      "validators": "test_before_resources",
+      "form_snippet": null,
+      "display_snipet": null
     }
   ], 
   "dataset_fields": [
@@ -142,7 +162,7 @@
       "validators": "test_before", 
       "form_snippet": null, 
       "display_snippet": null
-    }, 
+    },
     {
       "field_name": "separator_domain_metadata", 
       "display_snippet": null, 
