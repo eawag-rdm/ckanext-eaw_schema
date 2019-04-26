@@ -24,30 +24,34 @@ div.eaw_with_infobutton {
 
 @media (min-width: 980px) {
   div.publicationcheck div.eaw_with_infobutton,
-  div.open_data_check div.eaw_with_infobutton {
+  div.open_data_check div.eaw_with_infobutton,
+  div.longtermcheck div.eaw_with_infobutton {
     width: 56.5%;
   }
   .open_data_embargo span.error-block {
     width: 43.3%;
   }
 }
-}
+ 
 @media (min-width: 768px) and (max-width: 979px) {
   div.publicationcheck div.eaw_with_infobutton,
-  div.open_data_check div.eaw_with_infobutton {
+  div.open_data_check div.eaw_with_infobutton,
+  div.longtermcheck div.eaw_with_infobutton {
     width: 42.0%;
   }
 }
 @media (min-width: 713px) and (max-width: 767px) {
   div.publicationcheck div.eaw_with_infobutton,
-  div.open_data_check div.eaw_with_infobutton {
+  div.open_data_check div.eaw_with_infobutton,
+  div.longtermcheck div.eaw_with_infobutton {
     width: 65.2%;
   }
 }
 
 @media (min-width: 480px) and (max-width: 712px){
   div.publicationcheck div.eaw_with_infobutton,
-  div.open_data_check div.eaw_with_infobutton {
+  div.open_data_check div.eaw_with_infobutton,
+  div.longtermcheck div.eaw_with_infobutton {
     width: 52.4%;
   }
 }
@@ -79,13 +83,15 @@ textarea.eaw_with_infobutton {
 }
 
 div.control-group.publication_element,
-div.control-group.open_data_element {
+div.control-group.open_data_element,
+div.control-group.longterm_data_element {
   background: rgb(196, 235, 234);
   padding-bottom: 20px;
   
 }
 div.control-group.publication_element.publicationcheck,
-div.control-group.open_data_element.open_data_check {
+div.control-group.open_data_element.open_data_check,
+div.control-group.longterm_data_element.longtermcheck {
   margin-bottom: 10px;
   border-radius: 10px 10px 10px 10px;
 }
@@ -106,7 +112,8 @@ div.control-group.open_data_element.open_data_embargo {
 
 
 .publicationcheck label.control-label:after,
-.open_data_check label.control-label:after {
+.open_data_check label.control-label:after,
+.longtermcheck label.control-label:after {
   content:"";
 }
 
@@ -121,7 +128,8 @@ label.eaw_schema_checkbox {
 }
 
 .publicationcheck label.control-label,
-.open_data_check label.control-label {
+.open_data_check label.control-label,
+.longtermcheck label.control-label {
   width: 300px;
   font-size: 17.5px;
   text-align: left;
@@ -145,7 +153,8 @@ input#field-publicationlink {
 }
   
 .publicationcheck button.outsidebutton,
-.open_data_check button.outsidebutton {
+.open_data_check button.outsidebutton,
+.longtermcheck button.outsidebutton {
   margin-top: 13px;
 }
 

@@ -19,20 +19,21 @@ HvW-2016-06-03
     'ispublication',
     'publicationlink',
     'open_data',
-    'embargo'
+    'embargo',
+    'islongterm'
 ] -%}
 
 {% set missinglink_html = '<i class="text-error">Missing publication reference</i>'|safe %}
 {% set embargo = pkg_dict['embargo'] or None %}
-{% set opendata_html = '<img src="/opendata_small.png" width="21px" alt="Open Data"/> <b>Open Data</b>'|safe %}
-
+{% set opendata_html = '<img src="/opendata_small.png" width="25px" alt="Open Data"/> <b>Open Data</b>'|safe %}
+{% set longterm_html = '<img src="/inf.png" width="25px" alt="Long-term data"/> <b>Long-term data</b>'|safe %}
 
 <section class="additional-info">
   <h3>{{ _('Metadata') }}</h3>
   {% block publication_data %}
     {% if  pkg_dict['ispublication'] %}
       <div class="metadatadiv">
-	<i class="fa fa-file-text fa-2x"></i><b> Publication Data Package for: </b>
+	<i class="fa fa-file-text fa-2x"></i><b>&nbsp; Publication Data Package for: </b>
 	{% if pkg_dict['publicationlink'] %}<a href="{{ pkg_dict['publicationlink'] }}">
 	  {{ pkg_dict['publicationlink'] }} <i class="fa fa-external-link-square"></i></a>
 	{% else %}{{ missinglink_html }}
@@ -47,6 +48,13 @@ HvW-2016-06-03
       {% if embargo %}
 	(embargoed until {{ embargo }})
       {% endif %} 
+      </div>
+    {% endif %}
+  {% endblock %}
+  {% block longterm_data %}
+    {% if  pkg_dict['islongterm'] %}
+      <div class="metadatadiv">
+	{{ longterm_html }}
       </div>
     {% endif %}
   {% endblock %}

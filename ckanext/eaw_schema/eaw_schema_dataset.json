@@ -230,7 +230,19 @@
       "validators": "scheming_required isodate eaw_schema_embargodate", 
       "field_name": "embargo", 
       "output_validators": "eaw_schema_striptime"
-    }, 
+    },
+    {
+      "default_value": false, 
+      "modal_text": "long_term_archive_help", 
+      "form_snippet": "eaw_schema_checkbox.html", 
+      "label": "Long-term data package?",
+      "classes": ["longterm_data_element",
+		  "longtermcheck"],
+      "field_name": "islongterm", 
+      "form_attrs": {
+        "data-module": "eaw_schema_subdivs"
+      }
+    },
     {
       "field_name": "separator_domain_metadata", 
       "display_snippet": null, 
@@ -599,7 +611,7 @@
         "class": "medinput"
       }, 
       "display_property": "adms:status"
-    }, 
+    },
     {
       "default_value": "none", 
       "modal_text": "review_level_help", 

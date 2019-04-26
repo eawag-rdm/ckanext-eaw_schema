@@ -1,44 +1,45 @@
-<style>
-  div.modal-help {
-  font-size: large;
-  }
-  
-  .modal-help .modal  {
-  width: 750px;
-  max-width:95%;
-  left:auto;
-  margin-left: -200px;
-  }
-  .modal-help .modal-body {
-  max-height: 600px;
-  }
-</style>
-
 <div class="modal-help">
-  <div id="long_term_archive_help" class="modal hide fade">
+  <div id="{{ field.modal_text }}" class="modal hide fade">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h1>Long Term Archive</h1>
+      <button type="button" class="close" data-dismiss="modal"
+	      aria-hidden="true">&times</button>
+      <p><i class="fa fa-lightbulb-o
+		   fa-lg"></i>&nbsp;&nbsp<b>Long-term data
+		   package?</b></p>
     </div>
     <div class="modal-body">
       <p>
-	Indicates that you want earmark this package for
-	the <i>long-term archive</i>. Such data will be stored stored
-	in a way that should ensure the data's usefulness at a time
-	when neither the Eawag Research Data Platform nor the data's
-	creator, her research group, or the current custodians are
-	available anymore.
+	Indicates that you want to earmark this package for
+	the <i>long-term archive</i>.
+
+	A long-term data package is a data package that is considered
+	important enough to be preserved for a time span on the order
+	of a century. Long-term data packages are subject to special
+	requirements regarding file formats, regarding the quality and
+	completeness of the documentation and regarding the extent
+	of their curation and peer-review.
       </p>
       <p>
 	There should be a department- or group-level policy in place
 	to decide what data should go into the <i>long-term
 	archive.</i>
       </p>
-      <p>
-	Setting this flag has ramnifications for the expected quality
-	of the data and the meta-data and restricts the acceptable
-	file-formats for resources in this package.
-      </p>
+      
+      <div class="alert alert-block">
+	<i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+	<b>Please make sure to have read the relevant sections
+	  in the<br />
+	<a href="https://doi.org/10.25678/000066" target="_blank">Eawag guide to the
+	  publishing and archiving of research data</a></b><br />
+	and follow in particular the sections on
+	<ul>
+	  <li><a href="https://doi.org/10.25678/000066#documentation-scientific-metadata" target="_blank">Documentation</a>,</li>
+	  <li><a href="https://doi.org/10.25678/000066#file-naming" target="_blank">File naming</a>,</li>
+	  <li><a href="https://doi.org/10.25678/000066#folder-structure-and-file-archives"
+		 target="_blank">Folder structure and file-archives</a> and </li>
+	  <li><a href="https://doi.org/10.25678/000066#file-formats" target="_blank">File formats</a>.</li>
+	</ul>
+      </div>
     </div>
   </div>
 </div>
