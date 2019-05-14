@@ -22,8 +22,6 @@
     {
       "modal_text": "resource_type_help", 
       "required": true, 
-      "label": "Resource Type", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "Dataset", 
@@ -86,6 +84,8 @@
           "label": "Other"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Resource Type", 
       "field_name": "resource_type"
     }, 
     {
@@ -98,8 +98,6 @@
     {
       "modal_text": "restricted_level_help", 
       "required": true, 
-      "label": "Restriction", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "public", 
@@ -114,6 +112,8 @@
           "label": "Allowed users only"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Restriction", 
       "field_name": "restricted_level"
     }, 
     {
@@ -136,38 +136,38 @@
       "output_validators": "eaw_schema_list_to_commasepstring_output"
     }, 
     {
-      "field_name": "hash", 
-      "display_snippet": "text.html", 
+      "validators": "ignore_missing", 
       "form_snippet": null, 
       "label": "Hash", 
-      "validators": "ignore_missing"
+      "field_name": "hash", 
+      "display_snippet": "text.html"
     }, 
     {
-      "field_name": "hashtype", 
-      "display_snippet": "text.html", 
+      "validators": "ignore_missing eaw_schema_check_hashtype", 
       "form_snippet": null, 
       "label": "Hashtype", 
-      "validators": "ignore_missing eaw_schema_check_hashtype"
+      "field_name": "hashtype", 
+      "display_snippet": "text.html"
     }, 
     {
       "display_snipet": null, 
-      "field_name": "__before", 
       "form_snippet": null, 
+      "field_name": "__before", 
       "validators": "test_before_resources"
     }
   ], 
   "dataset_fields": [
     {
-      "field_name": "__before", 
-      "validators": "test_before", 
       "form_snippet": null, 
-      "display_snippet": null
+      "display_snippet": null, 
+      "field_name": "__before", 
+      "validators": "test_before"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "package type"
+      "label": "package type", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "default_value": false, 
@@ -230,24 +230,26 @@
       "validators": "scheming_required isodate eaw_schema_embargodate", 
       "field_name": "embargo", 
       "output_validators": "eaw_schema_striptime"
-    },
+    }, 
     {
       "default_value": false, 
       "modal_text": "long_term_archive_help", 
       "form_snippet": "eaw_schema_checkbox.html", 
-      "label": "Long-term data package?",
-      "classes": ["longterm_data_element",
-		  "longtermcheck"],
+      "label": "Long-term data package?", 
+      "classes": [
+        "longterm_data_element", 
+        "longtermcheck"
+      ], 
       "field_name": "islongterm", 
       "form_attrs": {
         "data-module": "eaw_schema_subdivs"
       }
-    },
+    }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "bibliographic metadata"
+      "label": "bibliographic metadata", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "modal_text": "title_help", 
@@ -261,9 +263,9 @@
     {
       "required": true, 
       "field_name": "name", 
+      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "preset": "dataset_slug", 
-      "label": "URL"
+      "preset": "dataset_slug"
     }, 
     {
       "default_value": "context_fullname_email", 
@@ -272,11 +274,11 @@
       "required": true, 
       "form_snippet": "eaw_schema_repeating_text_js.html", 
       "label": "Author", 
-      "output_validators": "repeating_text_output", 
+      "display_property": "dc:creator", 
       "validators": "repeating_text eaw_schema_json_not_empty", 
       "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
       "field_name": "author", 
-      "display_property": "dc:creator", 
+      "output_validators": "repeating_text_output", 
       "form_blanks": 3
     }, 
     {
@@ -299,17 +301,17 @@
       "form_attrs": {
         "data-module-tags": "", 
         "style": "width:97%;", 
-        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?", 
+        "data-module-tokensep": ",;", 
         "data-module": "eaw_autocomplete", 
-        "data-module-tokensep": ",;"
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
       }, 
       "display_property": "dcat:keyword"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "domain specific metadata"
+      "label": "domain specific metadata", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "default_value": "none", 
@@ -460,6 +462,14 @@
         {
           "value": "organic_phosphorus", 
           "label": "organic phosphorus"
+        }, 
+        {
+          "value": "delta_13C", 
+          "label": "\u03b413C"
+        }, 
+        {
+          "value": "delta_15N", 
+          "label": "\u03b415N"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
@@ -578,14 +588,14 @@
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "package status & usage"
+      "label": "package status & usage", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
-      "modal_text_visibility": "visibility_help", 
       "required": true, 
+      "modal_text_visibility": "visibility_help", 
       "label": "Organization", 
       "modal_text_organization": "organization_help", 
       "preset": "eaw_schema_dataset_organization", 
@@ -594,8 +604,6 @@
     {
       "modal_text": "status_help", 
       "required": true, 
-      "label": "Status", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "incomplete", 
@@ -606,12 +614,14 @@
           "label": "complete"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Status", 
       "field_name": "status", 
       "form_attrs": {
         "class": "medinput"
       }, 
       "display_property": "adms:status"
-    },
+    }, 
     {
       "default_value": "none", 
       "modal_text": "review_level_help", 
