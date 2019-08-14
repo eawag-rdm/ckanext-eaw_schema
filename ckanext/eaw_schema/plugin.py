@@ -2,7 +2,7 @@ import ckan.plugins as plugins
 import ckantoolkit as toolkit
 from ckan.logic import side_effect_free
 from ckan.plugins.interfaces import IPackageController
-from ckanext.eaw_vocabularies.validate_solr_daterange import SolrDaterange
+from ckanext.eaw_schema.validate_solr_daterange import SolrDaterange
 from ckanext.scheming.validation import scheming_validator
 import pylons.config as config
 from itertools import count
