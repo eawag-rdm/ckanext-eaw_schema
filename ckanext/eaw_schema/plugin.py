@@ -535,6 +535,8 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'eaw_schema')
+        toolkit.add_resource('fanstatic/vendor/bootstrap-switch',
+                             'bootstrap-switch')
         
     # IValidators
     def get_validators(self):
