@@ -1,6 +1,7 @@
 {
   "about": "A reimplementation of the default CKAN dataset schema", 
-  "scheming_version": 1, 
+  "scheming_version": 1,
+  "dataset_type": "dataset",
   "resource_fields": [
     {
       "preset": "resource_url_upload", 
