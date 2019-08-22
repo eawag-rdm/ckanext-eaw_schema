@@ -23,7 +23,7 @@ HvW-2016-06-03
     'islongterm'
 ] -%}
 
-{% set missinglink_html = '<i class="text-error">Missing publication reference</i>'|safe %}
+{% set missinglink_html = '<i class="text-danger">Missing publication reference</i>'|safe %}
 {% set embargo = pkg_dict['embargo'] or None %}
 {% set opendata_html = '<img src="/opendata_small.png" width="25px" alt="Open Data"/> <b>Open Data</b>'|safe %}
 {% set longterm_html = '<img src="/inf.png" width="25px" alt="Long-term data"/> <b>Long-term data</b>'|safe %}
