@@ -623,7 +623,7 @@
       ], 
       "field_name": "status", 
       "form_attrs": {
-        "class": "medinput"
+         "style": "width:270px;"
       }, 
       "display_property": "adms:status"
     }, 

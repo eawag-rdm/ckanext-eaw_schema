@@ -3,7 +3,7 @@
 
 {% block package_metadata_fields_visibility %}
   {% set modal_text_visibility=field.modal_text_visibility if 'modal_text_visibility' in field else none %}
-  <div class="control-group form-group control-medium">
+  <div class="control-group form-group control-full eaw_with_infobutton">
     <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
     <div class="controls">
       <select id="field-private" name="private" class="form-control">

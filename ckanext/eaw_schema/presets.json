@@ -35,7 +35,7 @@
 	"validators": "owner_org_validator unicode",
 	"form_snippet": "organization.html"
       }
-      },
+    },
     {
       "preset_name": "eaw_schema_title",
       "values": {

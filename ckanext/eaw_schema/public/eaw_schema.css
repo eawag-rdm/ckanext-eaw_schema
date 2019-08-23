@@ -257,3 +257,8 @@ i.fa-exclamation-triangle {
     left: 100%;
     margin-left: 15px;
 }
+
+div.form-group.eaw_with_infobutton select {
+  display: inline-block;
+  width: 90%;
+}

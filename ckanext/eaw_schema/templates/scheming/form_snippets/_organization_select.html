@@ -11,12 +11,12 @@ not used as a form_snippet directly #}
     label=h.scheming_language_text(field.label),
     error=errors[field.field_name],
     is_required=org_required,
-    classes=['form-group', 'control-medium'],
+    classes=['form-group', 'form-control'],
     extra_html=caller() if caller,
     ) %}
     <div {{
       form.attributes(field.form_attrs) if 'form_attrs' in field else '' }}>
-    <select id="field-organizations" name="owner_org" {{ form.attributes(
+    <select id="field-organizations" name="owner_org" class={{ form.attributes(
         field.get('form_select_attrs', {'data-module':'autocomplete'})) }}>
       {% if not org_required or field.get('form_include_blank_choice', false) %}
         <option value="">{% if not org_required
@@ -33,7 +33,7 @@ not used as a form_snippet directly #}
     </div>
     {% if modal_text_organization is defined %}
       {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text_organization ~ '.html' -%}
-    {% endif %}
+    {% endif %}{{field}}
   {% endcall %}
 {% endmacro %}
 
