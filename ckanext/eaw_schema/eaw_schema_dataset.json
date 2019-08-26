@@ -601,9 +601,10 @@
     {
       "modal_text_visibility": "visibility_help", 
       "required": true, 
-      "label": "Organization", 
-      "modal_text_organization": "organization_help", 
-      "preset": "eaw_schema_dataset_organization", 
+      "label": "Organization",
+      "form_snippet": "organization.html",
+      "modal_text_organization": "organization_help",
+      "validators": "owner_org_validator unicode",
       "field_name": "owner_org"
     }, 
     {
@@ -622,9 +623,6 @@
         }
       ], 
       "field_name": "status", 
-      "form_attrs": {
-         "style": "width:270px;"
-      }, 
       "display_property": "adms:status"
     }, 
     {
