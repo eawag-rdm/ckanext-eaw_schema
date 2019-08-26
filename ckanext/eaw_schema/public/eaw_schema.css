@@ -260,5 +260,12 @@ i.fa-exclamation-triangle {
 
 div.form-group.eaw_with_infobutton select {
   display: inline-block;
-  width: 90%;
+}
+
+div.select2-container.form-control {
+  border: 0;
+}
+
+div.select2-container.form-control {
+  padding: 0;
 }
