@@ -700,6 +700,5 @@
       "display_property": "dct:description"
     }
   ], 
-  "dataset_type": "dataset", 
   "about_url": "http://github.com/ckan/ckanext-scheming"
 }
