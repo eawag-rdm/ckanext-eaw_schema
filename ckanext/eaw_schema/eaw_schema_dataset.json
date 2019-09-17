@@ -674,7 +674,7 @@
     }, 
     {
       "default_value": "context_username", 
-      "display_snippet": "eaw_fullname_email.html", 
+      "display_snippet": "text.html",
       "modal_text": "curator_help", 
       "required": true, 
       "form_snippet": "eaw_schema_text.html", 
