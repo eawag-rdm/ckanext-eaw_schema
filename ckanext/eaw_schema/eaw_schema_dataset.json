@@ -658,7 +658,7 @@
       "classes": [
         "control-full"
       ], 
-      "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(comma)", 
       "form_placeholder": "Start typing name or email of ERIC user ...", 
       "field_name": "reviewed_by", 
       "form_attrs": {
@@ -679,26 +679,8 @@
       "required": true, 
       "form_snippet": "eaw_schema_text.html", 
       "label": "Curator", 
-      "validators": "scheming_required eaw_users_exist", 
+      "validators": "scheming_required", 
       "field_name": "maintainer", 
-      "form_attrs": {
-        "data-module-label": "fullname", 
-        "style": "width:97%;", 
-        "data-module-key": "name", 
-        "data-module": "eaw_autocomplete", 
-        "data-module-source": "/api/2/util/user/autocomplete?q=?"
-      }, 
-      "display_property": "datacite:datacurator"
-    }, 
-    {
-      "default_value": "context_username", 
-      "display_snippet": "eaw_fullname_email.html", 
-      "modal_text": "usage_contact_help", 
-      "required": true, 
-      "form_snippet": "eaw_schema_text.html", 
-      "label": "Usage Contact", 
-      "validators": "scheming_required eaw_users_exist", 
-      "field_name": "usage_contact", 
       "form_attrs": {
         "data-module-label": "fullname", 
         "style": "width:97%;", 
