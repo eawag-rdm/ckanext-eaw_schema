@@ -17,6 +17,10 @@ logger = logging.getLogger(__name__)
 
 hashtypes = ['md5', 'sha256']
 
+# for checking valid DOI
+doi_regexp = re.compile(
+    "10\.\d+(.\d+)*/.+$", flags=re.I)
+
 def _json2list(value):
     if isinstance(value, list):
         val = value
@@ -339,6 +343,12 @@ def eaw_schema_check_hashtype(hashtype):
             'hashtype': [_('Hashtype must be one of {}'.format(hashtypes))]})
     return hashtype
 
+def eaw_schema_is_doi(value):
+    if doi_regexp.match(value):
+        return value
+    else:
+        raise toolkit.Invalid('{} is not a valid DOI'.format(value))
+
 def test_before(key, flattened_data, errors, context):
     # Check
     review_level = flattened_data.get(('review_level',))
@@ -360,6 +370,7 @@ def test_before_resources(key, flattened_data, errors, context):
             raise toolkit.ValidationError({
                 'hashtype': [_('Hashtype requires Hash to be set')]})
     return
+
 
 ## Template helper functions
 
@@ -571,7 +582,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_check_package_type':
                     eaw_schema_check_package_type,
                 'eaw_schema_check_hashtype':
-                    eaw_schema_check_hashtype
+                    eaw_schema_check_hashtype,
+                'eaw_schema_is_doi':
+                    eaw_schema_is_doi
         }
 
     # IPackageController

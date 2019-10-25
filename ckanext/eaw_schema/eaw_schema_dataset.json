@@ -698,6 +698,15 @@
       "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
       "field_name": "notes-2", 
       "display_property": "dct:description"
+    },
+    {
+      "field_name": "doi",
+      "required": false,
+      "label": "DOI",
+      "display_snippet": "text.html",
+      "form_snippet": null,
+      "display_property": "dct:identifier",
+      "validators": "ignore_missing eaw_schema_is_doi"
     }
   ], 
   "about_url": "http://github.com/ckan/ckanext-scheming"
