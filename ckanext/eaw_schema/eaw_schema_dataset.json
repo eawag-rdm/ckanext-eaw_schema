@@ -274,7 +274,7 @@
       "modal_text": "author_help", 
       "required": true, 
       "form_snippet": "eaw_schema_repeating_text_js.html", 
-      "label": "Author", 
+      "label": "Author(s)", 
       "output_validators": "repeating_text_output", 
       "validators": "repeating_text eaw_schema_json_not_empty", 
       "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
