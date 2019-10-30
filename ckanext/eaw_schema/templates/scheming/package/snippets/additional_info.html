@@ -34,8 +34,11 @@ HvW-2016-06-03
     {% if  pkg_dict['ispublication'] %}
       <div class="metadatadiv">
 	<i class="fa fa-file-text fa-2x"></i><b>&nbsp; Publication Data Package for: </b>
-	{% if pkg_dict['publicationlink'] %}<a href="{{ pkg_dict['publicationlink'] }}">
-	  {{ pkg_dict['publicationlink'] }} <i class="fa fa-external-link-square"></i></a>
+	{% if pkg_dict['publicationlink'] %}
+	  <a href="{{ pkg_dict['publicationlink'] }}" target="_blank"">
+	    {{ pkg_dict['publicationlink'] }} <i class="fa
+	    fa-external-link-square"></i>
+	  </a>
 	{% else %}{{ missinglink_html }}
 	{% endif %}
       </div>
