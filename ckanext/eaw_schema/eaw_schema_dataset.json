@@ -690,7 +690,13 @@
         "data-module-source": "/api/2/util/user/autocomplete?q=?"
       }, 
       "display_property": "datacite:datacurator"
-    }, 
+    },
+    {
+      "field_name": "maintainer_email",
+      "required": true,
+      "label": "Curator's email",
+      "display_snippet": "text.html"
+    },
     {
       "modal_text": "notes_help", 
       "required": false, 
