@@ -1,12 +1,31 @@
 {%- set values = data[field.field_name] -%}
-{% if values|length == 1 %}
-  {{ values[0] }}
-{% else %}
-  <ol>
-    {%- for element in values -%}
-      {% if element|length > 0 %}
-	<li>{{ element }}</li>
-      {% endif %}
-    {%- endfor -%}
+{% set no_values = values|length %}
+{% if no_values == 1 %} 
+  {{ values[0] }} 
+{% elif no_values > 3 %} 
+ <ol> 
+   {%- for element in values[0:3] -%} 
+     {% if element|length > 0 %} 
+       <li>{{ element }}</li> 
+     {% endif %}
+   {%- endfor -%}
+ </ol>
+<a data-toggle="collapse" href="#restlist" aria-expanded="false" aria-controls="restlist">..... <strong>{{ no_values - 3 }} more</strong></a>
+<div class="collapse" id="restlist"> 
+  <ol start="4"> 
+  {%- for element in values[3:] -%} 
+    {% if element|length > 0 %} 
+      <li>{{ element }}</li> 
+    {% endif %} 
+  {%- endfor -%} 
   </ol>
-{% endif %}
+</div>
+{% else %}
+   <ol> 
+   {%- for element in values -%} 
+     {% if element|length > 0 %} 
+       <li>{{ element }}</li> 
+     {% endif %}
+   {%- endfor -%}
+ </ol>
+{% endif %} 
