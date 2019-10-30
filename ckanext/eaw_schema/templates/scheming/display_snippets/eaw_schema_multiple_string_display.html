@@ -1,12 +1,37 @@
-{%- set values = data[field.field_name] -%}
+{# Similar to eaw_repeating_text.html, just for unsorted list. #}
 
-{%- if values|length == 1 -%}
+{%- set values = data[field.field_name] -%}
+{% set no_values = values|length %}
+{% set maxdisplay = 5 %}
+{%- set values = values|sort -%}
+{%- if no_values == 1 -%}
   {{ values[0] }}
+{%- elif no_values > maxdisplay -%}
+<ul> 
+   {%- for element in values[0:maxdisplay] -%} 
+     {%- if element|length > 0 -%} 
+       <li>{{ element }}</li> 
+     {%- endif -%}
+   {%- endfor -%}
+ </ul>
+<a data-toggle="collapse" href="#restlist_{{field.field_name}}"
+   aria-expanded="false" aria-controls="restlist_{{field.field_name}}">
+   ..... <strong>{{ no_values - maxdisplay }} more</strong></a>
+<div class="collapse" id="restlist_{{field.field_name}}">
+  <ul> 
+  {%- for element in values[maxdisplay:] -%} 
+    {%- if element|length > 0 -%} 
+      <li>{{ element }}</li> 
+    {%- endif -%} 
+  {%- endfor -%} 
+  </ul>
+</div>
 {%- else -%}
-  {%- set values = values|sort -%}
-  <ul>
-    {%- for value in values -%}
-       <li>{{ value }}</li>
-    {%- endfor -%}
-    </ul>
+   <ul> 
+   {%- for element in values -%} 
+     {%- if element|length > 0 -%} 
+       <li>{{ element }}</li> 
+     {%- endif -%}
+   {%- endfor -%}
+ </ul>
 {%- endif -%}

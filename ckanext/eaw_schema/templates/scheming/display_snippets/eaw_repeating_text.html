@@ -1,31 +1,38 @@
+{# Similar to eaw_schema_multiple_string_display.html, #}
+{# just for sorted list (authors) #}
+
 {%- set values = data[field.field_name] -%}
 {% set no_values = values|length %}
-{% if no_values == 1 %} 
+{% set maxdisplay = 5 %}
+{%- if no_values == 1 -%} 
   {{ values[0] }} 
-{% elif no_values > 3 %} 
+{%- elif no_values > maxdisplay -%} 
  <ol> 
-   {%- for element in values[0:3] -%} 
-     {% if element|length > 0 %} 
+   {%- for element in values[0:maxdisplay] -%} 
+     {%- if element|length > 0 -%} 
        <li>{{ element }}</li> 
-     {% endif %}
+     {%- endif -%}
    {%- endfor -%}
  </ol>
-<a data-toggle="collapse" href="#restlist" aria-expanded="false" aria-controls="restlist">..... <strong>{{ no_values - 3 }} more</strong></a>
-<div class="collapse" id="restlist"> 
-  <ol start="4"> 
-  {%- for element in values[3:] -%} 
-    {% if element|length > 0 %} 
+<a data-toggle="collapse" href="#restlist_{{field.field_name}}"
+   aria-expanded="false" aria-controls="restlist_{{field.field_name}}">
+   ..... <strong>{{no_values - maxdisplay }} more</strong>
+</a>
+<div class="collapse" id="restlist_{{field.field_name}}"> 
+  <ol start={{ maxdisplay + 1 }}> 
+  {%- for element in values[maxdisplay:] -%} 
+    {%- if element|length > 0 -%} 
       <li>{{ element }}</li> 
-    {% endif %} 
+    {%- endif -%} 
   {%- endfor -%} 
   </ol>
 </div>
-{% else %}
+{%- else -%}
    <ol> 
    {%- for element in values -%} 
-     {% if element|length > 0 %} 
+     {%- if element|length > 0 -%} 
        <li>{{ element }}</li> 
-     {% endif %}
+     {%- endif -%}
    {%- endfor -%}
  </ol>
-{% endif %} 
+{%- endif -%} 
