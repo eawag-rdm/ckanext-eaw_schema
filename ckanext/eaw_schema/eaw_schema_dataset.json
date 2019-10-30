@@ -159,7 +159,7 @@
   ], 
   "dataset_fields": [
     {
-      "field_name": "__before", 
+      "field_name": "__before",
       "validators": "test_before", 
       "form_snippet": null, 
       "display_snippet": null
@@ -608,7 +608,8 @@
       "field_name": "owner_org"
     }, 
     {
-      "modal_text": "status_help", 
+      "modal_text": "status_help",
+      "display_snippet": null,
       "required": true, 
       "label": "Status", 
       "preset": "select_short", 
@@ -652,7 +653,7 @@
       }
     }, 
     {
-      "display_snippet": "eaw_fullname_email.html", 
+      "display_snippet": null, 
       "form_snippet": "eaw_schema_text.html", 
       "label": "Reviewed By", 
       "classes": [
