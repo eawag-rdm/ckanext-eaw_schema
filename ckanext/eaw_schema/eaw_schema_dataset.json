@@ -698,7 +698,7 @@
     {
       "field_name": "maintainer_email",
       "required": true,
-      "label": "Curator's email",
+      "label": "Contact",
       "display_snippet": "text.html"
     },
     {
@@ -718,6 +718,11 @@
       "form_snippet": null,
       "display_property": "dct:identifier",
       "validators": "ignore_missing eaw_schema_is_doi"
+    },
+    {
+      "field_name": "citation",
+      "display_snippet": null,
+      "form_snippet": null
     }
   ], 
   "about_url": "http://github.com/ckan/ckanext-scheming"

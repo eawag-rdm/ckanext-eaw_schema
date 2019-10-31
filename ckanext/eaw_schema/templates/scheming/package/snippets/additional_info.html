@@ -27,10 +27,36 @@ HvW-2016-06-03
 {% set embargo = pkg_dict['embargo'] or None %}
 {% set opendata_html = '<img src="/opendata_small.png" width="25px" alt="Open Data"/> <b>Open Data</b>'|safe %}
 {% set longterm_html = '<img src="/inf.png" width="25px" alt="Long-term data"/> <b>Long-term data</b>'|safe %}
+{% set doi = pkg_dict['doi'] %}
 
 <section class="additional-info">
-  <h3>{{ _('Metadata') }}</h3>
-  {% block publication_data %}
+
+{% block citation %}
+  <h3>{{ _('Cite as:') }}</h3>
+  <div class="well">
+      {{ pkg_dict['citation'] |safe }}
+  </div>
+  <div class="btn-group" role="group" aria-label="citation_download">
+    <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('ris', doi) }}" role="button">RIS</a>
+    <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('bibtex', doi) }}" role="button">BibTeX</a>
+    <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('citeproc', doi) }}" role="button">Citeproc JSON</a>
+    <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('datacitexml', doi) }}" role="button">Datacite XML</a>
+  </div>
+  {# {% if pkg_dict['citation_publication'] is defined %} #}
+    <div class="well">
+      {{ pkg_dict['citation_publication'] |safe }}
+    </div>
+    <div class="btn-group" role="group" aria-label="citation_download">
+      <a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('ris', doi) }}" role="button">RIS</a>
+      <a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('bibtex', doi) }}" role="button">BibTeX</a>
+      <a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('citeproc', doi) }}" role="button">Citeproc JSON</a>
+      <a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('datacitexml', doi) }}" role="button">Datacite XML</a>
+    </div>
+  {# {% endif %} #}
+{% endblock %}
+ 
+    {% block publication_data %}
+      <h3>{{ _('Metadata') }}</h3>
     {% if  pkg_dict['ispublication'] %}
       <div class="metadatadiv">
 	<i class="fa fa-file-text fa-2x"></i><b>&nbsp; Publication Data Package for: </b>

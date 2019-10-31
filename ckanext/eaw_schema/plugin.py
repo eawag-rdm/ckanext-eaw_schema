@@ -521,6 +521,18 @@ def eaw_schema_choices_label_noi8n(choices, value):
             return c.get('label', value)
     return value
 
+def eaw_schema_get_citationurl(typ, doi):
+    types = {'ris': 'application/x-research-info-systems',
+             'bibtex': 'application/x-bibtex',
+             'datacitexml': 'application/vnd.datacite.datacite+xml',
+             'citeproc': 'application/vnd.citationstyles.csl+json'
+             }
+    if not types.get(typ):
+        return('#')
+    doi = re.sub('^https?://(dx\.)?doi\.org/', '', doi)
+    url = 'https://data.datacite.org/{}/{}'.format(types[typ], doi)
+    return url
+        
 # Action functions
 
 @side_effect_free
@@ -633,7 +645,8 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_geteawuser': eaw_schema_geteawuser,
                 'eaw_schema_embargo_interval': eaw_schema_embargo_interval,
                 'eaw_username_fullname_email': eaw_username_fullname_email,
-                'eaw_schema_choices_label_noi8n': eaw_schema_choices_label_noi8n
+                'eaw_schema_choices_label_noi8n': eaw_schema_choices_label_noi8n,
+                'eaw_schema_get_citationurl': eaw_schema_get_citationurl
         }
     
     # IActions
