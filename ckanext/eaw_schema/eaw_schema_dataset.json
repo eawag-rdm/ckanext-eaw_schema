@@ -23,8 +23,10 @@
     {
       "modal_text": "resource_type_help", 
       "required": true, 
-      "label": "Resource Type", 
-      "preset": "select_short", 
+      "label": "Resource Type",
+      "display_snippet": "eaw_select_noi8n.html",
+      "form_snippet": "select_short.html",
+      "validators": "scheming_required scheming_choices",
       "choices": [
         {
           "value": "Dataset", 

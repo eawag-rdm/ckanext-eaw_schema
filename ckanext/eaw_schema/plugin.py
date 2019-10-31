@@ -504,6 +504,22 @@ def eaw_username_fullname_email(s_users):
     l_users = [mkfull(u) for u in s_users.split(',')]
     return l_users
 
+def eaw_schema_choices_label_noi8n(choices, value):
+    """
+    This is a modification of h.scheming_choices_label that doesn't
+    translate the value. Used in display_snippet eaw_select_noi8n.html.
+
+    :param choices: choices list of {"label": .., "value": ..} dicts
+    :param value: value selected
+    Return the label from choices with a matching value, or
+    the value passed when not found. Result is passed through
+    scheming_language_text before being returned.
+
+    """
+    for c in choices:
+        if c['value'] == value:
+            return c.get('label', value)
+    return value
 
 # Action functions
 
@@ -616,7 +632,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_get_values': eaw_schema_get_values,
                 'eaw_schema_geteawuser': eaw_schema_geteawuser,
                 'eaw_schema_embargo_interval': eaw_schema_embargo_interval,
-                'eaw_username_fullname_email': eaw_username_fullname_email}
+                'eaw_username_fullname_email': eaw_username_fullname_email,
+                'eaw_schema_choices_label_noi8n': eaw_schema_choices_label_noi8n
+        }
     
     # IActions
     def get_actions(self):
