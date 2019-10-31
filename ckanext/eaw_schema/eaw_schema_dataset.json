@@ -98,9 +98,11 @@
     }, 
     {
       "modal_text": "restricted_level_help", 
-      "required": true, 
-      "label": "Restriction", 
-      "preset": "select_short", 
+      "required": true,
+      "label": "Restriction",
+      "form_snippet": "select_short.html",
+      "display_snippet": null,
+      "validators": "scheming_required scheming_choices",
       "choices": [
         {
           "value": "public", 
@@ -135,7 +137,7 @@
         "data-module-tokensep": "[,;"
       }, 
       "output_validators": "eaw_schema_list_to_commasepstring_output"
-    }, 
+    },
     {
       "field_name": "hash", 
       "label": "Hash", 
@@ -278,7 +280,7 @@
       "output_validators": "repeating_text_output", 
       "validators": "repeating_text eaw_schema_json_not_empty", 
       "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
-      "field_name": "author", 
+      "field_name": "author",
       "display_property": "dc:creator", 
       "form_blanks": 3
     }, 
