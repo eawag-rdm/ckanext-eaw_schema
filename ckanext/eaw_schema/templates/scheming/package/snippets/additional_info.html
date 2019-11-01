@@ -40,12 +40,14 @@ HvW-2016-06-03
     <div class="well">
       {{ pkg_dict['citation'] |safe }}
     </div>
+    {% if doi is defined %}
     <div class="btn-group" role="group" aria-label="citation_download">
       <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('ris', doi) }}" role="button">RIS</a>
       <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('bibtex', doi) }}" role="button">BibTeX</a>
       <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('citeproc', doi) }}" role="button">Citeproc JSON</a>
       <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('datacitexml', doi) }}" role="button">Datacite XML</a>
     </div>
+    {% endif %}
   </div>
   {% if pkg_dict['citation_publication'] is defined %}
   <div class="paper_citation">
@@ -98,9 +100,12 @@ HvW-2016-06-03
   <tbody>
     {% block package_additional_info %}
       {%- for field in schema.dataset_fields -%}
-	{%- if field.field_name not in exclude_fields
+	{% if field.field_name not in exclude_fields
 	  and field.display_snippet is not none
-	  and pkg_dict[field.field_name]|length > 0-%}
+	  and pkg_dict[field.field_name] is defined
+	  and pkg_dict[field.field_name] is not none
+	  and pkg_dict[field.field_name] != ['none']
+	  and pkg_dict[field.field_name]|length > 0 %}
 	  <tr>
             <th scope="row" class="dataset-label">{{
 	      h.scheming_language_text(field.label) }}</th>
