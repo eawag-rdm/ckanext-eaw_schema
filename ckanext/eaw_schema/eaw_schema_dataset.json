@@ -192,16 +192,16 @@
       }
     }, 
     {
-      "modal_text": "publicationlink_help", 
-      "form_snippet": "eaw_schema_text.html", 
-      "label": "DORA-Id or DOI, if available", 
+      "modal_text": "publicationlink_help",
+      "form_snippet": "eaw_schema_text.html",
+      "label": "DORA-Id or DOI, if available",
       "classes": [
-        "publication_element", 
+        "publication_element",
         "publicationlink"
-      ], 
-      "validators": "eaw_schema_publicationlink", 
+      ],
+      "validators": "eaw_schema_publicationlink",
       "form_placeholder": "http://doi.org/10.1016/j.envsoft.2017.03.002", 
-      "field_name": "publicationlink", 
+      "field_name": "publicationlink",
       "form_attrs": {
         "data-module": "eaw_schema_checkpublication"
       }
@@ -722,6 +722,21 @@
     },
     {
       "field_name": "citation",
+      "display_snippet": null,
+      "form_snippet": null
+    },
+    {
+      "field_name": "citation_publication",
+      "display_snippet": null,
+      "form_snippet": null
+    },
+    {
+      "field_name": "paper_doi",
+      "display_snippet": null,
+      "form_snippet": null
+    },
+    {
+      "field_name": "publicationlink_dora",
       "display_snippet": null,
       "form_snippet": null
     }
