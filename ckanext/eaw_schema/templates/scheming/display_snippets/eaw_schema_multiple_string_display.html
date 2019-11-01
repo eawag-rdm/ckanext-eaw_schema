@@ -4,9 +4,8 @@
 {% set no_values = values|length %}
 {% set maxdisplay = 5 %}
 {%- set values = values|sort -%}
-{%- if no_values == 1 -%}
-  {{ values[0] }}
-{%- elif no_values > maxdisplay -%}
+
+{%- if no_values > maxdisplay -%}
 <ul class="list-group expandable-list">
    {%- for element in values[0:maxdisplay-1] -%}
      {%- if element|length > 0 -%}

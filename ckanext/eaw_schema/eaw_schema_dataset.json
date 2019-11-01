@@ -481,7 +481,8 @@
           "label": "C:N ratio"
         }
       ], 
-      "preset": "eaw_multiple_select_js", 
+      "preset": "eaw_multiple_select_js",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
       "label": "Variables", 
       "field_name": "variables", 
       "form_attrs": {

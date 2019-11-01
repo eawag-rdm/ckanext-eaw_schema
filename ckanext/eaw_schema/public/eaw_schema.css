@@ -283,3 +283,7 @@ div.select2-container.form-control {
 .list-group.expandable-list > li.list-group-item.clearfix {
   border-bottom: 0;
 }
+
+.table td, table th {
+  border: none !important;
+}
