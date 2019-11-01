@@ -3,8 +3,9 @@
 {%- set values = data[field.field_name] -%}
 {% set no_values = values|length %}
 {% set maxdisplay = 5 %}
-{%- set values = values|sort -%}
-
+{% if field.field_name != 'author' %}
+  {%- set values = values|sort -%}
+{% endif %}
 {%- if no_values > maxdisplay -%}
 <ul class="list-group expandable-list">
    {%- for element in values[0:maxdisplay-1] -%}
@@ -13,7 +14,7 @@
      {%- endif -%}
    {%- endfor -%}
    <li class="list-group-item clearfix">
-     {{ values[maxdisplay] }}
+     {{ values[maxdisplay-1] }}
      <button class="btn btn-info pull-right" type="button" data-toggle="collapse"
 	     data-target="#restlist_{{field.field_name}}"
 	     aria-expanded="false"
@@ -23,7 +24,7 @@
  </ul>
 <div class="collapse" id="restlist_{{field.field_name}}">
   <ul class="list-group">
-  {%- for element in values[maxdisplay+1:] -%}
+  {%- for element in values[maxdisplay:] -%}
     {%- if element|length > 0 -%}
       <li class="list-group-item">{{ element }}</li>
     {%- endif -%}
