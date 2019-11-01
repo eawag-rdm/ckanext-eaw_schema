@@ -272,6 +272,14 @@ div.select2-container.form-control {
   padding: 0;
 }
 
-section.additional-info > div.well {
-  margin-bottom: 0;
+.package_citation div.well {
+  margin-bottom:0;
+}
+
+.list-group.expandable-list {
+  margin-bottom:0;
+}
+
+.list-group.expandable-list > li.list-group-item.clearfix {
+  border-bottom: 0;
 }

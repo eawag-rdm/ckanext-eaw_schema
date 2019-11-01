@@ -274,7 +274,7 @@
     }, 
     {
       "default_value": "context_fullname_email", 
-      "display_snippet": "eaw_repeating_text.html", 
+      "display_snippet": "eaw_schema_multiple_string_display.html",
       "modal_text": "author_help", 
       "required": true, 
       "form_snippet": "eaw_schema_repeating_text_js.html", 

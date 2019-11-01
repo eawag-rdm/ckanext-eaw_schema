@@ -33,14 +33,16 @@ HvW-2016-06-03
 
 {% block citation %}
   <h3>{{ _('Cite as:') }}</h3>
-  <div class="well">
+  <div class="package_citation">
+    <div class="well" >
       {{ pkg_dict['citation'] |safe }}
-  </div>
-  <div class="btn-group" role="group" aria-label="citation_download">
-    <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('ris', doi) }}" role="button">RIS</a>
-    <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('bibtex', doi) }}" role="button">BibTeX</a>
-    <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('citeproc', doi) }}" role="button">Citeproc JSON</a>
-    <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('datacitexml', doi) }}" role="button">Datacite XML</a>
+    </div>
+    <div class="btn-group" role="group" aria-label="citation_download">
+      <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('ris', doi) }}" role="button">RIS</a>
+      <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('bibtex', doi) }}" role="button">BibTeX</a>
+      <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('citeproc', doi) }}" role="button">Citeproc JSON</a>
+      <a class="btn btn-default btn-sm" href="{{ h.eaw_schema_get_citationurl('datacitexml', doi) }}" role="button">Datacite XML</a>
+    </div>
   </div>
   {# {% if pkg_dict['citation_publication'] is defined %} #}
     <div class="well">
@@ -98,8 +100,8 @@ HvW-2016-06-03
               <th scope="row" class="dataset-label">{{
 		h.scheming_language_text(field.label) }}</th>
 		<td class="dataset-details"{%
-		    if field.display_property %} property="{{ field.display_property }}
-		    "{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
+		    if field.display_property %} property="{{ field.display_property }}"
+		    {% endif %}>{%- snippet 'scheming/snippets/display_field.html',
 		    field=field, data=pkg_dict, schema=schema -%}
 		</td>
 	    </tr>
