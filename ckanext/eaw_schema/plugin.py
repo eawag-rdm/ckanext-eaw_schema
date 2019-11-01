@@ -490,7 +490,6 @@ def eaw_username_fullname_email(s_users):
        from string of comma-separated usernames "user1,user2,user3,..."
 
     '''
-
     def mkfull(username):
         try:
             userdict = toolkit.get_action('user_show')(
