@@ -55,28 +55,48 @@ HvW-2016-06-03
     <div class="well">
       {{ pkg_dict['citation_publication'] |safe }}
     </div>
-    <div class="btn-group" role="group" aria-label="citation_download">
-      <a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('ris', paper_doi) }}" role="button">RIS</a>
-      <a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('bibtex', paper_doi) }}" role="button">BibTeX</a>
-      <a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('citeproc', paper_doi) }}" role="button">Citeproc JSON</a>
-      <a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('datacitexml', paper_doi) }}" role="button">Datacite XML</a>
-    </div>
+    {% if paper_doi is defined %}
+      <div class="btn-group" role="group" aria-label="citation_download">
+	<a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('ris', paper_doi) }}" role="button">RIS</a>
+	<a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('bibtex', paper_doi) }}" role="button">BibTeX</a>
+	<a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('citeproc', paper_doi) }}" role="button">Citeproc JSON</a>
+	<a class="btn btn-default btn-sm" href="{{  h.eaw_schema_get_citationurl('datacitexml', paper_doi) }}" role="button">Datacite XML</a>
+      </div>
+    {% endif %}
   </div>
   {% endif %}
 {% endblock %}
  
 {% block publication_data %}
   <h3>{{ _('Metadata') }}</h3>
-{% if  pkg_dict['ispublication'] %}
-  <div class="metadatadiv">
-    <i class="fa fa-file-text fa-2x"></i><b>&nbsp; Publication Data Package for: </b>
-    {% if pkg_dict['publicationlink'] %}
-      <a href="{{ pkg_dict['publicationlink'] }}" target="_blank">
-	{{ pkg_dict['publicationlink'] }} <i class="fa fa-external-link-square"></i>
-      </a>
-    {% else %}{{ missinglink_html }}
-    {% endif %}
-  </div>
+  {% if  pkg_dict['ispublication'] %}
+    {% set pubcount = 0 %}
+    <div class="metadatadiv">
+      <div style="margin-bottom:20px;"><i class="fa fa-file-text fa-2x"></i><b>&nbsp; Publication Data Package for: </b></div>
+      <ul class="list-group">
+	{% if pkg_dict['publicationlink'] %}
+	  <li class="list-group-item"><a href="{{ pkg_dict['publicationlink'] }}" target="_blank">
+	      {{ pkg_dict['publicationlink'] }} <i class="fa fa-external-link-square"></i>
+	  </a></li>
+	  {% set pubcount = 1 %}
+	{% endif %}
+	{% if pkg_dict['publicationlink_dora'] %}
+	  <li class="list-group-item"><a href="{{ pkg_dict['publicationlink_dora'] }}" target="_blank">
+	      Dora Eawag <i class="fa fa-external-link-square"></i>
+	  </a></li>
+	  {% set pubcount = 1 %}
+	{% endif %}
+	{% if pkg_dict['publicationlink_url'] %}
+	  <li class="list-group-item"><a href="{{ pkg_dict['publicationlink_url'] }}" target="_blank">
+	      {{ pkg_dict['publicationlink_url'] }} <i class="fa fa-external-link-square"></i>
+	  </a></li>
+	  {% set pubcount = 1 %}
+	{% endif %}
+	{% if pubcount == 0 %}
+	  <li class="list-group-item">{{ missinglink_html }}</li>
+	{% endif %}
+      </ul>
+    </div>
 {% endif %}
 {% endblock %}
 {% block open_data %}
