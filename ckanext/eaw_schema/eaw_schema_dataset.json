@@ -739,6 +739,11 @@
       "field_name": "publicationlink_dora",
       "display_snippet": null,
       "form_snippet": null
+    },
+    {
+      "field_name": "publicationlink_url",
+      "display_snippet": null,
+      "form_snippet": null
     }
   ], 
   "about_url": "http://github.com/ckan/ckanext-scheming"
