@@ -479,6 +479,18 @@
         {
           "value": "c_to_n_ratio", 
           "label": "C:N ratio"
+        }, 
+        {
+          "value": "bacteria_abundance", 
+          "label": "bacteria abundance"
+        }, 
+        {
+          "value": "scintillation_counts", 
+          "label": "scintillation counts"
+        }, 
+        {
+          "value": "oxidation_kinetcis", 
+          "label": "oxidation kinetics"
         }
       ], 
       "preset": "eaw_multiple_select_js",
