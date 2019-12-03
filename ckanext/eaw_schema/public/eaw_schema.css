@@ -288,3 +288,7 @@ div.select2-container.form-control {
 .table td, table th {
   border: none !important;
 }
+
+form .display_none {
+  display: none;
+}
