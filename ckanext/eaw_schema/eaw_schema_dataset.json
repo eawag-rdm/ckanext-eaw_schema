@@ -767,12 +767,16 @@
     },
     {
       "field_name": "has_part",
+      "validators": "eaw_schema_multiple_string_convert(comma)",
+      "output_validators": "eaw_schema_multiple_string_output",
       "display_snippet": null,
       "form_snippet": "text.html",
       "classes": ["display_none"]
     },
     {
       "field_name": "is_part_of",
+      "validators": "eaw_schema_multiple_string_convert(comma)",
+      "output_validators": "eaw_schema_multiple_string_output",
       "display_snippet": null,
       "form_snippet": "text.html",
       "classes": ["display_none"]
