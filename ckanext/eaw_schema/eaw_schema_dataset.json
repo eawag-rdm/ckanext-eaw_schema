@@ -729,6 +729,24 @@
       "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
       "field_name": "notes-2", 
       "display_property": "dct:description"
+    },
+    {
+      "field_name": "has_part",
+      "display_snippet": null,
+      "form_snippet": "text.html",
+      "classes": ["display_none"]
+    },
+    {
+      "field_name": "is_part_of",
+      "display_snippet": null,
+      "form_snippet": "text.html",
+      "classes": ["display_none"]
+    },
+    {
+      "field_name": "id_external",
+      "display_snippet": null,
+      "form_snippet": "text.html",
+      "classes": ["display_none"]
     }
   ], 
   "dataset_type": "dataset", 

@@ -262,3 +262,7 @@ i.fa-exclamation-triangle {
     left: 100%;
     margin-left: 15px;
 }
+
+form .display_none {
+  display: none;
+}
