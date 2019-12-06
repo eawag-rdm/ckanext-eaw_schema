@@ -764,6 +764,24 @@
       "display_snippet": null,
       "form_snippet": "text.html",
       "classes": ["display_none"]
+    },
+    {
+      "field_name": "has_part",
+      "display_snippet": null,
+      "form_snippet": "text.html",
+      "classes": ["display_none"]
+    },
+    {
+      "field_name": "is_part_of",
+      "display_snippet": null,
+      "form_snippet": "text.html",
+      "classes": ["display_none"]
+    },
+    {
+      "field_name": "id_internal",
+      "display_snippet": null,
+      "form_snippet": "text.html",
+      "classes": ["display_none"]
     }
   ],
   "about_url": "http://github.com/ckan/ckanext-scheming"
