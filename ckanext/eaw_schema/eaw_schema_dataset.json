@@ -262,9 +262,9 @@
     }, 
     {
       "required": true, 
+      "preset": "dataset_slug", 
       "field_name": "name", 
       "display_property": "dcat:landingPage", 
-      "preset": "dataset_slug", 
       "label": "URL"
     }, 
     {
@@ -486,6 +486,14 @@
         {
           "value": "oxidation_kinetcis", 
           "label": "oxidation kinetics"
+        }, 
+        {
+          "value": "hydraulic_conductivity", 
+          "label": "hydraulic conductivity"
+        }, 
+        {
+          "value": "total_cell_concentration", 
+          "label": "total cell concentration"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
@@ -729,24 +737,30 @@
       "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
       "field_name": "notes-2", 
       "display_property": "dct:description"
-    },
+    }, 
     {
-      "field_name": "has_part",
-      "display_snippet": null,
-      "form_snippet": "text.html",
-      "classes": ["display_none"]
-    },
+      "field_name": "has_part", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
     {
-      "field_name": "is_part_of",
-      "display_snippet": null,
-      "form_snippet": "text.html",
-      "classes": ["display_none"]
-    },
+      "field_name": "is_part_of", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
     {
-      "field_name": "id_external",
-      "display_snippet": null,
-      "form_snippet": "text.html",
-      "classes": ["display_none"]
+      "field_name": "id_external", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
     }
   ], 
   "dataset_type": "dataset", 
