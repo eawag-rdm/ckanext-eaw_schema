@@ -486,6 +486,34 @@
         {
           "value": "oxidation_kinetcis", 
           "label": "oxidation kinetics"
+        }, 
+        {
+          "value": "hydraulic_conductivity", 
+          "label": "hydraulic conductivity"
+        }, 
+        {
+          "value": "total_cell_concentration", 
+          "label": "total cell concentration"
+        }, 
+        {
+          "value": "salinity", 
+          "label": "salinity"
+        }, 
+        {
+          "value": "dissolved_inorganic_carbon", 
+          "label": "dissolved inorganic carbon"
+        }, 
+        {
+          "value": "flow_cytometric_cell_counts", 
+          "label": "flow cytometric cell counts"
+        }, 
+        {
+          "value": "methanotroph_cell_counts", 
+          "label": "methanotroph cell counts"
+        }, 
+        {
+          "value": "potential_methane_oxidation_rates", 
+          "label": "potential methane oxidation rates"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
@@ -732,16 +760,12 @@
     },
     {
       "field_name": "has_part",
-      "validators": "eaw_schema_multiple_string_convert(comma)",
-      "output_validators": "eaw_schema_multiple_string_output",
       "display_snippet": null,
       "form_snippet": "text.html",
       "classes": ["display_none"]
     },
     {
       "field_name": "is_part_of",
-      "validators": "eaw_schema_multiple_string_convert(comma)",
-      "output_validators": "eaw_schema_multiple_string_output",
       "display_snippet": null,
       "form_snippet": "text.html",
       "classes": ["display_none"]
