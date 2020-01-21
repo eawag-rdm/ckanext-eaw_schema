@@ -33,7 +33,7 @@
         {%- block resource_fields -%}
 	  <tr>
 	    <th scope="row">{{ _('Size') }}</th>
-	    <td>{{ res.size or _('unknown') }}</td>
+	    <td>{{ h.eaw_schema_human_filesize(res.size) or _('unknown') }}</td>
 	  </tr>
 	  {%- for field in schema.resource_fields -%}
 	  {%- if field.field_name not in exclude_fields

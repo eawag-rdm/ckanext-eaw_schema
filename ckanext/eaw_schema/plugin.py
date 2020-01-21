@@ -531,7 +531,17 @@ def eaw_schema_get_citationurl(typ, doi):
     doi = re.sub('^https?://(dx\.)?doi\.org/', '', doi)
     url = 'https://data.datacite.org/{}/{}'.format(types[typ], doi)
     return url
-        
+
+def eaw_schema_human_filesize(size, suffix='B'):
+    " Returns human-friendly string for filesize (bytes -> decmal prefix)"
+    for unit in ['','K','M','G','T','P','E','Z']:
+        if abs(size) < 1000.0:
+            return '{:3.1f} {}{}'.format(size, unit, suffix)
+        size /= 1000.0
+    return '{:.1f} {}{}'.format(size, 'Y', suffix)
+
+
+
 # Action functions
 
 @side_effect_free
@@ -645,7 +655,8 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_embargo_interval': eaw_schema_embargo_interval,
                 'eaw_username_fullname_email': eaw_username_fullname_email,
                 'eaw_schema_choices_label_noi8n': eaw_schema_choices_label_noi8n,
-                'eaw_schema_get_citationurl': eaw_schema_get_citationurl
+                'eaw_schema_get_citationurl': eaw_schema_get_citationurl,
+                'eaw_schema_human_filesize': eaw_schema_human_filesize,
         }
     
     # IActions
