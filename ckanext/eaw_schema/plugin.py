@@ -494,6 +494,14 @@ def eaw_username_fullname_email(s_users):
     return l_users
 
 
+def eaw_schema_human_filesize(size, suffix='B'):
+    " Returns human-friendly string for filesize (bytes -> decmal prefix)"
+    for unit in ['','K','M','G','T','P','E','Z']:
+        if abs(size) < 1000.0:
+            return '{:3.1f} {}{}'.format(size, unit, suffix)
+        size /= 1000.0
+    return '{:.1f} {}{}'.format(size, 'Y', suffix)
+
 # Action functions
 
 @side_effect_free
@@ -601,7 +609,8 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_get_values': eaw_schema_get_values,
                 'eaw_schema_geteawuser': eaw_schema_geteawuser,
                 'eaw_schema_embargo_interval': eaw_schema_embargo_interval,
-                'eaw_username_fullname_email': eaw_username_fullname_email}
+                'eaw_username_fullname_email': eaw_username_fullname_email,
+                'eaw_schema_human_filesize': eaw_schema_human_filesize}
     
     # IActions
     def get_actions(self):
