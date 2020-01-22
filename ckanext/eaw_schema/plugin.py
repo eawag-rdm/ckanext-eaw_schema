@@ -534,6 +534,8 @@ def eaw_schema_get_citationurl(typ, doi):
 
 def eaw_schema_human_filesize(size, suffix='B'):
     " Returns human-friendly string for filesize (bytes -> decmal prefix)"
+    if not size:
+        return 'unknown'
     for unit in ['','K','M','G','T','P','E','Z']:
         if abs(size) < 1000.0:
             return '{:3.1f} {}{}'.format(size, unit, suffix)
