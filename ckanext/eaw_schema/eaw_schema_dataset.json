@@ -525,6 +525,10 @@
         {
           "value": "potential_methane_oxidation_rates", 
           "label": "potential methane oxidation rates"
+        },
+        {
+	  "value": "groundwater_recharge_rate",
+	  "label": "groundwater recharge rate"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
