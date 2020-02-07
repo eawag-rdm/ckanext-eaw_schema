@@ -818,7 +818,7 @@
       "classes": [
         "display_none"
       ], 
-      "validators": "eaw_schema_multiple_string_convert(comma)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(comma)", 
       "field_name": "has_part", 
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
@@ -828,7 +828,7 @@
       "classes": [
         "display_none"
       ], 
-      "validators": "eaw_schema_multiple_string_convert(comma)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(comma)", 
       "field_name": "is_part_of", 
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
