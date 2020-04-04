@@ -529,6 +529,10 @@
         {
 	  "value": "groundwater_recharge_rate",
 	  "label": "groundwater recharge rate"
+        },
+        {
+          "value": "assimilable_organic_carbon", 
+          "label": "assimilable organic carbon"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
