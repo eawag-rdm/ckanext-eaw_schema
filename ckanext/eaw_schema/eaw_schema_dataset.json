@@ -137,16 +137,16 @@
     }, 
     {
       "field_name": "hash", 
-      "label": "Hash", 
-      "form_snippet": null, 
       "display_snippet": "text.html", 
+      "form_snippet": null, 
+      "label": "Hash", 
       "validators": "ignore_missing"
     }, 
     {
       "field_name": "hashtype", 
-      "label": "Hashtype", 
-      "form_snippet": null, 
       "display_snippet": "text.html", 
+      "form_snippet": null, 
+      "label": "Hashtype", 
       "validators": "ignore_missing eaw_schema_check_hashtype"
     }, 
     {
@@ -261,10 +261,10 @@
       "display_property": "dct:title"
     }, 
     {
+      "preset": "dataset_slug", 
       "required": true, 
       "field_name": "name", 
       "display_property": "dcat:landingPage", 
-      "preset": "dataset_slug", 
       "label": "URL"
     }, 
     {
@@ -533,7 +533,7 @@
         }, 
         {
           "value": "DOM_fluorescence", 
-          "label": "DOM_fluorescence"
+          "label": "DOM fluorescence"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
