@@ -22,8 +22,6 @@
     {
       "modal_text": "resource_type_help", 
       "required": true, 
-      "label": "Resource Type", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "Dataset", 
@@ -86,6 +84,8 @@
           "label": "Other"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Resource Type", 
       "field_name": "resource_type"
     }, 
     {
@@ -98,8 +98,6 @@
     {
       "modal_text": "restricted_level_help", 
       "required": true, 
-      "label": "Restriction", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "public", 
@@ -114,6 +112,8 @@
           "label": "Allowed users only"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Restriction", 
       "field_name": "restricted_level"
     }, 
     {
@@ -136,38 +136,38 @@
       "output_validators": "eaw_schema_list_to_commasepstring_output"
     }, 
     {
-      "field_name": "hash", 
-      "display_snippet": "text.html", 
+      "validators": "ignore_missing", 
       "form_snippet": null, 
       "label": "Hash", 
-      "validators": "ignore_missing"
+      "field_name": "hash", 
+      "display_snippet": "text.html"
     }, 
     {
-      "field_name": "hashtype", 
-      "display_snippet": "text.html", 
+      "validators": "ignore_missing eaw_schema_check_hashtype", 
       "form_snippet": null, 
       "label": "Hashtype", 
-      "validators": "ignore_missing eaw_schema_check_hashtype"
+      "field_name": "hashtype", 
+      "display_snippet": "text.html"
     }, 
     {
       "display_snipet": null, 
-      "field_name": "__before", 
       "form_snippet": null, 
+      "field_name": "__before", 
       "validators": "test_before_resources"
     }
   ], 
   "dataset_fields": [
     {
-      "field_name": "__before", 
-      "validators": "test_before", 
       "form_snippet": null, 
-      "display_snippet": null
+      "display_snippet": null, 
+      "field_name": "__before", 
+      "validators": "test_before"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "package type"
+      "label": "package type", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "default_value": false, 
@@ -246,10 +246,10 @@
       }
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "bibliographic metadata"
+      "label": "bibliographic metadata", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "modal_text": "title_help", 
@@ -262,10 +262,10 @@
     }, 
     {
       "preset": "dataset_slug", 
-      "required": true, 
       "field_name": "name", 
+      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "label": "URL"
+      "required": true
     }, 
     {
       "default_value": "context_fullname_email", 
@@ -274,11 +274,11 @@
       "required": true, 
       "form_snippet": "eaw_schema_repeating_text_js.html", 
       "label": "Author", 
-      "output_validators": "repeating_text_output", 
+      "display_property": "dc:creator", 
       "validators": "repeating_text eaw_schema_json_not_empty", 
       "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
       "field_name": "author", 
-      "display_property": "dc:creator", 
+      "output_validators": "repeating_text_output", 
       "form_blanks": 3
     }, 
     {
@@ -301,17 +301,17 @@
       "form_attrs": {
         "data-module-tags": "", 
         "style": "width:97%;", 
-        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?", 
+        "data-module-tokensep": ",;", 
         "data-module": "eaw_autocomplete", 
-        "data-module-tokensep": ",;"
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
       }, 
       "display_property": "dcat:keyword"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "domain specific metadata"
+      "label": "domain specific metadata", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "default_value": "none", 
@@ -534,6 +534,10 @@
         {
           "value": "DOM_fluorescence", 
           "label": "DOM fluorescence"
+        }, 
+        {
+          "value": "grain_size", 
+          "label": "grain size"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
@@ -551,7 +555,7 @@
       "form_snippet": "eaw_schema_multiple_string_textbox.html", 
       "label": "Substances\n(scientific names)", 
       "validators": "ignore_missing eaw_schema_multiple_string_convert(textbox)", 
-      "form_placeholder": "CV 399 (InChI=1S/C5H8N4O/c1-3-7-4(6)9-5(8-3)10-2/h1-2H3,(H2,6,7,8,9))\nAzimsulfuron (InChI=1S/C13H16N10O5S/c1-22-11(7(6-14-22)10-18-21-23(2)19-10)29(25,26)20-13(24)17-12-15-8(27-3)5-9(16-12)28-4/h5-6H,1-4H3,(H2,15,16,17,20,24))",
+      "form_placeholder": "CV 399 (InChI=1S/C5H8N4O/c1-3-7-4(6)9-5(8-3)10-2/h1-2H3,(H2,6,7,8,9))\nAzimsulfuron (InChI=1S/C13H16N10O5S/c1-22-11(7(6-14-22)10-18-21-23(2)19-10)29(25,26)20-13(24)17-12-15-8(27-3)5-9(16-12)28-4/h5-6H,1-4H3,(H2,15,16,17,20,24))", 
       "field_name": "substances", 
       "form_attrs": {
         "class": "eaw_with_infobutton"
@@ -652,14 +656,14 @@
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "package status & usage"
+      "label": "package status & usage", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
-      "modal_text_visibility": "visibility_help", 
       "required": true, 
+      "modal_text_visibility": "visibility_help", 
       "label": "Organization", 
       "modal_text_organization": "organization_help", 
       "preset": "eaw_schema_dataset_organization", 
@@ -668,8 +672,6 @@
     {
       "modal_text": "status_help", 
       "required": true, 
-      "label": "Status", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "incomplete", 
@@ -680,6 +682,8 @@
           "label": "complete"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Status", 
       "field_name": "status", 
       "form_attrs": {
         "class": "medinput"
@@ -779,27 +783,27 @@
       "display_property": "dct:description"
     }, 
     {
-      "form_snippet": "text.html", 
-      "classes": [
-        "display_none"
-      ], 
       "field_name": "has_part", 
-      "display_snippet": null
-    }, 
-    {
-      "form_snippet": "text.html", 
       "classes": [
         "display_none"
       ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
       "field_name": "is_part_of", 
-      "display_snippet": null
-    }, 
-    {
-      "form_snippet": "text.html", 
       "classes": [
         "display_none"
       ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
       "field_name": "id_external", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
       "display_snippet": null
     }
   ], 
