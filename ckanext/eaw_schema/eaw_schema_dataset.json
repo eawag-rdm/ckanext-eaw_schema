@@ -1,7 +1,6 @@
 {
   "about": "A reimplementation of the default CKAN dataset schema", 
-  "scheming_version": 1,
-  "dataset_type": "dataset",
+  "scheming_version": 1, 
   "resource_fields": [
     {
       "preset": "resource_url_upload", 
@@ -23,8 +22,6 @@
     {
       "modal_text": "resource_type_help", 
       "required": true, 
-      "label": "Resource Type", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "Dataset", 
@@ -87,6 +84,8 @@
           "label": "Other"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Resource Type", 
       "field_name": "resource_type"
     }, 
     {
@@ -99,8 +98,6 @@
     {
       "modal_text": "restricted_level_help", 
       "required": true, 
-      "label": "Restriction", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "public", 
@@ -115,6 +112,8 @@
           "label": "Allowed users only"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Restriction", 
       "field_name": "restricted_level"
     }, 
     {
@@ -137,38 +136,38 @@
       "output_validators": "eaw_schema_list_to_commasepstring_output"
     }, 
     {
-      "field_name": "hash", 
-      "label": "Hash", 
+      "validators": "ignore_missing", 
       "form_snippet": null, 
       "display_snippet": "text.html", 
-      "validators": "ignore_missing"
+      "field_name": "hash", 
+      "label": "Hash"
     }, 
     {
-      "field_name": "hashtype", 
-      "label": "Hashtype", 
+      "validators": "ignore_missing eaw_schema_check_hashtype", 
       "form_snippet": null, 
       "display_snippet": "text.html", 
-      "validators": "ignore_missing eaw_schema_check_hashtype"
+      "field_name": "hashtype", 
+      "label": "Hashtype"
     }, 
     {
       "display_snipet": null, 
-      "field_name": "__before", 
       "form_snippet": null, 
+      "field_name": "__before", 
       "validators": "test_before_resources"
     }
   ], 
   "dataset_fields": [
     {
-      "field_name": "__before", 
-      "validators": "test_before", 
       "form_snippet": null, 
-      "display_snippet": null
+      "display_snippet": null, 
+      "field_name": "__before", 
+      "validators": "test_before"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "package type"
+      "label": "package type", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "default_value": false, 
@@ -247,10 +246,10 @@
       }
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "bibliographic metadata"
+      "label": "bibliographic metadata", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "modal_text": "title_help", 
@@ -263,10 +262,10 @@
     }, 
     {
       "preset": "dataset_slug", 
-      "required": true, 
       "field_name": "name", 
+      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "label": "URL"
+      "required": true
     }, 
     {
       "default_value": "context_fullname_email", 
@@ -275,11 +274,11 @@
       "required": true, 
       "form_snippet": "eaw_schema_repeating_text_js.html", 
       "label": "Author", 
-      "output_validators": "repeating_text_output", 
+      "display_property": "dc:creator", 
       "validators": "repeating_text eaw_schema_json_not_empty", 
       "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
       "field_name": "author", 
-      "display_property": "dc:creator", 
+      "output_validators": "repeating_text_output", 
       "form_blanks": 3
     }, 
     {
@@ -302,17 +301,17 @@
       "form_attrs": {
         "data-module-tags": "", 
         "style": "width:97%;", 
-        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?", 
+        "data-module-tokensep": ",;", 
         "data-module": "eaw_autocomplete", 
-        "data-module-tokensep": ",;"
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
       }, 
       "display_property": "dcat:keyword"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "domain specific metadata"
+      "label": "domain specific metadata", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "default_value": "none", 
@@ -475,6 +474,42 @@
         {
           "value": "c_to_n_ratio", 
           "label": "C:N ratio"
+        }, 
+        {
+          "value": "capillary_suction_time", 
+          "label": "capillary suction time"
+        }, 
+        {
+          "value": "total_solids", 
+          "label": "total solids"
+        }, 
+        {
+          "value": "total_kjeldahl_nitrogen", 
+          "label": "Total Kjeldahl Nitrogen"
+        }, 
+        {
+          "value": "odor", 
+          "label": "odor"
+        }, 
+        {
+          "value": "color", 
+          "label": "color"
+        }, 
+        {
+          "value": "texture", 
+          "label": "texture"
+        }, 
+        {
+          "value": "volatile_solids", 
+          "label": "volatile solids"
+        }, 
+        {
+          "value": "total_solids_after_dewatering", 
+          "label": "total solids after dewatering"
+        }, 
+        {
+          "value": "ammonium-nitrogen", 
+          "label": "ammonium-nitrogen"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
@@ -593,25 +628,23 @@
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "package status & usage"
+      "label": "package status & usage", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
-      "modal_text_visibility": "visibility_help", 
       "required": true, 
-      "label": "Organization",
-      "form_snippet": "organization.html",
-      "modal_text_organization": "organization_help",
-      "validators": "owner_org_validator unicode",
+      "modal_text_visibility": "visibility_help", 
+      "form_snippet": "organization.html", 
+      "label": "Organization", 
+      "modal_text_organization": "organization_help", 
+      "validators": "owner_org_validator unicode", 
       "field_name": "owner_org"
     }, 
     {
       "modal_text": "status_help", 
       "required": true, 
-      "label": "Status", 
-      "preset": "select_short", 
       "choices": [
         {
           "value": "incomplete", 
@@ -622,6 +655,8 @@
           "label": "complete"
         }
       ], 
+      "preset": "select_short", 
+      "label": "Status", 
       "field_name": "status", 
       "display_property": "adms:status"
     }, 
