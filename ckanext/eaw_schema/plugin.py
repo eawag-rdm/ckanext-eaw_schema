@@ -17,6 +17,10 @@ logger = logging.getLogger(__name__)
 
 hashtypes = ['md5', 'sha256']
 
+# for checking valid DOI
+doi_regexp = re.compile(
+    "10\.\d+(.\d+)*/.+$", flags=re.I)
+
 def _json2list(value):
     if isinstance(value, list):
         val = value
@@ -339,6 +343,12 @@ def eaw_schema_check_hashtype(hashtype):
             'hashtype': [_('Hashtype must be one of {}'.format(hashtypes))]})
     return hashtype
 
+def eaw_schema_is_doi(value):
+    if doi_regexp.match(value):
+        return value
+    else:
+        raise toolkit.Invalid('{} is not a valid DOI'.format(value))
+
 def test_before(key, flattened_data, errors, context):
     # Check
     review_level = flattened_data.get(('review_level',))
@@ -360,6 +370,7 @@ def test_before_resources(key, flattened_data, errors, context):
             raise toolkit.ValidationError({
                 'hashtype': [_('Hashtype requires Hash to be set')]})
     return
+
 
 ## Template helper functions
 
@@ -479,7 +490,6 @@ def eaw_username_fullname_email(s_users):
        from string of comma-separated usernames "user1,user2,user3,..."
 
     '''
-
     def mkfull(username):
         try:
             userdict = toolkit.get_action('user_show')(
@@ -492,6 +502,46 @@ def eaw_username_fullname_email(s_users):
 
     l_users = [mkfull(u) for u in s_users.split(',')]
     return l_users
+
+def eaw_schema_choices_label_noi8n(choices, value):
+    """
+    This is a modification of h.scheming_choices_label that doesn't
+    translate the value. Used in display_snippet eaw_select_noi8n.html.
+
+    :param choices: choices list of {"label": .., "value": ..} dicts
+    :param value: value selected
+    Return the label from choices with a matching value, or
+    the value passed when not found. Result is passed through
+    scheming_language_text before being returned.
+
+    """
+    for c in choices:
+        if c['value'] == value:
+            return c.get('label', value)
+    return value
+
+def eaw_schema_get_citationurl(typ, doi):
+    types = {'ris': 'application/x-research-info-systems',
+             'bibtex': 'application/x-bibtex',
+             'datacitexml': 'application/vnd.datacite.datacite+xml',
+             'citeproc': 'application/vnd.citationstyles.csl+json'
+             }
+    if not types.get(typ):
+        return('#')
+    doi = re.sub('^https?://(dx\.)?doi\.org/', '', doi)
+    url = 'https://data.datacite.org/{}/{}'.format(types[typ], doi)
+    return url
+
+def eaw_schema_human_filesize(size, suffix='B'):
+    " Returns human-friendly string for filesize (bytes -> decmal prefix)"
+    if not size:
+        return 'unknown'
+    for unit in ['','K','M','G','T','P','E','Z']:
+        if abs(size) < 1000.0:
+            return '{:3.1f} {}{}'.format(size, unit, suffix)
+        size /= 1000.0
+    return '{:.1f} {}{}'.format(size, 'Y', suffix)
+
 
 
 # Action functions
@@ -571,7 +621,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_check_package_type':
                     eaw_schema_check_package_type,
                 'eaw_schema_check_hashtype':
-                    eaw_schema_check_hashtype
+                    eaw_schema_check_hashtype,
+                'eaw_schema_is_doi':
+                    eaw_schema_is_doi
         }
 
     # IPackageController
@@ -603,7 +655,11 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_get_values': eaw_schema_get_values,
                 'eaw_schema_geteawuser': eaw_schema_geteawuser,
                 'eaw_schema_embargo_interval': eaw_schema_embargo_interval,
-                'eaw_username_fullname_email': eaw_username_fullname_email}
+                'eaw_username_fullname_email': eaw_username_fullname_email,
+                'eaw_schema_choices_label_noi8n': eaw_schema_choices_label_noi8n,
+                'eaw_schema_get_citationurl': eaw_schema_get_citationurl,
+                'eaw_schema_human_filesize': eaw_schema_human_filesize,
+        }
     
     # IActions
     def get_actions(self):

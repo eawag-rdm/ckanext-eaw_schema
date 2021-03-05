@@ -20,8 +20,12 @@
       }
     }, 
     {
+      "display_snippet": "eaw_select_noi8n.html", 
       "modal_text": "resource_type_help", 
       "required": true, 
+      "form_snippet": "select_short.html", 
+      "label": "Resource Type", 
+      "validators": "scheming_required scheming_choices", 
       "choices": [
         {
           "value": "Dataset", 
@@ -96,8 +100,12 @@
       "label": "Cite as"
     }, 
     {
+      "display_snippet": null, 
       "modal_text": "restricted_level_help", 
       "required": true, 
+      "form_snippet": "select_short.html", 
+      "label": "Restriction", 
+      "validators": "scheming_required scheming_choices", 
       "choices": [
         {
           "value": "public", 
@@ -136,18 +144,24 @@
       "output_validators": "eaw_schema_list_to_commasepstring_output"
     }, 
     {
-      "validators": "ignore_missing", 
-      "form_snippet": null, 
       "display_snippet": "text.html", 
-      "field_name": "hash", 
-      "label": "Hash"
+      "form_snippet": "text.html", 
+      "label": "Hash", 
+      "classes": [
+        "display_none"
+      ], 
+      "validators": "ignore_missing", 
+      "field_name": "hash"
     }, 
     {
-      "validators": "ignore_missing eaw_schema_check_hashtype", 
-      "form_snippet": null, 
       "display_snippet": "text.html", 
-      "field_name": "hashtype", 
-      "label": "Hashtype"
+      "form_snippet": "text.html", 
+      "label": "Hashtype", 
+      "classes": [
+        "display_none"
+      ], 
+      "validators": "ignore_missing eaw_schema_check_hashtype", 
+      "field_name": "hashtype"
     }, 
     {
       "display_snipet": null, 
@@ -261,20 +275,20 @@
       "display_property": "dct:title"
     }, 
     {
-      "preset": "dataset_slug", 
+      "required": true, 
       "field_name": "name", 
       "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "required": true
+      "preset": "dataset_slug"
     }, 
     {
       "default_value": "context_fullname_email", 
-      "display_snippet": "eaw_repeating_text.html", 
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
       "modal_text": "author_help", 
       "required": true, 
       "form_snippet": "eaw_schema_repeating_text_js.html", 
-      "label": "Author", 
-      "display_property": "dc:creator", 
+      "label": "Author(s)", 
+      "output_validators": "repeating_text_output", 
       "validators": "repeating_text eaw_schema_json_not_empty", 
       "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
       "field_name": "author", 
@@ -315,6 +329,7 @@
     }, 
     {
       "default_value": "none", 
+      "display_snippet": "eaw_schema_multiple_string_display.html", 
       "sorted_choices": true, 
       "modal_text": "variables_help", 
       "required": true, 
@@ -476,40 +491,68 @@
           "label": "C:N ratio"
         }, 
         {
-          "value": "capillary_suction_time", 
-          "label": "capillary suction time"
+          "value": "bacteria_abundance", 
+          "label": "bacteria abundance"
         }, 
         {
-          "value": "total_solids", 
-          "label": "total solids"
+          "value": "scintillation_counts", 
+          "label": "scintillation counts"
         }, 
         {
-          "value": "total_kjeldahl_nitrogen", 
-          "label": "Total Kjeldahl Nitrogen"
+          "value": "oxidation_kinetcis", 
+          "label": "oxidation kinetics"
         }, 
         {
-          "value": "odor", 
-          "label": "odor"
+          "value": "hydraulic_conductivity", 
+          "label": "hydraulic conductivity"
         }, 
         {
-          "value": "color", 
-          "label": "color"
+          "value": "total_cell_concentration", 
+          "label": "total cell concentration"
         }, 
         {
-          "value": "texture", 
-          "label": "texture"
+          "value": "salinity", 
+          "label": "salinity"
         }, 
         {
-          "value": "volatile_solids", 
-          "label": "volatile solids"
+          "value": "dissolved_inorganic_carbon", 
+          "label": "dissolved inorganic carbon"
         }, 
         {
-          "value": "total_solids_after_dewatering", 
-          "label": "total solids after dewatering"
+          "value": "flow_cytometric_cell_counts", 
+          "label": "flow cytometric cell counts"
         }, 
         {
-          "value": "ammonium-nitrogen", 
-          "label": "ammonium-nitrogen"
+          "value": "methanotroph_cell_counts", 
+          "label": "methanotroph cell counts"
+        }, 
+        {
+          "value": "potential_methane_oxidation_rates", 
+          "label": "potential methane oxidation rates"
+        }, 
+        {
+          "value": "groundwater_recharge_rate", 
+          "label": "groundwater recharge rate"
+        }, 
+        {
+          "value": "assimilable_organic_carbon", 
+          "label": "assimilable organic carbon"
+        }, 
+        {
+          "value": "DOM_fluorescence", 
+          "label": "'DOM fluorescence"
+        }, 
+        {
+          "value": "chlorophyll_fluorescence", 
+          "label": "chlorophyll fluorescence"
+        }, 
+        {
+          "value": "phycocyanin_fluorescence", 
+          "label": "phycocyanin fluorescence"
+        }, 
+        {
+          "value": "grain_size", 
+          "label": "grain size"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
@@ -635,7 +678,6 @@
     }, 
     {
       "required": true, 
-      "modal_text_visibility": "visibility_help", 
       "form_snippet": "organization.html", 
       "label": "Organization", 
       "modal_text_organization": "organization_help", 
@@ -643,6 +685,7 @@
       "field_name": "owner_org"
     }, 
     {
+      "display_snippet": null, 
       "modal_text": "status_help", 
       "required": true, 
       "choices": [
@@ -687,13 +730,13 @@
       }
     }, 
     {
-      "display_snippet": "eaw_fullname_email.html", 
+      "display_snippet": null, 
       "form_snippet": "eaw_schema_text.html", 
       "label": "Reviewed By", 
       "classes": [
         "control-full"
       ], 
-      "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)", 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(comma)", 
       "form_placeholder": "Start typing name or email of ERIC user ...", 
       "field_name": "reviewed_by", 
       "form_attrs": {
@@ -709,12 +752,12 @@
     }, 
     {
       "default_value": "context_username", 
-      "display_snippet": "eaw_fullname_email.html", 
+      "display_snippet": "text.html", 
       "modal_text": "curator_help", 
       "required": true, 
       "form_snippet": "eaw_schema_text.html", 
       "label": "Curator", 
-      "validators": "scheming_required eaw_users_exist", 
+      "validators": "scheming_required", 
       "field_name": "maintainer", 
       "form_attrs": {
         "data-module-label": "fullname", 
@@ -726,22 +769,10 @@
       "display_property": "datacite:datacurator"
     }, 
     {
-      "default_value": "context_username", 
-      "display_snippet": "eaw_fullname_email.html", 
-      "modal_text": "usage_contact_help", 
       "required": true, 
-      "form_snippet": "eaw_schema_text.html", 
-      "label": "Usage Contact", 
-      "validators": "scheming_required eaw_users_exist", 
-      "field_name": "usage_contact", 
-      "form_attrs": {
-        "data-module-label": "fullname", 
-        "style": "width:97%;", 
-        "data-module-key": "name", 
-        "data-module": "eaw_autocomplete", 
-        "data-module-source": "/api/2/util/user/autocomplete?q=?"
-      }, 
-      "display_property": "datacite:datacurator"
+      "field_name": "maintainer_email", 
+      "label": "Contact", 
+      "display_snippet": "text.html"
     }, 
     {
       "modal_text": "notes_help", 
@@ -751,6 +782,86 @@
       "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.", 
       "field_name": "notes-2", 
       "display_property": "dct:description"
+    }, 
+    {
+      "display_snippet": "text.html", 
+      "required": false, 
+      "form_snippet": "text.html", 
+      "label": "DOI", 
+      "classes": [
+        "display_none"
+      ], 
+      "validators": "ignore_missing eaw_schema_is_doi", 
+      "field_name": "doi", 
+      "display_property": "dct:identifier"
+    }, 
+    {
+      "field_name": "citation", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
+      "field_name": "citation_publication", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
+      "field_name": "paper_doi", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
+      "field_name": "publicationlink_dora", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
+      "field_name": "publicationlink_url", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
+      "display_snippet": null, 
+      "form_snippet": "text.html", 
+      "classes": [
+        "display_none"
+      ], 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(comma)", 
+      "field_name": "has_part", 
+      "output_validators": "eaw_schema_multiple_string_output"
+    }, 
+    {
+      "display_snippet": null, 
+      "form_snippet": "text.html", 
+      "classes": [
+        "display_none"
+      ], 
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(comma)", 
+      "field_name": "is_part_of", 
+      "output_validators": "eaw_schema_multiple_string_output"
+    }, 
+    {
+      "field_name": "id_internal", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
     }
   ], 
   "dataset_type": "dataset", 

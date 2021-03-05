@@ -41,14 +41,6 @@
       "required": true
     },
     {
-      "field_name": "datamanager",
-      "label": "Data Manager",
-      "form_snippet": "eaw_select_users.html",
-      "display_snippet": "eaw_schema_datamanager.html",
-      "validators": "scheming_required eaw_schema_is_orga_admin",
-      "required": true
-    },
-    {
       "field_name": "image_url",
       "label": "Image URL",
       "validators": "unicode remove_whitespace",

@@ -12,7 +12,7 @@
       <tbody>
         {%- block resource_last_updated -%}
           <tr>
-            <th scope="row">{{ _('Last updated') }}</th>
+            <th scope="row"  width="18%">{{ _('Last updated') }}</th>
             <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.revision_timestamp) or h.render_datetime(res.created) or _('unknown') }}</td>
           </tr>
         {%- endblock -%}
@@ -33,11 +33,12 @@
         {%- block resource_fields -%}
 	  <tr>
 	    <th scope="row">{{ _('Size') }}</th>
-	    <td>{{ res.size or _('unknown') }}</td>
+	    <td>{{ h.eaw_schema_human_filesize(res.size) or _('unknown') }}</td>
 	  </tr>
 	  {%- for field in schema.resource_fields -%}
-	    {%- if field.field_name not in exclude_fields
-	      and res[field.field_name]|length > 0 -%}
+	  {%- if field.field_name not in exclude_fields
+	    and field.display_snippet is not none
+	    and res[field.field_name]|length > 0 -%}
 	      <tr>
 		<th scope="row">
 		  {{- h.scheming_language_text(field.label) -}}
