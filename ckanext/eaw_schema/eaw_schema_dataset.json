@@ -493,7 +493,43 @@
         {
           "value": "bacteria_abundance", 
           "label": "bacteria abundance"
+        },
+        {
+          "value": "capillary_suction_time", 
+          "label": "capillary suction time"
+        },
+        {
+          "value": "total_solids", 
+          "label": "total solids"
+        },
+        {
+          "value": "total_kjeldahl_nitrogen", 
+          "label": "Total Kjeldahl Nitrogen"
         }, 
+        {
+          "value": "odor", 
+          "label": "odor"
+        }, 
+        {
+          "value": "color", 
+          "label": "color"
+        }, 
+        {
+          "value": "texture", 
+          "label": "texture"
+        }, 
+        {
+          "value": "volatile_solids", 
+          "label": "volatile solids"
+        }, 
+        {
+          "value": "total_solids_after_dewatering", 
+          "label": "total solids after dewatering"
+        }, 
+        {
+          "value": "ammonium-nitrogen", 
+          "label": "ammonium-nitrogen"
+        },
         {
           "value": "scintillation_counts", 
           "label": "scintillation counts"
