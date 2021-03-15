@@ -25,6 +25,7 @@
       "required": true, 
       "form_snippet": "select_short.html", 
       "label": "Resource Type", 
+      "preset": "select_short", 
       "validators": "scheming_required scheming_choices", 
       "choices": [
         {
@@ -88,8 +89,6 @@
           "label": "Other"
         }
       ], 
-      "preset": "select_short", 
-      "label": "Resource Type", 
       "field_name": "resource_type"
     }, 
     {
@@ -105,6 +104,7 @@
       "required": true, 
       "form_snippet": "select_short.html", 
       "label": "Restriction", 
+      "preset": "select_short", 
       "validators": "scheming_required scheming_choices", 
       "choices": [
         {
@@ -120,8 +120,6 @@
           "label": "Allowed users only"
         }
       ], 
-      "preset": "select_short", 
-      "label": "Restriction", 
       "field_name": "restricted_level"
     }, 
     {
@@ -165,23 +163,23 @@
     }, 
     {
       "display_snipet": null, 
-      "form_snippet": null, 
       "field_name": "__before", 
+      "form_snippet": null, 
       "validators": "test_before_resources"
     }
   ], 
   "dataset_fields": [
     {
-      "form_snippet": null, 
-      "display_snippet": null, 
       "field_name": "__before", 
-      "validators": "test_before"
+      "validators": "test_before", 
+      "form_snippet": null, 
+      "display_snippet": null
     }, 
     {
-      "form_snippet": "eaw_form_separator.html", 
-      "label": "package type", 
       "field_name": "separator_domain_metadata", 
-      "display_snippet": null
+      "display_snippet": null, 
+      "form_snippet": "eaw_form_separator.html", 
+      "label": "package type"
     }, 
     {
       "default_value": false, 
@@ -260,10 +258,10 @@
       }
     }, 
     {
-      "form_snippet": "eaw_form_separator.html", 
-      "label": "bibliographic metadata", 
       "field_name": "separator_domain_metadata", 
-      "display_snippet": null
+      "display_snippet": null, 
+      "form_snippet": "eaw_form_separator.html", 
+      "label": "bibliographic metadata"
     }, 
     {
       "modal_text": "title_help", 
@@ -275,11 +273,11 @@
       "display_property": "dct:title"
     }, 
     {
+      "preset": "dataset_slug", 
       "required": true, 
       "field_name": "name", 
-      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "preset": "dataset_slug"
+      "label": "URL"
     }, 
     {
       "default_value": "context_fullname_email", 
@@ -288,7 +286,6 @@
       "required": true, 
       "form_snippet": "eaw_schema_repeating_text_js.html", 
       "label": "Author(s)", 
-      "output_validators": "repeating_text_output", 
       "validators": "repeating_text eaw_schema_json_not_empty", 
       "form_placeholder": "Bach, Johann <joe@eawag.ch>", 
       "field_name": "author", 
@@ -315,17 +312,17 @@
       "form_attrs": {
         "data-module-tags": "", 
         "style": "width:97%;", 
-        "data-module-tokensep": ",;", 
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?", 
         "data-module": "eaw_autocomplete", 
-        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
+        "data-module-tokensep": ",;"
       }, 
       "display_property": "dcat:keyword"
     }, 
     {
-      "form_snippet": "eaw_form_separator.html", 
-      "label": "domain specific metadata", 
       "field_name": "separator_domain_metadata", 
-      "display_snippet": null
+      "display_snippet": null, 
+      "form_snippet": "eaw_form_separator.html", 
+      "label": "domain specific metadata"
     }, 
     {
       "default_value": "none", 
@@ -493,15 +490,15 @@
         {
           "value": "bacteria_abundance", 
           "label": "bacteria abundance"
-        },
+        }, 
         {
           "value": "capillary_suction_time", 
           "label": "capillary suction time"
-        },
+        }, 
         {
           "value": "total_solids", 
           "label": "total solids"
-        },
+        }, 
         {
           "value": "total_kjeldahl_nitrogen", 
           "label": "Total Kjeldahl Nitrogen"
@@ -529,7 +526,7 @@
         {
           "value": "ammonium-nitrogen", 
           "label": "ammonium-nitrogen"
-        },
+        }, 
         {
           "value": "scintillation_counts", 
           "label": "scintillation counts"
@@ -589,6 +586,14 @@
         {
           "value": "grain_size", 
           "label": "grain size"
+        }, 
+        {
+          "value": "net_ecosystem_production", 
+          "label": "Net Ecosystem Production"
+        }, 
+        {
+          "value": "areal_hypolimnetic_mineralization_rate", 
+          "label": "Areal Hypolimnetic Mineralization Rate"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
@@ -707,10 +712,10 @@
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
     {
-      "form_snippet": "eaw_form_separator.html", 
-      "label": "package status & usage", 
       "field_name": "separator_domain_metadata", 
-      "display_snippet": null
+      "display_snippet": null, 
+      "form_snippet": "eaw_form_separator.html", 
+      "label": "package status & usage"
     }, 
     {
       "required": true, 
@@ -807,8 +812,8 @@
     {
       "required": true, 
       "field_name": "maintainer_email", 
-      "label": "Contact", 
-      "display_snippet": "text.html"
+      "display_snippet": "text.html", 
+      "label": "Contact"
     }, 
     {
       "modal_text": "notes_help", 
@@ -832,43 +837,43 @@
       "display_property": "dct:identifier"
     }, 
     {
+      "form_snippet": "text.html", 
+      "classes": [
+        "display_none"
+      ], 
       "field_name": "citation", 
-      "classes": [
-        "display_none"
-      ], 
-      "form_snippet": "text.html", 
       "display_snippet": null
     }, 
     {
+      "form_snippet": "text.html", 
+      "classes": [
+        "display_none"
+      ], 
       "field_name": "citation_publication", 
-      "classes": [
-        "display_none"
-      ], 
-      "form_snippet": "text.html", 
       "display_snippet": null
     }, 
     {
+      "form_snippet": "text.html", 
+      "classes": [
+        "display_none"
+      ], 
       "field_name": "paper_doi", 
-      "classes": [
-        "display_none"
-      ], 
-      "form_snippet": "text.html", 
       "display_snippet": null
     }, 
     {
+      "form_snippet": "text.html", 
+      "classes": [
+        "display_none"
+      ], 
       "field_name": "publicationlink_dora", 
-      "classes": [
-        "display_none"
-      ], 
-      "form_snippet": "text.html", 
       "display_snippet": null
     }, 
     {
-      "field_name": "publicationlink_url", 
+      "form_snippet": "text.html", 
       "classes": [
         "display_none"
       ], 
-      "form_snippet": "text.html", 
+      "field_name": "publicationlink_url", 
       "display_snippet": null
     }, 
     {
@@ -892,11 +897,11 @@
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
     {
-      "field_name": "id_internal", 
+      "form_snippet": "text.html", 
       "classes": [
         "display_none"
       ], 
-      "form_snippet": "text.html", 
+      "field_name": "id_internal", 
       "display_snippet": null
     }
   ], 
