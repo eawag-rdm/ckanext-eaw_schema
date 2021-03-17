@@ -163,23 +163,23 @@
     }, 
     {
       "display_snipet": null, 
-      "field_name": "__before", 
       "form_snippet": null, 
+      "field_name": "__before", 
       "validators": "test_before_resources"
     }
   ], 
   "dataset_fields": [
     {
-      "field_name": "__before", 
-      "validators": "test_before", 
       "form_snippet": null, 
-      "display_snippet": null
+      "display_snippet": null, 
+      "field_name": "__before", 
+      "validators": "test_before"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "package type"
+      "label": "package type", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "default_value": false, 
@@ -258,10 +258,10 @@
       }
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "bibliographic metadata"
+      "label": "bibliographic metadata", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "modal_text": "title_help", 
@@ -274,10 +274,10 @@
     }, 
     {
       "preset": "dataset_slug", 
-      "required": true, 
       "field_name": "name", 
+      "label": "URL", 
       "display_property": "dcat:landingPage", 
-      "label": "URL"
+      "required": true
     }, 
     {
       "default_value": "context_fullname_email", 
@@ -312,17 +312,17 @@
       "form_attrs": {
         "data-module-tags": "", 
         "style": "width:97%;", 
-        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?", 
+        "data-module-tokensep": ",;", 
         "data-module": "eaw_autocomplete", 
-        "data-module-tokensep": ",;"
+        "data-module-source": "/api/2/util/tag/autocomplete?incomplete=?"
       }, 
       "display_property": "dcat:keyword"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "domain specific metadata"
+      "label": "domain specific metadata", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "default_value": "none", 
@@ -594,6 +594,14 @@
         {
           "value": "areal_hypolimnetic_mineralization_rate", 
           "label": "Areal Hypolimnetic Mineralization Rate"
+        }, 
+        {
+          "value": "faecal_sludge_accumulationrate", 
+          "label": "faecal sludge accumulation rate"
+        }, 
+        {
+          "value": "sludge_blanket_accumulation_rate", 
+          "label": "sludge blanket accumulation rate"
         }
       ], 
       "preset": "eaw_multiple_select_js", 
@@ -712,10 +720,10 @@
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
     {
-      "field_name": "separator_domain_metadata", 
-      "display_snippet": null, 
       "form_snippet": "eaw_form_separator.html", 
-      "label": "package status & usage"
+      "label": "package status & usage", 
+      "field_name": "separator_domain_metadata", 
+      "display_snippet": null
     }, 
     {
       "required": true, 
@@ -812,8 +820,8 @@
     {
       "required": true, 
       "field_name": "maintainer_email", 
-      "display_snippet": "text.html", 
-      "label": "Contact"
+      "label": "Contact", 
+      "display_snippet": "text.html"
     }, 
     {
       "modal_text": "notes_help", 
@@ -837,43 +845,43 @@
       "display_property": "dct:identifier"
     }, 
     {
-      "form_snippet": "text.html", 
-      "classes": [
-        "display_none"
-      ], 
       "field_name": "citation", 
-      "display_snippet": null
-    }, 
-    {
-      "form_snippet": "text.html", 
       "classes": [
         "display_none"
       ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
       "field_name": "citation_publication", 
-      "display_snippet": null
-    }, 
-    {
-      "form_snippet": "text.html", 
       "classes": [
         "display_none"
       ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
       "field_name": "paper_doi", 
-      "display_snippet": null
-    }, 
-    {
-      "form_snippet": "text.html", 
       "classes": [
         "display_none"
       ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
       "field_name": "publicationlink_dora", 
-      "display_snippet": null
-    }, 
-    {
-      "form_snippet": "text.html", 
       "classes": [
         "display_none"
       ], 
+      "form_snippet": "text.html", 
+      "display_snippet": null
+    }, 
+    {
       "field_name": "publicationlink_url", 
+      "classes": [
+        "display_none"
+      ], 
+      "form_snippet": "text.html", 
       "display_snippet": null
     }, 
     {
@@ -897,11 +905,11 @@
       "output_validators": "eaw_schema_multiple_string_output"
     }, 
     {
-      "form_snippet": "text.html", 
+      "field_name": "id_internal", 
       "classes": [
         "display_none"
       ], 
-      "field_name": "id_internal", 
+      "form_snippet": "text.html", 
       "display_snippet": null
     }
   ], 
