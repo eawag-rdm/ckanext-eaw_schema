@@ -646,6 +646,10 @@
         {
           "value": "tke_dissipation_rate",
           "label": "TKE dissipation rate"
+        },
+        {
+          "value": "light_scattering",
+          "label": "light scattering"
         }
       ],
       "preset": "eaw_multiple_select_js",
