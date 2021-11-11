@@ -650,6 +650,18 @@
         {
           "value": "light_scattering",
           "label": "light scattering"
+        },
+        {
+          "value": "Standard_reduction_potential",
+          "label": "Standard reduction potential"
+        },
+        {
+          "value": "Gibbs_free_energy",
+          "label": "Gibbs free energy"
+        },
+        {
+          "value": "FeII_formation_rates",
+          "label": "Fe(II) formation rates"
         }
       ],
       "preset": "eaw_multiple_select_js",
