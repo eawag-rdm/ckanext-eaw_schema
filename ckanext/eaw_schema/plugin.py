@@ -20,7 +20,7 @@ hashtypes = ['md5', 'sha256']
 def _json2list(value):
     if isinstance(value, list):
         val = value
-    elif isinstance(value, basestring):
+    elif isinstance(value, str):
         val = [val.strip() for val in value.split(sep) if val.strip()]
     else:
         raise toolkit.Invalid("Only strings or lists allowed")
@@ -30,7 +30,7 @@ def _everything2stringlist(value):
     val_out = []
     if isinstance(value, list):
         for v in value:
-            if isinstance(v, basestring):
+            if isinstance(v, str):
                 val_out.append(v)
             else:
                 val_out.append(repr(v))
@@ -126,7 +126,7 @@ def eaw_schema_multiple_string_convert(typ):
             pass
         if isinstance(value, list):
             val = value
-        elif isinstance(value, basestring):
+        elif isinstance(value, str):
             val = [val.strip() for val in value.split(sep) if val.strip()]
         else:
             raise toolkit.Invalid("Only strings or lists allowed")
@@ -205,7 +205,7 @@ def eaw_schema_multiple_choice(field, schema):
 
         value = data[key]
         if value is not missing:
-            if isinstance(value, basestring):
+            if isinstance(value, str):
                 value = [value]
             elif not isinstance(value, list):
                 errors[key].append(_('expecting list of strings'))
@@ -306,7 +306,7 @@ def eaw_users_exist(userstring):
     contains only existing usernames.
     
     '''
-    if isinstance(userstring, basestring):
+    if isinstance(userstring, str):
         users = [user.strip() for user in userstring.split(',') if user.strip()]
     else:
         raise(toolkit.Invalid("{} not a string.".format(repr(userstring))))
@@ -367,7 +367,7 @@ def eaw_schema_set_default(values, default_value, field=''):
     ## Only set default value if current value is empty string or None
     ## or a list containing only '' or None.
     
-    if isinstance(values, basestring) or values is None:
+    if isinstance(values, str) or values is None:
         if values not in ['', None]:
             return values
         islist = False
@@ -442,7 +442,7 @@ def eaw_schema_geteawuser(username):
         try:
             last, first = fullname.split(',')
         except (ValueError, AttributeError):
-            if not isinstance(fullname, basestring):
+            if not isinstance(fullname, str):
                 fullname = ''
             logger.warn(u'User Fullname "{}" does not '
                         'have standard format ("lastname, firstname")'
