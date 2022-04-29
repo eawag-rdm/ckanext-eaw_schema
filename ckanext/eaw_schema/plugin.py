@@ -4,7 +4,7 @@ from ckan.logic import side_effect_free
 from ckan.plugins.interfaces import IPackageController
 from ckanext.eaw_vocabularies.validate_solr_daterange import SolrDaterange
 from ckanext.scheming.validation import scheming_validator
-import ckan.common.config as config
+from ckan.common import config
 from itertools import count
 import json
 import logging
