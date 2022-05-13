@@ -2,13 +2,18 @@ eaw_schema_js: # name of the asset
   filters: rjsmin # preprocessor for files. Optional
   output: ckanext-eaw_schema/%(version)s_eaw_schema.js  # actual path, where the generated file will be stored
   contents: # list of files that are included in the asset
-    - checkpublication.js
-    - eaw_autocomplete.js
-    - eaw_copy_res_name.js
-
+    - js/checkpublication.js
+    - js/eaw_autocomplete.js
+    - js/eaw_copy_res_name.js
+    - js/eaw_copy_res_name.js
+    - js/eaw_schema_conditional_multicheck.js
+    - js/eaw_schema_datepicker.js
+    - js/eaw_schema_info_modal.js
+    - js/eaw_schema_subdivs.js
+    - js/lcrnz-repeating.js
 
 
 eaw_schema_css:  # name of asset
   output: ckanext-eaw_schema/%(version)s_eaw_schema.css  # actual path, where generated file will be stored
   contents: # list of files that are included into asset
-    - eaw_schema.css
+    - styles/eaw_schema.css
