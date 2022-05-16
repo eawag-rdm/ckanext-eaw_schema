@@ -17,3 +17,54 @@ eaw_schema_css:  # name of asset
   output: ckanext-eaw_schema/%(version)s_eaw_schema.css  # actual path, where generated file will be stored
   contents: # list of files that are included into asset
     - styles/eaw_schema.css
+
+eaw_schema_conditional_multicheck_js:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_eaw_schema_conditional_multicheck.js
+  contents:
+    - js/eaw_schema_conditional_multicheck.js
+
+checkpublication_js:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_checkpublication.js
+  contents:
+    - js/checkpublication.js
+
+eaw_autocomplete_js:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_eaw_autocomplete.js
+  contents:
+    - js/eaw_autocomplete.js
+
+eaw_copy_res_name_js:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_eaw_copy_res_name.js
+  contents:
+    - js/eaw_copy_res_name.js
+
+lcrnz-repeating_js:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_lcrnz-repeating.js
+  contents:
+    - js/lcrnz-repeating.js
+
+eaw_schema_publication_js:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_eaw_schema_publication.js
+  contents:
+    - js/eaw_schema_publication.js
+
+eaw_schema_info_modal_js:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_eaw_schema_info_modal.js
+  contents:
+    - js/eaw_schema_info_modal.js
+
+
+    ###could still also add the bootstrap-switch resources identified in "templates/scheming/form_snippets/eaw_schema_checkbox.html"
+
+
+
+
+
+
