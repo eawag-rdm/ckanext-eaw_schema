@@ -1,6 +1,6 @@
 {% import 'macros/form.html' as form %}
 {% set modal_text = field.modal_text if "modal_text" in field else none %}
-{% resource 'eaw_schema/eaw_schema_publication.js' %}
+{% asset 'eaw_schema/eaw_schema_publication_js' %}
 
 {% set value = data[field.field_name] %}
 {% set classes = field.classes %}
