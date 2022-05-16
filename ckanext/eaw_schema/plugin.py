@@ -541,10 +541,10 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     ]
 
     # IConfigurer
-    def update_config(self, config_):
-        tk.add_template_directory(config_, 'templates')
-        tk.add_public_directory(config_, 'public')
-        tk.add_resource('fanstatic', 'eaw_schema')
+    def update_config(self, config):
+        tk.add_template_directory(config, 'templates')
+        tk.add_public_directory(config, 'public')
+        tk.add_resource('assets', 'eaw_schema')
         
     # IValidators
     def get_validators(self):
