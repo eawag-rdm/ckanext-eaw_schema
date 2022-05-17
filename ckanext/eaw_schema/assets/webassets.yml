@@ -11,9 +11,12 @@ eaw_schema_js: # name of the asset
     - js/eaw_schema_info_modal.js
     - js/eaw_schema_subdivs.js
     - js/lcrnz-repeating.js
-
+  extra:
+    preload:
+      - base/main
 
 eaw_schema_css:  # name of asset
+  filter: cssrewrite
   output: ckanext-eaw_schema/%(version)s_eaw_schema.css  # actual path, where generated file will be stored
   contents: # list of files that are included into asset
     - styles/eaw_schema.css
@@ -79,7 +82,7 @@ bootstrap-datepicker_js:
     - vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
 
 bootstrap-datepicker_css:
-  filters: rjsmin
+  filters: cssrewrite
   output: ckanext-eaw_schema/%(version)s_bootstrap_datepicker.css
   contents:
     - vendor/bootstrap-datepicker/css/bootstrap-datepicker.css
