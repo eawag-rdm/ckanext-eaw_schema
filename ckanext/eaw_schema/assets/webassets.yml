@@ -60,6 +60,29 @@ eaw_schema_info_modal_js:
   contents:
     - js/eaw_schema_info_modal.js
 
+eaw_schema_subdivs_js:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_eaw_schema_subdivs.js
+  contents: 
+    - js/eaw_schema_subdivs.js  
+
+eaw_schema_datepicker_js:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_eaw_schema_datepicker.js
+  contents:
+    - js/eaw_schema_datepicker.js  
+
+bootstrap-datepicker_js:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_bootstrap_datepicker.js
+  contents:
+    - vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
+
+bootstrap-datepicker_css:
+  filters: rjsmin
+  output: ckanext-eaw_schema/%(version)s_bootstrap_datepicker.css
+  contents:
+    - vendor/bootstrap-datepicker/css/bootstrap-datepicker.css
 
     ###could still also add the bootstrap-switch resources identified in "templates/scheming/form_snippets/eaw_schema_checkbox.html"
 
