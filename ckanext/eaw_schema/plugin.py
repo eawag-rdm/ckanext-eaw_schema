@@ -10,7 +10,7 @@ import json
 import logging
 import re
 import datetime
-from ckanext.eaw_schema import validators
+#from ckanext.eaw_schema import validators
 missing = tk.missing
 _ = tk._
 logger = logging.getLogger(__name__)
@@ -503,6 +503,101 @@ def eaw_schema_human_filesize(size, suffix='B'):
             return '{:3.1f} {}{}'.format(size, unit, suffix)
         size /= 1000.0
     return '{:.1f} {}{}'.format(size, 'Y', suffix)
+
+
+def repeating_text(key, data, errors, context):
+    """
+    SRD 20220519 - copied from ckanext-repeating
+    Accept repeating text input in the following forms
+    and convert to a json list for storage:
+
+    1. a list of strings, eg.
+       ["Person One", "Person Two"]
+
+    2. a single string value to allow single text fields to be
+       migrated to repeating text
+       "Person One"
+
+    3. separate fields per language (for form submissions):
+       fieldname-0 = "Person One"
+       fieldname-1 = "Person Two"
+    """
+
+    # just in case there was an error before our validator,
+    # bail out here because our errors won't be useful
+    if errors[key]:
+        return
+
+    value = data[key]
+    # 1. list of strings or 2. single string
+    if value is not missing:
+        if isinstance(value, str):
+            value = [value]
+        if not isinstance(value, list):
+            errors[key].append(_('expecting list of strings'))
+            return
+
+        out = []
+        for element in value:
+            if not isinstance(element, str):
+                errors[key].append(_('invalid type for repeating text: %r')
+                    % element)
+                continue
+#            if isinstance(element, str):
+#                try:
+#                    element = element.decode('utf-8')
+#                except UnicodeDecodeError:
+#                    errors[key]. append(_('invalid encoding for "%s" value')
+#                        % lang)
+#                    continue
+            out.append(element)
+
+        if not errors[key]:
+            data[key] = json.dumps(out)
+        return
+        
+    # 3. separate fields
+    found = {}
+    prefix = key[-1] + '-'
+    extras = data.get(key[:-1] + ('__extras',), {})
+
+    for name, text in extras.items():
+        if not name.startswith(prefix):
+            continue
+        if not text:
+            continue
+        index = name.rsplit('-', 1)[1]
+        try:
+            index = int(index)
+        except ValueError:
+            continue
+        found[index] = text
+
+    out = [found[i] for i in sorted(found)]
+    data[key] = json.dumps(out)
+
+def repeating_text_output(value):
+    """
+    SRD 20220519 - copied from ckanext-repeating
+    Return stored json representation as a list, if
+    value is already a list just pass it through.
+    """
+    if isinstance(value, list):
+        return value
+    if value is None:
+        return []
+    try:
+        return json.loads(value)
+    except ValueError:
+        return [value]
+
+
+
+
+
+
+
+
 
 # Action functions
 
