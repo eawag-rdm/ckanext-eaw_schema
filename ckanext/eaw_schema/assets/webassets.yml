@@ -87,8 +87,8 @@ bootstrap-datepicker_css:
   contents:
     - vendor/bootstrap-datepicker/css/bootstrap-datepicker.css
 
-    ###could still also add the bootstrap-switch resources identified in "templates/scheming/form_snippets/eaw_schema_checkbox.html"
-
+    ###the bootstrap-switch resources identified in "templates/scheming/form_snippets/eaw_schema_checkbox.html"
+    # are defined in eaw_theme already:  ?move datepicker to there also? 
 
 
 
