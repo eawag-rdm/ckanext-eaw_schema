@@ -579,7 +579,11 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_check_package_type':
                     eaw_schema_check_package_type,
                 'eaw_schema_check_hashtype':
-                    eaw_schema_check_hashtype
+                    eaw_schema_check_hashtype,
+                'repeating_text':
+                    validators.repeating_text,
+                'repeating_text_output':
+                    validators.repeating_text_output
         }
 
     # IPackageController
