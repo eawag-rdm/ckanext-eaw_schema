@@ -10,7 +10,7 @@ import json
 import logging
 import re
 import datetime
-
+from ckanext.eaw_schema import validators
 missing = tk.missing
 _ = tk._
 logger = logging.getLogger(__name__)
