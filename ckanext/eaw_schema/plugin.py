@@ -20,7 +20,7 @@ hashtypes = ['md5', 'sha256']
 def _json2list(value):
     if isinstance(value, list):
         val = value
-    elif isinstance(value, basestring):
+    elif isinstance(value, str):
         val = [val.strip() for val in value.split(sep) if val.strip()]
     else:
         raise toolkit.Invalid("Only strings or lists allowed")
@@ -30,7 +30,7 @@ def _everything2stringlist(value):
     val_out = []
     if isinstance(value, list):
         for v in value:
-            if isinstance(v, basestring):
+            if isinstance(v, str):
                 val_out.append(v)
             else:
                 val_out.append(repr(v))
@@ -126,7 +126,7 @@ def eaw_schema_multiple_string_convert(typ):
             pass
         if isinstance(value, list):
             val = value
-        elif isinstance(value, basestring):
+        elif isinstance(value, str):
             val = [val.strip() for val in value.split(sep) if val.strip()]
         else:
             raise toolkit.Invalid("Only strings or lists allowed")
@@ -205,7 +205,7 @@ def eaw_schema_multiple_choice(field, schema):
 
         value = data[key]
         if value is not missing:
-            if isinstance(value, basestring):
+            if isinstance(value, str):
                 value = [value]
             elif not isinstance(value, list):
                 errors[key].append(_('expecting list of strings'))
@@ -289,15 +289,15 @@ def eaw_schema_publicationlink(value):
         return ''
     doramatch = re.match('.*(eawag:\d+$|eawag%3A\d+$)', value)
     if doramatch:
-        url =  (u'https://www.dora.lib4ri.ch/eawag/islandora/object/{}'
+        url =  ('https://www.dora.lib4ri.ch/eawag/islandora/object/{}'
                 .format(doramatch.group(1)))
     else:
         doimatch = re.match('.*(10.\d{4,9}\/.+$)', value)
         if not doimatch:
-            raise toolkit.Invalid(u'{} is not a valid publication identifier'
+            raise toolkit.Invalid('{} is not a valid publication identifier'
                                   .format(value))
         else:
-            url = u'https://doi.org/{}'.format(doimatch.group(1))
+            url = 'https://doi.org/{}'.format(doimatch.group(1))
     return(url)
 
 
@@ -306,15 +306,15 @@ def eaw_users_exist(userstring):
     contains only existing usernames.
     
     '''
-    if isinstance(userstring, basestring):
+    if isinstance(userstring, str):
         users = [user.strip() for user in userstring.split(',') if user.strip()]
     else:
-        raise(toolkit.Invalid("{} not a string.".format(repr(userstring))))
+        raise toolkit.Invalid("{} not a string.".format(repr(userstring)))
     for u in users:
         try:
             toolkit.get_action('user_show')(data_dict={'id': u})
         except toolkit.ObjectNotFound:
-            raise(toolkit.Invalid("User \"{}\" does not exist.".format(u)))
+            raise toolkit.Invalid("User \"{}\" does not exist.".format(u))
     return userstring
 
 def eaw_schema_cp_filename2name(key, flattened_data, errors, context):
@@ -328,7 +328,7 @@ def eaw_schema_check_package_type(pkgtype):
 
     '''
     route_new = '{}_new'.format(pkgtype)
-    if route_new in toolkit.config['routes.named_routes'].keys():
+    if route_new in list(toolkit.config['routes.named_routes'].keys()):
         return pkgtype
     else:
         return('dataset')
@@ -367,7 +367,7 @@ def eaw_schema_set_default(values, default_value, field=''):
     ## Only set default value if current value is empty string or None
     ## or a list containing only '' or None.
     
-    if isinstance(values, basestring) or values is None:
+    if isinstance(values, str) or values is None:
         if values not in ['', None]:
             return values
         islist = False
@@ -380,7 +380,7 @@ def eaw_schema_set_default(values, default_value, field=''):
 
     # special default value resulting in "Full Name <email>"
     if default_value == "context_fullname_email":
-        val = u'{} <{}>'.format(toolkit.c.userobj.fullname,
+        val = '{} <{}>'.format(toolkit.c.userobj.fullname,
                                toolkit.c.userobj.email)
 
     elif default_value == "context_username":
@@ -408,7 +408,7 @@ def eaw_schema_get_values(field_name, form_blanks, data):
 
     '''
 
-    fields = [re.match(field_name + "-\d+", key) for key in data.keys()]
+    fields = [re.match(field_name + "-\d+", key) for key in list(data.keys())]
     if all(f is None for f in fields):
         # not coming from form submit -> get value from DB
         value = data.get(field_name)
@@ -433,18 +433,18 @@ def eaw_schema_geteawuser(username):
                       "tx_userprofiles/profileImages/")
     def geteawhp(fullname):
         "Returns the Eawag homepage of somebody"
-        hp_url_prefix = (u'https://www.eawag.ch/en/aboutus/portrait/'
+        hp_url_prefix = ('https://www.eawag.ch/en/aboutus/portrait/'
                          'organisation/staff/profile/')
         # If we can't derive the Eawag personal page, go to search page.
-        hp_url_fallback_template = (u'https://www.eawag.ch/en/suche/'
+        hp_url_fallback_template = ('https://www.eawag.ch/en/suche/'
                                     '?q=__NAME__&tx_solr[filter][0]'
                                     '=filtertype%3A3')
         try:
             last, first = fullname.split(',')
         except (ValueError, AttributeError):
-            if not isinstance(fullname, basestring):
+            if not isinstance(fullname, str):
                 fullname = ''
-            logger.warn(u'User Fullname "{}" does not '
+            logger.warn('User Fullname "{}" does not '
                         'have standard format ("lastname, firstname")'
                         .format(fullname))
             return hp_url_fallback_template.replace('__NAME__', fullname)
@@ -486,7 +486,7 @@ def eaw_username_fullname_email(s_users):
                 context={'keep_email': True}, data_dict={'id': username})
         except toolkit.ObjectNotFound:
             userdict = {'display_name': username, 'email': 'unknown'}
-        return u'{} <{}>'.format(
+        return '{} <{}>'.format(
             userdict.get('display_name', 'unknown'),
             userdict.get('email', 'unknown'))
 
