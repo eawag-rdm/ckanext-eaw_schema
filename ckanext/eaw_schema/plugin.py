@@ -543,7 +543,7 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
-        toolkit.add_resource('fanstatic', 'eaw_schema')
+        toolkit.add_resource('assets', 'eaw_schema_assets')
         
     # IValidators
     def get_validators(self):
