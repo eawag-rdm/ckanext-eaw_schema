@@ -57,17 +57,17 @@ eaw_schema_subdivs-js:
 #   output: eaw_schema_assets/%(version)s_repeating.js
 #   filters: rjsmin
 
-bootstrap-datepicker-js:
-  contents:
-    - vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
-  output: eaw_schema_assets/%(version)s_bootstrap-datepicker.js
-  filters: rjsmin
+# bootstrap-datepicker-js:
+#   contents:
+#     - vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
+#   output: eaw_schema_assets/%(version)s_bootstrap-datepicker.js
+#   filters: rjsmin
 
-bootstrap-datepicker-css:
-  contents:
-    - vendor/bootstrap-datepicker/css/bootstrap-datepicker.css
-  output: eaw_schema_assets/%(version)s_bootstrap-datepicker.css
-  filters: cssrewrite
+# bootstrap-datepicker-css:
+#   contents:
+#     - vendor/bootstrap-datepicker/css/bootstrap-datepicker.css
+#   output: eaw_schema_assets/%(version)s_bootstrap-datepicker.css
+#   filters: cssrewrite
 
 # bootstrap-switch-js:
 #   contents:
@@ -86,4 +86,4 @@ eaw_schema-css:
     - css/eaw_schema.css
   output: eaw_schema_assets/%(version)s_eaw_schema.css
   filters: cssrewrite
- 
+
