@@ -82,16 +82,16 @@ textarea.eaw_with_infobutton {
   }
 }
 
-div.control-group.publication_element,
-div.control-group.open_data_element,
-div.control-group.longterm_data_element {
+div.form-group.publication_element,
+div.form-group.open_data_element,
+div.form-group.longterm_data_element {
   background: rgb(196, 235, 234);
   padding-bottom: 20px;
   
 }
-div.control-group.publication_element.publicationcheck,
-div.control-group.open_data_element.open_data_check,
-div.control-group.longterm_data_element.longtermcheck {
+div.form-group.publication_element.publicationcheck,
+div.form-group.open_data_element.open_data_check,
+div.form-group.longterm_data_element.longtermcheck {
   margin-bottom: 10px;
   border-radius: 10px 10px 10px 10px;
 }
@@ -103,8 +103,8 @@ div.control-group.longterm_data_element.longtermcheck {
   }
 }
 
-div.control-group.publication_element.publicationlink,
-div.control-group.open_data_element.open_data_embargo {
+div.form-group.publication_element.publicationlink,
+div.form-group.open_data_element.open_data_embargo {
   padding-top: 10px;
   margin-top: -10px;
   border-radius: 0px 0px 10px 10px;
