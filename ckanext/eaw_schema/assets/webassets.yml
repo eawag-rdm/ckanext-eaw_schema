@@ -1,20 +1,25 @@
+eaw_schema-js:
+  contents:
+    - eaw_schema_info_modal.js 
+    # - checkpublication.js
+    # - eaw_autocomplete.js
+    # - eaw_copy_res_name.js
+    # - eaw_schema_conditional_multicheck.js
+    # - eaw_schema_datepicker.js
+    # - eaw_schema_subdivs.js
+    # - lcrnz-repeating.js
+  output: eaw_schema_assets/%(version)s_eaw_schema.js
+  filters: rjsmin
+  extra:
+    preload:
+      - base/main
 
-# eaw_schema-js:
-#   contents:
-#     - checkpublication.js
-#    - eaw_autocomplete.js
-#     - eaw_copy_res_name.js
-#     - eaw_schema_conditional_multicheck.js
-#     - eaw_schema_datepicker.js
-#     
-#     - eaw_schema_subdivs.js
-#     - lcrnz-repeating.js
-#  output: eaw_schema_assets/%(version)s_eaw_schema.js
-#  filters: rjsmin
-#   extra:
-#     preload:
-#       - base/ckan
-  
+eaw_schema-css:
+  contents:
+    - css/eaw_schema.css
+  output: eaw_schema_assets/%(version)s_eaw_schema.css
+  filters: cssrewrite
+
 # eaw_autocomplete-js:
 #   contents:
 #     
@@ -39,17 +44,17 @@
 #   output: eaw_schema_assets/%(version)s_datepicker.js
 #   filters: rjsmin
   
-eaw_schema_info_modal-js:
-  contents:
-    - eaw_schema_info_modal.js  
-  output: eaw_schema_assets/%(version)s_info_modal.js
-  filters: rjsmin
+# eaw_schema_info_modal-js:
+#   contents:
+#     - eaw_schema_info_modal.js  
+#   output: eaw_schema_assets/%(version)s_info_modal.js
+#   filters: rjsmin
   
-eaw_schema_subdivs-js:
-  contents:
-    - eaw_schema_subdivs.js
-  output: eaw_schema_assets/%(version)s_subdivs.js
-  filters: rjsmin
+# eaw_schema_subdivs-js:
+#   contents:
+#     - eaw_schema_subdivs.js
+#   output: eaw_schema_assets/%(version)s_subdivs.js
+#   filters: rjsmin
   
 # lcrnz-repeating-js:
 #   contents:
@@ -75,15 +80,11 @@ eaw_schema_subdivs-js:
 #   output: eaw_schema_assets/%(version)s_bootstrap-switch.js
 #   filters: rjsmin
 
-bootstrap-switch-css:
-  contents:
-    - vendor/bootstrap-switch/css/bootstrap-switch.css
-  output: eaw_schema_assets/%(version)s_bootstrap-switch.css
-  filters: cssrewrite
+# bootstrap-switch-css:
+#   contents:
+#     - vendor/bootstrap-switch/css/bootstrap-switch.css
+#   output: eaw_schema_assets/%(version)s_bootstrap-switch.css
+#   filters: cssrewrite
 
-eaw_schema-css:
-  contents:
-    - css/eaw_schema.css
-  output: eaw_schema_assets/%(version)s_eaw_schema.css
-  filters: cssrewrite
+
 
