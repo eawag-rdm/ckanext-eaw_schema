@@ -4,6 +4,11 @@
   }
 }
 
+@media (min-width:768px) {
+.controls {
+  margin-left: 130px;
+}
+
 @media (min-width: 768px) and  (max-width: 979px) {
   input.eaw_with_infobutton {
     width: 322px;
@@ -136,6 +141,7 @@ label.eaw_schema_checkbox {
   padding-left:10px;
   padding-top:5px;
   padding-bottom:5px;
+  float:left;
 }
 
 .publicationlink label.control-label {
