@@ -1,12 +1,13 @@
 eaw_schema-js:
   contents:
     - eaw_schema_info_modal.js 
+    - eaw_schema_subdivs.js
+    - vendor/bootstrap-switch/js/bootstrap-switch.js
     # - checkpublication.js
     # - eaw_autocomplete.js
     # - eaw_copy_res_name.js
     # - eaw_schema_conditional_multicheck.js
     # - eaw_schema_datepicker.js
-    # - eaw_schema_subdivs.js
     # - lcrnz-repeating.js
   output: eaw_schema_assets/%(version)s_eaw_schema.js
   filters: rjsmin
@@ -18,6 +19,12 @@ eaw_schema-css:
   contents:
     - css/eaw_schema.css
   output: eaw_schema_assets/%(version)s_eaw_schema.css
+  filters: cssrewrite
+
+bootstrap-switch-css:
+  contents:
+    - vendor/bootstrap-switch/css/bootstrap3/bootstrap-switch.css
+  output: bootstrap-switch/%(version)s_bootstrap-switch.css
   filters: cssrewrite
 
 # eaw_autocomplete-js:
