@@ -1,29 +1,29 @@
 <div class="modal-help">
   <div id="{{ field.modal_text }}" class="modal fade" role="dialog">
     <div class="modal-dialog" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close"
-	      data-dismiss="modal">&times</button>
-      <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp<b>Status</b></p>
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"
+                                data-dismiss="modal">&times</button>
+          <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp<b>Status</b></p>
+        </div>
+        <div class="modal-body">
+          <p>The status of the package:</p>
+          <dl class="spaced">
+            <dt>incomplete</dt>
+            <dd>Either the package metadata or the actual data
+              (the <i>resources</i>) or both will be amended in the
+              future.
+              <p class="alert alert-warning" role="alert">
+              <i class="fa fa-exclamation-triangle"></i>
+              This should only be a temporary state of affairs.
+              </p>
+            </dd>
+            <dt>complete</dt>
+            <dd>The package is finished and no changes are expected anymore.</dd>
+          </dl>
+        </div>
+      </div>
     </div>
-    <div class="modal-body">
-      <p>The status of the package:</p>
-      <dl class="spaced">
-	<dt>incomplete</dt>
-	<dd>Either the package metadata or the actual data
-	(the <i>ressources</i>) or both will be amended in the
-	  future.
-	  <p class="alert">
-	    <i class="fa fa-exclamation-triangle"></i>
-	    This should only be a temporary state of affairs.
-	  </p>
-	</dd>
-	<dt>complete</dt>
-	<dd>The package is finished and no changes are expected anymore.</dd>
-      </dl>
-    </div>
-  </div>
-</div>
   </div>
 </div>
