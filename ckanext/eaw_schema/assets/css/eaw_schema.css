@@ -192,11 +192,6 @@ dl.spaced > dt {
   }
 }
 
-.toolbar .breadcrumb li:after {
-  content: " / ";
-  color: #505050;
-}
-
 .fa-file-text-o {
   color: #0087CD;
   position:relative;
