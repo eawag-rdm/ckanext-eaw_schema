@@ -3,7 +3,7 @@ eaw_schema-js:
     - eaw_schema_info_modal.js 
     - eaw_schema_subdivs.js
     - vendor/bootstrap-switch/js/bootstrap-switch.js
-    # - checkpublication.js
+    - checkpublication.js
     # - eaw_autocomplete.js
     # - eaw_copy_res_name.js
     # - eaw_schema_conditional_multicheck.js
