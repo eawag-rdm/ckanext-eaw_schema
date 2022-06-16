@@ -9,7 +9,7 @@ eaw_schema-js:
     # - eaw_copy_res_name.js
     # - eaw_schema_conditional_multicheck.js
     
-    # - lcrnz-repeating.js
+    - lcrnz-repeating.js
   output: eaw_schema_assets/%(version)s_eaw_schema.js
   filters: rjsmin
   extra:
