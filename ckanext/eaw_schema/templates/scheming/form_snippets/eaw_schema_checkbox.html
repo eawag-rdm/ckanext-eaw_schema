@@ -1,9 +1,8 @@
 {%- if field.form_attrs is defined
   and field.form_attrs['data-module'] == "eaw_schema_subdivs" %}
-  {%- asset 'eaw_schema/eaw_schema_subdivs_js' -%}
+  {% asset 'eaw_schema_assets/eaw_schema-js' %}
 {%- endif -%}
-{% asset 'eaw_theme/bootstrap-switch_js' %}
-{% asset 'eaw_theme/bootstrap-switch_css' %}
+{% asset 'eaw_schema_assets/bootstrap-switch-css' %}
 
 
 {% import 'macros/form.html' as form %}

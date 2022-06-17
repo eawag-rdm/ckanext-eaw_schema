@@ -1,40 +1,44 @@
 <div class="modal-help">
-  <div id="{{ field.modal_text }}" class="modal hide fade">
-    <div class="modal-header">
-      <button type="button" class="close"
-	      data-dismiss="modal">&times</button>
-      <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp<b>Review
-      Level</b></p>
-    </div>
-    <div class="modal-body">
-      Data packages need to be reviewed to ensure an acceptable level
-      of quality. Of course, a review can not be conducted by the
-      person uploading the dataset.
-      <dl class="spaced">
-	<dt>none</dt>
-	<dd>The package was not yet reviewed.
-	  <p class="alert">
-	    <i class="fa fa-exclamation-triangle"></i>
-	    This should only be a temporary state of affairs.
-	  </p>
-	</dd>
-	<dt>general</dt>
-	<dd>The package has passed a general consistency- and
-	  completeness check, as described in the
-	  <a href="https://data.eawag.ch/dataset/checklist-for-publishing-data-packages-at-eawag">
-	    <i>Checklist for publishing data packages at Eawag</i></a>.
-	  <div class="alert alert-info">
-	    <i class="fa fa-info-circle"></i> All data
-	    packages should be reviewed as soon as possible after the
-	    upload.</div>
-	<dt>domain specific</dt>
-	<dd>The package was checked by a domain expert for
-	  re-usability in a scientific context.</dd>
-	<div class="alert alert-info">
-	    <i class="fa fa-info-circle"></i> Data packages to be
-	    published as Open Data should be reviewed by a domain
-	    expert.</div>
-      </dl>
+  <div id="{{ field.modal_text }}" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close"
+                                data-dismiss="modal">&times</button>
+          <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp<b>Review
+            Level</b></p>
+        </div>
+        <div class="modal-body">
+          Data packages need to be reviewed to ensure an acceptable level
+          of quality. Of course, a review can not be conducted by the
+          person uploading the dataset.
+          <dl class="spaced">
+            <dt>none</dt>
+            <dd>The package was not yet reviewed.
+              <p class="alert alert-warning" role="alert">
+              <i class="fa fa-exclamation-triangle"></i>
+              This should only be a temporary state of affairs.
+              </p>
+            </dd>
+            <dt>general</dt>
+            <dd>The package has passed a general consistency- and
+              completeness check, as described in the
+              <a href="https://data.eawag.ch/dataset/checklist-for-publishing-data-packages-at-eawag">
+                <i>Checklist for publishing data packages at Eawag</i></a>.
+              <div class="alert alert-info">
+                <i class="fa fa-info-circle"></i> All data
+                packages should be reviewed as soon as possible after the
+                upload.</div>
+              <dt>domain specific</dt>
+              <dd>The package was checked by a domain expert for
+                re-usability in a scientific context.</dd>
+              <div class="alert alert-info" role="alert">
+                <i class="fa fa-info-circle"></i> Data packages to be
+                published as Open Data should be reviewed by a domain
+                expert.</div>
+          </dl>
+        </div>
+      </div>
     </div>
   </div>
 </div>

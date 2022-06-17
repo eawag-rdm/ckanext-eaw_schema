@@ -1,48 +1,51 @@
 <div class="modal-help"> 
-  <div id="open_data_help" class="modal hide fade"> 
-    <div class="modal-header"> 
-      <button type="button" class="close" 
-    	      data-dismiss="modal">&times</button> 
-      <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp<b>Open Data</b></p> 
+  <div id="open_data_help" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"> 
+        <div class="modal-header"> 
+          <button type="button" class="close" 
+                                data-dismiss="modal">&times</button> 
+          <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp<b>Open Data</b></p> 
+        </div> 
+        <div class="modal-body">  
+          <p>Indicates that this data package should be published  
+          available for anyone (also outside Eawag). <b>This should be the norm</b>. 
+          </p>  
+          <p>If this is set to "YES" and the package is complete, please
+          <ol>
+            <li>review the package (quality, completeness, legal aspects)</li>
+            <li>download the <a href="https://data.eawag.ch/dataset/checklist-for-publishing-data-packages-at-eawag">
+                Checklist for publishing data packages at Eawag (PDF)</a> and tick the appropriate boxes.</li>
+            <li>send the form to <a href="mailto:rdm@eawag.ch">rdm@eawag.ch</a></li>
+          </ol>
+          </p>
+          <p>
+          We will then
+          <ul>
+            <li>assign a Digital Object Identifier (DOI),</li>
+            <li>publish it and</li>
+            <li>email you the DOI-URL that points to the package.</li>
+          </ul>
+          </p>
+          <div class="alert alert-info" role="alert">
+            <i class="fa fa-info-circle"></i> If you need a DOI to put
+            into the manuscript (e.g. under <em>Data Availability</em>)
+            before the data package is ready for publication, please get
+            in touch
+            with <a href="mailto:rdm@eawag.ch">rdm@eawag.ch</a>. We will
+            then reserve one for you, <strong>but it will only be
+              activated once the complete package has been
+              published.</strong>
+          </div>
+          <div class="alert alert-info" role="alert">
+            <i class="fa fa-info-circle"></i> If you need this package to
+            be accessible from outside Eawag <b>now</b>, before it is
+            ready for final publication, for example if that is a
+            requirement for review of the associated paper, please send an
+            email to <a href="mailto:rdm@eawag.ch">rdm@eawag.ch</a>
+          </div>
+        </div>
+      </div> 
     </div> 
-    <div class="modal-body">  
-      <p>Indicates that this data package should be published  
-      	available for anyone (also outside Eawag). <b>This should be the norm</b>. 
-      </p>  
-      <p>If this is set to "YES" and the package is complete, please
-	<ol>
-	  <li>review the package (quality, completeness, legal aspects)</li>
-	  <li>download the <a href="https://data.eawag.ch/dataset/checklist-for-publishing-data-packages-at-eawag">
-	      Checklist for publishing data packages at Eawag (PDF)</a> and tick the appropriate boxes.</li>
-	  <li>send the form to <a href="mailto:rdm@eawag.ch">rdm@eawag.ch</a></li>
-	</ol>
-      </p>
-      <p>
-	We will then
-	<ul>
-	  <li>assign a Digital Object Identifier (DOI),</li>
-	  <li>publish it and</li>
-	  <li>email you the DOI-URL that points to the package.</li>
-	</ul>
-      </p>
-      <div class="alert alert-block alert-info">
-	<i class="fa fa-info-circle"></i> If you need a DOI to put
-	into the manuscript (e.g. under <em>Data Availability</em>)
-	before the data package is ready for publication, please get
-	in touch
-	with <a href="mailto:rdm@eawag.ch">rdm@eawag.ch</a>. We will
-	then reserve one for your, <strong>but it will only be
-	activated once the complete package has been
-	published.</strong>
-      </div>
-       <div class="alert alert-block alert-info">
-	<i class="fa fa-info-circle"></i> If you need this package to
-      	be accessible from outside Eawag <b>now</b>, before it is
-      	ready for final publication, for example if that is a
-      	requirement for review of the associated paper, please send an
-      	email to rdm@eawag.ch. We will then push that data to a
-      	suitable external repository.
-      </div>
-    </div>
-  </div> 
-</div> 
+  </div>
+</div>

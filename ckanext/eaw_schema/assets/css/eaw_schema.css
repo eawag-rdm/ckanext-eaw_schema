@@ -4,6 +4,11 @@
   }
 }
 
+@media (min-width:768px) {
+.controls {
+  margin-left: 130px;
+}
+
 @media (min-width: 768px) and  (max-width: 979px) {
   input.eaw_with_infobutton {
     width: 322px;
@@ -82,16 +87,16 @@ textarea.eaw_with_infobutton {
   }
 }
 
-div.control-group.publication_element,
-div.control-group.open_data_element,
-div.control-group.longterm_data_element {
+div.form-group.publication_element,
+div.form-group.open_data_element,
+div.form-group.longterm_data_element {
   background: rgb(196, 235, 234);
   padding-bottom: 20px;
   
 }
-div.control-group.publication_element.publicationcheck,
-div.control-group.open_data_element.open_data_check,
-div.control-group.longterm_data_element.longtermcheck {
+div.form-group.publication_element.publicationcheck,
+div.form-group.open_data_element.open_data_check,
+div.form-group.longterm_data_element.longtermcheck {
   margin-bottom: 10px;
   border-radius: 10px 10px 10px 10px;
 }
@@ -103,8 +108,8 @@ div.control-group.longterm_data_element.longtermcheck {
   }
 }
 
-div.control-group.publication_element.publicationlink,
-div.control-group.open_data_element.open_data_embargo {
+div.form-group.publication_element.publicationlink,
+div.form-group.open_data_element.open_data_embargo {
   padding-top: 10px;
   margin-top: -10px;
   border-radius: 0px 0px 10px 10px;
@@ -136,6 +141,7 @@ label.eaw_schema_checkbox {
   padding-left:10px;
   padding-top:5px;
   padding-bottom:5px;
+  float:left;
 }
 
 .publicationlink label.control-label {
@@ -184,11 +190,6 @@ dl.spaced > dt {
   .toolbar .breadcrumb a {
     color: #505050;
   }
-}
-
-.toolbar .breadcrumb li:after {
-  content: " / ";
-  color: #505050;
 }
 
 .fa-file-text-o {

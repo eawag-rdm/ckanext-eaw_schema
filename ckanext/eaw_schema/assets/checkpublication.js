@@ -195,7 +195,9 @@ ckan.module('eaw_schema_checkpublication', function ($) {
     },
 
     modal_html:
-`<div id="pubmodal" class="modal hide fade">
+`<div id="pubmodal" class="modal fade" role="dialog">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
   <div id="pubmodal_header" class="modal-header">
     <button style="right:-5px;" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
     <h3 id="pubmodal_title"></h3>
@@ -206,7 +208,9 @@ ckan.module('eaw_schema_checkpublication', function ($) {
     <a id="pubmodal_button_left" href="#" class="btn pull-left" data-dismiss="modal"></a>
     <a id="pubmodal_button_right" href="#" class="btn pull-right" data-dismiss="modal"></a>
   </div>
-</div>`,
+  </div>
+  </div>
+ </div>`,
 
     xref_extract: function(data) {
       let metadata = {};

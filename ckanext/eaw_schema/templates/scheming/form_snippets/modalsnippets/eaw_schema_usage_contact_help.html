@@ -1,27 +1,31 @@
 <div class="modal-help">
-  <div id="{{ field.modal_text }}" class="modal hide fade">
-    <div class="modal-header">
-      <button type="button" class="close"
-	      data-dismiss="modal">&times</button>
-      <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp<b>Usage Contact</b></p>
-    </div>
-    <div class="modal-body">
-      <p>
-	The person who has to be contacted before the data in this package
-	can be used. This is usually the PI or research group leader.
-      </p>
-      <p>
-	 Start typing name or email-address of Eawag user for auto-completion. 
-      </p>
-      <div class="alert alert-info alert-block">
-	<b>Note:</b> Data packages that are not marked as "Open Data"
-	are only visible within Eawag and <b>can not be used in any
-	  way</b> before getting individual permission from the person
-	named in "<tt><b>Usage Contact</b></tt>".
-      </div>
-      <div class="alert alert-block">
-	<i class="fa fa-exclamation-circle
-		  fa-lg"></i>&nbsp;&nbsp;<b>This is a mandatory field.</b>
+  <div id="{{ field.modal_text }}" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"> 
+        <div class="modal-header">
+          <button type="button" class="close"
+                                data-dismiss="modal">&times</button>
+          <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp<b>Usage Contact</b></p>
+        </div>
+        <div class="modal-body">
+          <p>
+          The person who has to be contacted before the data in this package
+          can be used. This is usually the PI or research group leader.
+          </p>
+          <p>
+          Start typing name or email-address of Eawag user for auto-completion. 
+          </p>
+          <div class="alert alert-info" role="alert">
+            <b>Note:</b> Data packages that are not marked as "Open Data"
+            are only visible within Eawag and <b>can not be used in any
+              way</b> before getting individual permission from the person
+            named in "<tt><b>Usage Contact</b></tt>".
+          </div>
+          <div class="alert alert-warning" role="alert">
+            <i class="fa fa-exclamation-circle
+                      fa-lg"></i>&nbsp;&nbsp;<b>This is a mandatory field.</b>
+          </div>
+        </div>
       </div>
     </div>
   </div>

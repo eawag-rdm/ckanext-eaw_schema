@@ -1,28 +1,32 @@
 <div class="modal-help">
-  <div id="{{ field.modal_text }}" class="modal hide fade">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal"
-	      aria-hidden="true">&times;</button>
-      <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp <b>Resource Name</b></p>
-    </div>
-    <div class="modal-body">
-      <p>A descriptive name for the resource.</p>
-      <p>Usually the filename is a reasonable choice. It can be
-	sensible to shorten very long filenames to use them
-	as <i>Name</i>. The purpose of the <i>Name</i> is to give the
-	user quickly a coarse idea about the content of the
-	resource. It can be helpful to keep the extension of the
-	filename to indicate the file format,
-	e.g. <i>*.pdf</i>, <i>*.R</i>, <i>*.csv</i>, <i>*.svg</i>, <i>*.png</i>
-	...</p>
-      <div class="alert alert-info" style="margin-top:30px;">
-	<i class="fa fa-info-circle"></i> The first resource uploaded
-	to a <i>Publication Package</i> that is not yet linked to a
-	publication has to be the manuscript with <b>Name = "Manuscript"</b>.
-      </div>
-      <div class="alert alert-block">
-	<i class="fa fa-exclamation-triangle"></i><b> This is a
-	mandatory field.</b>
+  <div id="{{ field.modal_text }}" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"
+                                              aria-hidden="true">&times;</button>
+          <p><i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp <b>Resource Name</b></p>
+        </div>
+        <div class="modal-body">
+          <p>A descriptive name for the resource.</p>
+          <p>Usually the filename is a reasonable choice. It can be
+          sensible to shorten very long filenames to use them
+          as <i>Name</i>. The purpose of the <i>Name</i> is to give the
+          user quickly a coarse idea about the content of the
+          resource. It can be helpful to keep the extension of the
+          filename to indicate the file format,
+          e.g. <i>*.pdf</i>, <i>*.R</i>, <i>*.csv</i>, <i>*.svg</i>, <i>*.png</i>
+          ...</p>
+          <div class="alert alert-info" role ="alert" style="margin-top:30px;">
+            <i class="fa fa-info-circle"></i> The first resource uploaded
+            to a <i>Publication Package</i> that is not yet linked to a
+            publication has to be the manuscript with <b>Name = "Manuscript"</b>.
+          </div>
+          <div class="alert alert-warning" role="alert">
+            <i class="fa fa-exclamation-triangle"></i><b> This is a
+              mandatory field.</b>
+          </div>
+        </div>
       </div>
     </div>
   </div>

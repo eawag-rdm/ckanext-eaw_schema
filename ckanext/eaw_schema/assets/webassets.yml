@@ -1,96 +1,36 @@
-eaw_schema_js: # name of the asset
-  filters: rjsmin # preprocessor for files. Optional
-  output: ckanext-eaw_schema/%(version)s_eaw_schema.js  # actual path, where the generated file will be stored
-  contents: # list of files that are included in the asset
-    - js/checkpublication.js
-    - js/eaw_autocomplete.js
-    - js/eaw_copy_res_name.js
-    - js/eaw_copy_res_name.js
-    - js/eaw_schema_conditional_multicheck.js
-    - js/eaw_schema_datepicker.js
-    - js/eaw_schema_info_modal.js
-    - js/eaw_schema_subdivs.js
-    - js/lcrnz-repeating.js
+eaw_schema-js:
+  contents:
+    - eaw_schema_info_modal.js 
+    - eaw_schema_subdivs.js
+    - vendor/bootstrap-switch/js/bootstrap-switch.js
+    - checkpublication.js
+    - eaw_autocomplete.js
+    - vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
+    - eaw_schema_datepicker.js
+    - eaw_copy_res_name.js
+    - lcrnz-repeating.js
+    # That is apparently not used at the moment
+    # - eaw_schema_conditional_multicheck.js
+  output: eaw_schema_assets/%(version)s_eaw_schema.js
+  filters: rjsmin
   extra:
     preload:
       - base/main
 
-eaw_schema_css:  # name of asset
-  filter: cssrewrite
-  output: ckanext-eaw_schema/%(version)s_eaw_schema.css  # actual path, where generated file will be stored
-  contents: # list of files that are included into asset
-    - styles/eaw_schema.css
-
-eaw_schema_conditional_multicheck_js:
-  filters: rjsmin
-  output: ckanext-eaw_schema/%(version)s_eaw_schema_conditional_multicheck.js
+eaw_schema-css:
   contents:
-    - js/eaw_schema_conditional_multicheck.js
-
-checkpublication_js:
-  filters: rjsmin
-  output: ckanext-eaw_schema/%(version)s_checkpublication.js
-  contents:
-    - js/checkpublication.js
-
-eaw_autocomplete_js:
-  filters: rjsmin
-  output: ckanext-eaw_schema/%(version)s_eaw_autocomplete.js
-  contents:
-    - js/eaw_autocomplete.js
-
-eaw_copy_res_name_js:
-  filters: rjsmin
-  output: ckanext-eaw_schema/%(version)s_eaw_copy_res_name.js
-  contents:
-    - js/eaw_copy_res_name.js
-
-lcrnz-repeating_js:
-  filters: rjsmin
-  output: ckanext-eaw_schema/%(version)s_lcrnz-repeating.js
-  contents:
-    - js/lcrnz-repeating.js
-
-eaw_schema_publication_js:
-  filters: rjsmin
-  output: ckanext-eaw_schema/%(version)s_eaw_schema_publication.js
-  contents:
-    - js/eaw_schema_publication.js
-
-eaw_schema_info_modal_js:
-  filters: rjsmin
-  output: ckanext-eaw_schema/%(version)s_eaw_schema_info_modal.js
-  contents:
-    - js/eaw_schema_info_modal.js
-
-eaw_schema_subdivs_js:
-  filters: rjsmin
-  output: ckanext-eaw_schema/%(version)s_eaw_schema_subdivs.js
-  contents: 
-    - js/eaw_schema_subdivs.js  
-
-eaw_schema_datepicker_js:
-  filters: rjsmin
-  output: ckanext-eaw_schema/%(version)s_eaw_schema_datepicker.js
-  contents:
-    - js/eaw_schema_datepicker.js  
-
-bootstrap-datepicker_js:
-  filters: rjsmin
-  output: ckanext-eaw_schema/%(version)s_bootstrap_datepicker.js
-  contents:
-    - vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
-
-bootstrap-datepicker_css:
+    - css/eaw_schema.css
+  output: eaw_schema_assets/%(version)s_eaw_schema.css
   filters: cssrewrite
-  output: ckanext-eaw_schema/%(version)s_bootstrap_datepicker.css
+
+bootstrap-switch-css:
   contents:
-    - vendor/bootstrap-datepicker/css/bootstrap-datepicker.css
-
-    ###the bootstrap-switch resources identified in "templates/scheming/form_snippets/eaw_schema_checkbox.html"
-    # are defined in eaw_theme already:  ?move datepicker to there also? 
-
-
-
-
-
+    - vendor/bootstrap-switch/css/bootstrap3/bootstrap-switch.css
+  output: bootstrap-switch/%(version)s_bootstrap-switch.css
+  filters: cssrewrite
+ 
+bootstrap-datepicker-css:
+  contents:
+    - vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css
+  output: eaw_schema_assets/%(version)s_bootstrap-datepicker.css
+  filters: cssrewrite

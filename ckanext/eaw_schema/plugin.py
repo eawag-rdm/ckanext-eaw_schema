@@ -1,18 +1,17 @@
 import ckan.plugins as plugins
-import ckan.plugins.toolkit as tk
+import ckantoolkit as toolkit
 from ckan.logic import side_effect_free
 from ckan.plugins.interfaces import IPackageController
-from ckanext.eaw_vocabularies.validate_solr_daterange import SolrDaterange
+from ckanext.eaw_schema.validate_solr_daterange import SolrDaterange
 from ckanext.scheming.validation import scheming_validator
-from ckan.common import config
 from itertools import count
 import json
 import logging
 import re
 import datetime
-#from ckanext.eaw_schema import validators
-missing = tk.missing
-_ = tk._
+
+missing = toolkit.missing
+_ = toolkit._
 logger = logging.getLogger(__name__)
 
 hashtypes = ['md5', 'sha256']
@@ -23,7 +22,7 @@ def _json2list(value):
     elif isinstance(value, str):
         val = [val.strip() for val in value.split(sep) if val.strip()]
     else:
-        raise tk.Invalid("Only strings or lists allowed")
+        raise toolkit.Invalid("Only strings or lists allowed")
     val = json.dumps(val)
 
 def _everything2stringlist(value):
@@ -129,7 +128,7 @@ def eaw_schema_multiple_string_convert(typ):
         elif isinstance(value, str):
             val = [val.strip() for val in value.split(sep) if val.strip()]
         else:
-            raise tk.Invalid("Only strings or lists allowed")
+            raise toolkit.Invalid("Only strings or lists allowed")
         val = json.dumps(val)
         return val
     
@@ -150,7 +149,7 @@ def eaw_schema_json_not_empty(key, data, errors, context):
         return
     if not val and val != 0:
         errors[key].append(_('Missing value'))
-        raise tk.StopOnError
+        raise toolkit.StopOnError
 
 
 ## Maybe this could be replaced / merged with repeating_text_output.
@@ -158,7 +157,7 @@ def eaw_schema_multiple_string_output(value):
     try:
         value = json.loads(value)
     except ValueError:
-        raise tk.Invalid("String doesn't parse into JSON")
+        raise toolkit.Invalid("String doesn't parse into JSON")
     return value
 
 def eaw_schema_list_to_commasepstring_output(value):
@@ -167,7 +166,7 @@ def eaw_schema_list_to_commasepstring_output(value):
         ret = ','.join(l)
         return ret
     else:
-        raise tk.Invalid("String doesn't parse into JSON-list")
+        raise toolkit.Invalid("String doesn't parse into JSON-list")
 
 
 @scheming_validator
@@ -241,10 +240,10 @@ def eaw_schema_is_orga_admin(key, data, errors, context):
         return
     orgaid =  data[('name',)]
     try:
-        orga = tk.get_action('organization_show')(data_dict={'id': orgaid})
-    except tk.ObjectNotFound:
+        orga = toolkit.get_action('organization_show')(data_dict={'id': orgaid})
+    except toolkit.ObjectNotFound:
         # New organization: Just check user exists
-        allusers = tk.get_action('user_list')(data_dict={})
+        allusers = toolkit.get_action('user_list')(data_dict={})
         allusers = [u.get('name','') for u in allusers]
         if data[key] not in allusers:
             errors[key].append(_('Username {} does not exist'.format(data[key])))
@@ -294,7 +293,7 @@ def eaw_schema_publicationlink(value):
     else:
         doimatch = re.match('.*(10.\d{4,9}\/.+$)', value)
         if not doimatch:
-            raise tk.Invalid('{} is not a valid publication identifier'
+            raise toolkit.Invalid('{} is not a valid publication identifier'
                                   .format(value))
         else:
             url = 'https://doi.org/{}'.format(doimatch.group(1))
@@ -309,12 +308,12 @@ def eaw_users_exist(userstring):
     if isinstance(userstring, str):
         users = [user.strip() for user in userstring.split(',') if user.strip()]
     else:
-        raise tk
+        raise toolkit.Invalid("{} not a string.".format(repr(userstring)))
     for u in users:
         try:
-            tk.get_action('user_show')(data_dict={'id': u})
-        except tk.ObjectNotFound:
-            raise tk
+            toolkit.get_action('user_show')(data_dict={'id': u})
+        except toolkit.ObjectNotFound:
+            raise toolkit.Invalid("User \"{}\" does not exist.".format(u))
     return userstring
 
 def eaw_schema_cp_filename2name(key, flattened_data, errors, context):
@@ -328,14 +327,14 @@ def eaw_schema_check_package_type(pkgtype):
 
     '''
     route_new = '{}_new'.format(pkgtype)
-    if route_new in list(tk.config['routes.named_routes'].keys()):
+    if route_new in list(toolkit.config['routes.named_routes'].keys()):
         return pkgtype
     else:
         return('dataset')
 
 def eaw_schema_check_hashtype(hashtype):
     if not hashtype in hashtypes:
-        raise tk.ValidationError({
+        raise toolkit.ValidationError({
             'hashtype': [_('Hashtype must be one of {}'.format(hashtypes))]})
     return hashtype
 
@@ -344,20 +343,20 @@ def test_before(key, flattened_data, errors, context):
     review_level = flattened_data.get(('review_level',))
     reviewed_by = flattened_data.get(('reviewed_by',))
     if review_level != 'none' and not reviewed_by:
-        raise tk.ValidationError({'reviewed_by': [_('Missing value')]})
+        raise toolkit.ValidationError({'reviewed_by': [_('Missing value')]})
     elif review_level == 'none' and reviewed_by:
-        raise tk.ValidationError(
+        raise toolkit.ValidationError(
             {'reviewed_by': [_('Not empty implies Review Level not "none".')]})
 
 def test_before_resources(key, flattened_data, errors, context):
     # Checck fields "hash" and "hashtype" are consistent
     if flattened_data.get((key[0], key[1], 'hash')):
         if not flattened_data.get((key[0], key[1], 'hashtype')):
-            raise tk.ValidationError({
+            raise toolkit.ValidationError({
                 'hash': [_('The type of the hash algorithm must be provided')]})
     else:
         if flattened_data.get((key[0], key[1], 'hashtype')):
-            raise tk.ValidationError({
+            raise toolkit.ValidationError({
                 'hashtype': [_('Hashtype requires Hash to be set')]})
     return
 
@@ -380,11 +379,11 @@ def eaw_schema_set_default(values, default_value, field=''):
 
     # special default value resulting in "Full Name <email>"
     if default_value == "context_fullname_email":
-        val = '{} <{}>'.format(tk.c.userobj.fullname,
-                               tk.c.userobj.email)
+        val = '{} <{}>'.format(toolkit.c.userobj.fullname,
+                               toolkit.c.userobj.email)
 
     elif default_value == "context_username":
-        val = tk.c.userobj.name
+        val = toolkit.c.userobj.name
 
     ## insert elif clauses for other defaults
     else:
@@ -453,7 +452,7 @@ def eaw_schema_geteawuser(username):
         return hp_url_prefix + normname
 
     try:
-        userdict = tk.get_action('user_show')(context={'keep_email': True}, data_dict={'id': username})
+        userdict = toolkit.get_action('user_show')(context={'keep_email': True}, data_dict={'id': username})
     except:
         return None
     eawuser = {'fullname': userdict.get('fullname'), 'email': userdict.get('email'),
@@ -482,9 +481,9 @@ def eaw_username_fullname_email(s_users):
 
     def mkfull(username):
         try:
-            userdict = tk.get_action('user_show')(
+            userdict = toolkit.get_action('user_show')(
                 context={'keep_email': True}, data_dict={'id': username})
-        except tk.ObjectNotFound:
+        except toolkit.ObjectNotFound:
             userdict = {'display_name': username, 'email': 'unknown'}
         return '{} <{}>'.format(
             userdict.get('display_name', 'unknown'),
@@ -504,107 +503,12 @@ def eaw_schema_human_filesize(size, suffix='B'):
         size /= 1000.0
     return '{:.1f} {}{}'.format(size, 'Y', suffix)
 
-
-def repeating_text(key, data, errors, context):
-    """
-    SRD 20220519 - copied from ckanext-repeating
-    Accept repeating text input in the following forms
-    and convert to a json list for storage:
-
-    1. a list of strings, eg.
-       ["Person One", "Person Two"]
-
-    2. a single string value to allow single text fields to be
-       migrated to repeating text
-       "Person One"
-
-    3. separate fields per language (for form submissions):
-       fieldname-0 = "Person One"
-       fieldname-1 = "Person Two"
-    """
-
-    # just in case there was an error before our validator,
-    # bail out here because our errors won't be useful
-    if errors[key]:
-        return
-
-    value = data[key]
-    # 1. list of strings or 2. single string
-    if value is not missing:
-        if isinstance(value, str):
-            value = [value]
-        if not isinstance(value, list):
-            errors[key].append(_('expecting list of strings'))
-            return
-
-        out = []
-        for element in value:
-            if not isinstance(element, str):
-                errors[key].append(_('invalid type for repeating text: %r')
-                    % element)
-                continue
-#            if isinstance(element, str):
-#                try:
-#                    element = element.decode('utf-8')
-#                except UnicodeDecodeError:
-#                    errors[key]. append(_('invalid encoding for "%s" value')
-#                        % lang)
-#                    continue
-            out.append(element)
-
-        if not errors[key]:
-            data[key] = json.dumps(out)
-        return
-        
-    # 3. separate fields
-    found = {}
-    prefix = key[-1] + '-'
-    extras = data.get(key[:-1] + ('__extras',), {})
-
-    for name, text in extras.items():
-        if not name.startswith(prefix):
-            continue
-        if not text:
-            continue
-        index = name.rsplit('-', 1)[1]
-        try:
-            index = int(index)
-        except ValueError:
-            continue
-        found[index] = text
-
-    out = [found[i] for i in sorted(found)]
-    data[key] = json.dumps(out)
-
-def repeating_text_output(value):
-    """
-    SRD 20220519 - copied from ckanext-repeating
-    Return stored json representation as a list, if
-    value is already a list just pass it through.
-    """
-    if isinstance(value, list):
-        return value
-    if value is None:
-        return []
-    try:
-        return json.loads(value)
-    except ValueError:
-        return [value]
-
-
-
-
-
-
-
-
-
 # Action functions
 
 @side_effect_free
 def eaw_schema_datamanger_show(context, data_dict):
     o = data_dict.get('organization')
-    orga = tk.get_action('organization_list')(
+    orga = toolkit.get_action('organization_list')(
         data_dict={
             'organizations': [o],
             'all_fields': True,
@@ -636,10 +540,10 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
     ]
 
     # IConfigurer
-    def update_config(self, config):
-        tk.add_template_directory(config, 'templates')
-        tk.add_public_directory(config, 'public')
-        tk.add_resource('assets', 'eaw_schema')
+    def update_config(self, config_):
+        toolkit.add_template_directory(config_, 'templates')
+        toolkit.add_public_directory(config_, 'public')
+        toolkit.add_resource('assets', 'eaw_schema_assets')
         
     # IValidators
     def get_validators(self):
@@ -674,11 +578,7 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                 'eaw_schema_check_package_type':
                     eaw_schema_check_package_type,
                 'eaw_schema_check_hashtype':
-                    eaw_schema_check_hashtype,
-                'repeating_text':
-                    repeating_text,
-                'repeating_text_output':
-                    repeating_text_output
+                    eaw_schema_check_hashtype
         }
 
     # IPackageController

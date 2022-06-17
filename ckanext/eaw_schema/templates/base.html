@@ -1,11 +1,11 @@
 {% ckan_extends %}
 
-{% block scripts %}
-  {{ super() }}
-  {% asset 'eaw_schema/eaw_schema_js' %}
-{% endblock scripts %}
-
 {% block styles %}
   {{ super() }}
-  {% asset 'eaw_schema/eaw_schema_css' %}
-{% endblock styles %}
+  {% asset 'eaw_schema_assets/eaw_schema-css' %}
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{% asset 'eaw_schema_assets/eaw_schema-js' %}
+{% endblock %}
