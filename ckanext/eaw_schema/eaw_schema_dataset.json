@@ -148,12 +148,6 @@
       "form_snippet": null,
       "display_snippet": "text.html",
       "validators": "ignore_missing eaw_schema_check_hashtype"
-    },
-    {
-      "display_snipet": null,
-      "field_name": "__before",
-      "form_snippet": null,
-      "validators": "test_before_resources"
     }
   ],
   "dataset_fields": [

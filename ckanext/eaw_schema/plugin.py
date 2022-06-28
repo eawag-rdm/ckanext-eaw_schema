@@ -348,17 +348,30 @@ def test_before(key, flattened_data, errors, context):
         raise toolkit.ValidationError(
             {'reviewed_by': [_('Not empty implies Review Level not "none".')]})
 
-def test_before_resources(key, flattened_data, errors, context):
-    # Checck fields "hash" and "hashtype" are consistent
-    if flattened_data.get((key[0], key[1], 'hash')):
-        if not flattened_data.get((key[0], key[1], 'hashtype')):
-            raise toolkit.ValidationError({
-                'hash': [_('The type of the hash algorithm must be provided')]})
-    else:
-        if flattened_data.get((key[0], key[1], 'hashtype')):
-            raise toolkit.ValidationError({
-                'hashtype': [_('Hashtype requires Hash to be set')]})
-    return
+## HvW/2022-06-19: This check is just causing problems, therefore disabled
+## Better: Enforce sha256 as hash.
+##
+## Also disabled: the respective entry in  get_validators(self) (this file).
+##
+## Also disabled: The following snippet in eaw_schema_dataset.json:
+### {
+###    "display_snipet": null,
+###    "field_name": "__before",
+###    "form_snippet": null,
+###    "validators": "test_before_resources"
+### }
+
+# def test_before_resources(key, flattened_data, errors, context):
+#     # Check fields "hash" and "hashtype" are consistent
+#     if flattened_data.get((key[0], key[1], 'hash')):
+#         if not flattened_data.get((key[0], key[1], 'hashtype')):
+#             raise toolkit.ValidationError({
+#                 'hash': [_('The type of the hash algorithm must be provided')]})
+#     else:
+#         if flattened_data.get((key[0], key[1], 'hashtype')):
+#             raise toolkit.ValidationError({
+#                 'hashtype': [_('Hashtype requires Hash to be set')]})
+#     return
 
 ## Template helper functions
 
@@ -571,8 +584,9 @@ class Eaw_SchemaPlugin(plugins.SingletonPlugin):
                     eaw_users_exist,
                 'test_before':
                     test_before,
-                'test_before_resources':
-                    test_before_resources,
+                # See comment at function definition
+                # 'test_before_resources':
+                #     test_before_resources,
                 'eaw_schema_cp_filename2name':
                     eaw_schema_cp_filename2name,
                 'eaw_schema_check_package_type':
