@@ -1,0 +1,36 @@
+eaw_schema-js:
+  contents:
+    - eaw_schema_info_modal.js 
+    - eaw_schema_subdivs.js
+    - vendor/bootstrap-switch/js/bootstrap-switch.js
+    - checkpublication.js
+    - eaw_autocomplete.js
+    - vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
+    - eaw_schema_datepicker.js
+    - eaw_copy_res_name.js
+    - lcrnz-repeating.js
+    # That is apparently not used at the moment
+    # - eaw_schema_conditional_multicheck.js
+  output: eaw_schema_assets/%(version)s_eaw_schema.js
+  filters: rjsmin
+  extra:
+    preload:
+      - base/main
+
+eaw_schema-css:
+  contents:
+    - css/eaw_schema.css
+  output: eaw_schema_assets/%(version)s_eaw_schema.css
+  filters: cssrewrite
+
+bootstrap-switch-css:
+  contents:
+    - vendor/bootstrap-switch/css/bootstrap3/bootstrap-switch.css
+  output: bootstrap-switch/%(version)s_bootstrap-switch.css
+  filters: cssrewrite
+ 
+bootstrap-datepicker-css:
+  contents:
+    - vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css
+  output: eaw_schema_assets/%(version)s_bootstrap-datepicker.css
+  filters: cssrewrite

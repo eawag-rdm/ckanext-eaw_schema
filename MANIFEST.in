@@ -1,2 +1,5 @@
 include README.rst
-recursive-include ckanext/eaw_schema *.html *.json *.js *.less *.css
+include LICENSE
+include requirements.txt
+recursive-include ckanext/eaw_schema *.html *.json *.js *.less *.css *.mo *.yml
+recursive-include ckanext/eaw_schema/migration *.ini *.py *.mako
