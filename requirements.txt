@@ -1,0 +1,1 @@
+ckanext_eaw_core @ git+https://github.com/eawag-rdm/ckanext-eaw_core.git#egg=ckanext_eaw_core

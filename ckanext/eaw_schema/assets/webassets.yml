@@ -12,3 +12,40 @@
 #   output: ckanext-eaw_schema/%(version)s-eaw_schema.css
 #   contents:
 #     - css/eaw_schema.css
+
+eaw_schema-js:
+  contents:
+    - js/eaw_schema_info_modal.js 
+    - js/eaw_schema_subdivs.js
+    - js/vendor/bootstrap-switch/js/bootstrap-switch.js
+    - js/checkpublication.js
+    - js/eaw_autocomplete.js
+    - js/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
+    - js/eaw_schema_datepicker.js
+    - js/eaw_copy_res_name.js
+    - js/lcrnz-repeating.js
+    # That is apparently not used at the moment
+    # - js/eaw_schema_conditional_multicheck.js
+  output: ckanext-eaw_schema/%(version)s_eaw_schema.js
+  filter: rjsmin
+  extra:
+    preload:
+      - base/main
+
+eaw_schema-css:
+  contents:
+    - css/eaw_schema.css
+  output: ckanext-eaw_schema/%(version)s_eaw_schema.css
+  filter: cssrewrite
+
+bootstrap-switch-css:
+  contents:
+    - vendor/bootstrap-switch/css/bootstrap3/bootstrap-switch.css
+  output: ckanext-eaw_schema/%(version)s_bootstrap-switch.css
+  filter: cssrewrite
+
+bootstrap-datepicker-css:
+  contents:
+    - vendor/bootstrap-datepicker/css/bootstrap-datepicker3.css
+  output: ckanext-eaw_schema/%(version)s_bootstrap-datepicker.css
+  filter: cssrewrite

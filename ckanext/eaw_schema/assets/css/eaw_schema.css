@@ -1,0 +1,269 @@
+@media (max-width:767px) {
+  input.eaw_with_infobutton {
+    width: 97%;
+  }
+}
+
+@media (min-width:768px) {
+.controls {
+  margin-left: 130px;
+}
+
+@media (min-width: 768px) and  (max-width: 979px) {
+  input.eaw_with_infobutton {
+    width: 322px;
+  }
+}
+
+@media (min-width: 980px) {
+  input.eaw_with_infobutton {
+    width: 87.5%;
+  }
+}
+
+div.eaw_with_infobutton {
+  width: 90%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (min-width: 980px) {
+  div.publicationcheck div.eaw_with_infobutton,
+  div.open_data_check div.eaw_with_infobutton,
+  div.longtermcheck div.eaw_with_infobutton {
+    width: 56.5%;
+  }
+  .open_data_embargo span.error-block {
+    width: 43.3%;
+  }
+}
+ 
+@media (min-width: 768px) and (max-width: 979px) {
+  div.publicationcheck div.eaw_with_infobutton,
+  div.open_data_check div.eaw_with_infobutton,
+  div.longtermcheck div.eaw_with_infobutton {
+    width: 42.0%;
+  }
+}
+@media (min-width: 713px) and (max-width: 767px) {
+  div.publicationcheck div.eaw_with_infobutton,
+  div.open_data_check div.eaw_with_infobutton,
+  div.longtermcheck div.eaw_with_infobutton {
+    width: 65.2%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 712px){
+  div.publicationcheck div.eaw_with_infobutton,
+  div.open_data_check div.eaw_with_infobutton,
+  div.longtermcheck div.eaw_with_infobutton {
+    width: 52.4%;
+  }
+}
+
+
+@media (max-width:480px) {
+  div.eaw_with_infobutton {
+    max-width: 400px;
+  }
+}
+
+textarea.eaw_with_infobutton {
+  width: 90%;
+}
+
+.publicationlink div.eaw_with_infobutton {
+  margin-top: 13px;
+}
+ 
+.publicationlink button.outsidebutton {
+  display: inline-block;
+  margin-top: 13px;
+}
+
+@media (max-width: 979px) {
+  .control-medium > .controls > select {
+    width: 90%;
+  }
+}
+
+div.form-group.publication_element,
+div.form-group.open_data_element,
+div.form-group.longterm_data_element {
+  background: rgb(196, 235, 234);
+  padding-bottom: 20px;
+  
+}
+div.form-group.publication_element.publicationcheck,
+div.form-group.open_data_element.open_data_check,
+div.form-group.longterm_data_element.longtermcheck {
+  margin-bottom: 10px;
+  border-radius: 10px 10px 10px 10px;
+}
+
+@media (max-width: 480px) {
+  .publicationcheck_wrap  .publication_element > label.control-label {
+    padding-left: 0px;
+    display: inline;
+  }
+}
+
+div.form-group.publication_element.publicationlink,
+div.form-group.open_data_element.open_data_embargo {
+  padding-top: 10px;
+  margin-top: -10px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+
+.publicationcheck label.control-label:after,
+.open_data_check label.control-label:after,
+.longtermcheck label.control-label:after {
+  content:"";
+}
+
+input.eaw_schema_checkbox[type=checkbox] {
+  top: 0px;
+}
+
+label.eaw_schema_checkbox {
+  display: inline;
+  position: relative;
+  vertical-align: middle;
+}
+
+.publicationcheck label.control-label,
+.open_data_check label.control-label,
+.longtermcheck label.control-label {
+  width: 300px;
+  font-size: 17.5px;
+  text-align: left;
+  padding-left:10px;
+  padding-top:5px;
+  padding-bottom:5px;
+  float:left;
+}
+
+.publicationlink label.control-label {
+  width: 115px;
+}
+
+input#field-ispublication,
+input#field-open_data {
+  transform: scale(2);
+  width: 30px;
+}
+
+input#field-publicationlink {
+  width: 97%;
+}
+  
+.publicationcheck button.outsidebutton,
+.open_data_check button.outsidebutton,
+.longtermcheck button.outsidebutton {
+  margin-top: 13px;
+}
+
+.modal-help div.modal-body {
+  background-color: #EBEBEB;
+  border-radius: 5px;
+}
+.modal-help div.modal-header {
+  margin-bottom:0px;
+  border-bottom: 1px solid #A9A9A9;
+  padding: 20px;
+}
+.modal-help .modal-header button.close {
+  font-size: 30px;
+}
+
+li.spaced:not(:last-child),
+ol.spaced li:not(:last-child),
+dl.spaced > dd:not(:last-child) {
+  margin-bottom: 10px;
+}
+dl.spaced > dt {
+  line-height: 2em;
+}
+
+@media (max-width: 767px) {
+  .toolbar .breadcrumb a {
+    color: #505050;
+  }
+}
+
+.fa-file-text-o {
+  color: #0087CD;
+  position:relative;
+  top: 4px;
+}
+
+.metadatadiv {
+  margin: 10px;
+}
+
+.fa-external-link-square:before {
+  text-decoration: none;
+}
+
+.publicationlink span.error-block {
+  width: 87%;
+}
+
+@media (max-width: 979px) {
+  .open_data_embargo span.error-block {
+    width: 62%;
+  }
+}
+
+p#md_tooltip_lead {
+  word-break: normal;
+}
+
+i.fa-exclamation-triangle {
+  color: #FF6840;
+}
+
+/* A horizontal line with text in the middle
+   Used to separate sections.
+*/
+
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 50px 0 20px 0;
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+    color: #005978;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 2px;
+    background: #FF9955;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+form .display_none {
+  display: none;
+}

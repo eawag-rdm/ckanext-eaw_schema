@@ -1,6 +1,20 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
+from collections import OrderedDict
+
+import ckan.plugins as plugins
+import ckan.plugins.toolkit as toolkit
+from ckan.lib.plugins import DefaultTranslation
+
+from ckanext.eaw_core.helpers import (
+    eaw_helpers_geteawuser,
+    eaw_theme_get_default_dataset_type,
+    eaw_theme_get_spatial_query_default_extent,
+    eaw_theme_patch_activity_actor,
+    eaw_theme_patch_linked_user,
+)
+
 
 class EawSchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -13,7 +27,7 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
-        toolkit.add_resource('assets', 'eaw_schema_assets')
+        toolkit.add_resource('assets', 'eaw_schema')
 
     # IValidators
     def get_validators(self):
