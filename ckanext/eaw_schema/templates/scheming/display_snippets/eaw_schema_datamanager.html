@@ -1,0 +1,31 @@
+{# Render datmanager - info for organization/about.html #}
+<style>
+  .eawdatamanagerpic {
+      float:left;
+      padding:5px;
+      margin-right:10px;
+  }
+  .eawdatamanagerpic img {
+      width: 80px;
+  }
+  .eawdatamanagertext {
+      font-size:16px;
+      line-height:1.5em;
+  }
+</style>
+{%- set datamanager = c.group_dict['datamanager'] -%}
+{%- set eawuser = h.eaw_schema_geteawuser(datamanager) -%}
+{% if eawuser is not none %}
+    <div class="eawdatamanagerpic">
+        <img src="{{ eawuser.pic_url }}" />
+    </div>
+    <div class="eawdatamanagertext">
+        <a href="{{ eawuser.homepage }}">{{ eawuser.fullname }}</a>
+        &lt;{{ eawuser.email }}&gt;
+        <div>
+            Packages uploaded: <b>{{ eawuser.no_of_packages }}</b>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <hr/>
+{% endif %}

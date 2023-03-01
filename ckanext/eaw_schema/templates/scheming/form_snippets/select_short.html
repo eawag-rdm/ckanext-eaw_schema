@@ -1,0 +1,32 @@
+{% import 'macros/form.html' as form %}
+{%- set options=[] -%}
+{%- if not h.scheming_field_required(field) -%}
+    {%- do options.append({'value': '', 'text': ''}) -%}
+{%- endif -%}
+{%- for c in field.choices -%}
+    {%- do options.append({
+    'value': c.value,
+    'text': c.label }) -%}
+{%- endfor -%}
+{%- if field.get('sorted_choices') -%}
+    {%- set options = options|sort(case_sensitive=false, attribute='text') -%}
+{%- endif -%}
+{% set modal_text = field.modal_text if 'modal_text' in field else none %}
+{% call form.select(
+    field.field_name,
+    id='field-' + field.field_name,
+    label=h.scheming_language_text(field.label),
+    options=options,
+    selected=data[field.field_name],
+    error=errors[field.field_name],
+    classes=['control-medium'],
+    attrs = {"class": "eaw_with_infobutton medinput"},
+    is_required=h.scheming_field_required(field)
+    ) %}
+    {% if modal_text is not none %}
+        {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
+    {% endif %}
+{% endcall %}
+{% if modal_text is not none %}
+    {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
+{% endif %}

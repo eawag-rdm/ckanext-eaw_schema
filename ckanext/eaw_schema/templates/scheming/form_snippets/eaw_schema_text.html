@@ -1,0 +1,41 @@
+{% import 'macros/form.html' as form %}
+{% asset 'eaw_schema_assets/eaw_schema-js' %}
+{% asset 'eaw_schema_assets/eaw_schema-js' %}
+{% asset 'eaw_schema_assets/eaw_schema-js' %}
+{# This is a copy of form.input, except that the <input> is enclosed #}
+{# in a <div class="eaw_with_infobutton">, modal_text is parameter and #}
+{# infobutton is included in macro. #}
+{% macro eaw_input(name, id='', label='', value='', placeholder='',
+    type='text', error="", classes=[], attrs={}, is_required=false,
+    modal_text=none) %}
+    {%- set extra_html = caller() if caller -%}
+    {% call form.input_block(id or name, label or name, error, classes,
+        extra_html=extra_html, is_required=is_required) %}
+        <div class="eaw_with_infobutton">
+            <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {{ form.attributes(attrs) }} />
+        </div>
+        {% if modal_text is not none %}
+            {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text -%}
+        {% endif %}
+    {% endcall %}
+{% endmacro %}
+{% set modal_text=field.modal_text if 'modal_text' in field else none %}
+{% set value=data[field.field_name] or '' %}
+{% set default_value=field.default_value %}
+{%- call eaw_input(
+    field.field_name,
+    id='field-' + field.field_name,
+    label=h.scheming_language_text(field.label),
+    placeholder=h.scheming_language_text(field.form_placeholder),
+    value=h.eaw_schema_set_default(value, default_value),
+    error=errors[field.field_name],
+    classes=field.classes,
+    attrs=field.form_attrs if 'form_attrs' in field else {},
+    is_required=h.scheming_field_required(field),
+    modal_text = modal_text
+    )
+    -%}
+{% endcall %}
+{% if modal_text is not none %}
+    {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html', field=field -%}
+{% endif %}

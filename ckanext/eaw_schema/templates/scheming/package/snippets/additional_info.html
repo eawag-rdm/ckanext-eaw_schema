@@ -1,0 +1,82 @@
+{#
+HvW-2016-06-03
+
++ replaces block package_additional_info with that from ckanext-scheming
++ eaw_schema modification:
+  Skips empty fields in "Additional Info" display
++ removes "Field", "Value" -header of table
+  (therfore template replacement necessary, instead of ckan_extend)
+#}
+{%- set exclude_fields = [
+'id',
+'title',
+'name',
+'notes',
+'tag_string',
+'license_id',
+'owner_org',
+'ispublication',
+'publicationlink',
+'open_data',
+'embargo',
+'islongterm'
+] -%}
+{% set missinglink_html = '<i class="text-error">Missing publication reference</i>'|safe %}
+{% set embargo = pkg_dict['embargo'] or None %}
+{% set opendata_html = '<img src="/opendata_small.png" width="25px" alt="Open Data"/> <b>Open Data</b>'|safe %}
+{% set longterm_html = '<img src="/inf.png" width="25px" alt="Long-term data"/> <b>Long-term data</b>'|safe %}
+<section class="additional-info">
+    <h3>{{ _('Metadata') }}</h3>
+    {% block publication_data %}
+        {% if  pkg_dict['ispublication'] %}
+            <div class="metadatadiv">
+                <i class="fa fa-file-text fa-2x"></i><b>&nbsp; Publication Data Package for: </b>
+                {% if pkg_dict['publicationlink'] %}
+                    <a href="{{ pkg_dict['publicationlink'] }}">
+                    {{ pkg_dict['publicationlink'] }} <i class="fa fa-external-link-square"></i></a>
+                {% else %}
+                    {{ missinglink_html }}
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endblock %}
+    {% block open_data %}
+        {% if  pkg_dict['open_data'] %}
+            <div class="metadatadiv">
+                {{ opendata_html }}
+                {% if embargo %}(embargoed until {{ embargo }}){% endif %}
+            </div>
+        {% endif %}
+    {% endblock %}
+    {% block longterm_data %}
+        {% if  pkg_dict['islongterm'] %}<div class="metadatadiv">{{ longterm_html }}</div>{% endif %}
+    {% endblock %}
+    <table class="table table-striped table-bordered table-condensed">
+        <tbody>
+            {% block package_additional_info %}
+                {%- for field in schema.dataset_fields -%}
+                    {%- if field.field_name not in exclude_fields
+                        and field.display_snippet is not none
+                        and pkg_dict[field.field_name]|length > 0-%}
+                        <tr>
+                            <th scope="row" class="dataset-label">
+                                {{
+                                h.scheming_language_text(field.label) }}
+                            </th>
+                            <td class="dataset-details"
+                                {% if field.display_property %} property="{{ field.display_property }}"{% endif %}>
+                                {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
+                            </td>
+                        </tr>
+                    {%- endif -%}
+                {%- endfor -%}
+                {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
+                    <tr>
+                        <th scope="row" class="dataset-label">{{ _("State") }}</th>
+                        <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
+                    </tr>
+                {% endif %}
+            {% endblock %}
+        </tbody>
+    </table>
+</section>

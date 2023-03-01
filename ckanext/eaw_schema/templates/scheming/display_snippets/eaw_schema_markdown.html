@@ -1,0 +1,4 @@
+{# Enable Markdown rendering in "Additional Info" #}
+{# TODO: this might be bootstrap 2 or 3 classes and need to be checked #}
+{%- set value = data[field.field_name] -%}
+<div class="notes embedded-content">{{ h.render_markdown(value) }}</div>

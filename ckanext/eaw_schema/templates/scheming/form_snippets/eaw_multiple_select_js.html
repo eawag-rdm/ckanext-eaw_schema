@@ -1,0 +1,43 @@
+{% import 'macros/form.html' as form %}
+{% set modal_text=field.modal_text if 'modal_text' in field else none %}
+{% set attrs=field.form_attrs if 'form_attrs' in field %}
+{%- call form.input_block(
+    "field-" ~ field.field_name,
+    label=h.scheming_language_text(field.label),
+    classes=['control-medium'],
+    error=errors[field.field_name],
+    is_required=h.scheming_field_required(field)) -%}
+    {%- set choices = [] -%}
+    {%- for c in field.choices -%}
+        {%- do choices.append(
+        (c.value, h.scheming_language_text(c.label))) -%}
+    {%- endfor -%}
+    {%- if field.get('sorted_choices') -%}
+        {%- set choices = choices|sort(case_sensitive=false, attribute=1) -%}
+    {%- endif -%}
+    {# field.field_name not in data means no data available, neither
+  from preceding, error triggering form submission nor from the
+  database #}
+    {% if field.default_value and (field.field_name not in data) %}
+        {% set values = h.eaw_schema_set_default([''], field.default_value) %}
+    {% else %}
+        {% set values = data[field.field_name] %}
+    {% endif %}
+    <select multiple data-module="autocomplete" size="{{ ([field.get('select_size', 10), field.choices|length]|sort)[0] }}" id="field-{{ field.field_name }}" name="{{ field.field_name }}" {{ form.attributes(attrs) if attrs }}>
+        {%- for val, label in choices -%}
+            <option id="field-{{ field.field_name }}-{{ val }}" value="{{ val }}" class="fouc" {{ "selected " if val in values }}>
+                {{ label }}
+            </option>
+        {%- endfor -%}
+    </select>
+    {# Make sure that field is included in response form data. This has to
+{# be dealt with that in the validator #}
+<input type="hidden" name="{{ field.field_name }}" value="" />
+{%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+{% if modal_text is not none %}
+{%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
+{% endif %}
+{%- endcall -%}
+{% if modal_text is not none %}
+{%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
+{% endif %}

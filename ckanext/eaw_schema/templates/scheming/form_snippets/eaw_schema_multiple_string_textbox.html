@@ -1,0 +1,20 @@
+{% import 'macros/form.html' as form %}
+{% set name=field.field_name %}
+{% set extra_html="" %}
+{% set value=data.get(name, '') %}
+{% if value is not string %}
+    {% set value=value|join("\r\n")  %}
+{% endif %}
+{% set modal_text=field.modal_text if 'modal_text' in field else none %}
+{% set attrs=field.form_attrs if 'form_attrs' in field else {} %}
+{% set placeholder=field.form_placeholder if 'form_placeholder' in field else '' %}
+{% set label=h.scheming_language_text(field.label) %}
+{% set error=errors[field.field_name] %}
+{% call form.textarea(name=name, id=name, label=label, value=value, placeholder=placeholder, error=error, attrs=attrs) %}
+    {% if modal_text is not none %}
+        {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
+    {% endif %}
+{% endcall %}
+{% if modal_text is not none %}
+    {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
+{% endif %}

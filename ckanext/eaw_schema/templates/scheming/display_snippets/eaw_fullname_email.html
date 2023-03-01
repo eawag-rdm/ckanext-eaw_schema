@@ -1,0 +1,7 @@
+{# display one or several users in "Displayname <email>" format #}
+<div>
+    {%- for fulluser in h.eaw_username_fullname_email(data[field.field_name]) -%}
+        {{ fulluser }}
+        <br/>
+    {%- endfor -%}
+</div>

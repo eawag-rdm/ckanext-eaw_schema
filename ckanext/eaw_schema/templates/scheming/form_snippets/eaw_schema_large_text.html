@@ -1,0 +1,32 @@
+{% import 'macros/form.html' as form %}
+{# This is a copy of form.input, except that the <input> is enclosed
+in a <div class="eaw_with_infobutton"> #}
+{% macro eaw_input(name, id='', label='', value='', placeholder='',
+    type='text', error="", classes=[], attrs={}, is_required=false) %}
+    {%- set extra_html = caller() if caller -%}
+    {% call form.input_block(id or name, label or name, error, classes,
+        extra_html=extra_html, is_required=is_required) %}
+        <div class="eaw_with_infobutton">
+            <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {{ form.attributes(attrs) }} />
+        </div>
+    {% endcall %}
+{% endmacro %}
+{% call eaw_input(
+    field.field_name,
+    id='field-' + field.field_name,
+    label=h.scheming_language_text(field.label),
+    placeholder=h.scheming_language_text(field.form_placeholder),
+    value=data[field.field_name],
+    error=errors[field.field_name],
+    classes=['control-full', 'control-large'],
+    attrs=field.form_attrs if 'form_attrs' in field else {},
+    is_required=h.scheming_field_required(field)
+    )
+    %}
+    {%- snippet 'scheming/form_snippets/help_text.html', field=field -%}
+    {% if field.modal_text is defined %}
+        {% set modal_text = field.modal_text %}
+        {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
+        {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html' -%}
+    {% endif %}
+{% endcall %}

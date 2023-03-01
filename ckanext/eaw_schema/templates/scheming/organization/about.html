@@ -1,0 +1,55 @@
+{% ckan_extends %}
+{%- set exclude_fields = [
+'title',
+'name',
+'shortname',
+'homepage'
+] -%}
+{% block subtitle %}{{ _('About') }} - {{ super() }}{% endblock %}
+{% block primary_content_inner %}
+    {% block page_heading %}
+        <h1>
+            {{ c.group_dict.display_name }}
+            {% if c.group_dict.shortname|length > 0 %}({{ c.group_dict.shortname }}){% endif %}
+            <a style="text-decoration:none;
+                      position:relative;
+                      top:-2px"
+               target="_blank"
+               href="{{ c.group_dict.homepage }}">
+                <i class="fa fa-external-link-square fa-lg"></i></a>
+        </h1>
+    {% endblock %}
+    {% block organization_info %}
+        <dl>
+            {%- for field in c.scheming_fields -%}
+                {%- if field.display_snippet is not none and
+                    field.field_name not in exclude_fields -%}
+                    <dt>
+                        {{ h.scheming_language_text(field.label) }}
+                    </dt>
+                    <dd class="dataset-details"
+                        {% if field.display_property %} property="{{ field.display_property }}"{% endif %}>
+                        {%- snippet 'scheming/snippets/display_field.html',
+                        field=field, data=c.group_dict, schema=schema -%}
+                    </dd>
+                {% endif %}
+            {%- endfor -%}
+        </dl>
+    {% endblock %}
+    {# TODO: Add JSTree #}
+    {% block publisher_tree %}
+        <div id="publisher-tree">
+            {% snippet 'organization/snippets/organization_tree.html', top_nodes=[h.group_tree_section(id_=c.group_dict.id, type_=c.group_dict.type)] %}
+        </div>
+    {% endblock %}
+    {% block organization_extras %}
+        {% snippet 'snippets/additional_info.html', extras = h.sorted_extras(c.group_dict.extras) %}
+    {% endblock %}
+{% endblock %}
+<dl>
+    {# {% for f in c.scheming_fields %} #}
+    {# <dt>{{ h.scheming_language_text(f.label) }}:</dt> #}
+    {# <dd>{{ c.group_dict[f.field_name] or ("&nbsp;"|safe) }}</dd> #}
+    {# {% endfor %} #}
+    {# </dl> #}
+    {# ; #}
