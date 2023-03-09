@@ -1,0 +1,70 @@
+{
+  "scheming_version": 1,
+  "organization_type": "organization",
+  "about_url": "http://github.com/ckan/ckanext-scheming",
+  "fields": [
+    {
+      "field_name": "title",
+      "label": "Name",
+      "required": true,
+      "validators": "scheming_required unicode",
+      "form_snippet": "large_text.html",
+      "form_attrs": {"data-module": "slug-preview-target"},
+      "form_placeholder": "My Organization full name"
+    },
+    {
+      "field_name": "shortname",
+      "label": "Short Name",
+      "validators": "ignore_missing unicode",
+      "form_placeholder": "MYORG"
+    },
+    {
+      "field_name": "name",
+      "label": "URL",
+      "validators": "not_empty unicode name_validator group_name_validator",
+      "form_snippet": "slug.html",
+      "form_placeholder": "my-organization"
+    },
+    {
+      "field_name": "description",
+      "label": "Description",
+      "form_snippet": "markdown.html",
+      "form_placeholder": "A little information about my organization...",
+      "validators": "scheming_required",
+      "required": true,
+      "display_snippet": "eaw_schema_markdown.html"
+    },
+    {
+      "field_name": "homepage",
+      "label": "Homepage",
+      "validators": "scheming_required url_validator",
+      "required": true
+    },
+    {
+      "field_name": "datamanager",
+      "label": "Data Manager",
+      "form_snippet": "eaw_select_users.html",
+      "display_snippet": "eaw_schema_datamanager.html",
+      "validators": "scheming_required eaw_schema_is_orga_admin",
+      "required": true
+    },
+    {
+      "field_name": "image_url",
+      "label": "Image URL",
+      "validators": "unicode remove_whitespace",
+      "form_snippet": "upload.html",
+      "form_placeholder": "https://www.eawag.ch/mygroup/diatom_micro.jpg",
+      "upload_field": "image_upload",
+      "upload_clear": "clear_upload",
+      "upload_label": "Image",
+      "display_snippet": null
+    },
+    {
+      "field_name": "not_used",
+      "label": "Parent organization",
+      "display_snippet": null,
+      "form_snippet": "org_hierarchy.html",
+      "validators": "ignore_missing"
+    }
+   ]
+}
