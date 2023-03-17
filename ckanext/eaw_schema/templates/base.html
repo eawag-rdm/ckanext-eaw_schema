@@ -1,11 +1,15 @@
 {% ckan_extends %}
 
 {% block styles %}
-  {{ super() }}
-  {% asset 'eaw_schema_assets/eaw_schema-css' %}
+    {{ super() }}
+    {% asset 'eaw_schema/eaw_schema-css' %}
+    {% asset 'eaw_schema/bootstrap-switch-css' %}
+    {% asset 'eaw_schema/bootstrap-datepicker-css' %}
 {% endblock %}
 
 {% block scripts %}
-{{ super() }}
-{% asset 'eaw_schema_assets/eaw_schema-js' %}
+    {{ super() }}
+    {% asset 'eaw_schema/eaw_schema-js' %}
+    {% asset 'eaw_schema/bootstrap-switch-js' %}
+    {% asset 'eaw_schema/bootstrap-datepicker-js' %}
 {% endblock %}
