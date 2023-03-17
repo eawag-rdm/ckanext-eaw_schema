@@ -1,5 +1,5 @@
 {
-  "scheming_presets_version": 1,
+  "scheming_presets_version": 2,
   "about": "scheming presets for repeating fields",
   "about_url": "http://github.com/open-data/ckanext-repeating",
   "presets": [
