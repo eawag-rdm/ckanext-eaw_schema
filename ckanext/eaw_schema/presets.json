@@ -8,7 +8,7 @@
       "values": {
 	"form_snippet": "eaw_schema_repeating_text_js.html",
 	"display_snippet": "eaw_repeating_text.html",
-	"validators": "repeating_text scheming_required",
+	"validators": "scheming_multiple_text scheming_required",
 	"output_validators": "repeating_text_output"
       }
     },

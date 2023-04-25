@@ -30,7 +30,7 @@
       "display_property": "dc:creator",
       "field_name": "author",
       "form_snippet": "eaw_schema_repeating_text_js.html",
-      "validators": "repeating_text eaw_schema_json_not_empty",
+      "validators": "scheming_multiple_text eaw_schema_json_not_empty",
       "modal_text": "author_help"
     },
     {
