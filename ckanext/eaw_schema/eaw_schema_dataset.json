@@ -1,6 +1,6 @@
 {
   "about": "A reimplementation of the default CKAN dataset schema",
-  "scheming_version": 2,
+  "scheming_version": 1,
   "resource_fields": [
     {
       "preset": "resource_url_upload",
@@ -265,17 +265,15 @@
       "default_value": "context_fullname_email",
       "display_snippet": "eaw_repeating_text.html",
       "modal_text": "author_help",
+      "required": true,
       "form_snippet": "eaw_schema_repeating_text_js.html",
       "label": "Author",
       "output_validators": "repeating_text_output",
-      "validators": "scheming_multiple_text eaw_schema_json_not_empty",
+      "validators": "repeating_text eaw_schema_json_not_empty",
       "form_placeholder": "Bach, Johann <joe@eawag.ch>",
       "field_name": "author",
       "display_property": "dc:creator",
-      "form_blanks": 3,
-      "preset": "multiple_text",
-      "required": true
-
+      "form_blanks": 3
     },
     {
       "modal_text": "abstract_help",
@@ -731,11 +729,9 @@
       "display_snippet": "eaw_schema_multiple_string_display.html",
       "modal_text": "timerange_help",
       "required": true,
-      "preset": "multiple_text",
       "form_snippet": "eaw_schema_repeating_text_js.html",
       "label": "Timerange",
-      "repeating_label": "Timerange",
-      "validators": "scheming_multiple_text eaw_schema_json_not_empty vali_daterange",
+      "validators": "repeating_text eaw_schema_json_not_empty vali_daterange",
       "form_placeholder": "2016-03 TO 2016-05",
       "field_name": "timerange",
       "output_validators": "repeating_text_output output_daterange",

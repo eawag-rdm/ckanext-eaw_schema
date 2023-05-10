@@ -1,5 +1,5 @@
 {
-  "scheming_version": 2,
+  "scheming_version": 1,
   "about": "A reimplementation of the default CKAN dataset schema",
   "about_url": "http://github.com/ckan/ckanext-scheming",
   "dataset_type": "simple",
@@ -30,7 +30,7 @@
       "display_property": "dc:creator",
       "field_name": "author",
       "form_snippet": "eaw_schema_repeating_text_js.html",
-      "validators": "scheming_multiple_text eaw_schema_json_not_empty",
+      "validators": "repeating_text eaw_schema_json_not_empty",
       "modal_text": "author_help"
     },
     {
