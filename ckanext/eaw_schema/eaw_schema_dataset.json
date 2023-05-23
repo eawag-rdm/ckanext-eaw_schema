@@ -738,10 +738,10 @@
       "form_blanks": 1
     },
     {
-      "default_value": "{}",
+      "default_value": "{\"type\": \"Point\", \"coordinates\": [8.609776496939471, 47.40384502816517]}",
       "display_snippet": null,
       "modal_text": "spatial_help",
-      "required": true,
+      "required": "True",
       "form_snippet": "text_medium.html",
       "label": "Spatial Extent",
       "form_placeholder": "{\"type\": \"Point\", \"coordinates\": [8.6124600, 47.4031100]}",
