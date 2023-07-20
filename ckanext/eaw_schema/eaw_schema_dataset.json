@@ -738,7 +738,7 @@
       "form_blanks": 1
     },
     {
-      "default_value": "{\"type\": \"Point\", \"coordinates\": [8.609762390208658, 47.40381297881529]}",
+      "default_value": "",
       "display_snippet": null,
       "modal_text": "spatial_help",
       "form_snippet": "text_medium.html",
