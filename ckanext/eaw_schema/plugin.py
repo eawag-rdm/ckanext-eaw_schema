@@ -1,7 +1,7 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
-from ckanext.eaw_core.helpers import (
+from ckanext.eaw_schema.helpers import (
     eaw_schema_set_default,
     eaw_schema_get_values,
     eaw_helpers_geteawuser,
@@ -10,7 +10,7 @@ from ckanext.eaw_core.helpers import (
     eaw_schema_human_filesize
 )
 
-from ckanext.eaw_core.validators import (
+from ckanext.eaw_schema.validators import (
     vali_daterange,
     output_daterange,
     eaw_schema_multiple_string_convert,
@@ -29,7 +29,7 @@ from ckanext.eaw_core.validators import (
     eaw_schema_check_hashtype
 )
 
-from ckanext.eaw_core.actions import (
+from ckanext.eaw_schema.actions.general import (
     eaw_schema_datamanger_show
 )
 
