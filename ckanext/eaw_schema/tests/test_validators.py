@@ -6,7 +6,7 @@ from ckan.plugins.toolkit import Invalid
 from ckanext.eaw_schema.utils.eaw_schema_set_default import (
     eaw_schema_set_default_invalid_input,
 )
-from ckanext.eaw_core.validators.other import (
+from ckanext.eaw_schema.validators.other import (
     eaw_schema_embargodate,
     eaw_schema_publicationlink,
     eaw_schema_striptime,
