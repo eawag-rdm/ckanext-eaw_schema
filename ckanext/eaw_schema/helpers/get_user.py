@@ -1,6 +1,6 @@
 import re
 
-from ckanext.eaw_core import logger
+from ckanext.eaw_schema import logger
 
 
 def generate_staff_profile_url(normed_name: str):
