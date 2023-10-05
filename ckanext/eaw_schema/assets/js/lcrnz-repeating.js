@@ -36,6 +36,7 @@ this.ckan.module('lcrnz-repeating', function (jQuery, _) {
      * Returns nothing.
      */
     newField: function (element) {
+      var newEl;
       newEl = this.cloneField(element);
       this.el.append(newEl);
     },
