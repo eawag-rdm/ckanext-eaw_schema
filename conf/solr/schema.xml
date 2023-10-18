@@ -136,6 +136,7 @@ schema. In this case the version should be set to the next CKAN version number.
 
     <!--Custom added fields start-->
     <field name="variables" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="systems" type="string" indexed="true" stored="true" multiValued="true"/>
     <!--Custom added fields end-->
     <!-- catchall field, containing all other searchable text fields (implemented
          via copyField further on in this schema  -->
