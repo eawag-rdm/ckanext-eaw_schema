@@ -51,6 +51,7 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
     def before_index(self, data_dict):
         data_dict['variables'] = json.loads(data_dict.get('variables', '[]'))
         data_dict['systems'] = json.loads(data_dict.get('systems', '[]'))
+        data_dict['substances'] = json.loads(data_dict.get('substances', '[]'))
         return data_dict
 
     # IValidators
