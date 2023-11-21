@@ -1,5 +1,6 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+import json
 
 from ckanext.eaw_schema.helpers import (
     eaw_schema_set_default,
@@ -46,6 +47,13 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('assets', 'eaw_schema')
+
+    def before_index(self, data_dict):
+        data_dict['variables'] = json.loads(data_dict.get('variables', '[]'))
+        data_dict['systems'] = json.loads(data_dict.get('systems', '[]'))
+        data_dict['substances'] = json.loads(data_dict.get('substances', '[]'))
+        data_dict['taxa'] = json.loads(data_dict.get('taxa', '[]'))
+        return data_dict
 
     # IValidators
     def get_validators(self):
