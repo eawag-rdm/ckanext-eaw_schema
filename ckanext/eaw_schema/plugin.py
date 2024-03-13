@@ -11,6 +11,7 @@ from ckanext.eaw_schema.helpers import (
     eaw_schema_human_filesize
 )
 
+from ckanext.eaw_schema.helpers.general import eaw_schema_choices_label_noi8n, eaw_schema_get_citationurl
 from ckanext.eaw_schema.validators import (
     vali_daterange,
     output_daterange,
@@ -47,6 +48,8 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('assets', 'eaw_schema')
+        # TODO: check if this is this necessary?
+        toolkit.add_resource('assets/vendor/bootstrap-switch', 'bootstrap-switch')
 
     def before_index(self, data_dict):
         data_dict['variables'] = json.loads(data_dict.get('variables', '[]'))
@@ -89,7 +92,11 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
             'eaw_schema_check_package_type':
                 eaw_schema_check_package_type,
             'eaw_schema_check_hashtype':
-                eaw_schema_check_hashtype
+                eaw_schema_check_hashtype,
+            'eaw_schema_choices_label_noi8n': 
+                eaw_schema_choices_label_noi8n,
+            'eaw_schema_get_citationurl': 
+                eaw_schema_get_citationurl,
         }
 
     # ITemplateHelpers
