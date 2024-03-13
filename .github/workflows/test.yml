@@ -33,17 +33,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install requirements
-      run: |
-        pip install -e .
-        # Replace default path to CKAN core config file with the one on the container
-        sed -i -e 's/use = config:.*/use = config:\/srv\/app\/src\/ckan\/test-core.ini/' test.ini
-        # sed -i -e 's/use = config:.*/use = config:\/srv\/app\/src\/ckan\/test-core.ini/' test_subclass.ini
-    - name: Setup extension (CKAN >= 2.9)
+      # Install any extra requirements your extension has here (dev requirements, other extensions etc)
       run: |
         pip install -r requirements.txt
         pip install -r dev-requirements.txt
-        pip install -e .
+        pip install -e .  
+    - name: Setup extension (CKAN >= 2.9)
+      # Extra initialization steps
+      run: |
+        # Replace default path to CKAN core config file with the one on the container
+        sed -i -e 's/use = config:.*/use = config:\/srv\/app\/src\/ckan\/test-core.ini/' test.ini
         ckan -c test.ini db init
     - name: Run tests
       run: pytest --ckan-ini=test.ini --cov=ckanext.eaw_schema --disable-warnings ckanext/eaw_schema
-
