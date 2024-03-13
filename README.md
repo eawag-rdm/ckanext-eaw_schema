@@ -1,4 +1,4 @@
-[![Tests](https://github.com/eawag-rdm/ckanext-eaw_schema/workflows/Tests/badge.svg?branch=eric)](https://github.com/eawag-rdm/ckanext-eaw_schema/actions)
+[![Tests](https://github.com/eawag-rdm/ckanext-eaw_schema/workflows/Tests/badge.svg?branch=eric-open)](https://github.com/eawag-rdm/ckanext-eaw_schema/actions)
 
 # ckanext-eaw_schema
 
