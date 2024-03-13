@@ -20,10 +20,13 @@
       }
     },
     {
+      "display_snippet": "eaw_select_noi8n.html",
       "modal_text": "resource_type_help",
       "required": true,
+      "form_snippet": "select_short.html",
       "label": "Resource Type",
       "preset": "select_short",
+      "validators": "scheming_required scheming_choices",
       "choices": [
         {
           "value": "Dataset",
@@ -96,10 +99,13 @@
       "label": "Cite as"
     },
     {
+      "display_snippet": null,
       "modal_text": "restricted_level_help",
       "required": true,
+      "form_snippet": "select_short.html",
       "label": "Restriction",
       "preset": "select_short",
+      "validators": "scheming_required scheming_choices",
       "choices": [
         {
           "value": "public",
@@ -263,7 +269,7 @@
     },
     {
       "default_value": "context_fullname_email",
-      "display_snippet": "eaw_repeating_text.html",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
       "modal_text": "author_help",
       "required": true,
       "form_snippet": "eaw_schema_repeating_text_js.html",
@@ -309,6 +315,7 @@
     },
     {
       "default_value": "none",
+      "display_snippet": "eaw_schema_multiple_string_display.html",
       "sorted_choices": true,
       "modal_text": "variables_help",
       "required": true,
@@ -767,18 +774,17 @@
       "label": "package status & usage"
     },
     {
-      "modal_text_visibility": "visibility_help",
+      "form_snippet": "organization.html",
       "required": true,
       "label": "Organization",
       "modal_text_organization": "organization_help",
-      "preset": "eaw_schema_dataset_organization",
+      "validators": "owner_org_validator unicode",
       "field_name": "owner_org"
     },
     {
       "modal_text": "status_help",
       "required": true,
-      "label": "Status",
-      "preset": "select_short",
+      "display_snippet": null,
       "choices": [
         {
           "value": "incomplete",
@@ -789,10 +795,9 @@
           "label": "complete"
         }
       ],
+      "preset": "select_short",
+      "label": "Status",
       "field_name": "status",
-      "form_attrs": {
-        "class": "medinput"
-      },
       "display_property": "adms:status"
     },
     {
@@ -822,13 +827,13 @@
       }
     },
     {
-      "display_snippet": "eaw_fullname_email.html",
+      "display_snippet": null,
       "form_snippet": "eaw_schema_text.html",
       "label": "Reviewed By",
       "classes": [
         "control-full"
       ],
-      "validators": "ignore_missing eaw_users_exist eaw_schema_multiple_string_convert(comma)",
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(comma)",
       "form_placeholder": "Start typing name or email of ERIC user ...",
       "field_name": "reviewed_by",
       "form_attrs": {
@@ -844,12 +849,12 @@
     },
     {
       "default_value": "context_username",
-      "display_snippet": "eaw_fullname_email.html",
+      "display_snippet": "text.html",
       "modal_text": "curator_help",
       "required": true,
       "form_snippet": "eaw_schema_text.html",
       "label": "Curator",
-      "validators": "scheming_required eaw_users_exist",
+      "validators": "scheming_required",
       "field_name": "maintainer",
       "form_attrs": {
         "data-module-label": "fullname",
@@ -861,22 +866,11 @@
       "display_property": "datacite:datacurator"
     },
     {
-      "default_value": "context_username",
-      "display_snippet": "eaw_fullname_email.html",
-      "modal_text": "usage_contact_help",
       "required": true,
-      "form_snippet": "eaw_schema_text.html",
-      "label": "Usage Contact",
-      "validators": "scheming_required eaw_users_exist",
-      "field_name": "usage_contact",
-      "form_attrs": {
-        "data-module-label": "fullname",
-        "style": "width:97%;",
-        "data-module-key": "name",
-        "data-module": "eaw_autocomplete",
-        "data-module-source": "/api/2/util/user/autocomplete?q=?"
-      },
-      "display_property": "datacite:datacurator"
+      "field_name": "maintainer_email",
+      "label": "Contact",
+      "display_snippet": "text.html"
+
     },
     {
       "modal_text": "notes_help",
@@ -888,27 +882,83 @@
       "display_property": "dct:description"
     },
     {
+      "display_snippet": "text.html",
+      "required": false,
+      "form_snippet": "text.html",
+      "label": "DOI",
+      "classes": [
+        "display_none"
+      ],
+      "validators": "ignore_missing eaw_schema_is_doi",
+      "field_name": "doi",
+      "display_property": "dct:identifier"
+    },
+    {
+      "field_name": "citation",
+      "classes": [
+        "display_none"
+      ],
+      "form_snippet": "text.html",
+      "display_snippet": null
+    },
+    {
+      "field_name": "citation_publication",
+      "classes": [
+        "display_none"
+      ],
+      "form_snippet": "text.html",
+      "display_snippet": null
+    },
+    {
+      "field_name": "paper_doi",
+      "classes": [
+        "display_none"
+      ],
+      "form_snippet": "text.html",
+      "display_snippet": null
+    },
+    {
+      "field_name": "publicationlink_dora",
+      "classes": [
+        "display_none"
+      ],
+      "form_snippet": "text.html",
+      "display_snippet": null
+    },
+    {
+      "field_name": "publicationlink_url",
+      "classes": [
+        "display_none"
+      ],
+      "form_snippet": "text.html",
+      "display_snippet": null
+    },
+    {
+      "display_snippet": null,
       "form_snippet": "text.html",
       "classes": [
         "display_none"
       ],
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(comma)",
       "field_name": "has_part",
-      "display_snippet": null
+      "output_validators": "eaw_schema_multiple_string_output"
     },
     {
+      "display_snippet": null,
       "form_snippet": "text.html",
       "classes": [
         "display_none"
       ],
+      "validators": "ignore_missing eaw_schema_multiple_string_convert(comma)",
       "field_name": "is_part_of",
-      "display_snippet": null
+      "output_validators": "eaw_schema_multiple_string_output"
     },
     {
-      "form_snippet": "text.html",
+      "field_name": "id_internal",
       "classes": [
         "display_none"
       ],
-      "field_name": "id_external",
+      "form_snippet": "text.html",
       "display_snippet": null
     }
   ],
