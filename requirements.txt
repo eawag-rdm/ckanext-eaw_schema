@@ -1,1 +1,0 @@
-ckanext-scheming @ git+https://github.com/ckan/ckanext-scheming.git#egg=ckanext-scheming
