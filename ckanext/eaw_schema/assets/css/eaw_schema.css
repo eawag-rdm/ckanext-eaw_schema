@@ -5,8 +5,9 @@
 }
 
 @media (min-width:768px) {
-.controls {
-  margin-left: 130px;
+  .controls {
+    margin-left: 130px;
+  }
 }
 
 @media (min-width: 768px) and  (max-width: 979px) {
