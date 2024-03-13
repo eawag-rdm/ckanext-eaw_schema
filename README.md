@@ -1,9 +1,9 @@
-[![Tests](https://github.com/eawag-rdm/ckanext-eaw_schema/workflows/Tests/badge.svg?branch=main)](https://github.com/eawag-rdm/ckanext-eaw_schema/actions)
+[![Tests](https://github.com/eawag-rdm/ckanext-eaw_schema/workflows/Tests/badge.svg?branch=eric)](https://github.com/eawag-rdm/ckanext-eaw_schema/actions)
 
 # ckanext-eaw_schema
 
 This CKAN extension provides the custom configuration for the metadata schemas using a YAML or JSON schema description used in EAWAG Open Data Portal. Custom validation and template snippets for editing and display are supported.
-
+Relevant branches for **ERIC** are `eric` and the branch used for **ERIC Open** is `eric-open`. 
 
 ## Requirements
 
@@ -15,6 +15,7 @@ Compatibility with core CKAN versions:
 | 2.7             | not tested    |
 | 2.8             | not tested    |
 | 2.9             | Yes           |
+| 2.10            | partially tested |
 
 
 
