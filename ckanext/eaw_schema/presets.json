@@ -29,13 +29,6 @@
         "output_validators": "scheming_multiple_choice_output"
 	}
       },
-      {
-      "preset_name": "eaw_schema_dataset_organization",
-      "values": {
-	"validators": "owner_org_validator unicode",
-	"form_snippet": "eaw_schema_organization.html"
-      }
-      },
     {
       "preset_name": "eaw_schema_title",
       "values": {
