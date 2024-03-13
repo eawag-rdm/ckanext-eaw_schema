@@ -201,6 +201,7 @@ dl.spaced > dt {
 
 .metadatadiv {
   margin: 10px;
+  padding: 10px;
 }
 
 .fa-external-link-square:before {
@@ -263,6 +264,36 @@ i.fa-exclamation-triangle {
 .strike > span:after {
     left: 100%;
     margin-left: 15px;
+}
+
+.form-control,
+div.form-group.eaw_with_infobutton select {
+  display: inline-block;
+}
+
+div.select2-container.form-control {
+  border: 0;
+}
+
+div.select2-container.form-control {
+  padding: 0;
+}
+
+.package_citation div.well,
+.paper_citation div.well {
+  margin-bottom:0;
+}
+
+.list-group.expandable-list {
+  margin-bottom:0;
+}
+
+.list-group.expandable-list > li.list-group-item.clearfix {
+  border-bottom: 0;
+}
+
+.table td, table th {
+  border: none !important;
 }
 
 form .display_none {
