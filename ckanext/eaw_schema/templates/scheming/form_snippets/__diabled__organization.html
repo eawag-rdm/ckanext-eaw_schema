@@ -1,0 +1,23 @@
+{% ckan_extends %}
+{# Changes labeling of "Visibility", adds help-button and modal #} 
+
+{% block package_metadata_fields_visibility %}
+  {% set modal_text_visibility=field.modal_text_visibility if 'modal_text_visibility' in field else none %}
+  <div class="control-group form-group control-full eaw_with_infobutton">
+    <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
+    <div class="controls">
+      <select id="field-private" name="private" class="form-control medinput">
+        {% for option in [('False', _('Eawag')), ('True', _('Organization'))] %}
+          <option value="{{ option[0] }}" {% if option[0] == data.private|trim %}selected="selected"{% endif %}>{{ option[1] }}</option>
+        {% endfor %}
+      </select>
+      {% if modal_text_visibility is defined %}
+	{%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text_visibility -%}
+      {% endif %}
+    </div>
+  </div>
+  {% if modal_text_visibility is defined %}
+    {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text_visibility ~ '.html' -%}
+  {% endif %}
+{% endblock %}
+

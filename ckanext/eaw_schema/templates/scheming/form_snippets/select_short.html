@@ -1,12 +1,15 @@
 {% import 'macros/form.html' as form %}
 {%- set options=[] -%}
-{%- if not h.scheming_field_required(field) -%}
+{%- set form_restrict_choices_to=field.get('form_restrict_choices_to') -%}
+{%- if not h.scheming_field_required(field) or field.get('form_include_blank_choice', false) -%}
     {%- do options.append({'value': '', 'text': ''}) -%}
 {%- endif -%}
-{%- for c in field.choices -%}
-    {%- do options.append({
-    'value': c.value,
-    'text': c.label }) -%}
+{%- for c in h.scheming_field_choices(field) -%}
+    {%- if not form_restrict_choices_to or c.value in form_restrict_choices_to -%}
+        {%- do options.append({
+        'value': c.value|string,
+        'text': h.scheming_language_text(c.label) }) -%}
+    {%- endif -%}
 {%- endfor -%}
 {%- if field.get('sorted_choices') -%}
     {%- set options = options|sort(case_sensitive=false, attribute='text') -%}
@@ -20,7 +23,7 @@
     selected=data[field.field_name],
     error=errors[field.field_name],
     classes=['control-medium'],
-    attrs = {"class": "eaw_with_infobutton medinput"},
+    attrs=dict({"class": "form-control eaw_with_infobutton medinput"}, **(field.get('form_attrs', {}))),
     is_required=h.scheming_field_required(field)
     ) %}
     {% if modal_text is not none %}

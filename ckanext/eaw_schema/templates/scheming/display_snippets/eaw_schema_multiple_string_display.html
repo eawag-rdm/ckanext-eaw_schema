@@ -1,11 +1,42 @@
+{# Similar to eaw_repeating_text.html, using expanding list-group #}
+
 {%- set values = data[field.field_name] -%}
-{%- if values|length == 1 -%}
-    {{ values[0] }}
+{% set no_values = values|length %}
+{% set maxdisplay = 5 %}
+{% if field.field_name != 'author' %}
+  {%- set values = values|sort -%}
+{% endif %}
+{%- if no_values > maxdisplay -%}
+<ul class="list-group expandable-list">
+   {%- for element in values[0:maxdisplay-1] -%}
+     {%- if element|length > 0 -%}
+       <li class="list-group-item">{{ element }}</li>
+     {%- endif -%}
+   {%- endfor -%}
+   <li class="list-group-item clearfix">
+     {{ values[maxdisplay-1] }}
+     <button class="btn btn-info pull-right" type="button" data-toggle="collapse"
+             data-target="#restlist_{{field.field_name}}"
+             aria-expanded="false"
+             aria-controls="restlist_{{field.field_name}}">
+             ..... <strong>{{ no_values - maxdisplay }} more</strong></button>
+   </li>
+ </ul>
+<div class="collapse" id="restlist_{{field.field_name}}">
+  <ul class="list-group">
+  {%- for element in values[maxdisplay:] -%}
+    {%- if element|length > 0 -%}
+      <li class="list-group-item">{{ element }}</li>
+    {%- endif -%}
+  {%- endfor -%}
+  </ul>
+</div>
 {%- else -%}
-    {%- set values = values|sort -%}
-    <ul>
-        {%- for value in values -%}
-            <li>{{ value }}</li>
-        {%- endfor -%}
-    </ul>
+   <ul class="list-group">
+   {%- for element in values -%}
+     {%- if element|length > 0 -%}
+       <li class="list-group-item">{{ element }}</li>
+     {%- endif -%}
+   {%- endfor -%}
+ </ul>
 {%- endif -%}

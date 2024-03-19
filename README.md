@@ -6,99 +6,13 @@ This CKAN extension provides the custom configuration for the metadata schemas u
 Relevant branches for **ERIC** are `eric` and the branch used for **ERIC Open** is `eric-open`. 
 
 ## TODO
-Files that need adjusting in **eric-open** branch of **ckanext-eaw_theming** are and might need importing to scheming:
 
-> diff --git a/ckanext/eaw_schema/templates/scheming/display_snippets/eaw_repeating_text.html b/ckanext/eaw_schema/templates/scheming/display_snippets/eaw_repeating_text.html
-> ckanext/eaw_schema/templates/scheming/display_snippets/eaw_repeating_text.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/display_snippets/eaw_schema_multiple_string_display.html b/ckanext/eaw_schema/templates/scheming/display_snippets/eaw_schema_multiple_string_display.html
-> ckanext/eaw_schema/templates/scheming/display_snippets/eaw_schema_multiple_string_display.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/display_snippets/eaw_select_noi8n.html b/ckanext/eaw_schema/templates/scheming/display_snippets/eaw_select_noi8n.html
-> ckanext/eaw_schema/templates/scheming/display_snippets/eaw_select_noi8n.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/__diabled__organization.html b/ckanext/eaw_schema/templates/scheming/form_snippets/__diabled__organization.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/__diabled__organization.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/_organization_select.html b/ckanext/eaw_schema/templates/scheming/form_snippets/_organization_select.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/_organization_select.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/eaw_schema_date.html b/ckanext/eaw_schema/templates/scheming/form_snippets/eaw_schema_date.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/eaw_schema_date.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/eaw_schema_markdown.html b/ckanext/eaw_schema/templates/scheming/form_snippets/eaw_schema_markdown.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/eaw_schema_markdown.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/eaw_schema_organization.html b/ckanext/eaw_schema/templates/scheming/form_snippets/eaw_schema_organization.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/eaw_schema_organization.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_abstract_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_abstract_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_abstract_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_author_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_author_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_author_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_curator_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_curator_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_curator_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_keywords_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_keywords_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_keywords_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_long_term_archive_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_long_term_archive_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_long_term_archive_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_open_data_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_open_data_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_open_data_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_organization_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_organization_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_organization_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_publicationlink_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_publicationlink_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_publicationlink_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_res_name_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_res_name_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_res_name_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_resource_type_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_resource_type_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_resource_type_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_restricted_level_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_restricted_level_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_restricted_level_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_review_level_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_review_level_help.html
+File that were not changed, as they clearly don't have an effect on ERIC open and are probably old:
+
+> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_open_data_help.html 
 > ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_review_level_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_status_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_status_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_status_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_substances_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_substances_help.html
 > ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_substances_help.html
 > 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_timerange_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_timerange_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_timerange_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_title_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_title_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_title_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_usage_contact_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_usage_contact_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_usage_contact_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_variables_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_variables_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_variables_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_visibility_help.html b/ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_visibility_help.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/modalsnippets/eaw_schema_visibility_help.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/form_snippets/select_short.html b/ckanext/eaw_schema/templates/scheming/form_snippets/select_short.html
-> ckanext/eaw_schema/templates/scheming/form_snippets/select_short.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/package/resource_read.html b/ckanext/eaw_schema/templates/scheming/package/resource_read.html
-> ckanext/eaw_schema/templates/scheming/package/resource_read.html
-> 
-> diff --git a/ckanext/eaw_schema/templates/scheming/package/snippets/additional_info.html b/ckanext/eaw_schema/templates/scheming/package/snippets/additional_info.html
-> ckanext/eaw_schema/templates/scheming/package/snippets/additional_info.html
-> 
-
 
 
 ## Requirements
