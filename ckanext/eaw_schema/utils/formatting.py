@@ -13,5 +13,3 @@ def load_datetime_strings(datetime_string) -> list:
         return json.loads(datetime_string)
     except ValueError:
         return [datetime_string]
-
-

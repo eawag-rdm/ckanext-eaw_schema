@@ -7,7 +7,10 @@ from ckan.plugins import toolkit
 from ckanext.eaw_schema import logger
 from ckanext.eaw_schema.globals import DOI_REGEXP, HASH_TYPES, MISSING, _
 from ckanext.eaw_schema.helpers import eaw_schema_embargo_interval
-from ckanext.eaw_schema.utils.general import error_before_validation, format_to_list_of_strings
+from ckanext.eaw_schema.utils.general import (
+    error_before_validation,
+    format_to_list_of_strings,
+)
 from ckanext.scheming.validation import scheming_validator
 
 
@@ -280,7 +283,7 @@ def eaw_schema_is_doi(value):
     if DOI_REGEXP.match(value):
         return value
     else:
-        raise toolkit.Invalid('{} is not a valid DOI'.format(value))
+        raise toolkit.Invalid("{} is not a valid DOI".format(value))
 
 
 def test_before(key, flattened_data, errors, context):

@@ -1,5 +1,7 @@
-from ckanext.eaw_schema.helpers.get_user import eaw_helpers_geteawuser
 from ckan.plugins.toolkit import side_effect_free
+
+from ckanext.eaw_schema.helpers.get_user import eaw_helpers_geteawuser
+
 
 @side_effect_free
 def eaw_schema_datamanger_show(context, data_dict):

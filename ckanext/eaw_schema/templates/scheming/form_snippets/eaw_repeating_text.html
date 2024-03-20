@@ -2,10 +2,9 @@
 {%- set values = h.eaw_schema_get_values(field.field_name,
 field.get('form_blanks', 3), data) %}
 {%- for element in values -%}
-    {{ form.input(
-    field.field_name + '-' ~ loop.index,
-    id='field-' + field.field_name + '-' ~ loop.index,
-    label=h.scheming_language_text(field.label) + ' ' ~ loop.index,
+    {{ form.input(field.field_name + '-' ~ loop.index,
+        id='field-' + field.field_name + '-' ~ loop.index,
+        label=h.scheming_language_text(field.label) + ' ' ~ loop.index,
     placeholder=h.scheming_language_text(field.form_placeholder),
     value=element,
     error=errors[field.field_name],

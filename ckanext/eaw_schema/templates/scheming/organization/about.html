@@ -1,11 +1,6 @@
 {% ckan_extends %}
-{%- set exclude_fields = [
-'title',
-'name',
-'shortname',
-'homepage'
-] -%}
-{% block subtitle %}{{ _('About') }} - {{ super() }}{% endblock %}
+{%- set exclude_fields = ["title", "name", "shortname", "homepage"] -%}
+{% block subtitle %}{{ _("About") }} - {{ super() }}{% endblock %}
 {% block primary_content_inner %}
     {% block page_heading %}
         <h1>
@@ -24,11 +19,9 @@
             {%- for field in c.scheming_fields -%}
                 {%- if field.display_snippet is not none and
                     field.field_name not in exclude_fields -%}
-                    <dt>
-                        {{ h.scheming_language_text(field.label) }}
-                    </dt>
+                    <dt>{{ h.scheming_language_text(field.label) }}</dt>
                     <dd class="dataset-details"
-                        {% if field.display_property %} property="{{ field.display_property }}"{% endif %}>
+                        {% if field.display_property %}property="{{ field.display_property }}"{% endif %}>
                         {%- snippet 'scheming/snippets/display_field.html',
                         field=field, data=c.group_dict, schema=schema -%}
                     </dd>

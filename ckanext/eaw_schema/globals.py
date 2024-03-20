@@ -1,4 +1,5 @@
 import re
+
 from ckan.plugins import toolkit
 
 HASH_TYPES = ["md5", "sha256"]
@@ -9,4 +10,3 @@ _ = toolkit._
 
 
 DOI_REGEXP = re.compile("10\.\d+(.\d+)*/.+$", flags=re.I)
-

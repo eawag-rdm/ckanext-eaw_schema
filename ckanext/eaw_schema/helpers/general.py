@@ -7,8 +7,11 @@ from ckan.lib.helpers import linked_user
 
 from ckanext.eaw_schema import logger
 from ckanext.eaw_schema.helpers.get_user import eaw_helpers_geteawuser
-from ckanext.eaw_schema.utils.eaw_schema_set_default import eaw_schema_set_default_invalid_input, \
-    eaw_schema_set_default_choose_default, eaw_schema_set_default_set_values
+from ckanext.eaw_schema.utils.eaw_schema_set_default import (
+    eaw_schema_set_default_choose_default,
+    eaw_schema_set_default_invalid_input,
+    eaw_schema_set_default_set_values,
+)
 
 
 # TODO: tests
@@ -69,20 +72,22 @@ def eaw_schema_choices_label_noi8n(choices, value):
 
     """
     for c in choices:
-        if c['value'] == value:
-            return c.get('label', value)
+        if c["value"] == value:
+            return c.get("label", value)
     return value
 
+
 def eaw_schema_get_citationurl(typ, doi):
-    types = {'ris': 'application/x-research-info-systems',
-             'bibtex': 'application/x-bibtex',
-             'datacitexml': 'application/vnd.datacite.datacite+xml',
-             'citeproc': 'application/vnd.citationstyles.csl+json'
-             }
+    types = {
+        "ris": "application/x-research-info-systems",
+        "bibtex": "application/x-bibtex",
+        "datacitexml": "application/vnd.datacite.datacite+xml",
+        "citeproc": "application/vnd.citationstyles.csl+json",
+    }
     if not types.get(typ):
-        return('#')
-    doi = re.sub('^https?://(dx\.)?doi\.org/', '', doi)
-    url = 'https://data.datacite.org/{}/{}'.format(types[typ], doi)
+        return "#"
+    doi = re.sub("^https?://(dx\.)?doi\.org/", "", doi)
+    url = "https://data.datacite.org/{}/{}".format(types[typ], doi)
     return url
 
 

@@ -1,43 +1,40 @@
 {% import 'macros/form.html' as form %}
-
 {# this snippet is meant to be called from organization.html,
 not used as a form_snippet directly #}
-
-{% set modal_text_organization=field.modal_text_organization if 'modal_text_organization' in field else none %}
-
+{% set modal_text_organization = field.modal_text_organization if 'modal_text_organization' in field else none %}
 {% macro _organization() %}
-  {% set existing_org = data.owner_org or data.group_id %}
-  {% call form.input_block('field-organizations',
-    label=h.scheming_language_text(field.label),
-    error=errors[field.field_name],
-    is_required=org_required,
-    classes=['form-group', 'control-medium', 'eaw_with_infobutton'],
-    extra_html=caller() if caller
-    ) %}
-    <div {{
-      form.attributes(field.form_attrs) if 'form_attrs' in field else '' }}>
-	 <select id="field-organizations" name="owner_org"
-		 class="form-control" {{ form.attributes(field.get('form_select_attrs', {'data-module':'autocomplete'})) }}> 
-     {% if not org_required or field.get('form_include_blank_choice', false) %}
-        <option value="">{% if not org_required
-          %}{{ _('No organization') }}{% endif %}</option>
-      {% endif %}
-      {% for organization in organizations_available %}
-        {% set selected_org = existing_org == organization.id %}
-        {{ organization_option_tag(organization, selected_org) }}
-      {% endfor %}
-      </select>
-      {% if modal_text_organization is defined %}
-	{%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text_organization -%}
-      {% endif %}
-    </div>
-    {% if modal_text_organization is defined %}
-      {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text_organization ~ '.html' -%}
-  {% endif %}
-
-  {% endcall %}
+    {% set existing_org = data.owner_org or data.group_id %}
+    {% call form.input_block('field-organizations',
+        label=h.scheming_language_text(field.label),
+        error=errors[field.field_name],
+        is_required=org_required,
+        classes=['form-group', 'control-medium', 'eaw_with_infobutton'],
+        extra_html=caller() if caller
+        ) %}
+        <div {{ form.attributes(field.form_attrs) if 'form_attrs' in field else '' }}>
+            <select id="field-organizations" name="owner_org" class="form-control" {{ form.attributes(field.get('form_select_attrs', {'data-module':'autocomplete'}) ) }}>
+                {% if not org_required or field.get('form_include_blank_choice', false) %}
+                    <option value="">
+                        {% if not org_required
+                            %}
+                            {{ _("No organization") }}
+                        {% endif %}
+                    </option>
+                {% endif %}
+                {% for organization in organizations_available %}
+                    {% set selected_org = existing_org == organization.id %}
+                    {{ organization_option_tag(organization, selected_org) }}
+                {% endfor %}
+            </select>
+            {% if modal_text_organization is defined %}
+                {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text_organization -%}
+            {% endif %}
+        </div>
+        {% if modal_text_organization is defined %}
+            {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text_organization ~ '.html' -%}
+        {% endif %}
+    {% endcall %}
 {% endmacro %}
-
 {% call _organization() %}
-  {%- snippet 'scheming/form_snippets/help_text.html', field=field %}
+    {%- snippet 'scheming/form_snippets/help_text.html', field=field %}
 {% endcall %}
