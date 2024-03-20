@@ -17,9 +17,9 @@
         {% endif %}
     {% endcall %}
 {% endmacro %}
-{% set modal_text=field.modal_text if 'modal_text' in field else none %}
-{% set value=data[field.field_name] or '' %}
-{% set default_value=field.default_value %}
+{% set modal_text = field.modal_text if 'modal_text' in field else none %}
+{% set value = data[field.field_name] or '' %}
+{% set default_value = field.default_value %}
 {%- call eaw_input(
     field.field_name,
     id='field-' + field.field_name,

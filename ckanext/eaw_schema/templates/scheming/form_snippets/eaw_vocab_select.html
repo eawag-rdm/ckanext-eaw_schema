@@ -1,5 +1,5 @@
 {% import 'macros/form.html' as form %}
-{%- set options=[] -%}
+{%- set options = [] -%}
 {%- if not h.scheming_field_required(field) -%}
     {%- do options.append({'value': '', 'text': ''}) -%}
 {%- endif -%}

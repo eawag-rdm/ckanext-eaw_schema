@@ -1,2 +1,6 @@
 pytest-ckan
 ckanext-scheming @ git+https://github.com/ckan/ckanext-scheming.git@release-3.0.0#egg=ckanext-scheming
+
+isort
+black
+djlint

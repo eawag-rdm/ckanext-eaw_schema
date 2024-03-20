@@ -7,8 +7,11 @@ from ckan.lib.helpers import linked_user
 
 from ckanext.eaw_schema import logger
 from ckanext.eaw_schema.helpers.get_user import eaw_helpers_geteawuser
-from ckanext.eaw_schema.utils.eaw_schema_set_default import eaw_schema_set_default_invalid_input, \
-    eaw_schema_set_default_choose_default, eaw_schema_set_default_set_values
+from ckanext.eaw_schema.utils.eaw_schema_set_default import (
+    eaw_schema_set_default_choose_default,
+    eaw_schema_set_default_invalid_input,
+    eaw_schema_set_default_set_values,
+)
 
 
 # TODO: tests

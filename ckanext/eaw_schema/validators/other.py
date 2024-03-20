@@ -7,7 +7,10 @@ from ckan.plugins import toolkit
 from ckanext.eaw_schema import logger
 from ckanext.eaw_schema.globals import HASH_TYPES, MISSING, _
 from ckanext.eaw_schema.helpers import eaw_schema_embargo_interval
-from ckanext.eaw_schema.utils.general import error_before_validation, format_to_list_of_strings
+from ckanext.eaw_schema.utils.general import (
+    error_before_validation,
+    format_to_list_of_strings,
+)
 from ckanext.scheming.validation import scheming_validator
 
 

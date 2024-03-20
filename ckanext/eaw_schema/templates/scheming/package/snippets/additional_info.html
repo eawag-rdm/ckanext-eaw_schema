@@ -8,25 +8,25 @@ HvW-2016-06-03
   (therfore template replacement necessary, instead of ckan_extend)
 #}
 {%- set exclude_fields = [
-'id',
-'title',
-'name',
-'notes',
-'tag_string',
-'license_id',
-'owner_org',
-'ispublication',
-'publicationlink',
-'open_data',
-'embargo',
-'islongterm'
+    "id",
+    "title",
+    "name",
+    "notes",
+    "tag_string",
+    "license_id",
+    "owner_org",
+    "ispublication",
+    "publicationlink",
+    "open_data",
+    "embargo",
+    "islongterm"
 ] -%}
 {% set missinglink_html = '<i class="text-error">Missing publication reference</i>'|safe %}
 {% set embargo = pkg_dict['embargo'] or None %}
-{% set opendata_html = '<img src="/opendata_small.png" width="25px" alt="Open Data"/> <b>Open Data</b>'|safe %}
-{% set longterm_html = '<img src="/inf.png" width="25px" alt="Long-term data"/> <b>Long-term data</b>'|safe %}
+{% set opendata_html = '<img src="/opendata_small.png" width="25px" alt="Open Data" /> <b>Open Data</b>'|safe %}
+{% set longterm_html = '<img src="/inf.png" width="25px" alt="Long-term data" /> <b>Long-term data</b>'|safe %}
 <section class="additional-info">
-    <h3>{{ _('Metadata') }}</h3>
+    <h3>{{ _("Metadata") }}</h3>
     {% block publication_data %}
         {% if  pkg_dict['ispublication'] %}
             <div class="metadatadiv">
@@ -59,12 +59,9 @@ HvW-2016-06-03
                         and field.display_snippet is not none
                         and pkg_dict[field.field_name]|length > 0-%}
                         <tr>
-                            <th scope="row" class="dataset-label">
-                                {{
-                                h.scheming_language_text(field.label) }}
-                            </th>
+                            <th scope="row" class="dataset-label">{{ h.scheming_language_text(field.label) }}</th>
                             <td class="dataset-details"
-                                {% if field.display_property %} property="{{ field.display_property }}"{% endif %}>
+                                {% if field.display_property %}property="{{ field.display_property }}"{% endif %}>
                                 {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}
                             </td>
                         </tr>

@@ -1,6 +1,6 @@
 {% import 'macros/form.html' as form %}
-{% set modal_text=field.modal_text if 'modal_text' in field else none %}
-{% set attrs=field.form_attrs if 'form_attrs' in field %}
+{% set modal_text = field.modal_text if 'modal_text' in field else none %}
+{% set attrs = field.form_attrs if 'form_attrs' in field %}
 {%- call form.input_block(
     "field-" ~ field.field_name,
     label=h.scheming_language_text(field.label),
@@ -23,7 +23,7 @@
     {% else %}
         {% set values = data[field.field_name] %}
     {% endif %}
-    <select multiple data-module="autocomplete" size="{{ ([field.get('select_size', 10), field.choices|length]|sort)[0] }}" id="field-{{ field.field_name }}" name="{{ field.field_name }}" {{ form.attributes(attrs) if attrs }}>
+    <select multiple data-module="autocomplete" size="{{ ([field.get('select_size', 10) , field.choices|length]|sort)[0] }}" id="field-{{ field.field_name }}" name="{{ field.field_name }}" {{ form.attributes(attrs) if attrs }}>
         {%- for val, label in choices -%}
             <option id="field-{{ field.field_name }}-{{ val }}" value="{{ val }}" class="fouc" {{ "selected " if val in values }}>
                 {{ label }}
