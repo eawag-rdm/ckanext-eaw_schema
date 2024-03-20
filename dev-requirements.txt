@@ -1,6 +1,13 @@
 pytest-ckan
-ckanext-scheming @ git+https://github.com/ckan/ckanext-scheming.git@release-3.0.0#egg=ckanext-scheming
-
+djlint
 isort
 black
-djlint
+Pylons
+
+# PyYaml downgrade changes in later version crash extension setup, when loading static files
+# https://stackoverflow.com/questions/69564817/typeerror-load-missing-1-required-positional-argument-loader-in-google-col
+# 2023-02-27 16:25:42,778 INFO  [ckan.config.environment] Loading static files from public
+# ...
+# TypeError: load() missing 1 required positional argument: 'Loader'
+PyYAML==5.4.1
+ckanext-scheming @ git+https://github.com/ckan/ckanext-scheming.git@release-3.0.0#egg=ckanext-scheming
