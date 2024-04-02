@@ -79,7 +79,6 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
             "eaw_schema_check_package_type": eaw_schema_check_package_type,
             "eaw_schema_check_hashtype": eaw_schema_check_hashtype,
             "eaw_schema_choices_label_noi8n": eaw_schema_choices_label_noi8n,
-            "eaw_schema_get_citationurl": eaw_schema_get_citationurl,
             "eaw_schema_is_doi": eaw_schema_is_doi
         }
 
@@ -92,6 +91,7 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
             "eaw_schema_embargo_interval": eaw_schema_embargo_interval,
             "eaw_username_fullname_email": eaw_username_fullname_email,
             "eaw_schema_human_filesize": eaw_schema_human_filesize,
+            "eaw_schema_get_citationurl": eaw_schema_get_citationurl,
         }
 
     # IActions
