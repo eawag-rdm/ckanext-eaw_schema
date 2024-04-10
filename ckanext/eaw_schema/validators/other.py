@@ -297,6 +297,18 @@ def test_before(key, flattened_data, errors, context):
             {"reviewed_by": [_('Not empty implies Review Level not "none".')]}
         )
 
+def test_before_resources(key, flattened_data, errors, context):
+    # Checck fields "hash" and "hashtype" are consistent
+    if flattened_data.get((key[0], key[1], 'hash')):
+        if not flattened_data.get((key[0], key[1], 'hashtype')):
+            raise toolkit.ValidationError({
+                'hash': [_('The type of the hash algorithm must be provided')]})
+    else:
+        if flattened_data.get((key[0], key[1], 'hashtype')):
+            raise toolkit.ValidationError({
+                'hashtype': [_('Hashtype requires Hash to be set')]})
+    return
+
 
 def output_daterange(values):
     """

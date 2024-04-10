@@ -32,6 +32,7 @@ from ckanext.eaw_schema.validators import (
     eaw_users_exist,
     output_daterange,
     test_before,
+    test_before_resources,
     vali_daterange,
     eaw_schema_is_doi,
 )
@@ -78,7 +79,6 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
             "eaw_schema_cp_filename2name": eaw_schema_cp_filename2name,
             "eaw_schema_check_package_type": eaw_schema_check_package_type,
             "eaw_schema_check_hashtype": eaw_schema_check_hashtype,
-            "eaw_schema_choices_label_noi8n": eaw_schema_choices_label_noi8n,
             "eaw_schema_is_doi": eaw_schema_is_doi
         }
 
@@ -92,6 +92,7 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
             "eaw_username_fullname_email": eaw_username_fullname_email,
             "eaw_schema_human_filesize": eaw_schema_human_filesize,
             "eaw_schema_get_citationurl": eaw_schema_get_citationurl,
+            "eaw_schema_choices_label_noi8n": eaw_schema_choices_label_noi8n,
         }
 
     # IActions
