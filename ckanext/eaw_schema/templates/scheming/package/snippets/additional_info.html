@@ -57,17 +57,14 @@ HvW-2016-06-03
                 {% if paper_doi is defined %}
                     <div class="btn-group" role="group" aria-label="citation_download">
                         <a class="btn btn-default btn-sm"
-                           href="{{ h.eaw_schema_get_citationurl('ris', paper_doi) }}"
+                           href="{{ h.eaw_schema_get_paper_citationurl('ris', paper_doi) }}"
                            role="button">RIS</a>
                         <a class="btn btn-default btn-sm"
-                           href="{{ h.eaw_schema_get_citationurl('bibtex', paper_doi) }}"
+                           href="{{ h.eaw_schema_get_paper_citationurl('bibtex', paper_doi) }}"
                            role="button">BibTeX</a>
                         <a class="btn btn-default btn-sm"
-                           href="{{ h.eaw_schema_get_citationurl('citeproc', paper_doi) }}"
+                           href="{{ h.eaw_schema_get_paper_citationurl('citeproc', paper_doi) }}"
                            role="button">Citeproc JSON</a>
-                        <a class="btn btn-default btn-sm"
-                           href="{{ h.eaw_schema_get_citationurl('datacitexml', paper_doi) }}"
-                           role="button">Datacite XML</a>
                     </div>
                 {% endif %}
             </div>

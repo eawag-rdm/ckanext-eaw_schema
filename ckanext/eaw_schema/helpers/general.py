@@ -91,6 +91,20 @@ def eaw_schema_get_citationurl(typ, doi):
     return url
 
 
+def eaw_schema_get_paper_citationurl(typ, doi):    
+    user_agent = "Eawag RDM (https://opendata.eawag.ch/; mailto:rdm@eawag.ch) BasedOnCKAN/2.9.11"
+    types = {                                                                        
+        "ris": "transform/application/x-research-info-systems",
+        "bibtex": "transform/application/x-bibtex",
+        "citeproc": "",
+    }  
+    if types.get(typ, None) is None:
+        return "#" 
+    doi = re.sub("^https?://(dx\.)?doi\.org/", "", doi)
+    
+    return f"https://api.crossref.org/works/{doi}/{types[typ]}"
+
+
 def eaw_schema_human_filesize(size, suffix="B"):
     "Returns human-friendly string for filesize (bytes -> decmal prefix)"
     if not size or not (isinstance(size, float) or isinstance(size, int)):
