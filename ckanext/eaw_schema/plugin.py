@@ -3,6 +3,7 @@ import json
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
+import ckanext.eaw_schema.restricted as restricted
 from ckanext.eaw_schema.actions.general import eaw_schema_datamanger_show
 from ckanext.eaw_schema.helpers import (
     eaw_helpers_geteawuser,
@@ -38,6 +39,7 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IPackageController, inherit=True)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IAuthFunctions)
 
     # IConfigurer
     def update_config(self, config_):
@@ -82,8 +84,21 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
             "eaw_schema_embargo_interval": eaw_schema_embargo_interval,
             "eaw_username_fullname_email": eaw_username_fullname_email,
             "eaw_schema_human_filesize": eaw_schema_human_filesize,
+            "restricted_get_user_id": restricted.restricted_get_user_id,
         }
 
     # IActions
     def get_actions(self):
-        return {"eaw_schema_datamanger_show": eaw_schema_datamanger_show}
+        return {
+            "eaw_schema_datamanger_show": eaw_schema_datamanger_show,
+            "resource_view_list": restricted.restricted_resource_view_list,
+            "package_show": restricted.restricted_package_show,
+            "resource_search": restricted.restricted_resource_search,
+        }
+
+    # IAuthFunctions
+    def get_auth_functions(self):
+        return {
+            "resource_show": restricted.restricted_resource_show,
+            "resource_view_show": restricted.restricted_resource_show,
+        }

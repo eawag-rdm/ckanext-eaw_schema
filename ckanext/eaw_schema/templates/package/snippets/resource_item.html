@@ -1,0 +1,27 @@
+{% ckan_extends %}
+{% set authorized = h.check_access('resource_show', {'id':res.id}) %}
+{% set user_id = h.restricted_get_user_id() %}
+{% set request_access_url = h.url_for('restricted.restricted_request_access', package_id=pkg.name, resource_id=res.id) %}
+{% block resource_item_title %}
+    {% if authorized %}
+        {{ super() }}
+    {% else %}
+        <a class="heading restricted-item"
+           title="{{ res.name or res.description }} (RESTRICTED ACCESS)">
+            {{ h.resource_display_name(res) | truncate(50) }}
+            <span class="format-label"
+                  property="dc:format"
+                  data-format="{{ res.format.lower() or 'data' }}">{{ res.format }}</span>
+            {{ h.popular('views', res.tracking_summary.total, min=10) }}
+        </a>
+    {% endif %}
+{% endblock %}
+{% block resource_item_explore %}
+    {% if authorized %}
+        {{ super() }}
+    {% else %}
+        <div class="dropdown btn-group restricted">
+            <a href="{{ request_access_url }}" class="btn btn-primary">{{ _("Contact the package maintainer to get access.") }}</a>
+        </div>
+    {% endif %}
+{% endblock %}
