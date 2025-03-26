@@ -1,24 +1,20 @@
-import _pytest.skipping
 import pytest
 import requests
-
 
 def pytest_addoption(parser):
     parser.addoption(
         "--no-skips", action="store_true", default=False, help="disable skip marks"
     )
 
-
 @pytest.hookimpl(tryfirst=True)
-def pytest_cmdline_preparse(config, args):
-    if "--no-skips" not in args:
-        return
+def pytest_configure(config):
+    if config.getoption("--no-skips"):
+        # Disable skip marks
+        def no_skip(*args, **kwargs):
+            return
 
-    def no_skip(*args, **kwargs):
-        return
-
-    _pytest.skipping.skip = no_skip
-
+        # Replacing the skip function with the no-op function
+        pytest.skip = no_skip
 
 @pytest.fixture
 def request_code():
