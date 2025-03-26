@@ -28,7 +28,11 @@ fieldset.checkboxes label input {
     <fieldset class="checkboxes">
         {%- for val, label in choices -%}
             <label for="field-{{ field.field_name }}-{{ val }}">
-                <input id="field-{{ field.field_name }}-{{ val }}" type="checkbox" name="{{ field.field_name }}" value="{{ val }}" {{"checked " if val in data[field.field_name] }} />
+                <input id="field-{{ field.field_name }}-{{ val }}"
+                       type="checkbox"
+                       name="{{ field.field_name }}"
+                       value="{{ val }}"
+                       {{"checked " if val in data[field.field_name] }} />
                 {{ label }}
             </label>
         {%- endfor -%}

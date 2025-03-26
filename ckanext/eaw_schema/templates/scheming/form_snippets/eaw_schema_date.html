@@ -21,7 +21,14 @@
     is_required=h.scheming_field_required(field)) -%}
     <div class="input-prepend date">
         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-        <input id="{{ id }}" name="{{ name }}"type="text" value="{{ value }}" {{ form.attributes(attrs) }} data-module="datepicker" data-module-maxdate="{{ maxdate }}" data-module-today="{{ today }}" />
+        <input id="{{ id }}"
+               name="{{ name }}"
+               type="text"
+               value="{{ value }}"
+               {{ form.attributes(attrs) }}
+               data-module="datepicker"
+               data-module-maxdate="{{ maxdate }}"
+               data-module-today="{{ today }}" />
         {% if modal_text is not none %}
             {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text -%}
             {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html', field=field -%}

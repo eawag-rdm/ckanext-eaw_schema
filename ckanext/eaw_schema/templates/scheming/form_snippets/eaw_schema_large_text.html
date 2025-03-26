@@ -7,7 +7,12 @@ in a <div class="eaw_with_infobutton"> #}
     {% call form.input_block(id or name, label or name, error, classes,
         extra_html=extra_html, is_required=is_required) %}
         <div class="eaw_with_infobutton">
-            <input id="{{ id or name }}" type="{{ type }}" name="{{ name }}" value="{{ value | empty_and_escape }}" placeholder="{{ placeholder }}" {{ form.attributes(attrs) }} />
+            <input id="{{ id or name }}"
+                   type="{{ type }}"
+                   name="{{ name }}"
+                   value="{{ value | empty_and_escape }}"
+                   placeholder="{{ placeholder }}"
+                   {{ form.attributes(attrs) }} />
         </div>
     {% endcall %}
 {% endmacro %}

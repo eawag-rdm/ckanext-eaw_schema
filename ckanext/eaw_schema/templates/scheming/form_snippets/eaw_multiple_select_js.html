@@ -23,9 +23,17 @@
     {% else %}
         {% set values = data[field.field_name] %}
     {% endif %}
-    <select multiple data-module="autocomplete" size="{{ ([field.get('select_size', 10) , field.choices|length]|sort)[0] }}" id="field-{{ field.field_name }}" name="{{ field.field_name }}" {{ form.attributes(attrs) if attrs }}>
+    <select multiple
+            data-module="autocomplete"
+            size="{{ ([field.get('select_size', 10) , field.choices|length]|sort)[0] }}"
+            id="field-{{ field.field_name }}"
+            name="{{ field.field_name }}"
+            {{ form.attributes(attrs) if attrs }}>
         {%- for val, label in choices -%}
-            <option id="field-{{ field.field_name }}-{{ val }}" value="{{ val }}" class="fouc" {{ "selected " if val in values }}>
+            <option id="field-{{ field.field_name }}-{{ val }}"
+                    value="{{ val }}"
+                    class="fouc"
+                    {{ "selected " if val in values }}>
                 {{ label }}
             </option>
         {%- endfor -%}

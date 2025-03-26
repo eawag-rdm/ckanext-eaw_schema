@@ -12,7 +12,10 @@ not used as a form_snippet directly #}
         extra_html=caller() if caller
         ) %}
         <div {{ form.attributes(field.form_attrs) if 'form_attrs' in field else '' }}>
-            <select id="field-organizations" name="owner_org" class="form-control" {{ form.attributes(field.get('form_select_attrs', {'data-module':'autocomplete'}) ) }}>
+            <select id="field-organizations"
+                    name="owner_org"
+                    class="form-control"
+                    {{ form.attributes(field.get('form_select_attrs', {'data-module':'autocomplete'}) ) }}>
                 {% if not org_required or field.get('form_include_blank_choice', false) %}
                     <option value="">
                         {% if not org_required
