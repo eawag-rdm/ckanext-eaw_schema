@@ -1,13 +1,10 @@
 <div class="modal-help">
-    <div id="{{ field.modal_text }}" class="modal fade" role="dialog">
+    <div id="{{ field.modal_text }}" class="modal fade" tabindex="-1" aria-labelledby="{{ field.modal_text }}Label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&#215;</button>
-                    <p>
-                        <i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp
-                        <b>Geographic Name</b>
-                    </p>
+                    <i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp;<b>Geographic Name</b>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p>
@@ -15,7 +12,7 @@
                         this package.
                     </p>
                     <p>
-                        You can write (or copy &amp; paste) a list of geographics names
+                        You can write (or copy &amp; paste) a list of geographic names
                         into the text field, which expects <b>one item per line</b>.
                     </p>
                 </div>

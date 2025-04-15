@@ -1,12 +1,10 @@
 <div class="modal-help">
-    <div id="{{ field.modal_text }}" class="modal fade" role="dialog">
+    <div id="{{ field.modal_text }}" class="modal fade" tabindex="-1" aria-labelledby="{{ field.modal_text }}Label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&#215;</button>
-                    <p>
-                        <i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp<b>Curator</b>
-                    </p>
+                    <i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp;<b>Curator</b>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div>
@@ -22,16 +20,14 @@
                             <p>
                                 <b>Likely candidates</b> for the honorable role of the curator are:
                             </p>
-                            <p>
-                                <ol class="spaced">
-                                    <li>The person uploading the data (you)</li>
-                                    <li>A researcher involved in producing the data</li>
-                                    <li>The PI of the project</li>
-                                    <li>
-                                        The <i>Datamanager</i> of the research group
-                                    </li>
-                                </ol>
-                            </p>
+                            <ol class="spaced">
+                                <li>The person uploading the data (you)</li>
+                                <li>A researcher involved in producing the data</li>
+                                <li>The PI of the project</li>
+                                <li>
+                                    The <i>Datamanager</i> of the research group
+                                </li>
+                            </ol>
                         </div>
                         <div class="alert alert-warning" role="alert">
                             <i class="fa fa-exclamation-circle fa-lg"></i>&nbsp;&nbsp;<b>This is a mandatory field.</b>

@@ -1,13 +1,10 @@
 <div class="modal-help">
-    <div id="{{ field.modal_text }}" class="modal fade" role="dialog">
+    <div id="{{ field.modal_text }}" class="modal fade" tabindex="-1" aria-labelledby="{{ field.modal_text }}Label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&#215;</button>
-                    <p>
-                        <i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp
-                        <b>Timerange</b>
-                    </p>
+                    <i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp;<b>Timerange</b>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p>
@@ -35,107 +32,119 @@
                         </p>
                     </div>
                     <h3>Points in time and implicit time-ranges:</h3>
-                    <p>
-                        <table style="border-collapse:separate;border-spacing:30px 0px;">
-                            <tr>
-                                <th>field-value</th>
-                                <th>meaning</th>
-                            </tr>
-                            <tr>
-                                <td>2015</td>
-                                <td>Jan 1, 2015 to Dec 31, 2015</td>
-                            </tr>
-                            <tr>
-                                <td>2015-03</td>
-                                <td>March 2015</td>
-                            </tr>
-                            <tr>
-                                <td>2015-03-11</td>
-                                <td>March 11, 2015</td>
-                            </tr>
-                            <tr>
-                                <td>2015-03-11T23</td>
-                                <td>March 3, 2015, [23:00 .. 24:00)</td>
-                            </tr>
-                            <tr>
-                                <td>*</td>
-                                <td>eternity</td>
-                            </tr>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>field-value</th>
+                                    <th>meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2015</td>
+                                    <td>Jan 1, 2015 to Dec 31, 2015</td>
+                                </tr>
+                                <tr>
+                                    <td>2015-03</td>
+                                    <td>March 2015</td>
+                                </tr>
+                                <tr>
+                                    <td>2015-03-11</td>
+                                    <td>March 11, 2015</td>
+                                </tr>
+                                <tr>
+                                    <td>2015-03-11T23</td>
+                                    <td>March 3, 2015, [23:00 .. 24:00)</td>
+                                </tr>
+                                <tr>
+                                    <td>*</td>
+                                    <td>eternity</td>
+                                </tr>
+                            </tbody>
                         </table>
-                    </p>
+                    </div>
                     <h3>
                         Use <b>"TO"</b> to express explicit time-ranges:
                     </h3>
-                    <p>
-                        <table style="border-collapse:separate;border-spacing:30px 0px;">
-                            <tr>
-                                <th>field-value</th>
-                                <th>meaning</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    2014 <b>TO</b> 2016
-                                </td>
-                                <td>2014, 2015 and 2016</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    1969-06 <b>TO</b> 1969-08
-                                </td>
-                                <td>the summer of 1969</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    * &nbsp;<b>TO</b> 1848-09-12
-                                </td>
-                                <td>anytime before the existence of Switzerland</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    1991-06-15 <b>TO</b> &nbsp;*
-                                </td>
-                                <td>anytime after a Mount Pinatubo eruption</td>
-                            </tr>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>field-value</th>
+                                    <th>meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        2014 <b>TO</b> 2016
+                                    </td>
+                                    <td>2014, 2015 and 2016</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        1969-06 <b>TO</b> 1969-08
+                                    </td>
+                                    <td>the summer of 1969</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        * &nbsp;<b>TO</b> 1848-09-12
+                                    </td>
+                                    <td>anytime before the existence of Switzerland</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        1991-06-15 <b>TO</b> &nbsp;*
+                                    </td>
+                                    <td>anytime after a Mount Pinatubo eruption</td>
+                                </tr>
+                            </tbody>
                         </table>
-                    </p>
+                    </div>
                     <h3>Use multiple time-ranges to express disjunct periods:</h3>
-                    <p>
-                        <table style="border-collapse:separate;border-spacing:30px 0px;">
-                            <tr>
-                                <th>field</th>
-                                <th>field-value</th>
-                                <th>meaning</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Timerange&nbsp;1</b>
-                                </td>
-                                <td>
-                                    2013-06 <b>TO</b> 2013-08
-                                </td>
-                                <td rowspan=2>
-                                    Measurements were taken during
-                                    <br />
-                                    summers 2013 and 2014.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>Timerange&nbsp;2</b>
-                                </td>
-                                <td>
-                                    2014-06 <b>TO</b> 2014-08
-                                </td>
-                                <td></td>
-                            </tr>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>field</th>
+                                    <th>field-value</th>
+                                    <th>meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <b>Timerange&nbsp;1</b>
+                                    </td>
+                                    <td>
+                                        2013-06 <b>TO</b> 2013-08
+                                    </td>
+                                    <td rowspan=2>
+                                        Measurements were taken during
+                                        <br />
+                                        summers 2013 and 2014.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Timerange&nbsp;2</b>
+                                    </td>
+                                    <td>
+                                        2014-06 <b>TO</b> 2014-08
+                                    </td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                            </tbody>
                         </table>
-                    </p>
+                    </div>
                     <div class="alert alert-info" role="alert">
                         <i class="fa fa-info-circle"></i> Ignore superflous
                         "<b>Timerange &lt;N&gt;</b>" fields. Empty ones will be discarded.
                     </div>
                 </div>
-                <!-- end of moda-body -->
+                <!-- end of modal-body -->
             </div>
         </div>
     </div>
