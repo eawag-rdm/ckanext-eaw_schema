@@ -3,6 +3,9 @@ import json
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
+import logging
+log = logging.getLogger(__name__)
+
 from ckanext.eaw_schema.actions.general import eaw_schema_datamanger_show
 from ckanext.eaw_schema.helpers import (
     eaw_helpers_geteawuser,
@@ -55,11 +58,12 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
         # TODO: check if this is this necessary?
         toolkit.add_resource("assets/vendor/bootstrap-switch", "bootstrap-switch")
 
-    def before_index(self, data_dict):
-        data_dict["variables"] = json.loads(data_dict.get("variables", "[]"))
-        data_dict["systems"] = json.loads(data_dict.get("systems", "[]"))
-        data_dict["substances"] = json.loads(data_dict.get("substances", "[]"))
-        data_dict["taxa"] = json.loads(data_dict.get("taxa", "[]"))
+    def before_dataset_index(self, data_dict):
+        for key in ["variables", "systems", "substances", "taxa"]:
+            data_dict[key] = json.loads(data_dict.get(key, "[]"))
+        log.debug("before_dataset_index: %s", repr(data_dict["variables"]))
+        log.debug("before_dataset_index: %s", type(data_dict["variables"]))
+
         return data_dict
 
     # IValidators
