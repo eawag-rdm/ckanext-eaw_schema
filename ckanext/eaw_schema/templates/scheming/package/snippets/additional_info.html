@@ -30,7 +30,7 @@ HvW-2016-06-03
 <section class="additional-info">
     {% block citation %}
         <h3>{{ _("Citation") }}</h3>
-        <div class="package_citation">
+        <div class="package_citation mb-3">
             {% if pkg_dict['citation_publication'] is defined %}<h4>This Data Package</h4>{% endif %}
             <div class="grey-well">{{ pkg_dict['citation'] |safe }}</div>
             {% if doi is defined %}
@@ -51,7 +51,7 @@ HvW-2016-06-03
             {% endif %}
         </div>
         {% if pkg_dict['citation_publication'] is defined %}
-            <div class="paper_citation">
+            <div class="paper_citation mb-3">
                 <h4>The associated article</h4>
                 <div class="grey-well">{{ pkg_dict['citation_publication'] |safe }}</div>
                 {% if paper_doi is defined %}
