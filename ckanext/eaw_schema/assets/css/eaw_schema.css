@@ -69,6 +69,13 @@ div.eaw_with_infobutton {
   }
 }
 
+.grey-well {
+	background-color: rgb(248,249,250);
+	border: 1px solid #dee2e6;
+	border-radius: 0.375rem;
+	padding: 1rem;
+}
+
 textarea.eaw_with_infobutton {
   width: 90%;
 }
