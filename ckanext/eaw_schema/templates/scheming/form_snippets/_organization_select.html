@@ -8,10 +8,10 @@ not used as a form_snippet directly #}
         label=h.scheming_language_text(field.label),
         error=errors[field.field_name],
         is_required=org_required,
-        classes=['form-group', 'control-medium', 'eaw_with_infobutton'],
+        classes=[],
         extra_html=caller() if caller
         ) %}
-        <div {{ form.attributes(field.form_attrs) if 'form_attrs' in field else '' }}>
+        <div {{ form.attributes(field.form_attrs) if 'form_attrs' in field else 'class=eaw_with_infobutton' }}>
             <select id="field-organizations"
                     name="owner_org"
                     class="form-control"
@@ -29,10 +29,10 @@ not used as a form_snippet directly #}
                     {{ organization_option_tag(organization, selected_org) }}
                 {% endfor %}
             </select>
-            {% if modal_text_organization is defined %}
-                {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text_organization -%}
-            {% endif %}
         </div>
+        {% if modal_text_organization is defined %}
+            {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text_organization -%}
+        {% endif %}
         {% if modal_text_organization is defined %}
             {%- include 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text_organization ~ '.html' -%}
         {% endif %}
