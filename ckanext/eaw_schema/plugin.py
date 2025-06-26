@@ -61,8 +61,6 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
     def before_dataset_index(self, data_dict):
         for key in ["variables", "systems", "substances", "taxa"]:
             data_dict[key] = json.loads(data_dict.get(key, "[]"))
-        log.debug("before_dataset_index: %s", repr(data_dict["variables"]))
-        log.debug("before_dataset_index: %s", type(data_dict["variables"]))
 
         return data_dict
 
