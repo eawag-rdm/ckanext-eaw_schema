@@ -15,13 +15,11 @@ this.ckan.module('datepicker', function ($) {
 	'startDate': this.options.today,
 	'endDate': this.options.maxdate
       };
-      var fireelem = this.el.siblings('span.add-on').first();
-      console.log(fireelem);
-      console.log(this.el);
-      var picker = fireelem.datepicker(picker_opts);
+      var inputGroup = this.el.parent('.input-group');
+      var picker = inputGroup.datepicker(picker_opts);
       
       picker.on('show', () => {
-	fireelem.datepicker('setDate', this.el.val());
+	picker.datepicker('setDate', this.el.val());
       });
       picker.on('changeDate', e => {
 	this.el.val(e.format());
