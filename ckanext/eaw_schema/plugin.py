@@ -34,6 +34,7 @@ from ckanext.eaw_schema.validators import (
     eaw_schema_multiple_string_output,
     eaw_schema_publicationlink,
     eaw_schema_striptime,
+    eaw_schema_validate_author_format,
     eaw_users_exist,
     output_daterange,
     test_before,
@@ -83,7 +84,8 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
             "eaw_schema_cp_filename2name": eaw_schema_cp_filename2name,
             "eaw_schema_check_package_type": eaw_schema_check_package_type,
             "eaw_schema_check_hashtype": eaw_schema_check_hashtype,
-            "eaw_schema_is_doi": eaw_schema_is_doi
+            "eaw_schema_is_doi": eaw_schema_is_doi,
+            "eaw_schema_validate_author_format": eaw_schema_validate_author_format
         }
 
     # ITemplateHelpers

@@ -319,3 +319,28 @@ def output_daterange(values):
     # We try to output everything, even "illegal" values.
     values = format_to_list_of_strings(values)
     return [value.strip().strip("[]").replace("Z", "") for value in values]
+
+
+def eaw_schema_validate_author_format(value):
+    """
+    Validates that author entries follow the format: 'last, first <email>'
+    Empty values are allowed.
+    Works with JSON list format from repeating_text validator.
+    """
+    if not value or value.strip() == '':
+        return value
+    
+    # Parse the JSON list from repeating_text validator
+    try:
+        authors = json.loads(value)
+    except (TypeError, ValueError):
+        # If not JSON, treat as single string
+        authors = [value]
+    
+    # Validate each author entry
+    pattern = r'^[^,]+,\s*[^<]+\s*<[^@]+@[^>]+>$'
+    for author in authors:
+        if author and author.strip() and not re.match(pattern, author.strip()):
+            raise toolkit.Invalid('Author format must be: last, first <email>')
+    
+    return value
