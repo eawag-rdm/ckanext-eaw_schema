@@ -327,3 +327,69 @@ form .display_none {
   width: 100% !important;
   
 }
+
+}
+
+.open_data_embargo .form-control {
+  width: 100% !important;
+}
+
+.open_data_embargo .input-group-text {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure calendar icon stays to the right of embargo input */
+.open_data_embargo .input-group {
+  width: 37% !important;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+}
+
+.open_data_embargo .input-group .form-control {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.open_data_embargo .input-group .input-group-text {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: 0 !important;
+  border-left: 0 !important;
+}
+
+
+
+/* Specific width rule for embargo and DORA-Id fields - overrides general eaw_with_infobutton width */
+@media (min-width: 980px) {
+  .publicationlink div.eaw_with_infobutton,
+  .open_data_embargo div.eaw_with_infobutton {
+    width: 56.5% !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .publicationlink div.eaw_with_infobutton,
+  .open_data_embargo div.eaw_with_infobutton {
+    width: 42.0% !important;
+  }
+}
+
+@media (min-width: 713px) and (max-width: 767px) {
+  .publicationlink div.eaw_with_infobutton,
+  .open_data_embargo div.eaw_with_infobutton {
+    width: 65.2% !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 712px) {
+  .publicationlink div.eaw_with_infobutton,
+  .open_data_embargo div.eaw_with_infobutton {
+    width: 52.4% !important;
+  }
+}
