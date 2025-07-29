@@ -309,3 +309,21 @@ div.select2-container.form-control {
 form .display_none {
   display: none;
 }
+
+/* Fix Check button positioning for DORA-Id field */
+#pubcheckbutton {
+  display: block !important;
+  text-align: center !important;
+  
+  float: right !important;
+  margin-top: 5px !important;
+  margin-right: 0px !important;
+  
+}
+
+/* Ensure input field container does not interfere */
+#field-publicationlink {
+  margin-bottom: 5px !important;
+  width: 100% !important;
+  
+}
