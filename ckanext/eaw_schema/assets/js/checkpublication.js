@@ -170,27 +170,30 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	  maintext = '<p><b>Could not retrieve record for:</b></p>'
 		+ '<p>' + modalinfo.url + '</p>'
 		+ '<p>Reason: ' + modalinfo.status + '</p>'
-		+ '<div class="alert-info"> Just continue after checking for typos.</div>';
-	  $('#pubmodal_header').addClass('alert');
-	  $('#pubmodal_title').html('error');
+		+ '<div class="alert alert-info"> Just continue after checking for typos.</div>';
+	  // Remove any existing alert classes and set proper title  
+	  $('#pubmodal_header').removeClass('alert alert-success');
+	  $('#pubmodal_title').html('Publication Check Error');
 	  $('#pubmodal_main').html(maintext);
 	  $('#pubmodal_button_left').hide();
-	  $('#pubmodal_button_right').html('OK').show();
+	  $('#pubmodal_button_right').html('OK').removeClass('btn-success btn-warning').addClass('btn-primary').show();
 		} else {
 	  maintext = '<p><b>Found publication:</b></p>'
 		+ '<div>' + modalinfo.citation + '</div><p></p>'
-		+ '<div class="alert-info">'
+		+ '<div class="alert alert-info">'
 		+ 'If that is not the right one, just click "Discard" and continue.'
 			+ '<br />Clicking "OK, Fill in metadata!" will overwrite any ' 
 		+ 'preexisting entries.</div>';
-	  $('#pubmodal_header').addClass('alert-success');
-	  $('#pubmodal_title').html('success');
+	  // Remove any existing alert classes and set proper title
+	  $('#pubmodal_header').removeClass('alert alert-success');
+	  $('#pubmodal_title').html('Publication Found');
 	  $('#pubmodal_main').html(maintext);
-	  $('#pubmodal_button_left').html('Discard').addClass('btn-warning').show();
-	  $('#pubmodal_button_right').html('OK, Fill in metadata!').addClass('btn-success').show();
+	  $('#pubmodal_button_left').html('Discard').removeClass('btn-success btn-primary').addClass('btn-warning').show();
+	  $('#pubmodal_button_right').html('OK, Fill in metadata!').removeClass('btn-warning btn-primary').addClass('btn-success').show();
 	  
 		}
-		$('#pubmodal').modal('show');
+		var modal = new bootstrap.Modal(document.getElementById('pubmodal'));
+		modal.show();
 	
 	  },
   
@@ -199,14 +202,14 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	<div class="modal-dialog" role="document">
 	<div class="modal-content">
 	<div id="pubmodal_header" class="modal-header">
-	  <button style="right:-5px;" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
-	  <h3 id="pubmodal_title"></h3>
+	  <h5 class="modal-title" id="pubmodal_title"></h5>
+	  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	</div>
 	<div class="modal-body" id="pubmodal_main">
 	</div>
 	<div class="modal-footer">
-	  <a id="pubmodal_button_left" href="#" class="btn pull-left" data-dismiss="modal"></a>
-	  <a id="pubmodal_button_right" href="#" class="btn pull-right" data-dismiss="modal"></a>
+	  <a id="pubmodal_button_left" href="#" class="btn pull-left" data-bs-dismiss="modal"></a>
+	  <a id="pubmodal_button_right" href="#" class="btn pull-right" data-bs-dismiss="modal"></a>
 	</div>
 	</div>
 	</div>
@@ -241,7 +244,16 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 		// if doi, search dora-record
 		// if not found, get crossref-record
 		// return: attributes, citationtext, error
-		var value = this.el.val();
+		var value = this.el.val().trim();
+		// Check for empty input
+		if (value === '') {
+		  this.pubdata = {};
+		  this.pubmodal(
+			{type: 'error',
+			 status: 'Please enter a DORA-Id or DOI to check.',
+			 url: 'Empty input field'});
+		  return;
+		}
 		var doralinks;
 		var idtyp = this.identpub.call(this, value);
 		if (idtyp.dora_id !== null) {
@@ -320,7 +332,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	  this.pubdata = {};
 		this.pubmodal(
 		  {type: 'error',
-		   status: 'not recoginzed as identifyer.',
+		   status: 'The input does not appear to be a valid DORA-Id or DOI.',
 		   url: '"'+value+'"'});
 		}
 	  } // end of main()
