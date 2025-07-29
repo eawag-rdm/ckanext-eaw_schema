@@ -99,6 +99,7 @@ div.form-group.publication_element,
 div.form-group.open_data_element,
 div.form-group.longterm_data_element {
   background: rgb(196, 235, 234);
+  padding: 15px;
   padding-bottom: 20px;
   
 }
@@ -118,6 +119,7 @@ div.form-group.longterm_data_element.longtermcheck {
 
 div.form-group.publication_element.publicationlink,
 div.form-group.open_data_element.open_data_embargo {
+  padding: 15px;
   padding-top: 10px;
   margin-top: -20px;
   border-radius: 0px 0px 10px 10px;
