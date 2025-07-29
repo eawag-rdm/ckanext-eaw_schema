@@ -10,7 +10,7 @@
     {% call form.input_block(id or name, label or name, error, classes,
         extra_html=extra_html, is_required=is_required) %}
         <div class="eaw_with_infobutton">
-            <input id="{{ id or name }}"
+            <input id="{{ id or name }}" class="form-control"
                    type="{{ type }}"
                    name="{{ name }}"
                    value="{{ value | empty_and_escape }}"
