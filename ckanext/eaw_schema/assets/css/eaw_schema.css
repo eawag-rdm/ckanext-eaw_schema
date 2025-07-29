@@ -105,7 +105,7 @@ div.form-group.longterm_data_element {
 div.form-group.publication_element.publicationcheck,
 div.form-group.open_data_element.open_data_check,
 div.form-group.longterm_data_element.longtermcheck {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 10px 10px 10px 10px;
 }
 
@@ -119,8 +119,9 @@ div.form-group.longterm_data_element.longtermcheck {
 div.form-group.publication_element.publicationlink,
 div.form-group.open_data_element.open_data_embargo {
   padding-top: 10px;
-  margin-top: -10px;
+  margin-top: -20px;
   border-radius: 0px 0px 10px 10px;
+  margin-bottom: 20px;
 }
 
 
