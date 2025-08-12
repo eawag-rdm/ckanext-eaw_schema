@@ -342,7 +342,7 @@ form .display_none {
 
 /* Ensure calendar icon stays to the right of embargo input */
 .open_data_embargo .input-group {
-  width: 37% !important;
+  width: 38% !important;
   display: inline-flex !important;
   flex-direction: row !important;
   align-items: center !important;
