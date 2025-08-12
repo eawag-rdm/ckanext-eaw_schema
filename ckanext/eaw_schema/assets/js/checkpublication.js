@@ -11,7 +11,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 		(function(element) {
 	  var checkbutton = $('<button>', {type: 'button', text: 'Check',
 					   id: 'pubcheckbutton',
-					   class: 'btn btn-primary pull-right',
+					   class: 'btn btn-primary float-end',
 					   width: '80px'});
 	  element.after(checkbutton);
 	  checkbutton.click(module.main.bind(module));
@@ -208,8 +208,8 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	<div class="modal-body" id="pubmodal_main">
 	</div>
 	<div class="modal-footer">
-	  <a id="pubmodal_button_left" href="#" class="btn pull-left" data-bs-dismiss="modal"></a>
-	  <a id="pubmodal_button_right" href="#" class="btn pull-right" data-bs-dismiss="modal"></a>
+	  <a id="pubmodal_button_left" href="#" class="btn float-start" data-bs-dismiss="modal"></a>
+	  <a id="pubmodal_button_right" href="#" class="btn float-end" data-bs-dismiss="modal"></a>
 	</div>
 	</div>
 	</div>

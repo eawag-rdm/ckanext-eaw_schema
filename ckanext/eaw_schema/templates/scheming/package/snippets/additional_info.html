@@ -35,16 +35,16 @@ HvW-2016-06-03
             <div class="grey-well">{{ pkg_dict['citation'] |safe }}</div>
             {% if doi is defined %}
                 <div class="btn-group" role="group" aria-label="citation_download">
-                    <a class="btn btn-default btn-sm"
+                    <a class="btn btn-secondary btn-sm"
                        href="{{ h.eaw_schema_get_citationurl('ris', doi) }}"
                        role="button">RIS</a>
-                    <a class="btn btn-default btn-sm"
+                    <a class="btn btn-secondary btn-sm"
                        href="{{ h.eaw_schema_get_citationurl('bibtex', doi) }}"
                        role="button">BibTeX</a>
-                    <a class="btn btn-default btn-sm"
+                    <a class="btn btn-secondary btn-sm"
                        href="{{ h.eaw_schema_get_citationurl('citeproc', doi) }}"
                        role="button">Citeproc JSON</a>
-                    <a class="btn btn-default btn-sm"
+                    <a class="btn btn-secondary btn-sm"
                        href="{{ h.eaw_schema_get_citationurl('datacitexml', doi) }}"
                        role="button">Datacite XML</a>
                 </div>
@@ -56,13 +56,13 @@ HvW-2016-06-03
                 <div class="grey-well">{{ pkg_dict['citation_publication'] |safe }}</div>
                 {% if paper_doi is defined %}
                     <div class="btn-group" role="group" aria-label="citation_download">
-                        <a class="btn btn-default btn-sm"
+                        <a class="btn btn-secondary btn-sm"
                            href="{{ h.eaw_schema_get_paper_citationurl('ris', paper_doi) }}"
                            role="button">RIS</a>
-                        <a class="btn btn-default btn-sm"
+                        <a class="btn btn-secondary btn-sm"
                            href="{{ h.eaw_schema_get_paper_citationurl('bibtex', paper_doi) }}"
                            role="button">BibTeX</a>
-                        <a class="btn btn-default btn-sm"
+                        <a class="btn btn-secondary btn-sm"
                            href="{{ h.eaw_schema_get_paper_citationurl('citeproc', paper_doi) }}"
                            role="button">Citeproc JSON</a>
                     </div>
