@@ -3,9 +3,6 @@ import json
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
-import logging
-log = logging.getLogger(__name__)
-
 from ckanext.eaw_schema.actions.general import eaw_schema_datamanger_show
 from ckanext.eaw_schema.helpers import (
     eaw_helpers_geteawuser,
@@ -17,7 +14,6 @@ from ckanext.eaw_schema.helpers import (
 )
 from ckanext.eaw_schema.helpers.general import (
     eaw_schema_choices_label_noi8n,
-    eaw_schema_get_citationurl,
     eaw_schema_get_citationurl,
     eaw_schema_get_paper_citationurl,
 )
@@ -41,6 +37,8 @@ from ckanext.eaw_schema.validators import (
     test_before_resources,
     vali_daterange,
     eaw_schema_is_doi,
+    eaw_schema_is_doi_optional,
+    get_citation_from_doi,
 )
 
 
@@ -85,7 +83,8 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
             "eaw_schema_check_package_type": eaw_schema_check_package_type,
             "eaw_schema_check_hashtype": eaw_schema_check_hashtype,
             "eaw_schema_is_doi": eaw_schema_is_doi,
-            "eaw_schema_validate_author_format": eaw_schema_validate_author_format
+            "eaw_schema_is_doi_optional": eaw_schema_is_doi_optional,
+            "eaw_schema_validate_author_format": eaw_schema_validate_author_format,
         }
 
     # ITemplateHelpers
@@ -105,3 +104,50 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
     # IActions
     def get_actions(self):
         return {"eaw_schema_datamanger_show": eaw_schema_datamanger_show}
+
+    # IPackageController
+    def after_dataset_create(self, context, pkg_dict):
+        """Generate citations after dataset creation"""
+        self._generate_citations_if_needed(pkg_dict)
+
+    def after_dataset_update(self, context, pkg_dict):
+        """Generate citations after dataset update"""
+        self._generate_citations_if_needed(pkg_dict)
+
+    def _generate_citations_if_needed(self, pkg_dict):
+        """Generate citations for DOIs if citation fields are empty"""
+        updated = False
+        
+        # Generate dataset citation from DOI
+        doi = pkg_dict.get('doi')
+        citation = pkg_dict.get('citation')
+        
+        if doi and (not citation or citation.strip() == ""):
+            generated_citation = get_citation_from_doi(doi)
+            if generated_citation:
+                pkg_dict['citation'] = generated_citation
+                updated = True
+        
+        # Generate publication citation from paper DOI
+        paper_doi = pkg_dict.get('paper_doi')
+        citation_publication = pkg_dict.get('citation_publication')
+        
+        if paper_doi and (not citation_publication or citation_publication.strip() == ""):
+            generated_citation = get_citation_from_doi(paper_doi)
+            if generated_citation:
+                pkg_dict['citation_publication'] = generated_citation
+                updated = True
+        
+        # If we updated citations, save the package
+        if updated:
+            try:
+                toolkit.get_action('package_patch')(
+                    {'ignore_auth': True},
+                    {
+                        'id': pkg_dict['id'],
+                        'citation': pkg_dict.get('citation'),
+                        'citation_publication': pkg_dict.get('citation_publication')
+                    }
+                )
+            except Exception:
+                pass

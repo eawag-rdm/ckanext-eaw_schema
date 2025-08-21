@@ -1,0 +1,25 @@
+<div class="modal-help">
+    <div id="{{ field.modal_text }}" class="modal fade" tabindex="-1" aria-labelledby="{{ field.modal_text }}Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp;<b>Dataset Citation</b>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Enter the preferred citation format for this data package. This is how you would like others to cite your dataset in their publications.
+                    </p>
+                    <p>
+                        If left empty, a citation will be auto-generated based on the metadata. You can use this field to provide a custom citation format or to override the auto-generated one.
+                    </p>
+                    <div class="alert alert-info" role="alert" style="margin-top:30px;">
+                        <i class="fa fa-info-circle"></i> Example citation format:
+                        <br><code>Author, A. (Year). Dataset Title. Eawag: Swiss Federal Institute of Aquatic Science and Technology. https://doi.org/10.xxxx/xxxxx</code>
+                        <br>You can use Markdown formatting for emphasis, links, etc.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

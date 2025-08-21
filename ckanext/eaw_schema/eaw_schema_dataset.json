@@ -291,6 +291,47 @@
       "display_property": "dct:description"
     },
     {
+      "display_snippet": "text.html",
+      "modal_text": "doi_help",
+      "required": true,
+      "form_snippet": "eaw_schema_text.html",
+      "label": "DOI",
+      "validators": "scheming_required eaw_schema_is_doi",
+      "field_name": "doi",
+      "form_placeholder": "10.1234/example.doi",
+      "form_attrs": {
+        "style": "width:97%;"
+      },
+      "display_property": "dct:identifier"
+    },
+    {
+      "modal_text": "paper_doi_help",
+      "form_snippet": "eaw_schema_text.html",
+      "label": "Paper DOI",
+      "validators": "ignore_missing eaw_schema_is_doi_optional",
+      "field_name": "paper_doi",
+      "form_placeholder": "10.1234/paper.doi",
+      "form_attrs": {
+        "style": "width:97%;"
+      }
+    },
+    {
+      "modal_text": "citation_help",
+      "form_snippet": "eaw_schema_markdown.html",
+      "label": "Dataset Citation",
+      "validators": "ignore_missing",
+      "field_name": "citation",
+      "form_placeholder": "How this dataset should be cited..."
+    },
+    {
+      "modal_text": "citation_publication_help",
+      "form_snippet": "eaw_schema_markdown.html",
+      "label": "Publication Citation",
+      "validators": "ignore_missing",
+      "field_name": "citation_publication",
+      "form_placeholder": "Citation of the associated publication..."
+    },
+    {
       "modal_text": "keywords_help",
       "required": true,
       "form_snippet": "eaw_schema_text.html",
@@ -880,42 +921,6 @@
       "form_placeholder": "Additional notes for data users, the Eawag data-manager, or yourself.",
       "field_name": "notes-2",
       "display_property": "dct:description"
-    },
-    {
-      "display_snippet": "text.html",
-      "required": false,
-      "form_snippet": "text.html",
-      "label": "DOI",
-      "classes": [
-        "display_none"
-      ],
-      "validators": "ignore_missing eaw_schema_is_doi",
-      "field_name": "doi",
-      "display_property": "dct:identifier"
-    },
-    {
-      "field_name": "citation",
-      "classes": [
-        "display_none"
-      ],
-      "form_snippet": "text.html",
-      "display_snippet": null
-    },
-    {
-      "field_name": "citation_publication",
-      "classes": [
-        "display_none"
-      ],
-      "form_snippet": "text.html",
-      "display_snippet": null
-    },
-    {
-      "field_name": "paper_doi",
-      "classes": [
-        "display_none"
-      ],
-      "form_snippet": "text.html",
-      "display_snippet": null
     },
     {
       "field_name": "publicationlink_dora",

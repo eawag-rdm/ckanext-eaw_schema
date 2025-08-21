@@ -2,6 +2,7 @@ import datetime
 import json
 import re
 
+import requests
 from ckan.plugins import toolkit
 
 from ckanext.eaw_schema import logger
@@ -280,6 +281,22 @@ def eaw_schema_check_hashtype(hashtype):
 
 
 def eaw_schema_is_doi(value):
+    # Required DOI validator - empty values are not allowed
+    if not value or value.strip() == "":
+        raise toolkit.Invalid("DOI is required and cannot be empty")
+    
+    if DOI_REGEXP.match(value):
+        return value
+    else:
+        raise toolkit.Invalid("{} is not a valid DOI".format(value))
+
+
+def eaw_schema_is_doi_optional(value):
+    # Optional DOI validator - empty values are allowed
+    if not value or value.strip() == "":
+        return value
+    
+    # Only validate non-empty values
     if DOI_REGEXP.match(value):
         return value
     else:
@@ -344,3 +361,45 @@ def eaw_schema_validate_author_format(value):
             raise toolkit.Invalid('Author format must be: last, first <email>')
     
     return value
+
+
+def get_citation_from_doi(doi, prefix="10.25678", print_failures=True):
+    """
+    Generate citation from DOI using DataCite or CrossRef APIs.
+    Based on ckool's implementation.
+    """
+    if not doi:
+        return None
+    
+    # Clean up DOI format
+    doi = doi.strip()
+    if doi.startswith("https://doi.org/"):
+        doi = doi.replace("https://doi.org/", "")
+    elif doi.startswith("http://doi.org/"):
+        doi = doi.replace("http://doi.org/", "")
+    elif doi.startswith("doi.org/"):
+        doi = doi.replace("doi.org/", "")
+        
+    if re.match(f"^{prefix}", doi):
+        # Use DataCite for Eawag DOIs
+        url = f"https://api.datacite.org/dois/{doi}?style=american-geophysical-union"
+        headers = {"Accept": "text/x-bibliography"}
+    else:
+        # Use CrossRef for other DOIs
+        url = f"https://doi.org/{doi}"
+        headers = {"Accept": "text/x-bibliography; style=american-geophysical-union"}
+
+    try:
+        r = requests.get(url, headers=headers, timeout=40)
+        if r.ok:
+            return r.text.encode(r.encoding).decode("utf-8")
+        else:
+            if print_failures:
+                logger.warning(f"Failed to get citation for DOI {doi}: HTTP {r.status_code}")
+            return None
+    except requests.RequestException as e:
+        if print_failures:
+            logger.warning(f"Failed to get citation for DOI {doi}: {str(e)}")
+        return None
+
+

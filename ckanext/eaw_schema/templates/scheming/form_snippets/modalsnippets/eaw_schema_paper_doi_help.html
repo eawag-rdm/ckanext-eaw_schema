@@ -1,0 +1,26 @@
+<div class="modal-help">
+    <div id="{{ field.modal_text }}" class="modal fade" tabindex="-1" aria-labelledby="{{ field.modal_text }}Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp;<b>Paper DOI</b>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Enter the <a href="https://en.wikipedia.org/wiki/Digital_object_identifier" target="_blank"><i class="fa fa-external-link-square"></i>Digital Object Identifier (DOI)</a> 
+                        of the research paper or publication associated with this data package.
+                    </p>
+                    <p>
+                        This is different from the dataset DOI above - this field is for the DOI of the scientific publication that this data supports.
+                    </p>
+                    <div class="alert alert-info" role="alert" style="margin-top:30px;">
+                        <i class="fa fa-info-circle"></i> Paper DOIs should be entered in the format: <code>10.1234/paper.identifier</code>
+                        <br>Example: <code>10.1016/j.envsoft.2017.03.002</code>
+                        <br>You can enter with or without the "https://doi.org/" prefix.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
