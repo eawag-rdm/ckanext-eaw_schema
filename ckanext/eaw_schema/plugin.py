@@ -45,11 +45,10 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
         toolkit.add_public_directory(config_, "public")
         toolkit.add_resource("assets", "eaw_schema")
 
-    def before_index(self, data_dict):
-        data_dict["variables"] = json.loads(data_dict.get("variables", "[]"))
-        data_dict["systems"] = json.loads(data_dict.get("systems", "[]"))
-        data_dict["substances"] = json.loads(data_dict.get("substances", "[]"))
-        data_dict["taxa"] = json.loads(data_dict.get("taxa", "[]"))
+    # IPackageController
+    def before_dataset_index(self, data_dict):
+        for key in ["variables", "systems", "substances", "taxa"]:
+            data_dict[key] = json.loads(data_dict.get(key, "[]"))
         return data_dict
 
     # IValidators
