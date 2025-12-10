@@ -10,9 +10,9 @@ ckan.module('eaw_schema_info_modal', function () {
     return {
 	initialize: function () {
 	    var target = this.options.target;
-	    var modal = this.sandbox.jQuery( target );
-	    modal.modal({show: false});
-	    this.el.click(function () {modal.modal('toggle');});
+	    var modalEl = document.querySelector(target);
+	    var bsModal = new bootstrap.Modal(modalEl, {show: false});
+	    this.el.click(function () {bsModal.toggle();});
 	}
     };
 });
