@@ -1,4 +1,3 @@
-import _pytest.skipping
 import pytest
 import requests
 
@@ -10,9 +9,11 @@ def pytest_addoption(parser):
 
 
 @pytest.hookimpl(tryfirst=True)
-def pytest_cmdline_preparse(config, args):
-    if "--no-skips" not in args:
+def pytest_configure(config):
+    if not config.getoption("--no-skips", default=False):
         return
+
+    import _pytest.skipping
 
     def no_skip(*args, **kwargs):
         return
