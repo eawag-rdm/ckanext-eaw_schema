@@ -88,9 +88,11 @@ innermost div.  #}
             <textarea id="{{ id or name }}" name="{{ name }}" cols="20" rows="5" placeholder="{{ placeholder }}" {{ form.attributes(attrs) }}>{{ value | empty_and_escape }}</textarea>
             <span class="editor-info-block">{% trans %}You can use <a href="#markdown"
     title="Markdown quick reference"
-    data-target="popover"
-    data-content="{{ md_cheatsheet }}"
-    data-html="true">Markdown formatting</a> here{% endtrans %}</span>
+    data-bs-toggle="popover"
+    data-bs-content="{{ md_cheatsheet }}"
+    data-bs-html="true"
+    data-bs-trigger="focus"
+    tabindex="0">Markdown formatting</a> here{% endtrans %}</span>
         </div>
         {% if modal_text is defined %}
             {%- include 'scheming/form_snippets/eaw_schema_infobutton.html' -%}
