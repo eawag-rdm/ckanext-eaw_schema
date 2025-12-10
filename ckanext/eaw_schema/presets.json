@@ -32,14 +32,14 @@
       {
       "preset_name": "eaw_schema_dataset_organization",
       "values": {
-	"validators": "owner_org_validator unicode",
+	"validators": "owner_org_validator unicode_safe",
 	"form_snippet": "eaw_schema_organization.html"
       }
       },
     {
       "preset_name": "eaw_schema_title",
       "values": {
-	"validators": "if_empty_same_as(name) unicode",
+	"validators": "if_empty_same_as(name) unicode_safe",
         "form_snippet": "eaw_schema_large_text.html",
         "form_attrs": {
           "data-module": "slug-preview-target"
