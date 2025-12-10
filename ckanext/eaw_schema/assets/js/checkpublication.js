@@ -11,7 +11,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 		(function(element) {
 	  var checkbutton = $('<button>', {type: 'button', text: 'Check',
 					   id: 'pubcheckbutton',
-					   class: 'btn btn-primary pull-right',
+					   class: 'btn btn-primary float-end',
 					   width: '80px'});
 	  element.after(checkbutton);
 	  checkbutton.click(module.main.bind(module));
@@ -170,7 +170,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	  maintext = '<p><b>Could not retrieve record for:</b></p>'
 		+ '<p>' + modalinfo.url + '</p>'
 		+ '<p>Reason: ' + modalinfo.status + '</p>'
-		+ '<div class="alert-info"> Just continue after checking for typos.</div>';
+		+ '<div class="alert alert-info"> Just continue after checking for typos.</div>';
 	  $('#pubmodal_header').addClass('alert');
 	  $('#pubmodal_title').html('error');
 	  $('#pubmodal_main').html(maintext);
@@ -179,7 +179,7 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 		} else {
 	  maintext = '<p><b>Found publication:</b></p>'
 		+ '<div>' + modalinfo.citation + '</div><p></p>'
-		+ '<div class="alert-info">'
+		+ '<div class="alert alert-info">'
 		+ 'If that is not the right one, just click "Discard" and continue.'
 			+ '<br />Clicking "OK, Fill in metadata!" will overwrite any ' 
 		+ 'preexisting entries.</div>';
@@ -190,23 +190,23 @@ ckan.module('eaw_schema_checkpublication', function ($) {
 	  $('#pubmodal_button_right').html('OK, Fill in metadata!').addClass('btn-success').show();
 	  
 		}
-		$('#pubmodal').modal('show');
+		new bootstrap.Modal(document.getElementById('pubmodal')).show();
 	
 	  },
   
 	  modal_html:
-  `<div id="pubmodal" class="modal fade" role="dialog">
+  `<div id="pubmodal" class="modal fade" tabindex="-1" aria-labelledby="pubmodalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 	<div class="modal-content">
 	<div id="pubmodal_header" class="modal-header">
-	  <button style="right:-5px;" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
 	  <h3 id="pubmodal_title"></h3>
+	  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	</div>
 	<div class="modal-body" id="pubmodal_main">
 	</div>
 	<div class="modal-footer">
-	  <a id="pubmodal_button_left" href="#" class="btn pull-left" data-dismiss="modal"></a>
-	  <a id="pubmodal_button_right" href="#" class="btn pull-right" data-dismiss="modal"></a>
+	  <a id="pubmodal_button_left" href="#" class="btn float-start" data-bs-dismiss="modal"></a>
+	  <a id="pubmodal_button_right" href="#" class="btn float-end" data-bs-dismiss="modal"></a>
 	</div>
 	</div>
 	</div>
