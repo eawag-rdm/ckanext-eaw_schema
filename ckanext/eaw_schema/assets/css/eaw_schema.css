@@ -92,13 +92,13 @@ div.form-group.publication_element,
 div.form-group.open_data_element,
 div.form-group.longterm_data_element {
   background: rgb(196, 235, 234);
+  padding: 15px;
   padding-bottom: 20px;
-  
 }
 div.form-group.publication_element.publicationcheck,
 div.form-group.open_data_element.open_data_check,
 div.form-group.longterm_data_element.longtermcheck {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 10px 10px 10px 10px;
 }
 
@@ -174,7 +174,8 @@ input#field-publicationlink {
   border-bottom: 1px solid #A9A9A9;
   padding: 20px;
 }
-.modal-help .modal-header button.close {
+.modal-help .modal-header button.close,
+.modal-help .modal-header button.btn-close {
   font-size: 30px;
 }
 
@@ -267,4 +268,41 @@ i.fa-exclamation-triangle {
 
 form .display_none {
   display: none;
+}
+
+/* Bootstrap 5 .well replacement */
+.grey-well {
+  background-color: rgb(248, 249, 250);
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  padding: 1rem;
+}
+
+/* Check button positioning for DORA-Id field */
+#pubcheckbutton {
+  display: block !important;
+  text-align: center !important;
+  float: right !important;
+  margin-top: 5px !important;
+  margin-right: 0px !important;
+}
+
+#field-publicationlink {
+  margin-bottom: 5px !important;
+  width: 100% !important;
+}
+
+/* Calendar input group fixes for Bootstrap 5 */
+.open_data_embargo .input-group {
+  width: 38% !important;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+}
+
+.open_data_embargo .input-group .form-control,
+.open_data_embargo .input-group .input-group-text {
+  height: 34px !important;
+  line-height: 1.42857143 !important;
 }
