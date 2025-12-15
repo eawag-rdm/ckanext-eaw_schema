@@ -290,7 +290,6 @@ form .display_none {
 
 #field-publicationlink {
   margin-bottom: 5px !important;
-  width: 100% !important;
 }
 
 /* Calendar input group fixes for Bootstrap 5 */
@@ -306,4 +305,33 @@ form .display_none {
 .open_data_embargo .input-group .input-group-text {
   height: 34px !important;
   line-height: 1.42857143 !important;
+}
+
+/* Specific width rules for DORA-Id and Embargo fields - align info buttons */
+@media (min-width: 980px) {
+  .publicationlink div.eaw_with_infobutton,
+  .open_data_embargo div.eaw_with_infobutton {
+    width: 56.5% !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .publicationlink div.eaw_with_infobutton,
+  .open_data_embargo div.eaw_with_infobutton {
+    width: 42.0% !important;
+  }
+}
+
+@media (min-width: 713px) and (max-width: 767px) {
+  .publicationlink div.eaw_with_infobutton,
+  .open_data_embargo div.eaw_with_infobutton {
+    width: 65.2% !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 712px) {
+  .publicationlink div.eaw_with_infobutton,
+  .open_data_embargo div.eaw_with_infobutton {
+    width: 52.4% !important;
+  }
 }

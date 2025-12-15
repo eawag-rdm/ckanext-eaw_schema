@@ -21,12 +21,20 @@
     is_required=h.scheming_field_required(field)) -%}
     <div class="eaw_with_infobutton">
         <div class="input-group date">
-            <input id="{{ id }}" name="{{ name }}" type="text" value="{{ value }}" class="form-control" {{ form.attributes(attrs) }} data-module="datepicker" data-module-maxdate="{{ maxdate }}" data-module-today="{{ today }}" />
+            <input id="{{ id }}"
+                   name="{{ name }}"
+                   type="text"
+                   value="{{ value }}"
+                   class="form-control"
+                   {{ form.attributes(attrs) }}
+                   data-module="datepicker"
+                   data-module-maxdate="{{ maxdate }}"
+                   data-module-today="{{ today }}" />
             <span class="input-group-text add-on"><i class="fa fa-calendar"></i></span>
         </div>
-        {% if modal_text is not none %}
-            {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text -%}
-            {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html', field=field -%}
-        {% endif %}
     </div>
+    {% if modal_text is not none %}
+        {%- snippet 'scheming/form_snippets/eaw_schema_infobutton.html', modal_text=modal_text -%}
+        {%- snippet 'scheming/form_snippets/modalsnippets/eaw_schema_' ~ modal_text ~ '.html', field=field -%}
+    {% endif %}
 {% endcall %}
