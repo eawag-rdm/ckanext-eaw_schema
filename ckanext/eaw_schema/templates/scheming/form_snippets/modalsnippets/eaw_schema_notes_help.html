@@ -1,13 +1,10 @@
 <div class="modal-help">
-    <div id="{{ field.modal_text }}" class="modal fade" role="dialog">
+    <div id="{{ field.modal_text }}" class="modal fade" tabindex="-1" aria-labelledby="{{ field.modal_text }}Label" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
+                    <i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp;<b>Notes</b>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <p>
-                        <i class="fa fa-lightbulb-o fa-lg"></i>&nbsp;&nbsp
-                        <b>Notes</b>
-                    </p>
                 </div>
                 <div class="modal-body">
                     <p>

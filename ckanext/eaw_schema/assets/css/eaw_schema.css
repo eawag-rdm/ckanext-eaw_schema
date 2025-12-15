@@ -174,8 +174,7 @@ input#field-publicationlink {
   border-bottom: 1px solid #A9A9A9;
   padding: 20px;
 }
-.modal-help .modal-header button.close,
-.modal-help .modal-header button.btn-close {
+.modal-help .modal-header button.close {
   font-size: 30px;
 }
 
