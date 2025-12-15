@@ -290,6 +290,7 @@ form .display_none {
 
 #field-publicationlink {
   margin-bottom: 5px !important;
+  width: 100% !important;
 }
 
 /* Calendar input group fixes for Bootstrap 5 */
