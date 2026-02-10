@@ -322,7 +322,7 @@ def eaw_schema_validate_author_format(value):
                     "Lastname, Firstname <email@domain>"
                 )
         else:
-            if '<' in author:
+            if '<' in author or '@' in author:
                 if not author_with_email.match(author):
                     raise toolkit.Invalid(
                         "Author email format invalid: "

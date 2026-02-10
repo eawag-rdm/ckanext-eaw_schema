@@ -203,3 +203,10 @@ class TestValidateAuthorFormat:
         value = json.dumps(["Bach, Johann <joe@>"])
         with pytest.raises(Invalid, match="First author must include email"):
             eaw_schema_validate_author_format(value)
+
+    def test_invalid_subsequent_author_email_without_brackets(self):
+        value = json.dumps(
+            ["Bach, Johann <joe@eawag.ch>", "Runnalls, James james@eawag.ch"]
+        )
+        with pytest.raises(Invalid, match="Author email format invalid"):
+            eaw_schema_validate_author_format(value)
