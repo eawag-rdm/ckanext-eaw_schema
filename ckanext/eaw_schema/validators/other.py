@@ -291,6 +291,52 @@ def test_before(key, flattened_data, errors, context):
         )
 
 
+def eaw_schema_validate_author_format(value):
+    """Validate author format with position-aware rules.
+
+    First author must include email: Lastname, Firstname <email@domain>
+    Subsequent authors: email is optional, but if present must be valid.
+    """
+    if not value or not value.strip():
+        return value
+
+    try:
+        authors = json.loads(value)
+    except (TypeError, ValueError):
+        authors = [value]
+
+    if not isinstance(authors, list):
+        authors = [authors]
+
+    author_with_email = re.compile(r'^[^,]+,\s*[^<]+\s*<[^@]+@[^>]+>$')
+    author_without_email = re.compile(r'^[^,]+,\s*.+$')
+
+    for idx, author in enumerate(authors):
+        if not author or not author.strip():
+            continue
+        author = author.strip()
+        if idx == 0:
+            if not author_with_email.match(author):
+                raise toolkit.Invalid(
+                    "First author must include email: "
+                    "Lastname, Firstname <email@domain>"
+                )
+        else:
+            if '<' in author:
+                if not author_with_email.match(author):
+                    raise toolkit.Invalid(
+                        "Author email format invalid: "
+                        "use Lastname, Firstname <email@domain>"
+                    )
+            else:
+                if not author_without_email.match(author):
+                    raise toolkit.Invalid(
+                        "Author format must be: Lastname, Firstname"
+                    )
+
+    return value
+
+
 def output_daterange(values):
     """
     For display:
