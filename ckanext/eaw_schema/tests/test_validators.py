@@ -221,6 +221,19 @@ class TestValidateAuthorFormat:
         )
         assert eaw_schema_validate_author_format(value) == value
 
+    def test_valid_institution_mixed_case_abbreviation(self):
+        value = json.dumps(
+            ["Eawag: Swiss Federal Institute of Aquatic Science and Technology"]
+        )
+        assert eaw_schema_validate_author_format(value) == value
+
+    def test_valid_institution_mixed_case_subsequent(self):
+        value = json.dumps(
+            ["Bach, Johann <joe@eawag.ch>",
+             "Eawag: Swiss Federal Institute of Aquatic Science and Technology"]
+        )
+        assert eaw_schema_validate_author_format(value) == value
+
     def test_valid_institution_mixed_with_persons(self):
         value = json.dumps(
             ["WSL: Swiss Federal Institute for Forest Snow and Landscape Research",
@@ -229,7 +242,7 @@ class TestValidateAuthorFormat:
         )
         assert eaw_schema_validate_author_format(value) == value
 
-    def test_invalid_institution_lowercase_abbreviation(self):
+    def test_invalid_institution_lowercase_first_letter(self):
         value = json.dumps(["wsl: Some Institution Name"])
         with pytest.raises(Invalid, match="Institution format must be"):
             eaw_schema_validate_author_format(value)
@@ -251,7 +264,7 @@ class TestValidateAuthorFormat:
         with pytest.raises(Invalid, match="Author format must be"):
             eaw_schema_validate_author_format(value)
 
-    def test_invalid_institution_lowercase_subsequent(self):
+    def test_invalid_institution_lowercase_first_letter_subsequent(self):
         value = json.dumps(
             ["Bach, Johann <joe@eawag.ch>", "wsl: Some Name"]
         )

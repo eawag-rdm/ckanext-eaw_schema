@@ -296,7 +296,7 @@ def eaw_schema_validate_author_format(value):
 
     First author must include email: Lastname, Firstname <email@domain>
     Subsequent authors: email is optional, but if present must be valid.
-    Institution format (any position, no email required): ABBREV: Full Name
+    Institution format (any position, no email required): Abbrev: Full Name
     """
     if not value or not value.strip():
         return value
@@ -309,7 +309,7 @@ def eaw_schema_validate_author_format(value):
     if not isinstance(authors, list):
         authors = [authors]
 
-    institution = re.compile(r'^[A-Z]{2,}: .+$')
+    institution = re.compile(r'^[A-Z][a-zA-Z]+: .+$')
     author_with_email = re.compile(r'^[^,]+,\s*[^<]+\s*<[^@]+@[^>]+>$')
     author_without_email = re.compile(r'^[^,]+,\s*.+$')
 
@@ -326,8 +326,8 @@ def eaw_schema_validate_author_format(value):
         # 2. Looks like institution attempt (has colon) → institution-specific error
         if ':' in author:
             raise toolkit.Invalid(
-                "Institution format must be: ABBREV: Full Institution Name "
-                "(abbreviation requires 2+ uppercase letters)"
+                "Institution format must be: Abbrev: Full Institution Name "
+                "(abbreviation requires 2+ letters, first must be uppercase)"
             )
 
         # 3. Has email markers but no comma → missing comma error
@@ -336,7 +336,7 @@ def eaw_schema_validate_author_format(value):
                 raise toolkit.Invalid(
                     "First author must be: "
                     "Lastname, Firstname <email@domain> "
-                    "or ABBREV: Full Institution Name"
+                    "or Abbrev: Full Institution Name"
                 )
             else:
                 raise toolkit.Invalid(
@@ -361,7 +361,7 @@ def eaw_schema_validate_author_format(value):
                     raise toolkit.Invalid(
                         "First author must include email: "
                         "Lastname, Firstname <email@domain> "
-                        "(or use institution format ABBREV: Full Name)"
+                        "(or use institution format Abbrev: Full Name)"
                     )
                 continue  # valid subsequent author without email
 
@@ -370,13 +370,13 @@ def eaw_schema_validate_author_format(value):
             raise toolkit.Invalid(
                 "First author must be: "
                 "Lastname, Firstname <email@domain> "
-                "or ABBREV: Full Institution Name"
+                "or Abbrev: Full Institution Name"
             )
         else:
             raise toolkit.Invalid(
                 "Author format must be: "
                 "Lastname, Firstname "
-                "or ABBREV: Full Institution Name"
+                "or Abbrev: Full Institution Name"
             )
 
     return value
