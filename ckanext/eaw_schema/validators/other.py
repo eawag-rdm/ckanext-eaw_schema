@@ -296,6 +296,7 @@ def eaw_schema_validate_author_format(value):
 
     First author must include email: Lastname, Firstname <email@domain>
     Subsequent authors: email is optional, but if present must be valid.
+    Institution format (any position, no email required): ABBREV: Full Name
     """
     if not value or not value.strip():
         return value
@@ -308,6 +309,7 @@ def eaw_schema_validate_author_format(value):
     if not isinstance(authors, list):
         authors = [authors]
 
+    institution = re.compile(r'^[A-Z]{2,}: .+$')
     author_with_email = re.compile(r'^[^,]+,\s*[^<]+\s*<[^@]+@[^>]+>$')
     author_without_email = re.compile(r'^[^,]+,\s*.+$')
 
@@ -315,24 +317,67 @@ def eaw_schema_validate_author_format(value):
         if not author or not author.strip():
             continue
         author = author.strip()
-        if idx == 0:
+        is_first = (idx == 0)
+
+        # 1. Valid institution → accept
+        if institution.match(author):
+            continue
+
+        # 2. Looks like institution attempt (has colon) → institution-specific error
+        if ':' in author:
+            raise toolkit.Invalid(
+                "Institution format must be: ABBREV: Full Institution Name "
+                "(abbreviation requires 2+ uppercase letters)"
+            )
+
+        # 3. Has email markers but no comma → missing comma error
+        if ('<' in author or '@' in author) and ',' not in author:
+            if is_first:
+                raise toolkit.Invalid(
+                    "First author must be: "
+                    "Lastname, Firstname <email@domain> "
+                    "or ABBREV: Full Institution Name"
+                )
+            else:
+                raise toolkit.Invalid(
+                    "Author format must be: "
+                    "Lastname, Firstname <email@domain> "
+                    "or Lastname, Firstname"
+                )
+
+        # 4. Has comma + email markers but doesn't match → malformed email
+        if '<' in author or '@' in author:
             if not author_with_email.match(author):
                 raise toolkit.Invalid(
-                    "First author must include email: "
-                    "Lastname, Firstname <email@domain>"
+                    "Author email format invalid: "
+                    "use Lastname, Firstname <email@domain>"
                 )
+            continue  # valid person with email
+
+        # 5. Has comma, no email
+        if ',' in author:
+            if author_without_email.match(author):
+                if is_first:
+                    raise toolkit.Invalid(
+                        "First author must include email: "
+                        "Lastname, Firstname <email@domain> "
+                        "(or use institution format ABBREV: Full Name)"
+                    )
+                continue  # valid subsequent author without email
+
+        # 6. Bare name — no comma, no email, no colon
+        if is_first:
+            raise toolkit.Invalid(
+                "First author must be: "
+                "Lastname, Firstname <email@domain> "
+                "or ABBREV: Full Institution Name"
+            )
         else:
-            if '<' in author or '@' in author:
-                if not author_with_email.match(author):
-                    raise toolkit.Invalid(
-                        "Author email format invalid: "
-                        "use Lastname, Firstname <email@domain>"
-                    )
-            else:
-                if not author_without_email.match(author):
-                    raise toolkit.Invalid(
-                        "Author format must be: Lastname, Firstname"
-                    )
+            raise toolkit.Invalid(
+                "Author format must be: "
+                "Lastname, Firstname "
+                "or ABBREV: Full Institution Name"
+            )
 
     return value
 

@@ -146,7 +146,7 @@ class TestValidateAuthorFormat:
 
     def test_invalid_format_no_comma(self):
         value = json.dumps(["Johann Bach <joe@eawag.ch>"])
-        with pytest.raises(Invalid, match="First author must include email"):
+        with pytest.raises(Invalid, match="First author must be"):
             eaw_schema_validate_author_format(value)
 
     def test_empty_entries_skipped(self):
@@ -172,17 +172,17 @@ class TestValidateAuthorFormat:
 
     def test_invalid_first_author_email_missing_at(self):
         value = json.dumps(["Bach, Johann <joeeawag.ch>"])
-        with pytest.raises(Invalid, match="First author must include email"):
+        with pytest.raises(Invalid, match="Author email format invalid"):
             eaw_schema_validate_author_format(value)
 
     def test_invalid_first_author_email_missing_closing_bracket(self):
         value = json.dumps(["Bach, Johann <joe@eawag.ch"])
-        with pytest.raises(Invalid, match="First author must include email"):
+        with pytest.raises(Invalid, match="Author email format invalid"):
             eaw_schema_validate_author_format(value)
 
     def test_invalid_first_author_email_empty_brackets(self):
         value = json.dumps(["Bach, Johann <>"])
-        with pytest.raises(Invalid, match="First author must include email"):
+        with pytest.raises(Invalid, match="Author email format invalid"):
             eaw_schema_validate_author_format(value)
 
     def test_invalid_subsequent_author_email_missing_at(self):
@@ -201,7 +201,7 @@ class TestValidateAuthorFormat:
 
     def test_invalid_first_author_email_no_domain(self):
         value = json.dumps(["Bach, Johann <joe@>"])
-        with pytest.raises(Invalid, match="First author must include email"):
+        with pytest.raises(Invalid, match="Author email format invalid"):
             eaw_schema_validate_author_format(value)
 
     def test_invalid_subsequent_author_email_without_brackets(self):
@@ -209,4 +209,51 @@ class TestValidateAuthorFormat:
             ["Bach, Johann <joe@eawag.ch>", "Runnalls, James james@eawag.ch"]
         )
         with pytest.raises(Invalid, match="Author email format invalid"):
+            eaw_schema_validate_author_format(value)
+
+    def test_valid_institution_as_first_author(self):
+        value = json.dumps(["WSL: Swiss Federal Institute for Forest Snow and Landscape Research"])
+        assert eaw_schema_validate_author_format(value) == value
+
+    def test_valid_institution_as_subsequent_author(self):
+        value = json.dumps(
+            ["Bach, Johann <joe@eawag.ch>", "EAWAG: Swiss Federal Institute of Aquatic Science and Technology"]
+        )
+        assert eaw_schema_validate_author_format(value) == value
+
+    def test_valid_institution_mixed_with_persons(self):
+        value = json.dumps(
+            ["WSL: Swiss Federal Institute for Forest Snow and Landscape Research",
+             "Bach, Johann <joe@eawag.ch>",
+             "Mozart, Wolfgang"]
+        )
+        assert eaw_schema_validate_author_format(value) == value
+
+    def test_invalid_institution_lowercase_abbreviation(self):
+        value = json.dumps(["wsl: Some Institution Name"])
+        with pytest.raises(Invalid, match="Institution format must be"):
+            eaw_schema_validate_author_format(value)
+
+    def test_invalid_institution_single_letter_abbreviation(self):
+        value = json.dumps(["W: Some Institution Name"])
+        with pytest.raises(Invalid, match="Institution format must be"):
+            eaw_schema_validate_author_format(value)
+
+    def test_invalid_institution_no_space_after_colon(self):
+        value = json.dumps(["WSL:NoSpace"])
+        with pytest.raises(Invalid, match="Institution format must be"):
+            eaw_schema_validate_author_format(value)
+
+    def test_invalid_subsequent_no_comma_with_email(self):
+        value = json.dumps(
+            ["Bach, Johann <joe@eawag.ch>", "Wolfgang Mozart <wolf@eawag.ch>"]
+        )
+        with pytest.raises(Invalid, match="Author format must be"):
+            eaw_schema_validate_author_format(value)
+
+    def test_invalid_institution_lowercase_subsequent(self):
+        value = json.dumps(
+            ["Bach, Johann <joe@eawag.ch>", "wsl: Some Name"]
+        )
+        with pytest.raises(Invalid, match="Institution format must be"):
             eaw_schema_validate_author_format(value)
