@@ -159,9 +159,9 @@ def eaw_schema_embargodate(key, data, errors, context):
         interval = eaw_schema_embargo_interval(interval_in_days=730)
         now = datetime.datetime.strptime(interval["now"], "%Y-%m-%d")
         maxdate = datetime.datetime.strptime(interval["maxdate"], "%Y-%m-%d")
-        if value < now:
-            errors[key].append("Time-travel not yet implemented.")
-            return
+        #if value < now:
+        #    errors[key].append("Time-travel not yet implemented.")
+        #    return
         if value > maxdate:
             errors[key].append("Please choose an embargo date within the next 2 years.")
             return
