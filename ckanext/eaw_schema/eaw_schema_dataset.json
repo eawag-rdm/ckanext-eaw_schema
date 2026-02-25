@@ -741,7 +741,7 @@
       "default_value": "",
       "display_snippet": null,
       "modal_text": "spatial_help",
-      "form_snippet": "text_medium.html",
+      "form_snippet": "eaw_spatial_text.html",
       "label": "Spatial Extent",
       "validators": "ignore_missing eaw_schema_geojson_type",
       "form_placeholder": "{\"type\": \"Point\", \"coordinates\": [8.609762390208658, 47.40381297881529]}",
