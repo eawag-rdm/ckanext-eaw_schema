@@ -23,10 +23,18 @@ ckan.module('eaw_spatial_preview', function ($) {
             var modalEl = document.getElementById('spatialPreviewModal');
             this.bsModal = new bootstrap.Modal(modalEl, {show: false});
 
-            // Reinvalidate map size after the modal transition completes
+            // After modal is fully visible, fix map size and re-fit bounds
             $(modalEl).on('shown.bs.modal', function () {
                 if (this.map) {
                     this.map.invalidateSize();
+                    if (this._currentLayer) {
+                        if (this._currentGeojson && this._currentGeojson.type === 'Point') {
+                            var coords = this._currentGeojson.coordinates;
+                            this.map.setView([coords[1], coords[0]], 10);
+                        } else {
+                            this.map.fitBounds(this._currentLayer.getBounds(), {padding: [30, 30]});
+                        }
+                    }
                 }
             }.bind(this));
 
@@ -94,6 +102,9 @@ ckan.module('eaw_spatial_preview', function ($) {
                 this.map = null;
             }
 
+            this._currentLayer = layer;
+            this._currentGeojson = geojson;
+
             this.bsModal.show();
 
             // Small delay to let the modal start rendering before creating the map
@@ -108,14 +119,8 @@ ckan.module('eaw_spatial_preview', function ($) {
 
                 layer.addTo(map);
 
-                if (geojson.type === 'Point') {
-                    var coords = geojson.coordinates;
-                    map.setView([coords[1], coords[0]], 10);
-                } else {
-                    map.fitBounds(layer.getBounds(), {padding: [20, 20]});
-                }
-
-                map.invalidateSize();
+                // Initial view — shown.bs.modal will re-fit with correct dimensions
+                map.setView([0, 0], 2);
             }.bind(this), 150);
         },
 
