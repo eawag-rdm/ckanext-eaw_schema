@@ -9,6 +9,11 @@
 "use strict";
 
 ckan.module('eaw_spatial_preview', function ($) {
+    var ALLOWED_TYPES = [
+        'Point', 'MultiPoint', 'LineString',
+        'MultiLineString', 'Polygon', 'MultiPolygon'
+    ];
+
     return {
         initialize: function () {
             this.map = null;
@@ -67,7 +72,10 @@ ckan.module('eaw_spatial_preview', function ($) {
                 return;
             }
 
-            // Let Leaflet validate: if it can't produce a layer, it's not valid GeoJSON
+            // Only allow the geometry types the backend accepts
+            if (ALLOWED_TYPES.indexOf(geojson.type) === -1) { return; }
+
+            // Let Leaflet validate structure (coordinates, nesting, etc.)
             var layer;
             try {
                 layer = L.geoJSON(geojson);
