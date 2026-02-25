@@ -67,12 +67,19 @@ ckan.module('eaw_spatial_preview', function ($) {
                 return;
             }
 
-            if (!geojson.type || !geojson.coordinates) { return; }
+            // Let Leaflet validate: if it can't produce a layer, it's not valid GeoJSON
+            var layer;
+            try {
+                layer = L.geoJSON(geojson);
+            } catch (e) {
+                return;
+            }
+            if (layer.getLayers().length === 0) { return; }
 
-            this._showMap(geojson);
+            this._showMap(geojson, layer);
         },
 
-        _showMap: function (geojson) {
+        _showMap: function (geojson, layer) {
             // Destroy any previous map instance
             if (this.map) {
                 this.map.remove();
@@ -91,10 +98,9 @@ ckan.module('eaw_spatial_preview', function ($) {
                     maxZoom: 19
                 }).addTo(map);
 
-                var layer = L.geoJSON(geojson).addTo(map);
+                layer.addTo(map);
 
                 if (geojson.type === 'Point') {
-                    // Point has no area, so use setView at a reasonable zoom
                     var coords = geojson.coordinates;
                     map.setView([coords[1], coords[0]], 10);
                 } else {
