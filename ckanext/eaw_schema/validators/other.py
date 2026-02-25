@@ -382,6 +382,33 @@ def eaw_schema_validate_author_format(value):
     return value
 
 
+ALLOWED_GEOJSON_TYPES = {
+    "Point",
+    "MultiPoint",
+    "LineString",
+    "MultiLineString",
+    "Polygon",
+    "MultiPolygon",
+}
+
+
+def eaw_schema_geojson_type(value):
+    if not value:
+        return value
+    try:
+        geometry = json.loads(value)
+    except (TypeError, ValueError):
+        raise toolkit.Invalid("Not valid JSON")
+    geom_type = geometry.get("type")
+    if geom_type not in ALLOWED_GEOJSON_TYPES:
+        raise toolkit.Invalid(
+            f"Geometry type '{geom_type}' is not allowed. "
+            f"Must be one of: {', '.join(sorted(ALLOWED_GEOJSON_TYPES))}. "
+            f"See https://opendata.eawag.ch/docs/research-data-management/examples.html#adding-spatial-information"
+        )
+    return value
+
+
 def output_daterange(values):
     """
     For display:
