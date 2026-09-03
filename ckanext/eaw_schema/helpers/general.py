@@ -105,6 +105,31 @@ def eaw_schema_get_paper_citationurl(typ, doi):
     return f"https://api.crossref.org/works/{doi}/{types[typ]}"
 
 
+def eaw_schema_clean_citation(value):
+    """Return a citation fit to display, or None.
+
+    Two kinds of junk sit in the citation fields of existing packages and must
+    not reach the template: whitespace-only values, and API error payloads
+    stored as if they were citations, e.g. DataCite's
+    '{"errors": [{"status": "404", "title": "The resource you are looking for
+    doesn\'t exist."}]}'. A real citation never parses as JSON, so parsing is a
+    safer test than matching on the error text -- it also catches Crossref's
+    payloads and survives any rewording on either side.
+    """
+    if not isinstance(value, str):
+        return None
+    value = value.strip()
+    if not value:
+        return None
+    if value[0] in "{[":
+        try:
+            json.loads(value)
+        except ValueError:
+            return value  # a citation that merely starts with "[1] ..."
+        return None
+    return value
+
+
 def eaw_schema_human_filesize(size, suffix="B"):
     "Returns human-friendly string for filesize (bytes -> decmal prefix)"
     if not size or not (isinstance(size, float) or isinstance(size, int)):

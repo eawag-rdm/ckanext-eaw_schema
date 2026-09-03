@@ -14,6 +14,7 @@ from ckanext.eaw_schema.helpers import (
 )
 from ckanext.eaw_schema.helpers.general import (
     eaw_schema_choices_label_noi8n,
+    eaw_schema_clean_citation,
     eaw_schema_get_citationurl,
     eaw_schema_get_paper_citationurl,
 )
@@ -97,6 +98,7 @@ class EawSchemaPlugin(plugins.SingletonPlugin):
             "eaw_schema_get_citationurl": eaw_schema_get_citationurl,
             "eaw_schema_choices_label_noi8n": eaw_schema_choices_label_noi8n,
             "eaw_schema_get_paper_citationurl": eaw_schema_get_paper_citationurl,
+            "eaw_schema_clean_citation": eaw_schema_clean_citation,
         }
 
     # IActions

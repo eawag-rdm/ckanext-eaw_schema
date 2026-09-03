@@ -31,8 +31,8 @@ HvW-2016-06-03
 {% set longterm_html = '<img src="/inf.png" width="25px" alt="Long-term data" /> <b>Long-term data</b>'|safe %}
 {% set doi = pkg_dict['doi'] %}
 {% set paper_doi = pkg_dict['paper_doi'] %}
-{% set citation = pkg_dict.get('citation') %}
-{% set citation_publication = pkg_dict.get('citation_publication') %}
+{% set citation = h.eaw_schema_clean_citation(pkg_dict.get('citation')) %}
+{% set citation_publication = h.eaw_schema_clean_citation(pkg_dict.get('citation_publication')) %}
 <section class="additional-info">
     {% block citation %}
         {% if citation or citation_publication %}
