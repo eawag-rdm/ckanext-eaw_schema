@@ -31,15 +31,17 @@ HvW-2016-06-03
 {% set longterm_html = '<img src="/inf.png" width="25px" alt="Long-term data" /> <b>Long-term data</b>'|safe %}
 {% set doi = pkg_dict['doi'] %}
 {% set paper_doi = pkg_dict['paper_doi'] %}
+{% set citation = pkg_dict.get('citation') %}
+{% set citation_publication = pkg_dict.get('citation_publication') %}
 <section class="additional-info">
     {% block citation %}
+        {% if citation or citation_publication %}
         <h3>{{ _("Citation") }}</h3>
+        {% if citation %}
         <div class="package_citation mb-3">
-            {% if pkg_dict['citation_publication'] is defined and pkg_dict['citation_publication'] %}<h4>This Data Package</h4>{% endif %}
-            {% if pkg_dict['citation'] is defined and pkg_dict['citation'] %}
-                <div class="grey-well">{{ pkg_dict['citation'] |safe }}</div>
-            {% endif %}
-            {% if doi is defined %}
+            {% if citation_publication %}<h4>This Data Package</h4>{% endif %}
+            <div class="grey-well">{{ citation |safe }}</div>
+            {% if doi %}
                 <div class="btn-group" role="group" aria-label="citation_download">
                     <a class="btn btn-secondary btn-sm"
                        href="{{ h.eaw_schema_get_citationurl('ris', doi) }}"
@@ -56,11 +58,12 @@ HvW-2016-06-03
                 </div>
             {% endif %}
         </div>
-        {% if pkg_dict['citation_publication'] is defined and pkg_dict['citation_publication'] %}
+        {% endif %}
+        {% if citation_publication %}
             <div class="paper_citation mb-3">
                 <h4>The associated article</h4>
-                <div class="grey-well">{{ pkg_dict['citation_publication'] |safe }}</div>
-                {% if paper_doi is defined %}
+                <div class="grey-well">{{ citation_publication |safe }}</div>
+                {% if paper_doi %}
                     <div class="btn-group" role="group" aria-label="citation_download">
                         <a class="btn btn-secondary btn-sm"
                            href="{{ h.eaw_schema_get_paper_citationurl('ris', paper_doi) }}"
@@ -74,6 +77,7 @@ HvW-2016-06-03
                     </div>
                 {% endif %}
             </div>
+        {% endif %}
         {% endif %}
     {% endblock %}
     {% block publication_data %}
