@@ -404,7 +404,7 @@ def eaw_schema_geojson_type(value):
         raise toolkit.Invalid(
             f"Geometry type '{geom_type}' is not allowed. "
             f"Must be one of: {', '.join(sorted(ALLOWED_GEOJSON_TYPES))}. "
-            f"See https://opendata.eawag.ch/docs/research-data-management/examples.html#adding-spatial-information"
+            f"See https://opendata.eawag.ch/docs/preserve/walkthroughs/#adding-spatial-information"
         )
     return value
 
