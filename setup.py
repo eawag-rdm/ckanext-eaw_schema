@@ -23,7 +23,7 @@ setup(
     long_description_content_type="text/markdown",
 
     # The project's main homepage.
-    url='https://github.com/eawag-rdm/ckanext-eaw_schema',
+    url='https://gitlab.eawag.ch/rdm/eric/ckanext-eaw_schema',
 
     # Author details
     author='''Christian Foerster''',
