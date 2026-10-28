@@ -362,6 +362,18 @@
       "required": true,
       "choices": [
         {
+          "value": "chlorophyll_a",
+          "label": "chlorophyll-a"
+        },
+        {
+          "value": "total_suspended_matter",
+          "label": "total suspended matter"
+        },
+        {
+          "value": "Forel_Ule_index",
+          "label": "Forel-Ule index"
+        },
+        {
           "value": "alkalinity",
           "label": "alkalinity"
         },
